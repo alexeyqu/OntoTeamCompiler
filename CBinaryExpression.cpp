@@ -1,4 +1,5 @@
-class CBinaryExpression : public IExpression {
+class CBinaryExpression : public IExpression 
+{
    	IExpression* LeftOperand;
    	IExpression* RightOperand;
  
@@ -8,5 +9,7 @@ class CBinaryExpression : public IExpression {
    	};
    	TOperationType Operation;
  
-   	virtual void Accept( IVisitor* v ) override;
+   	virtual void Accept( IVisitor* v ) override	{
+   		v.Visit(*this);
+   	};
 };
