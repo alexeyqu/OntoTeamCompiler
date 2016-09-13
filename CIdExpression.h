@@ -3,10 +3,9 @@
 
 class CIdExpression : public IExpression 
 {
+public:
 	std::string id;
 
-public:
-	
 	CIdExpression( const std::string& id ); 
    	virtual void Accept( IVisitor* v ) override;
 };

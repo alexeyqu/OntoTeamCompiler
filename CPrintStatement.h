@@ -2,9 +2,10 @@
 
 class CPrintStatement : public IStatement
 {
+public:
+
 	IStatement* statement;
 
-public:
 	CPrintStatement( IStatement* statement );
 	virtual void Accept( IVisitor* v ) override	;
 };

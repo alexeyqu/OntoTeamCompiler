@@ -4,9 +4,9 @@
 
 class CNumberExpression : public IExpression 
 {
-   	int value;
-
 public:
+
+   	int value;
 
    	CNumberExpression( int value ); 
    	virtual void Accept( IVisitor* v ) override;

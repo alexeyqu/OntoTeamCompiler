@@ -4,16 +4,15 @@
 
 class CBinaryExpression : public IExpression 
 {
-   	IExpression* leftOperand;
-   	IExpression* rightOperand;
- 
-   	enum TOperationType {
+	enum TOperationType {
          		OT_Plus,
          		OT_Minus,
    	};
-   	TOperationType operation;
 
 public:
+   	IExpression* leftOperand;
+   	IExpression* rightOperand;
+   	TOperationType operation;
 
 	CBinaryExpression( IExpression* leftOperand, IExpression* rightOperand );
    virtual void Accept( IVisitor* v ) override;

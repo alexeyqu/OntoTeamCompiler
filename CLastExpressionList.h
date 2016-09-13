@@ -4,9 +4,10 @@
 
 class CLastExpressionList : public IExpression
 {
+public:
+
 	IExpression* expression;
 
-public:
 	CLastExpressionList( IExpression* expression );
 	virtual void Accept( IVisitor* v ) override;
 };
