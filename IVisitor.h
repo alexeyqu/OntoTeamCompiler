@@ -6,6 +6,7 @@ class CBinaryExpression;
 class CNumberExpression;
 class CAssignStatement;
 class CPrintStatement;
+class CLastExpressionList;
 
 class IVisitor
 {
@@ -17,4 +18,5 @@ public:
    	virtual void Visit( CNumberExpression* ) = 0;
    	virtual void Visit( CAssignStatement* ) = 0;
    	virtual void Visit( CPrintStatement* ) = 0;
+   	virtual void Visit( CLastExpressionList* ) = 0;
 };
