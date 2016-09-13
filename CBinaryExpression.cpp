@@ -1,15 +1,11 @@
-class CBinaryExpression : public IExpression 
-{
-   	IExpression* LeftOperand;
-   	IExpression* RightOperand;
+#include "IVisitor.h"
+#include "CBinaryExpression.h"
+
+CBinaryExpression::CBinaryExpression( IExpression* leftOperand, IExpression* rightOperand) {
+	this->leftOperand = leftOperand;
+	this->rightOperand = rightOperand;
+}
  
-   	enum TOperationType {
-         		OT_Plus,
-         		OT_Minus,
-   	};
-   	TOperationType Operation;
- 
-   	virtual void Accept( IVisitor* v ) override	{
-   		v.Visit(*this);
-   	};
-};
+void CBinaryExpression::Accept( IVisitor* v ) {
+	v->Visit(this);
+}

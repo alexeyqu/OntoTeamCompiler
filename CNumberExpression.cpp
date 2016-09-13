@@ -1,8 +1,10 @@
-class CNumberExpression : public IExpression 
-{
-   	int Value;
- 
-   	virtual void Accept( IVisitor* v ) override	{
-   		v.Visit(*this);
-   	}
-};
+#include "IVisitor.h"
+#include "CNumberExpression.h"
+
+CNumberExpression::CNumberExpression( int value ) {
+	this->value = value;
+}
+
+void CNumberExpression::Accept( IVisitor* v ) {
+	v->Visit( this );
+}

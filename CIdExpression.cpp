@@ -1,7 +1,10 @@
-class CIdExpression : public IExpression 
-{
-	std:string id;
-   	int Value;
+#include "IVisitor.h"
+#include "CIdExpression.h"
+
+CIdExpression::CIdExpression( const std::string& id ) {
+	this->id = id;
+}
  
-   	virtual void Accept( IVisitor* v ) override;
-};
+void CIdExpression::Accept( IVisitor* v ) {
+	v->Visit( this );
+}
