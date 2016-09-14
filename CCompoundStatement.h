@@ -1,3 +1,5 @@
+#pragma once
+
 #include "IStatement.h"
 
 class CCompoundStatement : public IStatement

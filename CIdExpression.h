@@ -1,3 +1,5 @@
+#pragma once
+
 #include "IExpression.h"
 #include <string>
 

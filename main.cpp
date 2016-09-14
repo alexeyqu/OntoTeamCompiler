@@ -1,5 +1,3 @@
-#pragma once
-
 #include "CAssignStatement.h"
 #include "CBinaryExpression.h"
 #include "CCompoundStatement.h"

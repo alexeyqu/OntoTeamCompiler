@@ -1,7 +1,7 @@
 #include "CPrintVisitor.h"
 
-void CPrintVisitor::Start(IVisitorTarget* vertex, const std::string& filename, const std::string& graphname) {
-        file.open(filename);
+void CPrintVisitor::Start(IVisitorTarget* vertex, std::string filename, std::string graphname) {
+        file.open(filename.c_str());
         file << "digraph " << graphname << " {\n";
         vertex->Accept(this);
         file << "\n}";
@@ -9,51 +9,48 @@ void CPrintVisitor::Start(IVisitorTarget* vertex, const std::string& filename, c
 }
 
 void CPrintVisitor::Visit(CBinaryExpression* expression) {
-    switch(expression->operation) {
-        case 'OT_Plus':
-            file << "+" << "->";
-        case 'OT_Minus':
-            file << "-" << "->";
-    }
+    file << "Operation" << "->";
     expression->leftOperand->Accept(this);
-
+    file << "Operation" << "->";
     switch(expression->operation) {
-        case 'OT_Plus':
-            file << ";\n" << "+" << "->";
-        case 'OT_Minus':
-            file << ";\n" << "-" << "->";
+        case CBinaryExpression::OT_Plus:
+            file << "+" << ";\n";
+            break;
+        case CBinaryExpression::OT_Minus:
+            file << "-" << ";\n";
+            break;
     }
+    file << "Operation" << "->";
     expression->rightOperand->Accept(this);
 }
 
 void CPrintVisitor::Visit(CCompoundStatement* statement) {
-    file << " compound " << "->";
+    file << "Compound" << "->";
     statement->leftStatement->Accept(this);
-    file << ";\n compound " << "->";
-    statement->rightStatement>Accept(this);
+    file << "Compound" << "->";
+    statement->rightStatement->Accept(this);
 }
 
 void CPrintVisitor::Visit(CIdExpression* expression) {
-    file << expression->id;
+    file << "ExpId" << "->" << expression->id << ";";
 }
 
 void CPrintVisitor::Visit(CNumberExpression* expression) {
-    file << expression->value;
+    file << "NumExp" << "->" << expression->value << ";\n";
 }
 
 void CPrintVisitor::Visit(CAssignStatement* statement) {
-    file << "=" << "-";
-    statement->id->Accept(this);
-    file << "=" << "->";
+    file << "Assign" << "->" << statement->id << ";\n";
+    file << "Assign" << "->";
     statement->expression->Accept(this);
 }
 
-void CPrintVisitor::Visit(CLastExpessionList* expressionList) {
-    file << "last expression list" << "->";
+void CPrintVisitor::Visit(CLastExpressionList* expressionList) {
+    file << "Last expression list" << "->";
     expressionList->expression->Accept(this);
 }
 
 void CPrintVisitor::Visit(CPrintStatement* printStatement) {
-    file << "print statement" << "->";
-    printStatement->statement->Accept(this);
+    file << "Print statement" << "->";
+    printStatement->expression->Accept(this);
 }
