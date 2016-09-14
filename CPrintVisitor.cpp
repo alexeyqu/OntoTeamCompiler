@@ -1,17 +1,59 @@
-class CPrintVisitor : public IVisitor
-{
-    void Visit( CNumberExpression* expr )
-    {
-        cout << expr->Value;
-    }
+#include "CPrintVisitor.h"
 
-    void Visit( CBinaryExpression* expr )
-    {
-        exp->LeftOperand->Accept( this );
-        
-        cout << exp->Operation;
+void CPrintVisitor::Start(IVisitorTarget* vertex, const std::string& filename, const std::string& graphname) {
+        file.open(filename);
+        file << "digraph " << graphname << " {\n";
+        vertex->Accept(this);
+        file << "\n}";
+        file.close();
+}
 
-        exp->RightOperand->Accept( this );
+void CPrintVisitor::Visit(CBinaryExpression* expression) {
+    switch(expression->operation) {
+        case 'OT_Plus':
+            file << "+" << "->";
+        case 'OT_Minus':
+            file << "-" << "->";
     }
-    
-};
+    expression->leftOperand->Accept(this);
+
+    switch(expression->operation) {
+        case 'OT_Plus':
+            file << ";\n" << "+" << "->";
+        case 'OT_Minus':
+            file << ";\n" << "-" << "->";
+    }
+    expression->rightOperand->Accept(this);
+}
+
+void CPrintVisitor::Visit(CCompoundStatement* statement) {
+    file << " compound " << "->";
+    statement->leftStatement->Accept(this);
+    file << ";\n compound " << "->";
+    statement->rightStatement>Accept(this);
+}
+
+void CPrintVisitor::Visit(CIdExpression* expression) {
+    file << expression->id;
+}
+
+void CPrintVisitor::Visit(CNumberExpression* expression) {
+    file << expression->value;
+}
+
+void CPrintVisitor::Visit(CAssignStatement* statement) {
+    file << "=" << "-";
+    statement->id->Accept(this);
+    file << "=" << "->";
+    statement->expression->Accept(this);
+}
+
+void CPrintVisitor::Visit(CLastExpessionList* expressionList) {
+    file << "last expression list" << "->";
+    expressionList->expression->Accept(this);
+}
+
+void CPrintVisitor::Visit(CPrintStatement* printStatement) {
+    file << "print statement" << "->";
+    printStatement->statement->Accept(this);
+}

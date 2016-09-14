@@ -1,8 +1,9 @@
 #include "IVisitor.h"
 #include "CPrintStatement.h"
+#include "IExpression.h"
 
-CPrintStatement::CPrintStatement( IStatement* statement ) {
-	this->statement = statement;
+CPrintStatement::CPrintStatement( IExpression* expression ) {
+	this->expression = expression;
 }
 
 void CPrintStatement::Accept( IVisitor* v ) {

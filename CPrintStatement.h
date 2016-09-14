@@ -4,8 +4,8 @@ class CPrintStatement : public IStatement
 {
 public:
 
-	IStatement* statement;
+	IExpression* expression;
 
-	CPrintStatement( IStatement* statement );
+	CPrintStatement( IExpression* expression );
 	virtual void Accept( IVisitor* v ) override	;
 };

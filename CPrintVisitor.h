@@ -1,17 +1,19 @@
 #pragma once
 
 #include "IVisitor.h"
+#include "IVisitorTarget.h"
+#include <fstream>
 
-class CPrintVisitor : public IVisitor
-{
-public:
-    
-    CPrintVisitor();
-    void Visit( CCompoundStatement* stmt );
-    void Visit( CIdExpression* expr );
-    void Visit( CBinaryExpression* expr );
-    void Visit( CNumberExpression* expr );
-    void Visit( CAssignStatement* stmt );
-    void Visit( CPrintStatement* stmt );
-    void Visit( CLastExpressionList* expr );
+class CPrintVisitor: public IVisitor {
+	public:
+		void Start(IVisitorTarget*, const std::string&, const std::string&);
+		void Visit(CCompoundStatement*); //+
+		void Visit(CAssignStatement*); //+
+		void Visit(CLastExpressionList*);//+
+		void Visit(CBinaryExpression*); //+
+		void Visit(CNumberExpression*); //+
+		void Visit(CIdExpression*); //+
+		void Visit(CPrintStatement*);
+	private:
+    	std::ofstream file;
 };
