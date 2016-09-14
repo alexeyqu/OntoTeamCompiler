@@ -14,10 +14,10 @@ void CPrintVisitor::Visit(CBinaryExpression* expression) {
     file << "Operation" << "->";
     switch(expression->operation) {
         case CBinaryExpression::OT_Plus:
-            file << "+" << ";\n";
+            file << "Plus" << ";\n";
             break;
         case CBinaryExpression::OT_Minus:
-            file << "-" << ";\n";
+            file << "Minus" << ";\n";
             break;
     }
     file << "Operation" << "->";

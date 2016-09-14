@@ -1,5 +1,6 @@
 #pragma once
 
+class IVisitorTarget;
 class CCompoundStatement;
 class CIdExpression;
 class CBinaryExpression;

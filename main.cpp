@@ -5,7 +5,9 @@
 #include "CNumberExpression.h"
 #include "CPrintStatement.h"
 #include "CPrintVisitor.h"
+#include "CCalcVisitor.h"
 #include "CIdExpression.h"
+#include <iostream>
 
 int main() {
   CNumberExpression five(5);
@@ -17,8 +19,11 @@ int main() {
   CPrintStatement print(&exList);
   CCompoundStatement comp(&assign, &print);
 
-  CPrintVisitor visitor;
-  visitor.Start(&comp, "g1.dot", "g1");
+  CPrintVisitor printVisitor;
+  printVisitor.Start(&comp, "g1.dot", "g1");
+  CCalcVisitor calcVisitor;
+  calcVisitor.Start(&comp);
+  std::cout << calcVisitor.head->value << std::endl;
 
   return 0;
 }
