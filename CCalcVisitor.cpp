@@ -1,4 +1,5 @@
 #include "CCalcVisitor.h"
+#include <iostream>
 
 CCalcVisitor::CCalcVisitor() {
 	head = new VariablesTable("", 0, 0, 0, 0);
@@ -52,6 +53,7 @@ void CCalcVisitor::Visit( CNumberExpression* expr ) {
 }
 
 void CCalcVisitor::Visit( CAssignStatement* stmt ) {
+	stmt->expression->Accept(this);
 	VariablesTable* current = head;
 	while( current->node != stmt->expression ) {
 		current = current->next;
