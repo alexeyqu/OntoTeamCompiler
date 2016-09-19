@@ -1,0 +1,19 @@
+CLASS(class){1, 1}  ID(Factorial){1, 7} LBRACE({){1, 16} 
+    PUBLIC(public){2, 5}  STATIC(static){2, 12}  VOID(void){2, 19}  ID(main){2, 24} LPAREN((){2, 28} ID(String){2, 29} LBRACKET([){2, 35} RBRACKET(]){2, 36}  ID(a){2, 38} RPAREN()){2, 39} LBRACE({){2, 40} 
+	ID(System){3, 2} DOT(.){3, 8} ID(out){3, 9} DOT(.){3, 12} ID(println){3, 13} LPAREN((){3, 20} ID(new){3, 21}  ID(Fac){3, 25} LPAREN((){3, 28} RPAREN()){3, 29} DOT(.){3, 30} ID(ComputeFac){3, 31} LPAREN((){3, 41} NUM(10){3, 42} RPAREN()){3, 44} RPAREN()){3, 45} SEMI(;){3, 46} 
+    RBRACE(}){4, 5} 
+RBRACE(}){5, 1} 
+
+CLASS(class){7, 1}  ID(Fac){7, 7}  LBRACE({){7, 11} 
+
+    PUBLIC(public){9, 5}  INT(int){9, 12}  ID(ComputeFac){9, 16} LPAREN((){9, 26} INT(int){9, 27}  ID(num){9, 31} RPAREN()){9, 34} LBRACE({){9, 35} 
+	INT(int){10, 2}  ID(num_aux){10, 6}  SEMI(;){10, 14} 
+	IF(if){11, 2}  LPAREN((){11, 5} ID(num){11, 6}  LESS(<){11, 10}  NUM(1){11, 12} RPAREN()){11, 13} 
+	    ID(num_aux){12, 6}  EQUALS(=){12, 14}  NUM(1){12, 16}  SEMI(;){12, 18} 
+	ELSE(else){13, 2}  
+	    ID(num_aux){14, 6}  EQUALS(=){14, 14}  ID(num){14, 16}  STAR(*){14, 20}  LPAREN((){14, 22} THIS(this){14, 23} DOT(.){14, 27} ID(ComputeFac){14, 28} LPAREN((){14, 38} ID(num){14, 39} NUM(-1){14, 42} RPAREN()){14, 44} RPAREN()){14, 45}  SEMI(;){14, 47} 
+	RETURN(return){15, 2}  ID(num_aux){15, 9}  SEMI(;){15, 17} 
+    RBRACE(}){16, 5} 
+
+RBRACE(}){18, 1} 
+EOF{19, 1}

@@ -1,0 +1,111 @@
+CLASS(class){1, 1}  ID(LinearSearch){1, 7} LBRACE({){1, 19} 
+    PUBLIC(public){2, 5}  STATIC(static){2, 12}  VOID(void){2, 19}  ID(main){2, 24} LPAREN((){2, 28} ID(String){2, 29} LBRACKET([){2, 35} RBRACKET(]){2, 36}  ID(a){2, 38} RPAREN()){2, 39} LBRACE({){2, 40} 
+	ID(System){3, 2} DOT(.){3, 8} ID(out){3, 9} DOT(.){3, 12} ID(println){3, 13} LPAREN((){3, 20} ID(new){3, 21}  ID(LS){3, 25} LPAREN((){3, 27} RPAREN()){3, 28} DOT(.){3, 29} ID(Start){3, 30} LPAREN((){3, 35} NUM(10){3, 36} RPAREN()){3, 38} RPAREN()){3, 39} SEMI(;){3, 40} 
+    RBRACE(}){4, 5} 
+RBRACE(}){5, 1} 
+
+
+COMMENT(// This class contains an array of integers and){8, 1}
+
+COMMENT(// methods to initialize, print and search the array){9, 1}
+
+COMMENT(// using Linear Search){10, 1}
+
+CLASS(class){11, 1}  ID(LS){11, 7}  LBRACE({){11, 10} 
+    INT(int){12, 5} LBRACKET([){12, 8} RBRACKET(]){12, 9}  ID(number){12, 11}  SEMI(;){12, 18} 
+    INT(int){13, 5}  ID(size){13, 9}  SEMI(;){13, 14} 
+    
+    COMMENT(// Invoke methods to initialize, print and search){15, 5}
+
+    COMMENT(// for elements on the array){16, 5}
+
+    PUBLIC(public){17, 5}  INT(int){17, 12}  ID(Start){17, 16} LPAREN((){17, 21} INT(int){17, 22}  ID(sz){17, 26} RPAREN()){17, 28} LBRACE({){17, 29} 
+	INT(int){18, 2}  ID(aux01){18, 6}  SEMI(;){18, 12} 
+	INT(int){19, 2}  ID(aux02){19, 6}  SEMI(;){19, 12} 
+
+	ID(aux01){21, 2}  EQUALS(=){21, 8}  THIS(this){21, 10} DOT(.){21, 14} ID(Init){21, 15} LPAREN((){21, 19} ID(sz){21, 20} RPAREN()){21, 22} SEMI(;){21, 23} 
+	ID(aux02){22, 2}  EQUALS(=){22, 8}  THIS(this){22, 10} DOT(.){22, 14} ID(Print){22, 15} LPAREN((){22, 20} RPAREN()){22, 21} SEMI(;){22, 22} 
+	ID(System){23, 2} DOT(.){23, 8} ID(out){23, 9} DOT(.){23, 12} ID(println){23, 13} LPAREN((){23, 20} NUM(9999){23, 21} RPAREN()){23, 25} SEMI(;){23, 26} 
+	ID(System){24, 2} DOT(.){24, 8} ID(out){24, 9} DOT(.){24, 12} ID(println){24, 13} LPAREN((){24, 20} THIS(this){24, 21} DOT(.){24, 25} ID(Search){24, 26} LPAREN((){24, 32} NUM(8){24, 33} RPAREN()){24, 34} RPAREN()){24, 35} SEMI(;){24, 36} 
+	ID(System){25, 2} DOT(.){25, 8} ID(out){25, 9} DOT(.){25, 12} ID(println){25, 13} LPAREN((){25, 20} THIS(this){25, 21} DOT(.){25, 25} ID(Search){25, 26} LPAREN((){25, 32} NUM(12){25, 33} RPAREN()){25, 35} RPAREN()){25, 36}  SEMI(;){25, 38} 
+	ID(System){26, 2} DOT(.){26, 8} ID(out){26, 9} DOT(.){26, 12} ID(println){26, 13} LPAREN((){26, 20} THIS(this){26, 21} DOT(.){26, 25} ID(Search){26, 26} LPAREN((){26, 32} NUM(17){26, 33} RPAREN()){26, 35} RPAREN()){26, 36}  SEMI(;){26, 38} 
+	ID(System){27, 2} DOT(.){27, 8} ID(out){27, 9} DOT(.){27, 12} ID(println){27, 13} LPAREN((){27, 20} THIS(this){27, 21} DOT(.){27, 25} ID(Search){27, 26} LPAREN((){27, 32} NUM(50){27, 33} RPAREN()){27, 35} RPAREN()){27, 36}  SEMI(;){27, 38} 
+	RETURN(return){28, 2}  NUM(55){28, 9}  SEMI(;){28, 12} 
+    RBRACE(}){29, 5} 
+
+    COMMENT(// Print array of integers){31, 5}
+
+    PUBLIC(public){32, 5}  INT(int){32, 12}  ID(Print){32, 16} LPAREN((){32, 21} RPAREN()){32, 22} LBRACE({){32, 23} 
+	INT(int){33, 2}  ID(j){33, 6}  SEMI(;){33, 8} 
+
+	ID(j){35, 2}  EQUALS(=){35, 4}  NUM(1){35, 6}  SEMI(;){35, 8} 
+	WHILE(while){36, 2}  LPAREN((){36, 8} ID(j){36, 9}  LESS(<){36, 11}  LPAREN((){36, 13} ID(size){36, 14} RPAREN()){36, 18} RPAREN()){36, 19}  LBRACE({){36, 21} 
+	    ID(System){37, 6} DOT(.){37, 12} ID(out){37, 13} DOT(.){37, 16} ID(println){37, 17} LPAREN((){37, 24} ID(number){37, 25} LBRACKET([){37, 31} ID(j){37, 32} RBRACKET(]){37, 33} RPAREN()){37, 34} SEMI(;){37, 35} 
+	    ID(j){38, 6}  EQUALS(=){38, 8}  ID(j){38, 10}  PLUS(+){38, 12}  NUM(1){38, 14}  SEMI(;){38, 16} 
+	RBRACE(}){39, 2} 
+	RETURN(return){40, 2}  NUM(0){40, 9}  SEMI(;){40, 11} 
+    RBRACE(}){41, 5} 
+
+    COMMENT(// Search for a specific value (num) using){43, 5}
+
+    COMMENT(// linear search){44, 5}
+
+    PUBLIC(public){45, 5}  INT(int){45, 12}  ID(Search){45, 16} LPAREN((){45, 22} INT(int){45, 23}  ID(num){45, 27} RPAREN()){45, 30} LBRACE({){45, 31} 
+	INT(int){46, 2}  ID(j){46, 6}  SEMI(;){46, 8} 
+	BOOL(boolean){47, 2}  ID(ls01){47, 10}  SEMI(;){47, 15} 
+	INT(int){48, 2}  ID(ifound){48, 6}  SEMI(;){48, 13} 
+	INT(int){49, 2}  ID(aux01){49, 6}  SEMI(;){49, 12} 
+	INT(int){50, 2}  ID(aux02){50, 6}  SEMI(;){50, 12} 
+	INT(int){51, 2}  ID(nt){51, 6}  SEMI(;){51, 9} 
+
+	ID(j){53, 2}  EQUALS(=){53, 4}  NUM(1){53, 6}  SEMI(;){53, 8} 
+	ID(ls01){54, 2}  EQUALS(=){54, 7}  FALSEfalse){54, 9}  SEMI(;){54, 15} 
+	ID(ifound){55, 2}  EQUALS(=){55, 9}  NUM(0){55, 11}  SEMI(;){55, 13} 
+	
+	COMMENT(//System.out.println(num);){57, 2}
+
+	WHILE(while){58, 2}  LPAREN((){58, 8} ID(j){58, 9}  LESS(<){58, 11}  LPAREN((){58, 13} ID(size){58, 14} RPAREN()){58, 18} RPAREN()){58, 19}  LBRACE({){58, 21} 
+	    ID(aux01){59, 6}  EQUALS(=){59, 12}  ID(number){59, 14} LBRACKET([){59, 20} ID(j){59, 21} RBRACKET(]){59, 22}  SEMI(;){59, 24} 
+	    ID(aux02){60, 6}  EQUALS(=){60, 12}  ID(num){60, 14}  PLUS(+){60, 18}  NUM(1){60, 20}  SEMI(;){60, 22} 
+	    IF(if){61, 6}  LPAREN((){61, 9} ID(aux01){61, 10}  LESS(<){61, 16}  ID(num){61, 18} RPAREN()){61, 21}  ID(nt){61, 23}  EQUALS(=){61, 26}  NUM(0){61, 28}  SEMI(;){61, 30} 
+	    ELSE(else){62, 6}  IF(if){62, 11}  LPAREN((){62, 14} BANG(!){62, 15} LPAREN((){62, 16} ID(aux01){62, 17}  LESS(<){62, 23}  ID(aux02){62, 25} RPAREN()){62, 30} RPAREN()){62, 31}  ID(nt){62, 33}  EQUALS(=){62, 36}  NUM(0){62, 38}  SEMI(;){62, 40} 
+	    ELSE(else){63, 6}  LBRACE({){63, 11} 
+		ID(ls01){64, 3}  EQUALS(=){64, 8}  TRUE(true){64, 10}  SEMI(;){64, 15} 
+		ID(ifound){65, 3}  EQUALS(=){65, 10}  NUM(1){65, 12}  SEMI(;){65, 14} 
+		ID(j){66, 3}  EQUALS(=){66, 5}  ID(size){66, 7}  SEMI(;){66, 12} 
+	    RBRACE(}){67, 6} 
+	    ID(j){68, 6}  EQUALS(=){68, 8}  ID(j){68, 10}  PLUS(+){68, 12}  NUM(1){68, 14}  SEMI(;){68, 16} 
+	RBRACE(}){69, 2} 
+
+	RETURN(return){71, 2}  ID(ifound){71, 9}  SEMI(;){71, 16} 
+    RBRACE(}){72, 5} 
+
+
+    
+    COMMENT(// initialize array of integers with some){76, 5}
+
+    COMMENT(// some sequence){77, 5}
+
+    PUBLIC(public){78, 5}  INT(int){78, 12}  ID(Init){78, 16} LPAREN((){78, 20} INT(int){78, 21}  ID(sz){78, 25} RPAREN()){78, 27} LBRACE({){78, 28} 
+	INT(int){79, 2}  ID(j){79, 6}  SEMI(;){79, 8} 
+	INT(int){80, 2}  ID(k){80, 6}  SEMI(;){80, 8} 
+	INT(int){81, 2}  ID(aux01){81, 6}  SEMI(;){81, 12} 
+	INT(int){82, 2}  ID(aux02){82, 6}  SEMI(;){82, 12} 
+
+	ID(size){84, 2}  EQUALS(=){84, 7}  ID(sz){84, 9}  SEMI(;){84, 12} 
+	ID(number){85, 2}  EQUALS(=){85, 9}  ID(new){85, 11}  INT(int){85, 15} LBRACKET([){85, 18} ID(sz){85, 19} RBRACKET(]){85, 21}  SEMI(;){85, 23} 
+	
+	ID(j){87, 2}  EQUALS(=){87, 4}  NUM(1){87, 6}  SEMI(;){87, 8} 
+	ID(k){88, 2}  EQUALS(=){88, 4}  ID(size){88, 6}  PLUS(+){88, 11}  NUM(1){88, 13}  SEMI(;){88, 15} 
+	WHILE(while){89, 2}  LPAREN((){89, 8} ID(j){89, 9}  LESS(<){89, 11}  LPAREN((){89, 13} ID(size){89, 14} RPAREN()){89, 18} RPAREN()){89, 19}  LBRACE({){89, 21} 
+	    ID(aux01){90, 6}  EQUALS(=){90, 12}  NUM(2){90, 14}  STAR(*){90, 16}  ID(j){90, 18}  SEMI(;){90, 20} 
+	    ID(aux02){91, 6}  EQUALS(=){91, 12}  ID(k){91, 14}  MINUS(-){91, 16}  NUM(3){91, 18}  SEMI(;){91, 20} 
+	    ID(number){92, 6} LBRACKET([){92, 12} ID(j){92, 13} RBRACKET(]){92, 14}  EQUALS(=){92, 16}  ID(aux01){92, 18}  PLUS(+){92, 24}  ID(aux02){92, 26}  SEMI(;){92, 32} 
+	    ID(j){93, 6}  EQUALS(=){93, 8}  ID(j){93, 10}  PLUS(+){93, 12}  NUM(1){93, 14}  SEMI(;){93, 16} 
+	    ID(k){94, 6}  EQUALS(=){94, 8}  ID(k){94, 10}  MINUS(-){94, 12}  NUM(1){94, 14}  SEMI(;){94, 16} 
+	RBRACE(}){95, 2} 
+	RETURN(return){96, 2}  NUM(0){96, 9}  SEMI(;){96, 11} 	
+    RBRACE(}){97, 5} 
+
+RBRACE(}){99, 1} 
+EOF{100, 1}

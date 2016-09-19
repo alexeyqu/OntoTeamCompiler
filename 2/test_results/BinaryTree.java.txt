@@ -1,0 +1,368 @@
+CLASS(class){1, 1}  ID(BinaryTree){1, 7} LBRACE({){1, 17} 
+    PUBLIC(public){2, 5}  STATIC(static){2, 12}  VOID(void){2, 19}  ID(main){2, 24} LPAREN((){2, 28} ID(String){2, 29} LBRACKET([){2, 35} RBRACKET(]){2, 36}  ID(a){2, 38} RPAREN()){2, 39} LBRACE({){2, 40} 
+	ID(System){3, 2} DOT(.){3, 8} ID(out){3, 9} DOT(.){3, 12} ID(println){3, 13} LPAREN((){3, 20} ID(new){3, 21}  ID(BT){3, 25} LPAREN((){3, 27} RPAREN()){3, 28} DOT(.){3, 29} ID(Start){3, 30} LPAREN((){3, 35} RPAREN()){3, 36} RPAREN()){3, 37} SEMI(;){3, 38} 
+    RBRACE(}){4, 5} 
+RBRACE(}){5, 1} 
+
+
+COMMENT(// This class invokes the methods to create a tree,){8, 1}
+
+COMMENT(// insert, delete and serach for  elements on it){9, 1}
+
+CLASS(class){10, 1}  ID(BT){10, 7}  LBRACE({){10, 10} 
+
+    PUBLIC(public){12, 5}  INT(int){12, 12}  ID(Start){12, 16} LPAREN((){12, 21} RPAREN()){12, 22} LBRACE({){12, 23} 
+	ID(Tree){13, 2}  ID(root){13, 7}  SEMI(;){13, 12} 
+	BOOL(boolean){14, 2}  ID(ntb){14, 10}  SEMI(;){14, 14} 
+	INT(int){15, 2}  ID(nti){15, 6}  SEMI(;){15, 10} 
+
+	ID(root){17, 2}  EQUALS(=){17, 7}  ID(new){17, 9}  ID(Tree){17, 13} LPAREN((){17, 17} RPAREN()){17, 18} SEMI(;){17, 19} 
+	ID(ntb){18, 2}  EQUALS(=){18, 6}  ID(root){18, 8} DOT(.){18, 12} ID(Init){18, 13} LPAREN((){18, 17} NUM(16){18, 18} RPAREN()){18, 20} SEMI(;){18, 21} 
+	ID(ntb){19, 2}  EQUALS(=){19, 6}  ID(root){19, 8} DOT(.){19, 12} ID(Print){19, 13} LPAREN((){19, 18} RPAREN()){19, 19} SEMI(;){19, 20} 
+	ID(System){20, 2} DOT(.){20, 8} ID(out){20, 9} DOT(.){20, 12} ID(println){20, 13} LPAREN((){20, 20} NUM(100000000){20, 21} RPAREN()){20, 30} SEMI(;){20, 31} 
+	ID(ntb){21, 2}  EQUALS(=){21, 6}  ID(root){21, 8} DOT(.){21, 12} ID(Insert){21, 13} LPAREN((){21, 19} NUM(8){21, 20} RPAREN()){21, 21}  SEMI(;){21, 23} 
+	ID(ntb){22, 2}  EQUALS(=){22, 6}  ID(root){22, 8} DOT(.){22, 12} ID(Print){22, 13} LPAREN((){22, 18} RPAREN()){22, 19} SEMI(;){22, 20} 
+	ID(ntb){23, 2}  EQUALS(=){23, 6}  ID(root){23, 8} DOT(.){23, 12} ID(Insert){23, 13} LPAREN((){23, 19} NUM(24){23, 20} RPAREN()){23, 22}  SEMI(;){23, 24} 
+	ID(ntb){24, 2}  EQUALS(=){24, 6}  ID(root){24, 8} DOT(.){24, 12} ID(Insert){24, 13} LPAREN((){24, 19} NUM(4){24, 20} RPAREN()){24, 21}  SEMI(;){24, 23} 
+	ID(ntb){25, 2}  EQUALS(=){25, 6}  ID(root){25, 8} DOT(.){25, 12} ID(Insert){25, 13} LPAREN((){25, 19} NUM(12){25, 20} RPAREN()){25, 22}  SEMI(;){25, 24} 
+	ID(ntb){26, 2}  EQUALS(=){26, 6}  ID(root){26, 8} DOT(.){26, 12} ID(Insert){26, 13} LPAREN((){26, 19} NUM(20){26, 20} RPAREN()){26, 22}  SEMI(;){26, 24} 
+	ID(ntb){27, 2}  EQUALS(=){27, 6}  ID(root){27, 8} DOT(.){27, 12} ID(Insert){27, 13} LPAREN((){27, 19} NUM(28){27, 20} RPAREN()){27, 22}  SEMI(;){27, 24} 
+	ID(ntb){28, 2}  EQUALS(=){28, 6}  ID(root){28, 8} DOT(.){28, 12} ID(Insert){28, 13} LPAREN((){28, 19} NUM(14){28, 20} RPAREN()){28, 22}  SEMI(;){28, 24} 
+	ID(ntb){29, 2}  EQUALS(=){29, 6}  ID(root){29, 8} DOT(.){29, 12} ID(Print){29, 13} LPAREN((){29, 18} RPAREN()){29, 19} SEMI(;){29, 20} 
+	ID(System){30, 2} DOT(.){30, 8} ID(out){30, 9} DOT(.){30, 12} ID(println){30, 13} LPAREN((){30, 20} ID(root){30, 21} DOT(.){30, 25} ID(Search){30, 26} LPAREN((){30, 32} NUM(24){30, 33} RPAREN()){30, 35} RPAREN()){30, 36} SEMI(;){30, 37} 
+	ID(System){31, 2} DOT(.){31, 8} ID(out){31, 9} DOT(.){31, 12} ID(println){31, 13} LPAREN((){31, 20} ID(root){31, 21} DOT(.){31, 25} ID(Search){31, 26} LPAREN((){31, 32} NUM(12){31, 33} RPAREN()){31, 35} RPAREN()){31, 36} SEMI(;){31, 37} 
+	ID(System){32, 2} DOT(.){32, 8} ID(out){32, 9} DOT(.){32, 12} ID(println){32, 13} LPAREN((){32, 20} ID(root){32, 21} DOT(.){32, 25} ID(Search){32, 26} LPAREN((){32, 32} NUM(16){32, 33} RPAREN()){32, 35} RPAREN()){32, 36} SEMI(;){32, 37} 
+	ID(System){33, 2} DOT(.){33, 8} ID(out){33, 9} DOT(.){33, 12} ID(println){33, 13} LPAREN((){33, 20} ID(root){33, 21} DOT(.){33, 25} ID(Search){33, 26} LPAREN((){33, 32} NUM(50){33, 33} RPAREN()){33, 35} RPAREN()){33, 36} SEMI(;){33, 37} 
+	ID(System){34, 2} DOT(.){34, 8} ID(out){34, 9} DOT(.){34, 12} ID(println){34, 13} LPAREN((){34, 20} ID(root){34, 21} DOT(.){34, 25} ID(Search){34, 26} LPAREN((){34, 32} NUM(12){34, 33} RPAREN()){34, 35} RPAREN()){34, 36} SEMI(;){34, 37} 
+	ID(ntb){35, 2}  EQUALS(=){35, 6}  ID(root){35, 8} DOT(.){35, 12} ID(Delete){35, 13} LPAREN((){35, 19} NUM(12){35, 20} RPAREN()){35, 22} SEMI(;){35, 23} 
+	ID(ntb){36, 2}  EQUALS(=){36, 6}  ID(root){36, 8} DOT(.){36, 12} ID(Print){36, 13} LPAREN((){36, 18} RPAREN()){36, 19} SEMI(;){36, 20} 
+	ID(System){37, 2} DOT(.){37, 8} ID(out){37, 9} DOT(.){37, 12} ID(println){37, 13} LPAREN((){37, 20} ID(root){37, 21} DOT(.){37, 25} ID(Search){37, 26} LPAREN((){37, 32} NUM(12){37, 33} RPAREN()){37, 35} RPAREN()){37, 36} SEMI(;){37, 37} 
+
+	RETURN(return){39, 2}  NUM(0){39, 9}  SEMI(;){39, 11} 
+    RBRACE(}){40, 5} 
+
+RBRACE(}){42, 1} 
+
+CLASS(class){44, 1}  ID(Tree){44, 7} LBRACE({){44, 11} 
+    ID(Tree){45, 5}  ID(left){45, 10}  SEMI(;){45, 15} 
+    ID(Tree){46, 5}  ID(right){46, 10} SEMI(;){46, 15} 
+    INT(int){47, 5}  ID(key){47, 9}  SEMI(;){47, 13} 
+    BOOL(boolean){48, 5}  ID(has_left){48, 13}  SEMI(;){48, 22} 
+    BOOL(boolean){49, 5}  ID(has_right){49, 13}  SEMI(;){49, 23} 
+    ID(Tree){50, 5}  ID(my_null){50, 10}  SEMI(;){50, 18} 
+
+    COMMENT(// Initialize a node with a key value and no children){52, 5}
+
+    PUBLIC(public){53, 5}  BOOL(boolean){53, 12}  ID(Init){53, 20} LPAREN((){53, 24} INT(int){53, 25}  ID(v_key){53, 29} RPAREN()){53, 34} LBRACE({){53, 35} 
+	ID(key){54, 2}  EQUALS(=){54, 6}  ID(v_key){54, 8}  SEMI(;){54, 14} 
+	ID(has_left){55, 2}  EQUALS(=){55, 11}  FALSEfalse){55, 13}  SEMI(;){55, 19} 
+	ID(has_right){56, 2}  EQUALS(=){56, 12}  FALSEfalse){56, 14}  SEMI(;){56, 20} 
+	RETURN(return){57, 2}  TRUE(true){57, 9}  SEMI(;){57, 14} 
+    RBRACE(}){58, 5} 
+
+    COMMENT(// Update the right child with rn){60, 5}
+
+    PUBLIC(public){61, 5}  BOOL(boolean){61, 12}  ID(SetRight){61, 20} LPAREN((){61, 28} ID(Tree){61, 29}  ID(rn){61, 34} RPAREN()){61, 36} LBRACE({){61, 37} 
+	ID(right){62, 2}  EQUALS(=){62, 8}  ID(rn){62, 10}  SEMI(;){62, 13} 
+	RETURN(return){63, 2}  TRUE(true){63, 9}  SEMI(;){63, 14} 
+    RBRACE(}){64, 5} 
+    
+    COMMENT(// Update the left child with ln){66, 5}
+
+    PUBLIC(public){67, 5}  BOOL(boolean){67, 12}  ID(SetLeft){67, 20} LPAREN((){67, 27} ID(Tree){67, 28}  ID(ln){67, 33} RPAREN()){67, 35} LBRACE({){67, 36} 
+	ID(left){68, 2}  EQUALS(=){68, 7}  ID(ln){68, 9}  SEMI(;){68, 12} 
+	RETURN(return){69, 2}  TRUE(true){69, 9}  SEMI(;){69, 14} 
+    RBRACE(}){70, 5} 
+
+    PUBLIC(public){72, 5}  ID(Tree){72, 12}  ID(GetRight){72, 17} LPAREN((){72, 25} RPAREN()){72, 26} LBRACE({){72, 27} 
+	RETURN(return){73, 2}  ID(right){73, 9}  SEMI(;){73, 15} 
+    RBRACE(}){74, 5} 
+
+    PUBLIC(public){76, 5}  ID(Tree){76, 12}  ID(GetLeft){76, 17} LPAREN((){76, 24} RPAREN()){76, 25} LBRACE({){76, 26} 
+	RETURN(return){77, 2}  ID(left){77, 9} SEMI(;){77, 13} 
+    RBRACE(}){78, 5} 
+
+    PUBLIC(public){80, 5}  INT(int){80, 12}  ID(GetKey){80, 16} LPAREN((){80, 22} RPAREN()){80, 23} LBRACE({){80, 24} 
+	RETURN(return){81, 2}  ID(key){81, 9}  SEMI(;){81, 13} 
+    RBRACE(}){82, 5} 
+
+    PUBLIC(public){84, 5}  BOOL(boolean){84, 12}  ID(SetKey){84, 20} LPAREN((){84, 26} INT(int){84, 27}  ID(v_key){84, 31} RPAREN()){84, 36} LBRACE({){84, 37} 
+	ID(key){85, 2}  EQUALS(=){85, 6}  ID(v_key){85, 8}  SEMI(;){85, 14} 
+	RETURN(return){86, 2}  TRUE(true){86, 9}  SEMI(;){86, 14} 
+    RBRACE(}){87, 5} 
+
+    PUBLIC(public){89, 5}  BOOL(boolean){89, 12}  ID(GetHas_Right){89, 20} LPAREN((){89, 32} RPAREN()){89, 33} LBRACE({){89, 34} 
+	RETURN(return){90, 2}  ID(has_right){90, 9}  SEMI(;){90, 19} 
+    RBRACE(}){91, 5} 
+
+    PUBLIC(public){93, 5}  BOOL(boolean){93, 12}  ID(GetHas_Left){93, 20} LPAREN((){93, 31} RPAREN()){93, 32} LBRACE({){93, 33} 
+	RETURN(return){94, 2}  ID(has_left){94, 9}  SEMI(;){94, 18} 
+    RBRACE(}){95, 5} 
+
+    PUBLIC(public){97, 5}  BOOL(boolean){97, 12}  ID(SetHas_Left){97, 20} LPAREN((){97, 31} BOOL(boolean){97, 32}  ID(val){97, 40} RPAREN()){97, 43} LBRACE({){97, 44} 
+	 ID(has_left){98, 3}  EQUALS(=){98, 12}  ID(val){98, 14}  SEMI(;){98, 18} 
+	 RETURN(return){99, 3}  TRUE(true){99, 10}  SEMI(;){99, 15} 
+    RBRACE(}){100, 5} 
+
+    PUBLIC(public){102, 5}  BOOL(boolean){102, 12}  ID(SetHas_Right){102, 20} LPAREN((){102, 32} BOOL(boolean){102, 33}  ID(val){102, 41} RPAREN()){102, 44} LBRACE({){102, 45} 
+	 ID(has_right){103, 3}  EQUALS(=){103, 13}  ID(val){103, 15}  SEMI(;){103, 19} 
+	 RETURN(return){104, 3}  TRUE(true){104, 10}  SEMI(;){104, 15} 
+    RBRACE(}){105, 5} 
+    
+    COMMENT(// This method compares two integers and){107, 5}
+
+    COMMENT(// returns true if they are equal and false){108, 5}
+
+    COMMENT(// otherwise){109, 5}
+
+    PUBLIC(public){110, 5}  BOOL(boolean){110, 12}  ID(Compare){110, 20} LPAREN((){110, 27} INT(int){110, 28}  ID(num1){110, 32}  COMMA(,){110, 37}  INT(int){110, 39}  ID(num2){110, 43} RPAREN()){110, 47} LBRACE({){110, 48} 
+	BOOL(boolean){111, 2}  ID(ntb){111, 10}  SEMI(;){111, 14} 
+	INT(int){112, 2}  ID(nti){112, 6}  SEMI(;){112, 10} 
+
+	ID(ntb){114, 2}  EQUALS(=){114, 6}  FALSEfalse){114, 8}  SEMI(;){114, 14} 
+	ID(nti){115, 2}  EQUALS(=){115, 6}  ID(num2){115, 8}  PLUS(+){115, 13}  NUM(1){115, 15}  SEMI(;){115, 17} 
+	IF(if){116, 2}  LPAREN((){116, 5} ID(num1){116, 6}  LESS(<){116, 11}  ID(num2){116, 13} RPAREN()){116, 17}  ID(ntb){116, 19}  EQUALS(=){116, 23}  FALSEfalse){116, 25}  SEMI(;){116, 31} 
+	ELSE(else){117, 2}  IF(if){117, 7}  LPAREN((){117, 10} BANG(!){117, 11} LPAREN((){117, 12} ID(num1){117, 13}  LESS(<){117, 18}  ID(nti){117, 20} RPAREN()){117, 23} RPAREN()){117, 24}  ID(ntb){117, 26}  EQUALS(=){117, 30}  FALSEfalse){117, 32}  SEMI(;){117, 38} 
+	ELSE(else){118, 2}  ID(ntb){118, 7}  EQUALS(=){118, 11}  TRUE(true){118, 13}  SEMI(;){118, 18} 
+	RETURN(return){119, 2}  ID(ntb){119, 9}  SEMI(;){119, 13} 
+    RBRACE(}){120, 5} 
+
+
+    COMMENT(// Insert a new element in the tree){123, 5}
+
+    PUBLIC(public){124, 5}  BOOL(boolean){124, 12}  ID(Insert){124, 20} LPAREN((){124, 26} INT(int){124, 27}  ID(v_key){124, 31} RPAREN()){124, 36} LBRACE({){124, 37} 
+	ID(Tree){125, 2}  ID(new_node){125, 7}  SEMI(;){125, 16} 
+	BOOL(boolean){126, 2}  ID(ntb){126, 10}  SEMI(;){126, 14} 
+	BOOL(boolean){127, 2}  ID(cont){127, 10}  SEMI(;){127, 15} 
+	INT(int){128, 2}  ID(key_aux){128, 6}  SEMI(;){128, 14} 
+	ID(Tree){129, 2}  ID(current_node){129, 7}  SEMI(;){129, 20} 
+
+	ID(new_node){131, 2}  EQUALS(=){131, 11}  ID(new){131, 13}  ID(Tree){131, 17} LPAREN((){131, 21} RPAREN()){131, 22} SEMI(;){131, 23} 
+	ID(ntb){132, 2}  EQUALS(=){132, 6}  ID(new_node){132, 8} DOT(.){132, 16} ID(Init){132, 17} LPAREN((){132, 21} ID(v_key){132, 22} RPAREN()){132, 27}  SEMI(;){132, 29} 
+	ID(current_node){133, 2}  EQUALS(=){133, 15}  THIS(this){133, 17}  SEMI(;){133, 22} 
+	ID(cont){134, 2}  EQUALS(=){134, 7}  TRUE(true){134, 9}  SEMI(;){134, 14} 
+	WHILE(while){135, 2}  LPAREN((){135, 8} ID(cont){135, 9} RPAREN()){135, 13} LBRACE({){135, 14} 
+	    ID(key_aux){136, 6}  EQUALS(=){136, 14}  ID(current_node){136, 16} DOT(.){136, 28} ID(GetKey){136, 29} LPAREN((){136, 35} RPAREN()){136, 36} SEMI(;){136, 37} 
+	    IF(if){137, 6}  LPAREN((){137, 9} ID(v_key){137, 10}  LESS(<){137, 16}  ID(key_aux){137, 18} RPAREN()){137, 25} LBRACE({){137, 26} 
+		IF(if){138, 3}  LPAREN((){138, 6} ID(current_node){138, 7} DOT(.){138, 19} ID(GetHas_Left){138, 20} LPAREN((){138, 31} RPAREN()){138, 32} RPAREN()){138, 33} 
+		    ID(current_node){139, 7}  EQUALS(=){139, 20}  ID(current_node){139, 22} DOT(.){139, 34} ID(GetLeft){139, 35} LPAREN((){139, 42} RPAREN()){139, 43}  SEMI(;){139, 45} 
+		ELSE(else){140, 3}  LBRACE({){140, 8} 
+		    ID(cont){141, 7}  EQUALS(=){141, 12}  FALSEfalse){141, 14}  SEMI(;){141, 20} 
+		    ID(ntb){142, 7}  EQUALS(=){142, 11}  ID(current_node){142, 13} DOT(.){142, 25} ID(SetHas_Left){142, 26} LPAREN((){142, 37} TRUE(true){142, 38} RPAREN()){142, 42} SEMI(;){142, 43} 
+		    ID(ntb){143, 7}  EQUALS(=){143, 11}  ID(current_node){143, 13} DOT(.){143, 25} ID(SetLeft){143, 26} LPAREN((){143, 33} ID(new_node){143, 34} RPAREN()){143, 42} SEMI(;){143, 43} 
+		RBRACE(}){144, 3} 
+	    RBRACE(}){145, 6} 
+	    ELSE(else){146, 6} LBRACE({){146, 10} 
+		IF(if){147, 3}  LPAREN((){147, 6} ID(current_node){147, 7} DOT(.){147, 19} ID(GetHas_Right){147, 20} LPAREN((){147, 32} RPAREN()){147, 33} RPAREN()){147, 34} 
+		    ID(current_node){148, 7}  EQUALS(=){148, 20}  ID(current_node){148, 22} DOT(.){148, 34} ID(GetRight){148, 35} LPAREN((){148, 43} RPAREN()){148, 44}  SEMI(;){148, 46} 
+		ELSE(else){149, 3}  LBRACE({){149, 8} 
+		    ID(cont){150, 7}  EQUALS(=){150, 12}  FALSEfalse){150, 14}  SEMI(;){150, 20} 
+		    ID(ntb){151, 7}  EQUALS(=){151, 11}  ID(current_node){151, 13} DOT(.){151, 25} ID(SetHas_Right){151, 26} LPAREN((){151, 38} TRUE(true){151, 39} RPAREN()){151, 43} SEMI(;){151, 44} 
+		    ID(ntb){152, 7}  EQUALS(=){152, 11}  ID(current_node){152, 13} DOT(.){152, 25} ID(SetRight){152, 26} LPAREN((){152, 34} ID(new_node){152, 35} RPAREN()){152, 43} SEMI(;){152, 44} 
+		RBRACE(}){153, 3} 
+	    RBRACE(}){154, 6} 
+	RBRACE(}){155, 2} 
+	RETURN(return){156, 2}  TRUE(true){156, 9}  SEMI(;){156, 14} 
+    RBRACE(}){157, 5} 
+
+
+    COMMENT(// Delete an element from the tree){160, 5}
+
+    PUBLIC(public){161, 5}  BOOL(boolean){161, 12}  ID(Delete){161, 20} LPAREN((){161, 26} INT(int){161, 27}  ID(v_key){161, 31} RPAREN()){161, 36} LBRACE({){161, 37} 
+	ID(Tree){162, 2}  ID(current_node){162, 7}  SEMI(;){162, 20} 
+	ID(Tree){163, 2}  ID(parent_node){163, 7}  SEMI(;){163, 19} 
+	BOOL(boolean){164, 2}  ID(cont){164, 10}  SEMI(;){164, 15} 
+	BOOL(boolean){165, 2}  ID(found){165, 10}  SEMI(;){165, 16} 
+	BOOL(boolean){166, 2}  ID(is_root){166, 10}  SEMI(;){166, 18} 
+	INT(int){167, 2}  ID(key_aux){167, 6}  SEMI(;){167, 14} 
+	BOOL(boolean){168, 2}  ID(ntb){168, 10}  SEMI(;){168, 14} 
+
+	ID(current_node){170, 2}  EQUALS(=){170, 15}  THIS(this){170, 17}  SEMI(;){170, 22} 
+	ID(parent_node){171, 2}  EQUALS(=){171, 14}  THIS(this){171, 16}  SEMI(;){171, 21} 
+	ID(cont){172, 2}  EQUALS(=){172, 7}  TRUE(true){172, 9}  SEMI(;){172, 14} 
+	ID(found){173, 2}  EQUALS(=){173, 8}  FALSEfalse){173, 10}  SEMI(;){173, 16} 
+	ID(is_root){174, 2}  EQUALS(=){174, 10}  TRUE(true){174, 12}  SEMI(;){174, 17} 
+	WHILE(while){175, 2}  LPAREN((){175, 8} ID(cont){175, 9} RPAREN()){175, 13} LBRACE({){175, 14} 
+	    ID(key_aux){176, 6}  EQUALS(=){176, 14}  ID(current_node){176, 16} DOT(.){176, 28} ID(GetKey){176, 29} LPAREN((){176, 35} RPAREN()){176, 36} SEMI(;){176, 37} 
+	    IF(if){177, 6}  LPAREN((){177, 9} ID(v_key){177, 10}  LESS(<){177, 16}  ID(key_aux){177, 18} RPAREN()){177, 25} 
+		IF(if){178, 3}  LPAREN((){178, 6} ID(current_node){178, 7} DOT(.){178, 19} ID(GetHas_Left){178, 20} LPAREN((){178, 31} RPAREN()){178, 32} RPAREN()){178, 33} LBRACE({){178, 34} 
+		    ID(parent_node){179, 7}  EQUALS(=){179, 19}  ID(current_node){179, 21}  SEMI(;){179, 34} 
+		    ID(current_node){180, 7}  EQUALS(=){180, 20}  ID(current_node){180, 22} DOT(.){180, 34} ID(GetLeft){180, 35} LPAREN((){180, 42} RPAREN()){180, 43}  SEMI(;){180, 45} 
+		RBRACE(}){181, 3} 
+		ELSE(else){182, 3}  ID(cont){182, 8}  EQUALS(=){182, 13}  FALSEfalse){182, 15}  SEMI(;){182, 21} 
+	    ELSE(else){183, 6}  
+		IF(if){184, 3}  LPAREN((){184, 6} ID(key_aux){184, 7}  LESS(<){184, 15}  ID(v_key){184, 17} RPAREN()){184, 22} 
+		    IF(if){185, 7}  LPAREN((){185, 10} ID(current_node){185, 11} DOT(.){185, 23} ID(GetHas_Right){185, 24} LPAREN((){185, 36} RPAREN()){185, 37} RPAREN()){185, 38} LBRACE({){185, 39} 
+			ID(parent_node){186, 4}  EQUALS(=){186, 16}  ID(current_node){186, 18}  SEMI(;){186, 31} 
+			ID(current_node){187, 4}  EQUALS(=){187, 17}  ID(current_node){187, 19} DOT(.){187, 31} ID(GetRight){187, 32} LPAREN((){187, 40} RPAREN()){187, 41}  SEMI(;){187, 43} 
+		    RBRACE(}){188, 7} 
+		    ELSE(else){189, 7}  ID(cont){189, 12}  EQUALS(=){189, 17}  FALSEfalse){189, 19}  SEMI(;){189, 25} 
+		ELSE(else){190, 3}  LBRACE({){190, 8}  
+		    IF(if){191, 7}  LPAREN((){191, 10} ID(is_root){191, 11} RPAREN()){191, 18}  
+			IF(if){192, 4}  LPAREN((){192, 7} LPAREN((){192, 8} BANG(!){192, 9} ID(current_node){192, 10} DOT(.){192, 22} ID(GetHas_Right){192, 23} LPAREN((){192, 35} RPAREN()){192, 36} RPAREN()){192, 37}  AMPERSAND(&){192, 39} AMPERSAND(&){192, 40}  
+			    LPAREN((){193, 8} BANG(!){193, 9} ID(current_node){193, 10} DOT(.){193, 22} ID(GetHas_Left){193, 23} LPAREN((){193, 34} RPAREN()){193, 35} RPAREN()){193, 36}  RPAREN()){193, 38} 
+			    ID(ntb){194, 8}  EQUALS(=){194, 12}  TRUE(true){194, 14}  SEMI(;){194, 19} 
+			ELSE(else){195, 4}  
+			    ID(ntb){196, 8}  EQUALS(=){196, 12}  THIS(this){196, 14} DOT(.){196, 18} ID(Remove){196, 19} LPAREN((){196, 25} ID(parent_node){196, 26} COMMA(,){196, 37} ID(current_node){196, 38} RPAREN()){196, 50} SEMI(;){196, 51}  
+		    ELSE(else){197, 7}  ID(ntb){197, 12}  EQUALS(=){197, 16}  THIS(this){197, 18} DOT(.){197, 22} ID(Remove){197, 23} LPAREN((){197, 29} ID(parent_node){197, 30} COMMA(,){197, 41} ID(current_node){197, 42} RPAREN()){197, 54} SEMI(;){197, 55} 
+		    ID(found){198, 7}  EQUALS(=){198, 13}  TRUE(true){198, 15}  SEMI(;){198, 20} 
+		    ID(cont){199, 7}  EQUALS(=){199, 12}  FALSEfalse){199, 14}  SEMI(;){199, 20} 
+		RBRACE(}){200, 3} 
+	    ID(is_root){201, 6}  EQUALS(=){201, 14}  FALSEfalse){201, 16}  SEMI(;){201, 22} 
+	RBRACE(}){202, 2} 
+	RETURN(return){203, 2}  ID(found){203, 9}  SEMI(;){203, 15} 
+    RBRACE(}){204, 5} 
+
+
+    COMMENT(// Check if the element to be removed will use the){207, 5}
+
+    COMMENT(// righ or left subtree if one exists){208, 5}
+
+    PUBLIC(public){209, 5}  BOOL(boolean){209, 12}  ID(Remove){209, 20} LPAREN((){209, 26} ID(Tree){209, 27}  ID(p_node){209, 32} COMMA(,){209, 38}  ID(Tree){209, 40}  ID(c_node){209, 45} RPAREN()){209, 51} LBRACE({){209, 52} 
+	BOOL(boolean){210, 2}  ID(ntb){210, 10}  SEMI(;){210, 14} 
+	INT(int){211, 2}  ID(auxkey1){211, 6}  SEMI(;){211, 14} 
+	INT(int){212, 2}  ID(auxkey2){212, 6}  SEMI(;){212, 14} 
+	
+	IF(if){214, 2}  LPAREN((){214, 5} ID(c_node){214, 6} DOT(.){214, 12} ID(GetHas_Left){214, 13} LPAREN((){214, 24} RPAREN()){214, 25} RPAREN()){214, 26}  
+	    ID(ntb){215, 6}  EQUALS(=){215, 10}  THIS(this){215, 12} DOT(.){215, 16} ID(RemoveLeft){215, 17} LPAREN((){215, 27} ID(p_node){215, 28} COMMA(,){215, 34} ID(c_node){215, 35} RPAREN()){215, 41}  SEMI(;){215, 43} 
+	ELSE(else){216, 2}  
+	    IF(if){217, 6}  LPAREN((){217, 9} ID(c_node){217, 10} DOT(.){217, 16} ID(GetHas_Right){217, 17} LPAREN((){217, 29} RPAREN()){217, 30} RPAREN()){217, 31} 
+		ID(ntb){218, 3}  EQUALS(=){218, 7}  THIS(this){218, 9} DOT(.){218, 13} ID(RemoveRight){218, 14} LPAREN((){218, 25} ID(p_node){218, 26} COMMA(,){218, 32} ID(c_node){218, 33} RPAREN()){218, 39}  SEMI(;){218, 41} 
+	    ELSE(else){219, 6}  LBRACE({){219, 11} 
+		ID(auxkey1){220, 3}  EQUALS(=){220, 11}  ID(c_node){220, 13} DOT(.){220, 19} ID(GetKey){220, 20} LPAREN((){220, 26} RPAREN()){220, 27} SEMI(;){220, 28} 
+		COMMENT(//auxtree01 = p_node.GetLeft() ;){221, 3}
+
+		COMMENT(//auxkey2 = auxtree01.GetKey() ;){222, 3}
+
+		ID(auxkey2){223, 3}  EQUALS(=){223, 11}  LPAREN((){223, 13} ID(p_node){223, 14} DOT(.){223, 20} ID(GetLeft){223, 21} LPAREN((){223, 28} RPAREN()){223, 29} RPAREN()){223, 30} DOT(.){223, 31} ID(GetKey){223, 32} LPAREN((){223, 38} RPAREN()){223, 39}  SEMI(;){223, 41} 
+		IF(if){224, 3}  LPAREN((){224, 6} THIS(this){224, 7} DOT(.){224, 11} ID(Compare){224, 12} LPAREN((){224, 19} ID(auxkey1){224, 20} COMMA(,){224, 27} ID(auxkey2){224, 28} RPAREN()){224, 35} RPAREN()){224, 36}  LBRACE({){224, 38} 
+		    ID(ntb){225, 7}  EQUALS(=){225, 11}  ID(p_node){225, 13} DOT(.){225, 19} ID(SetLeft){225, 20} LPAREN((){225, 27} ID(my_null){225, 28} RPAREN()){225, 35} SEMI(;){225, 36} 
+		    ID(ntb){226, 7}  EQUALS(=){226, 11}  ID(p_node){226, 13} DOT(.){226, 19} ID(SetHas_Left){226, 20} LPAREN((){226, 31} FALSEfalse){226, 32} RPAREN()){226, 37} SEMI(;){226, 38} 
+		RBRACE(}){227, 3} 
+		ELSE(else){228, 3}  LBRACE({){228, 8} 
+		    ID(ntb){229, 7}  EQUALS(=){229, 11}  ID(p_node){229, 13} DOT(.){229, 19} ID(SetRight){229, 20} LPAREN((){229, 28} ID(my_null){229, 29} RPAREN()){229, 36} SEMI(;){229, 37} 
+		    ID(ntb){230, 7}  EQUALS(=){230, 11}  ID(p_node){230, 13} DOT(.){230, 19} ID(SetHas_Right){230, 20} LPAREN((){230, 32} FALSEfalse){230, 33} RPAREN()){230, 38} SEMI(;){230, 39} 
+		RBRACE(}){231, 3} 
+	    RBRACE(}){232, 6} 
+	RETURN(return){233, 2}  TRUE(true){233, 9}  SEMI(;){233, 14} 
+    RBRACE(}){234, 5} 
+
+
+    COMMENT(// Copy the child key to the parent until a leaf is){237, 5}
+
+    COMMENT(// found and remove the leaf. This is done with the){238, 5}
+
+    COMMENT(// right subtree){239, 5}
+
+    PUBLIC(public){240, 5}  BOOL(boolean){240, 12}  ID(RemoveRight){240, 20} LPAREN((){240, 31} ID(Tree){240, 32}  ID(p_node){240, 37} COMMA(,){240, 43}  ID(Tree){240, 45}  ID(c_node){240, 50} RPAREN()){240, 56} LBRACE({){240, 57} 
+	BOOL(boolean){241, 2}  ID(ntb){241, 10}  SEMI(;){241, 14} 
+
+	WHILE(while){243, 2}  LPAREN((){243, 8} ID(c_node){243, 9} DOT(.){243, 15} ID(GetHas_Right){243, 16} LPAREN((){243, 28} RPAREN()){243, 29} RPAREN()){243, 30} LBRACE({){243, 31} 
+	    COMMENT(//auxtree01 = c_node.GetRight() ;){244, 6}
+
+	    COMMENT(//auxint02 = auxtree01.GetKey();){245, 6}
+
+	    COMMENT(//ntb = c_node.SetKey(auxint02);){246, 6}
+
+	    ID(ntb){247, 6}  EQUALS(=){247, 10}  ID(c_node){247, 12} DOT(.){247, 18} ID(SetKey){247, 19} LPAREN((){247, 25} LPAREN((){247, 26} ID(c_node){247, 27} DOT(.){247, 33} ID(GetRight){247, 34} LPAREN((){247, 42} RPAREN()){247, 43} RPAREN()){247, 44} DOT(.){247, 45} ID(GetKey){247, 46} LPAREN((){247, 52} RPAREN()){247, 53} RPAREN()){247, 54} SEMI(;){247, 55} 
+	    ID(p_node){248, 6}  EQUALS(=){248, 13}  ID(c_node){248, 15}  SEMI(;){248, 22} 
+	    ID(c_node){249, 6}  EQUALS(=){249, 13}  ID(c_node){249, 15} DOT(.){249, 21} ID(GetRight){249, 22} LPAREN((){249, 30} RPAREN()){249, 31}  SEMI(;){249, 33} 
+	RBRACE(}){250, 2} 
+	ID(ntb){251, 2}  EQUALS(=){251, 6}  ID(p_node){251, 8} DOT(.){251, 14} ID(SetRight){251, 15} LPAREN((){251, 23} ID(my_null){251, 24} RPAREN()){251, 31} SEMI(;){251, 32} 
+	ID(ntb){252, 2}  EQUALS(=){252, 6}  ID(p_node){252, 8} DOT(.){252, 14} ID(SetHas_Right){252, 15} LPAREN((){252, 27} FALSEfalse){252, 28} RPAREN()){252, 33} SEMI(;){252, 34} 
+	RETURN(return){253, 2}  TRUE(true){253, 9}  SEMI(;){253, 14} 
+    RBRACE(}){254, 5} 
+
+
+    COMMENT(// Copy the child key to the parent until a leaf is){257, 5}
+
+    COMMENT(// found and remove the leaf. This is done with the){258, 5}
+
+    COMMENT(// left subtree){259, 5}
+
+    PUBLIC(public){260, 5}  BOOL(boolean){260, 12}  ID(RemoveLeft){260, 20} LPAREN((){260, 30} ID(Tree){260, 31}  ID(p_node){260, 36} COMMA(,){260, 42}  ID(Tree){260, 44}  ID(c_node){260, 49} RPAREN()){260, 55} LBRACE({){260, 56} 
+	BOOL(boolean){261, 2}  ID(ntb){261, 10}  SEMI(;){261, 14} 
+
+	WHILE(while){263, 2}  LPAREN((){263, 8} ID(c_node){263, 9} DOT(.){263, 15} ID(GetHas_Left){263, 16} LPAREN((){263, 27} RPAREN()){263, 28} RPAREN()){263, 29} LBRACE({){263, 30} 
+	    COMMENT(//auxtree01 = c_node.GetLeft() ;){264, 6}
+
+	    COMMENT(//auxint02 = auxtree01.GetKey();){265, 6}
+
+	    COMMENT(//ntb = c_node.SetKey(auxint02);){266, 6}
+
+	    ID(ntb){267, 6}  EQUALS(=){267, 10}  ID(c_node){267, 12} DOT(.){267, 18} ID(SetKey){267, 19} LPAREN((){267, 25} LPAREN((){267, 26} ID(c_node){267, 27} DOT(.){267, 33} ID(GetLeft){267, 34} LPAREN((){267, 41} RPAREN()){267, 42} RPAREN()){267, 43} DOT(.){267, 44} ID(GetKey){267, 45} LPAREN((){267, 51} RPAREN()){267, 52} RPAREN()){267, 53} SEMI(;){267, 54} 
+	    ID(p_node){268, 6}  EQUALS(=){268, 13}  ID(c_node){268, 15}  SEMI(;){268, 22} 
+	    ID(c_node){269, 6}  EQUALS(=){269, 13}  ID(c_node){269, 15} DOT(.){269, 21} ID(GetLeft){269, 22} LPAREN((){269, 29} RPAREN()){269, 30}  SEMI(;){269, 32} 
+	RBRACE(}){270, 2} 
+	ID(ntb){271, 2}  EQUALS(=){271, 6}  ID(p_node){271, 8} DOT(.){271, 14} ID(SetLeft){271, 15} LPAREN((){271, 22} ID(my_null){271, 23} RPAREN()){271, 30} SEMI(;){271, 31} 
+	ID(ntb){272, 2}  EQUALS(=){272, 6}  ID(p_node){272, 8} DOT(.){272, 14} ID(SetHas_Left){272, 15} LPAREN((){272, 26} FALSEfalse){272, 27} RPAREN()){272, 32} SEMI(;){272, 33} 
+	RETURN(return){273, 2}  TRUE(true){273, 9}  SEMI(;){273, 14} 
+    RBRACE(}){274, 5} 
+
+    COMMENT(// Search for an elemnt in the tree){276, 5}
+
+    PUBLIC(public){277, 5}  INT(int){277, 12}  ID(Search){277, 16} LPAREN((){277, 22} INT(int){277, 23}  ID(v_key){277, 27} RPAREN()){277, 32} LBRACE({){277, 33} 
+	BOOL(boolean){278, 2}  ID(cont){278, 10}  SEMI(;){278, 15} 
+	INT(int){279, 2}  ID(ifound){279, 6}  SEMI(;){279, 13} 
+	ID(Tree){280, 2}  ID(current_node){280, 7} SEMI(;){280, 19} 
+	INT(int){281, 2}  ID(key_aux){281, 6}  SEMI(;){281, 14} 
+
+	ID(current_node){283, 2}  EQUALS(=){283, 15}  THIS(this){283, 17}  SEMI(;){283, 22} 
+	ID(cont){284, 2}  EQUALS(=){284, 7}  TRUE(true){284, 9}  SEMI(;){284, 14} 
+	ID(ifound){285, 2}  EQUALS(=){285, 9}  NUM(0){285, 11}  SEMI(;){285, 13} 
+	WHILE(while){286, 2}  LPAREN((){286, 8} ID(cont){286, 9} RPAREN()){286, 13} LBRACE({){286, 14} 
+	    ID(key_aux){287, 6}  EQUALS(=){287, 14}  ID(current_node){287, 16} DOT(.){287, 28} ID(GetKey){287, 29} LPAREN((){287, 35} RPAREN()){287, 36} SEMI(;){287, 37} 
+	    IF(if){288, 6}  LPAREN((){288, 9} ID(v_key){288, 10}  LESS(<){288, 16}  ID(key_aux){288, 18} RPAREN()){288, 25} 
+		IF(if){289, 3}  LPAREN((){289, 6} ID(current_node){289, 7} DOT(.){289, 19} ID(GetHas_Left){289, 20} LPAREN((){289, 31} RPAREN()){289, 32} RPAREN()){289, 33} 
+		    ID(current_node){290, 7}  EQUALS(=){290, 20}  ID(current_node){290, 22} DOT(.){290, 34} ID(GetLeft){290, 35} LPAREN((){290, 42} RPAREN()){290, 43}  SEMI(;){290, 45} 
+		ELSE(else){291, 3}  ID(cont){291, 8}  EQUALS(=){291, 13}  FALSEfalse){291, 15}  SEMI(;){291, 21} 
+	    ELSE(else){292, 6}  
+		IF(if){293, 3}  LPAREN((){293, 6} ID(key_aux){293, 7}  LESS(<){293, 15}  ID(v_key){293, 17} RPAREN()){293, 22} 
+		    IF(if){294, 7}  LPAREN((){294, 10} ID(current_node){294, 11} DOT(.){294, 23} ID(GetHas_Right){294, 24} LPAREN((){294, 36} RPAREN()){294, 37} RPAREN()){294, 38} 
+			ID(current_node){295, 4}  EQUALS(=){295, 17}  ID(current_node){295, 19} DOT(.){295, 31} ID(GetRight){295, 32} LPAREN((){295, 40} RPAREN()){295, 41}  SEMI(;){295, 43} 
+		    ELSE(else){296, 7}  ID(cont){296, 12}  EQUALS(=){296, 17}  FALSEfalse){296, 19}  SEMI(;){296, 25} 
+		ELSE(else){297, 3}  LBRACE({){297, 8}  
+		    ID(ifound){298, 7}  EQUALS(=){298, 14}  NUM(1){298, 16}  SEMI(;){298, 18} 
+		    ID(cont){299, 7}  EQUALS(=){299, 12}  FALSEfalse){299, 14}  SEMI(;){299, 20} 
+		RBRACE(}){300, 3} 
+	RBRACE(}){301, 2} 
+	RETURN(return){302, 2}  ID(ifound){302, 9}  SEMI(;){302, 16} 
+    RBRACE(}){303, 5} 
+
+    COMMENT(// Invoke the method to really print the tree elements){305, 5}
+
+    PUBLIC(public){306, 5}  BOOL(boolean){306, 12}  ID(Print){306, 20} LPAREN((){306, 25} RPAREN()){306, 26} LBRACE({){306, 27} 
+	ID(Tree){307, 2}  ID(current_node){307, 7} SEMI(;){307, 19} 
+	BOOL(boolean){308, 2}  ID(ntb){308, 10}  SEMI(;){308, 14} 
+
+	ID(current_node){310, 2}  EQUALS(=){310, 15}  THIS(this){310, 17}  SEMI(;){310, 22} 
+	ID(ntb){311, 2}  EQUALS(=){311, 6}  THIS(this){311, 8} DOT(.){311, 12} ID(RecPrint){311, 13} LPAREN((){311, 21} ID(current_node){311, 22} RPAREN()){311, 34} SEMI(;){311, 35} 
+	RETURN(return){312, 2}  TRUE(true){312, 9}  SEMI(;){312, 14} 
+    RBRACE(}){313, 5} 
+
+    COMMENT(// Print the elements of the tree){315, 5}
+
+    PUBLIC(public){316, 5}  BOOL(boolean){316, 12}  ID(RecPrint){316, 20} LPAREN((){316, 28} ID(Tree){316, 29}  ID(node){316, 34} RPAREN()){316, 38} LBRACE({){316, 39} 
+	BOOL(boolean){317, 2}  ID(ntb){317, 10}  SEMI(;){317, 14} 
+
+	IF(if){319, 2}  LPAREN((){319, 5} ID(node){319, 6} DOT(.){319, 10} ID(GetHas_Left){319, 11} LPAREN((){319, 22} RPAREN()){319, 23} RPAREN()){319, 24} LBRACE({){319, 25} 
+	    COMMENT(//auxtree01 = node.GetLeft() ;){320, 6}
+
+	    COMMENT(//ntb = this.RecPrint(auxtree01);){321, 6}
+
+	    ID(ntb){322, 6}  EQUALS(=){322, 10}  THIS(this){322, 12} DOT(.){322, 16} ID(RecPrint){322, 17} LPAREN((){322, 25} ID(node){322, 26} DOT(.){322, 30} ID(GetLeft){322, 31} LPAREN((){322, 38} RPAREN()){322, 39} RPAREN()){322, 40} SEMI(;){322, 41} 
+	RBRACE(}){323, 2}  ELSE(else){323, 4}  ID(ntb){323, 9}  EQUALS(=){323, 13}  TRUE(true){323, 15}  SEMI(;){323, 20} 
+	ID(System){324, 2} DOT(.){324, 8} ID(out){324, 9} DOT(.){324, 12} ID(println){324, 13} LPAREN((){324, 20} ID(node){324, 21} DOT(.){324, 25} ID(GetKey){324, 26} LPAREN((){324, 32} RPAREN()){324, 33} RPAREN()){324, 34} SEMI(;){324, 35} 
+	IF(if){325, 2}  LPAREN((){325, 5} ID(node){325, 6} DOT(.){325, 10} ID(GetHas_Right){325, 11} LPAREN((){325, 23} RPAREN()){325, 24} RPAREN()){325, 25} LBRACE({){325, 26} 
+	    COMMENT(//auxtree01 = node.GetRight() ;){326, 6}
+
+	    COMMENT(//ntb = this.RecPrint(auxtree01);){327, 6}
+
+	    ID(ntb){328, 6}  EQUALS(=){328, 10}  THIS(this){328, 12} DOT(.){328, 16} ID(RecPrint){328, 17} LPAREN((){328, 25} ID(node){328, 26} DOT(.){328, 30} ID(GetRight){328, 31} LPAREN((){328, 39} RPAREN()){328, 40} RPAREN()){328, 41} SEMI(;){328, 42} 
+	RBRACE(}){329, 2}  ELSE(else){329, 4}  ID(ntb){329, 9}  EQUALS(=){329, 13}  TRUE(true){329, 15}  SEMI(;){329, 20} 
+	RETURN(return){330, 2}  TRUE(true){330, 9}  SEMI(;){330, 14} 
+    RBRACE(}){331, 5} 
+
+RBRACE(}){333, 1} 
+   
+EOF{335, 1}
