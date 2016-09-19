@@ -7,9 +7,10 @@ int STRING_IDX = 1, SYMBOL_IDX = 1;
 %}
 
 DIGIT       [0-9]
-ID          [a-z][a-z0-9]*
+ID          [a-zA-Z][a-zA-Z0-9_]*
 
 %%
+            /* NUMBERS */
 
 -?{DIGIT}+   {
             printf( "NUM(%d){%d, %d} ", atoi( yytext ), STRING_IDX, SYMBOL_IDX );
@@ -21,8 +22,47 @@ ID          [a-z][a-z0-9]*
             SYMBOL_IDX += yyleng;
             }
 
+            /* TYPES */
+
+void         {
+                printf( "VOID(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
 int         {
                 printf( "INT(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+boolean     {
+                printf( "BOOL(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+            /* KEYWORDS */
+
+class      {
+                printf( "CLASS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+public      {
+                printf( "PUBLIC(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+static      {
+                printf( "STATIC(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+extends     {
+                printf( "EXTENDS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+this       {
+                printf( "THIS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 
@@ -36,15 +76,22 @@ else        {
                 SYMBOL_IDX += yyleng;
             }
 
+while       {
+                printf( "WHILE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+for         {
+                printf( "FOR(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
 return      {
                 printf( "RETURN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 
-{ID}+       {
-                printf( "ID(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
-            }
+            /* PARENTHESES */
 
 "("         {
                 printf( "LPAREN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
@@ -66,10 +113,66 @@ return      {
                 SYMBOL_IDX += yyleng;
             }
 
+"["         {
+                printf( "LBRACKET(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+"]"         {
+                printf( "RBRACKET(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+            /* ARITHMETICS */
+
+"="         {
+                printf( "EQUALS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+"+"         {
+                printf( "PLUS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+"-"         {
+                printf( "MINUS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
 "*"         {
                 printf( "STAR(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
+
+"/"         {
+                printf( "DIVIDE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+"<"         {
+                printf( "LESS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+">"         {
+                printf( "MORE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+            /* LOGICAL */
+
+true        {
+                printf( "TRUE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+false       {
+                printf( "FALSE%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+            /* SYNTACTIC */
 
 "!"         {
                 printf( "BANG(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
@@ -81,10 +184,30 @@ return      {
                 SYMBOL_IDX += yyleng;
             }
 
+"."         {
+                printf( "DOT(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+"&"         {
+                printf( "AMPERSAND(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
 ";"         {
                 printf( "SEMI(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
+
+            /* IDENTIFIERS */
+
+{ID}+       {
+                printf( "ID(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
+            }
+
+
+            /* COMMENTS */
 
 \"[^\"]*\"  {
                 printf( "STRING(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
@@ -98,7 +221,7 @@ return      {
 
 "/*"[^"*/"]*"*/" {
                 printf( "COMMENT(%s){%d, %d}\n", yytext, STRING_IDX, SYMBOL_IDX );
-                
+
                 for(int index = 0; index < yyleng; index++) {
                         if( yytext[index] == '\n' ) {
                                     SYMBOL_IDX = 1;
@@ -109,6 +232,8 @@ return      {
                         }
                 }
             }
+
+            /* WHITESPACE */
 
 "\n"        {
                 printf( "%s", yytext );
@@ -127,7 +252,7 @@ return      {
                 yyterminate();
             }
 
-.           printf( "\n\nUnrecognized character: %s, length = %d\n\n\n", yytext, STRING_IDX, SYMBOL_IDX );
+.           printf( "\n\nUnrecognized character: %s, length = %d\n\n\n", yytext, yyleng );
 
 %%
 
