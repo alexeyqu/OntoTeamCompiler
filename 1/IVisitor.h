@@ -12,7 +12,6 @@ class CLastExpressionList;
 class IVisitor
 {
 public:
-
 	virtual void Visit( CCompoundStatement* ) = 0;
 	virtual void Visit( CIdExpression* ) = 0;
 	virtual void Visit( CBinaryExpression* ) = 0;

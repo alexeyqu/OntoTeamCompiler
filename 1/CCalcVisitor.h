@@ -15,9 +15,8 @@
 class CCalcVisitor : public IVisitor
 {
 public:
-
     VariablesTable* head;
-	
+
 	CCalcVisitor();
     void Start( IVisitorTarget* target );
     void Visit( CCompoundStatement* stmt );

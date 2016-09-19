@@ -6,7 +6,6 @@
 class CPrintStatement : public IStatement
 {
 public:
-
 	IExpression* expression;
 
 	CPrintStatement( IExpression* expression );

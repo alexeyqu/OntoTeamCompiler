@@ -5,7 +5,6 @@
 class CLastExpressionList : public IExpression
 {
 public:
-
 	IExpression* expression;
 
 	CLastExpressionList( IExpression* expression );

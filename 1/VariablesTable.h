@@ -4,7 +4,7 @@
 #include "IVisitorTarget.h"
 #include <string>
 
-class VariablesTable 
+class VariablesTable
 {
 public:
 	const std::string name;
@@ -13,7 +13,7 @@ public:
 	VariablesTable* next;
 	const VariablesTable* const tail;
 
-	VariablesTable( std::string name, const int value, 
+	VariablesTable( std::string name, const int value,
 		IVisitorTarget* node, VariablesTable* next, const VariablesTable* tail ):
 		name( name ), value( value ), node( node ), next( next ), tail( tail == 0 ? this :  tail ) {}
 };

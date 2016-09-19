@@ -1,7 +1,7 @@
-digraph g1 {
+digraph graph1 {
 Compound->Assign->a;
 Assign->Operation->NumExp->5;
-Operation->+;
+Operation->Plus;
 Operation->NumExp->3;
 Compound->Print statement->Last expression list->ExpId->a;
 }

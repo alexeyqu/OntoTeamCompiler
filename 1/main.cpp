@@ -20,7 +20,7 @@ int main() {
   CCompoundStatement comp(&assign, &print);
 
   CPrintVisitor printVisitor;
-  printVisitor.Start(&comp, "g1.dot", "g1");
+  printVisitor.Start(&comp, "graph1.dot", "graph1");
   CCalcVisitor calcVisitor;
   calcVisitor.Start(&comp);
   std::cout << calcVisitor.head->value << std::endl;

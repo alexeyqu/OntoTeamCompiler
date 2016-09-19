@@ -5,7 +5,6 @@
 class CCompoundStatement : public IStatement
 {
 public:
-
 	IStatement* leftStatement;
 	IStatement* rightStatement;
 
