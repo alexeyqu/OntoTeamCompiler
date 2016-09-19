@@ -1,7 +1,7 @@
 #/bin/bash
 
-flex grammar.lex
-gcc lex.yy.c -lfl -o analyzer
+flex++ grammar.lex
+g++ lex.yy.cc -lfl -o analyzer
 
 cd samples/
 

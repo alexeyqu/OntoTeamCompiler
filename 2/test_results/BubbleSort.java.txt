@@ -1,103 +1,94 @@
-CLASS(class){1, 1}  ID(BubbleSort){1, 7} LBRACE({){1, 17} 
-    PUBLIC(public){2, 5}  STATIC(static){2, 12}  VOID(void){2, 19}  ID(main){2, 24} LPAREN((){2, 28} ID(String){2, 29} LBRACKET([){2, 35} RBRACKET(]){2, 36}  ID(a){2, 38} RPAREN()){2, 39} LBRACE({){2, 40} 
-	ID(System){3, 2} DOT(.){3, 8} ID(out){3, 9} DOT(.){3, 12} ID(println){3, 13} LPAREN((){3, 20} ID(new){3, 21}  ID(BBS){3, 25} LPAREN((){3, 28} RPAREN()){3, 29} DOT(.){3, 30} ID(Start){3, 31} LPAREN((){3, 36} NUM(10){3, 37} RPAREN()){3, 39} RPAREN()){3, 40} SEMI(;){3, 41} 
-    RBRACE(}){4, 5} 
-RBRACE(}){5, 1} 
+CLASS{1, 1}  ID(BubbleSort){1, 7} LBRACE{1, 17} 
+    PUBLIC{2, 5}  STATIC{2, 12}  VOID{2, 19}  ID(main){2, 24} LPAREN{2, 28} ID(String){2, 29} LBRACKET{2, 35} RBRACKET{2, 36}  ID(a){2, 38} RPAREN{2, 39} LBRACE{2, 40} 
+	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} ID(new){3, 21}  ID(BBS){3, 25} LPAREN{3, 28} RPAREN{3, 29} DOT{3, 30} ID(Start){3, 31} LPAREN{3, 36} NUM(10){3, 37} RPAREN{3, 39} RPAREN{3, 40} SEMI{3, 41} 
+    RBRACE{4, 5} 
+RBRACE{5, 1} 
 
 
-COMMENT(// This class contains the array of integers and){8, 1}
-
-COMMENT(// methods to initialize, print and sort the array){9, 1}
-
-COMMENT(// using Bublesort){10, 1}
-
-CLASS(class){11, 1}  ID(BBS){11, 7} LBRACE({){11, 10} 
+COMMENT(// This class contains the array of integers and){8, 1} 
+COMMENT(// methods to initialize, print and sort the array){9, 1} 
+COMMENT(// using Bublesort){10, 1} 
+CLASS{11, 1}  ID(BBS){11, 7} LBRACE{11, 10} 
     
-    INT(int){13, 5} LBRACKET([){13, 8} RBRACKET(]){13, 9}  ID(number){13, 11}  SEMI(;){13, 18} 
-    INT(int){14, 5}  ID(size){14, 9}  SEMI(;){14, 14} 
+    INT{13, 5} LBRACKET{13, 8} RBRACKET{13, 9}  ID(number){13, 11}  SEMI{13, 18} 
+    INT{14, 5}  ID(size){14, 9}  SEMI{14, 14} 
 
-    COMMENT(// Invoke the Initialization, Sort and Printing){16, 5}
-
-    COMMENT(// Methods){17, 5}
-
-    PUBLIC(public){18, 5}  INT(int){18, 12}  ID(Start){18, 16} LPAREN((){18, 21} INT(int){18, 22}  ID(sz){18, 26} RPAREN()){18, 28} LBRACE({){18, 29} 
-	INT(int){19, 2}  ID(aux01){19, 6}  SEMI(;){19, 12} 
-	ID(aux01){20, 2}  EQUALS(=){20, 8}  THIS(this){20, 10} DOT(.){20, 14} ID(Init){20, 15} LPAREN((){20, 19} ID(sz){20, 20} RPAREN()){20, 22} SEMI(;){20, 23} 
-	ID(aux01){21, 2}  EQUALS(=){21, 8}  THIS(this){21, 10} DOT(.){21, 14} ID(Print){21, 15} LPAREN((){21, 20} RPAREN()){21, 21} SEMI(;){21, 22} 
-	ID(System){22, 2} DOT(.){22, 8} ID(out){22, 9} DOT(.){22, 12} ID(println){22, 13} LPAREN((){22, 20} NUM(99999){22, 21} RPAREN()){22, 26} SEMI(;){22, 27} 
-	ID(aux01){23, 2}  EQUALS(=){23, 8}  THIS(this){23, 10} DOT(.){23, 14} ID(Sort){23, 15} LPAREN((){23, 19} RPAREN()){23, 20} SEMI(;){23, 21} 
-	ID(aux01){24, 2}  EQUALS(=){24, 8}  THIS(this){24, 10} DOT(.){24, 14} ID(Print){24, 15} LPAREN((){24, 20} RPAREN()){24, 21} SEMI(;){24, 22} 
-	RETURN(return){25, 2}  NUM(0){25, 9}  SEMI(;){25, 11} 
-    RBRACE(}){26, 5} 
+    COMMENT(// Invoke the Initialization, Sort and Printing){16, 5} 
+    COMMENT(// Methods){17, 5} 
+    PUBLIC{18, 5}  INT{18, 12}  ID(Start){18, 16} LPAREN{18, 21} INT{18, 22}  ID(sz){18, 26} RPAREN{18, 28} LBRACE{18, 29} 
+	INT{19, 2}  ID(aux01){19, 6}  SEMI{19, 12} 
+	ID(aux01){20, 2}  EQUALS{20, 8}  THIS{20, 10} DOT{20, 14} ID(Init){20, 15} LPAREN{20, 19} ID(sz){20, 20} RPAREN{20, 22} SEMI{20, 23} 
+	ID(aux01){21, 2}  EQUALS{21, 8}  THIS{21, 10} DOT{21, 14} ID(Print){21, 15} LPAREN{21, 20} RPAREN{21, 21} SEMI{21, 22} 
+	ID(System){22, 2} DOT{22, 8} ID(out){22, 9} DOT{22, 12} ID(println){22, 13} LPAREN{22, 20} NUM(99999){22, 21} RPAREN{22, 26} SEMI{22, 27} 
+	ID(aux01){23, 2}  EQUALS{23, 8}  THIS{23, 10} DOT{23, 14} ID(Sort){23, 15} LPAREN{23, 19} RPAREN{23, 20} SEMI{23, 21} 
+	ID(aux01){24, 2}  EQUALS{24, 8}  THIS{24, 10} DOT{24, 14} ID(Print){24, 15} LPAREN{24, 20} RPAREN{24, 21} SEMI{24, 22} 
+	RETURN{25, 2}  NUM(0){25, 9}  SEMI{25, 11} 
+    RBRACE{26, 5} 
 
  
-    COMMENT(// Sort array of integers using Bublesort method){29, 5}
+    COMMENT(// Sort array of integers using Bublesort method){29, 5} 
+    PUBLIC{30, 5}  INT{30, 12}  ID(Sort){30, 16} LPAREN{30, 20} RPAREN{30, 21} LBRACE{30, 22} 
+	INT{31, 2}  ID(nt){31, 6}  SEMI{31, 9} 
+	INT{32, 2}  ID(i){32, 6}  SEMI{32, 8} 
+	INT{33, 2}  ID(aux02){33, 6}  SEMI{33, 12} 
+	INT{34, 2}  ID(aux04){34, 6}  SEMI{34, 12} 
+	INT{35, 2}  ID(aux05){35, 6}  SEMI{35, 12} 
+	INT{36, 2}  ID(aux06){36, 6}  SEMI{36, 12} 
+	INT{37, 2}  ID(aux07){37, 6}  SEMI{37, 12} 
+	INT{38, 2}  ID(j){38, 6}  SEMI{38, 8} 
+	INT{39, 2}  ID(t){39, 6}  SEMI{39, 8} 
+	ID(i){40, 2}  EQUALS{40, 4}  ID(size){40, 6}  MINUS{40, 11}  NUM(1){40, 13}  SEMI{40, 15} 
+	ID(aux02){41, 2}  EQUALS{41, 8}  NUM(0){41, 10}  MINUS{41, 12}  NUM(1){41, 14}  SEMI{41, 16} 
+	WHILE{42, 2}  LPAREN{42, 8} ID(aux02){42, 9}  LESS{42, 15}  ID(i){42, 17} RPAREN{42, 18}  LBRACE{42, 20} 
+	    ID(j){43, 6}  EQUALS{43, 8}  NUM(1){43, 10}  SEMI{43, 12} 
+	    COMMENT(//aux03 = i+1 ;){44, 6} 
+	    WHILE{45, 6}  LPAREN{45, 12} ID(j){45, 13}  LESS{45, 15}  LPAREN{45, 17} ID(i){45, 18} PLUS{45, 19} NUM(1){45, 20} RPAREN{45, 21} RPAREN{45, 22} LBRACE{45, 23} 
+		ID(aux07){46, 3}  EQUALS{46, 9}  ID(j){46, 11}  MINUS{46, 13}  NUM(1){46, 15}  SEMI{46, 17} 
+		ID(aux04){47, 3}  EQUALS{47, 9}  ID(number){47, 11} LBRACKET{47, 17} ID(aux07){47, 18} RBRACKET{47, 23}  SEMI{47, 25} 
+		ID(aux05){48, 3}  EQUALS{48, 9}  ID(number){48, 11} LBRACKET{48, 17} ID(j){48, 18} RBRACKET{48, 19}  SEMI{48, 21} 
+		IF{49, 3}  LPAREN{49, 6} ID(aux05){49, 7}  LESS{49, 13}  ID(aux04){49, 15} RPAREN{49, 20}  LBRACE{49, 22} 
+		    ID(aux06){50, 7}  EQUALS{50, 13}  ID(j){50, 15}  MINUS{50, 17}  NUM(1){50, 19}  SEMI{50, 21} 
+		    ID(t){51, 7}  EQUALS{51, 9}  ID(number){51, 11} LBRACKET{51, 17} ID(aux06){51, 18} RBRACKET{51, 23}  SEMI{51, 25} 
+		    ID(number){52, 7} LBRACKET{52, 13} ID(aux06){52, 14} RBRACKET{52, 19}  EQUALS{52, 21}  ID(number){52, 23} LBRACKET{52, 29} ID(j){52, 30} RBRACKET{52, 31}  SEMI{52, 33} 
+		    ID(number){53, 7} LBRACKET{53, 13} ID(j){53, 14} RBRACKET{53, 15}  EQUALS{53, 17}  ID(t){53, 19} SEMI{53, 20} 
+		RBRACE{54, 3} 
+		ELSE{55, 3}  ID(nt){55, 8}  EQUALS{55, 11}  NUM(0){55, 13}  SEMI{55, 15} 
+		ID(j){56, 3}  EQUALS{56, 5}  ID(j){56, 7}  PLUS{56, 9}  NUM(1){56, 11}  SEMI{56, 13} 
+	    RBRACE{57, 6} 
+	    ID(i){58, 6}  EQUALS{58, 8}  ID(i){58, 10}  MINUS{58, 12}  NUM(1){58, 14}  SEMI{58, 16} 
+	RBRACE{59, 2} 
+	RETURN{60, 2}  NUM(0){60, 9}  SEMI{60, 11} 
+    RBRACE{61, 5} 
 
-    PUBLIC(public){30, 5}  INT(int){30, 12}  ID(Sort){30, 16} LPAREN((){30, 20} RPAREN()){30, 21} LBRACE({){30, 22} 
-	INT(int){31, 2}  ID(nt){31, 6}  SEMI(;){31, 9} 
-	INT(int){32, 2}  ID(i){32, 6}  SEMI(;){32, 8} 
-	INT(int){33, 2}  ID(aux02){33, 6}  SEMI(;){33, 12} 
-	INT(int){34, 2}  ID(aux04){34, 6}  SEMI(;){34, 12} 
-	INT(int){35, 2}  ID(aux05){35, 6}  SEMI(;){35, 12} 
-	INT(int){36, 2}  ID(aux06){36, 6}  SEMI(;){36, 12} 
-	INT(int){37, 2}  ID(aux07){37, 6}  SEMI(;){37, 12} 
-	INT(int){38, 2}  ID(j){38, 6}  SEMI(;){38, 8} 
-	INT(int){39, 2}  ID(t){39, 6}  SEMI(;){39, 8} 
-	ID(i){40, 2}  EQUALS(=){40, 4}  ID(size){40, 6}  MINUS(-){40, 11}  NUM(1){40, 13}  SEMI(;){40, 15} 
-	ID(aux02){41, 2}  EQUALS(=){41, 8}  NUM(0){41, 10}  MINUS(-){41, 12}  NUM(1){41, 14}  SEMI(;){41, 16} 
-	WHILE(while){42, 2}  LPAREN((){42, 8} ID(aux02){42, 9}  LESS(<){42, 15}  ID(i){42, 17} RPAREN()){42, 18}  LBRACE({){42, 20} 
-	    ID(j){43, 6}  EQUALS(=){43, 8}  NUM(1){43, 10}  SEMI(;){43, 12} 
-	    COMMENT(//aux03 = i+1 ;){44, 6}
-
-	    WHILE(while){45, 6}  LPAREN((){45, 12} ID(j){45, 13}  LESS(<){45, 15}  LPAREN((){45, 17} ID(i){45, 18} PLUS(+){45, 19} NUM(1){45, 20} RPAREN()){45, 21} RPAREN()){45, 22} LBRACE({){45, 23} 
-		ID(aux07){46, 3}  EQUALS(=){46, 9}  ID(j){46, 11}  MINUS(-){46, 13}  NUM(1){46, 15}  SEMI(;){46, 17} 
-		ID(aux04){47, 3}  EQUALS(=){47, 9}  ID(number){47, 11} LBRACKET([){47, 17} ID(aux07){47, 18} RBRACKET(]){47, 23}  SEMI(;){47, 25} 
-		ID(aux05){48, 3}  EQUALS(=){48, 9}  ID(number){48, 11} LBRACKET([){48, 17} ID(j){48, 18} RBRACKET(]){48, 19}  SEMI(;){48, 21} 
-		IF(if){49, 3}  LPAREN((){49, 6} ID(aux05){49, 7}  LESS(<){49, 13}  ID(aux04){49, 15} RPAREN()){49, 20}  LBRACE({){49, 22} 
-		    ID(aux06){50, 7}  EQUALS(=){50, 13}  ID(j){50, 15}  MINUS(-){50, 17}  NUM(1){50, 19}  SEMI(;){50, 21} 
-		    ID(t){51, 7}  EQUALS(=){51, 9}  ID(number){51, 11} LBRACKET([){51, 17} ID(aux06){51, 18} RBRACKET(]){51, 23}  SEMI(;){51, 25} 
-		    ID(number){52, 7} LBRACKET([){52, 13} ID(aux06){52, 14} RBRACKET(]){52, 19}  EQUALS(=){52, 21}  ID(number){52, 23} LBRACKET([){52, 29} ID(j){52, 30} RBRACKET(]){52, 31}  SEMI(;){52, 33} 
-		    ID(number){53, 7} LBRACKET([){53, 13} ID(j){53, 14} RBRACKET(]){53, 15}  EQUALS(=){53, 17}  ID(t){53, 19} SEMI(;){53, 20} 
-		RBRACE(}){54, 3} 
-		ELSE(else){55, 3}  ID(nt){55, 8}  EQUALS(=){55, 11}  NUM(0){55, 13}  SEMI(;){55, 15} 
-		ID(j){56, 3}  EQUALS(=){56, 5}  ID(j){56, 7}  PLUS(+){56, 9}  NUM(1){56, 11}  SEMI(;){56, 13} 
-	    RBRACE(}){57, 6} 
-	    ID(i){58, 6}  EQUALS(=){58, 8}  ID(i){58, 10}  MINUS(-){58, 12}  NUM(1){58, 14}  SEMI(;){58, 16} 
-	RBRACE(}){59, 2} 
-	RETURN(return){60, 2}  NUM(0){60, 9}  SEMI(;){60, 11} 
-    RBRACE(}){61, 5} 
-
-    COMMENT(// Printing method){63, 5}
-
-    PUBLIC(public){64, 5}  INT(int){64, 12}  ID(Print){64, 16} LPAREN((){64, 21} RPAREN()){64, 22} LBRACE({){64, 23} 
-	INT(int){65, 2}  ID(j){65, 6}  SEMI(;){65, 8} 
-	ID(j){66, 2}  EQUALS(=){66, 4}  NUM(0){66, 6}  SEMI(;){66, 8} 
-	WHILE(while){67, 2}  LPAREN((){67, 8} ID(j){67, 9}  LESS(<){67, 11}  LPAREN((){67, 13} ID(size){67, 14} RPAREN()){67, 18} RPAREN()){67, 19}  LBRACE({){67, 21} 
-	    ID(System){68, 6} DOT(.){68, 12} ID(out){68, 13} DOT(.){68, 16} ID(println){68, 17} LPAREN((){68, 24} ID(number){68, 25} LBRACKET([){68, 31} ID(j){68, 32} RBRACKET(]){68, 33} RPAREN()){68, 34} SEMI(;){68, 35} 
-	    ID(j){69, 6}  EQUALS(=){69, 8}  ID(j){69, 10}  PLUS(+){69, 12}  NUM(1){69, 14}  SEMI(;){69, 16} 
-	RBRACE(}){70, 2} 
-	RETURN(return){71, 2}  NUM(0){71, 9}  SEMI(;){71, 11} 
-    RBRACE(}){72, 5} 
+    COMMENT(// Printing method){63, 5} 
+    PUBLIC{64, 5}  INT{64, 12}  ID(Print){64, 16} LPAREN{64, 21} RPAREN{64, 22} LBRACE{64, 23} 
+	INT{65, 2}  ID(j){65, 6}  SEMI{65, 8} 
+	ID(j){66, 2}  EQUALS{66, 4}  NUM(0){66, 6}  SEMI{66, 8} 
+	WHILE{67, 2}  LPAREN{67, 8} ID(j){67, 9}  LESS{67, 11}  LPAREN{67, 13} ID(size){67, 14} RPAREN{67, 18} RPAREN{67, 19}  LBRACE{67, 21} 
+	    ID(System){68, 6} DOT{68, 12} ID(out){68, 13} DOT{68, 16} ID(println){68, 17} LPAREN{68, 24} ID(number){68, 25} LBRACKET{68, 31} ID(j){68, 32} RBRACKET{68, 33} RPAREN{68, 34} SEMI{68, 35} 
+	    ID(j){69, 6}  EQUALS{69, 8}  ID(j){69, 10}  PLUS{69, 12}  NUM(1){69, 14}  SEMI{69, 16} 
+	RBRACE{70, 2} 
+	RETURN{71, 2}  NUM(0){71, 9}  SEMI{71, 11} 
+    RBRACE{72, 5} 
     
-    COMMENT(// Initialize array of integers){74, 5}
-
-    PUBLIC(public){75, 5}  INT(int){75, 12}  ID(Init){75, 16} LPAREN((){75, 20} INT(int){75, 21}  ID(sz){75, 25} RPAREN()){75, 27} LBRACE({){75, 28} 
-	ID(size){76, 2}  EQUALS(=){76, 7}  ID(sz){76, 9}  SEMI(;){76, 12} 
-	ID(number){77, 2}  EQUALS(=){77, 9}  ID(new){77, 11}  INT(int){77, 15} LBRACKET([){77, 18} ID(sz){77, 19} RBRACKET(]){77, 21}  SEMI(;){77, 23} 
+    COMMENT(// Initialize array of integers){74, 5} 
+    PUBLIC{75, 5}  INT{75, 12}  ID(Init){75, 16} LPAREN{75, 20} INT{75, 21}  ID(sz){75, 25} RPAREN{75, 27} LBRACE{75, 28} 
+	ID(size){76, 2}  EQUALS{76, 7}  ID(sz){76, 9}  SEMI{76, 12} 
+	ID(number){77, 2}  EQUALS{77, 9}  ID(new){77, 11}  INT{77, 15} LBRACKET{77, 18} ID(sz){77, 19} RBRACKET{77, 21}  SEMI{77, 23} 
 	
-	ID(number){79, 2} LBRACKET([){79, 8} NUM(0){79, 9} RBRACKET(]){79, 10}  EQUALS(=){79, 12}  NUM(20){79, 14}  SEMI(;){79, 17} 
-	ID(number){80, 2} LBRACKET([){80, 8} NUM(1){80, 9} RBRACKET(]){80, 10}  EQUALS(=){80, 12}  NUM(7){80, 14}   SEMI(;){80, 17}  
-	ID(number){81, 2} LBRACKET([){81, 8} NUM(2){81, 9} RBRACKET(]){81, 10}  EQUALS(=){81, 12}  NUM(12){81, 14}  SEMI(;){81, 17} 
-	ID(number){82, 2} LBRACKET([){82, 8} NUM(3){82, 9} RBRACKET(]){82, 10}  EQUALS(=){82, 12}  NUM(18){82, 14}  SEMI(;){82, 17} 
-	ID(number){83, 2} LBRACKET([){83, 8} NUM(4){83, 9} RBRACKET(]){83, 10}  EQUALS(=){83, 12}  NUM(2){83, 14}   SEMI(;){83, 17}  
-	ID(number){84, 2} LBRACKET([){84, 8} NUM(5){84, 9} RBRACKET(]){84, 10}  EQUALS(=){84, 12}  NUM(11){84, 14}  SEMI(;){84, 17} 
-	ID(number){85, 2} LBRACKET([){85, 8} NUM(6){85, 9} RBRACKET(]){85, 10}  EQUALS(=){85, 12}  NUM(6){85, 14}   SEMI(;){85, 17}  
-	ID(number){86, 2} LBRACKET([){86, 8} NUM(7){86, 9} RBRACKET(]){86, 10}  EQUALS(=){86, 12}  NUM(9){86, 14}   SEMI(;){86, 17}  
-	ID(number){87, 2} LBRACKET([){87, 8} NUM(8){87, 9} RBRACKET(]){87, 10}  EQUALS(=){87, 12}  NUM(19){87, 14}  SEMI(;){87, 17}  
-	ID(number){88, 2} LBRACKET([){88, 8} NUM(9){88, 9} RBRACKET(]){88, 10}  EQUALS(=){88, 12}  NUM(5){88, 14}   SEMI(;){88, 17} 
+	ID(number){79, 2} LBRACKET{79, 8} NUM(0){79, 9} RBRACKET{79, 10}  EQUALS{79, 12}  NUM(20){79, 14}  SEMI{79, 17} 
+	ID(number){80, 2} LBRACKET{80, 8} NUM(1){80, 9} RBRACKET{80, 10}  EQUALS{80, 12}  NUM(7){80, 14}   SEMI{80, 17}  
+	ID(number){81, 2} LBRACKET{81, 8} NUM(2){81, 9} RBRACKET{81, 10}  EQUALS{81, 12}  NUM(12){81, 14}  SEMI{81, 17} 
+	ID(number){82, 2} LBRACKET{82, 8} NUM(3){82, 9} RBRACKET{82, 10}  EQUALS{82, 12}  NUM(18){82, 14}  SEMI{82, 17} 
+	ID(number){83, 2} LBRACKET{83, 8} NUM(4){83, 9} RBRACKET{83, 10}  EQUALS{83, 12}  NUM(2){83, 14}   SEMI{83, 17}  
+	ID(number){84, 2} LBRACKET{84, 8} NUM(5){84, 9} RBRACKET{84, 10}  EQUALS{84, 12}  NUM(11){84, 14}  SEMI{84, 17} 
+	ID(number){85, 2} LBRACKET{85, 8} NUM(6){85, 9} RBRACKET{85, 10}  EQUALS{85, 12}  NUM(6){85, 14}   SEMI{85, 17}  
+	ID(number){86, 2} LBRACKET{86, 8} NUM(7){86, 9} RBRACKET{86, 10}  EQUALS{86, 12}  NUM(9){86, 14}   SEMI{86, 17}  
+	ID(number){87, 2} LBRACKET{87, 8} NUM(8){87, 9} RBRACKET{87, 10}  EQUALS{87, 12}  NUM(19){87, 14}  SEMI{87, 17}  
+	ID(number){88, 2} LBRACKET{88, 8} NUM(9){88, 9} RBRACKET{88, 10}  EQUALS{88, 12}  NUM(5){88, 14}   SEMI{88, 17} 
 	
-	RETURN(return){90, 2}  NUM(0){90, 9}  SEMI(;){90, 11} 	
-    RBRACE(}){91, 5} 
+	RETURN{90, 2}  NUM(0){90, 9}  SEMI{90, 11} 	
+    RBRACE{91, 5} 
 
-RBRACE(}){93, 1} 
+RBRACE{93, 1} 
 EOF{94, 1}

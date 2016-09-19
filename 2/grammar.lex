@@ -2,9 +2,13 @@
 
 %{
 #include <math.h>
+#include <fstream>
+#include <iostream>
 
-int STRING_IDX = 1, SYMBOL_IDX = 1;
+int string_idx = 1, symbol_idx = 1;
 %}
+
+%option noyywrap
 
 DIGIT       [0-9]
 ID          [a-zA-Z][a-zA-Z0-9_]*
@@ -12,256 +16,281 @@ ID          [a-zA-Z][a-zA-Z0-9_]*
 %%
             /* NUMBERS */
 
--?{DIGIT}+   {
-            printf( "NUM(%d){%d, %d} ", atoi( yytext ), STRING_IDX, SYMBOL_IDX );
-            SYMBOL_IDX += yyleng;
-            }
+{DIGIT}+"."{DIGIT}* |
 
-{DIGIT}+"."{DIGIT}* {
-            printf( "NUM(%g){%d, %d} ", atof( yytext ), STRING_IDX, SYMBOL_IDX );
-            SYMBOL_IDX += yyleng;
+-?{DIGIT}+  {
+                std::cout << "NUM(" << atoi( yytext ) << "){" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
             /* TYPES */
 
-void         {
-                printf( "VOID(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+void        {
+                std::cout << "VOID{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 int         {
-                printf( "INT(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "INT{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 boolean     {
-                printf( "BOOL(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "BOOL{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
             /* KEYWORDS */
 
 class      {
-                printf( "CLASS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "CLASS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 public      {
-                printf( "PUBLIC(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "PUBLIC{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 static      {
-                printf( "STATIC(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "STATIC{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 extends     {
-                printf( "EXTENDS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "EXTENDS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 this       {
-                printf( "THIS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "THIS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 if          {
-                printf( "IF(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "IF{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 else        {
-                printf( "ELSE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "ELSE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 while       {
-                printf( "WHILE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "WHILE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 for         {
-                printf( "FOR(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "FOR{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 return      {
-                printf( "RETURN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "RETURN{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
             /* PARENTHESES */
 
 "("         {
-                printf( "LPAREN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "LPAREN{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 ")"         {
-                printf( "RPAREN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "RPAREN{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "{"         {
-                printf( "LBRACE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "LBRACE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "}"         {
-                printf( "RBRACE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "RBRACE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "["         {
-                printf( "LBRACKET(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "LBRACKET{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "]"         {
-                printf( "RBRACKET(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "RBRACKET{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
             /* ARITHMETICS */
 
 "="         {
-                printf( "EQUALS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "EQUALS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
+            }
+
+"=="         {
+                std::cout << "DOUBLEEQUALS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "+"         {
-                printf( "PLUS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "PLUS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "-"         {
-                printf( "MINUS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "MINUS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "*"         {
-                printf( "STAR(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "STAR{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "/"         {
-                printf( "DIVIDE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "DIVIDE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "<"         {
-                printf( "LESS(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "LESS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 ">"         {
-                printf( "MORE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "MORE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
             /* LOGICAL */
 
 true        {
-                printf( "TRUE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "TRUE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 false       {
-                printf( "FALSE%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "FALSE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
+            }
+
+"&&"        {
+                std::cout << "AND{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
+            }
+
+"||"        {
+                std::cout << "OR{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
             /* SYNTACTIC */
 
 "!"         {
-                printf( "BANG(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "BANG{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 ","         {
-                printf( "COMMA(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "COMMA{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "."         {
-                printf( "DOT(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "DOT{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "&"         {
-                printf( "AMPERSAND(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "AMPERSAND{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
+            }
+
+"|"         {
+                std::cout << "BAR{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 ";"         {
-                printf( "SEMI(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "SEMI{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
             /* IDENTIFIERS */
 
 {ID}+       {
-                printf( "ID(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "ID(" << yytext << "){" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 
             /* COMMENTS */
 
-\"[^\"]*\"  {
-                printf( "STRING(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+\"(\\.|[^"])*\"  {
+                std::cout << "STRING(" << yytext << "){" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "//"[^\n]*  {
-                printf( "COMMENT(%s){%d, %d}\n", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "COMMENT(" << yytext << "){" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
             }
 
 "/*"[^"*/"]*"*/" {
-                printf( "COMMENT(%s){%d, %d}\n", yytext, STRING_IDX, SYMBOL_IDX );
+                std::cout << "COMMENT(" << yytext << "){" << string_idx <<", " << symbol_idx << "} ";
 
-                for(int index = 0; index < yyleng; index++) {
-                        if( yytext[index] == '\n' ) {
-                                    SYMBOL_IDX = 1;
-                                    STRING_IDX++;
-                        }
-                        else {
-                                    SYMBOL_IDX++;
-                        }
+                for( int index = 0; index < yyleng; ++index ) {
+                    if( yytext[index] == '\n' ) {
+                        symbol_idx = 1;
+                        string_idx++;
+                    }
+                    else {
+                        symbol_idx++;
+                    }
                 }
             }
 
             /* WHITESPACE */
 
 "\n"        {
-                printf( "%s", yytext );
-                STRING_IDX++;
-                SYMBOL_IDX = 1;
+                std::cout << yytext;
+                string_idx++;
+                symbol_idx = 1;
             }
 
 [ \t]+      {
-                printf( "%s", yytext );
-                SYMBOL_IDX += yyleng;
+                std::cout << yytext;
+                symbol_idx += yyleng;
             }
 
 <<EOF>>     {
-                printf( "EOF{%d, %d}\n", STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
+                std::cout << "EOF{" << string_idx <<", " << symbol_idx << "}\n";
+                symbol_idx += yyleng;
                 yyterminate();
             }
 
-.           printf( "\n\nUnrecognized character: %s, length = %d\n\n\n", yytext, yyleng );
+.           std::cout << "\n\nUnrecognized character:" << yytext << ", length = " << yyleng << "\n\n\n";
 
 %%
 
 int main( int argc, char **argv ) {
     ++argv, --argc;  /* skip over program name */
-    if ( argc > 0 )
-            yyin = fopen( argv[0], "r" );
-    else
-            yyin = stdin;
-
-    yylex();
+    FlexLexer* lexer = new yyFlexLexer;
+    if ( argc > 0 ) {
+        std::ifstream new_in;
+        new_in.open( argv[0] );
+        if ( new_in.good() ) {
+            std::istream* in_stream = &new_in;
+            lexer->yylex( in_stream, &std::cout );
+        } else {
+        lexer->yylex();
+        }
+    } else {
+        lexer->yylex();
+    }
+    return 0;
 }
