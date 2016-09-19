@@ -11,7 +11,7 @@ ID          [a-z][a-z0-9]*
 
 %%
 
--?{DIGIT}+    {
+-?{DIGIT}+   {
             printf( "NUM(%d){%d, %d} ", atoi( yytext ), STRING_IDX, SYMBOL_IDX );
             SYMBOL_IDX += yyleng;
             }
@@ -94,6 +94,20 @@ return      {
 "//"[^\n]*  {
                 printf( "COMMENT(%s){%d, %d}\n", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
+            }
+
+"/*"[^"*/"]*"*/" {
+                printf( "COMMENT(%s){%d, %d}\n", yytext, STRING_IDX, SYMBOL_IDX );
+                
+                for(int index = 0; index < yyleng; index++) {
+                        if( yytext[index] == '\n' ) {
+                                    SYMBOL_IDX = 1;
+                                    STRING_IDX++;
+                        }
+                        else {
+                                    SYMBOL_IDX++;
+                        }
+                }
             }
 
 "\n"        {
