@@ -360,8 +360,8 @@ static void yynoreturn yy_fatal_error (yyconst char* msg  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 22
-#define YY_END_OF_BUFFER 23
+#define YY_NUM_RULES 21
+#define YY_END_OF_BUFFER 22
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -371,11 +371,11 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[46] =
     {   0,
-        0,    0,   23,   21,   20,   19,   14,   21,    9,   10,
-       13,   15,   21,   21,    1,   16,    8,    8,    8,    8,
-       11,   12,   20,    0,   17,    2,   18,    3,    1,    8,
-        8,    8,    5,    8,    8,   18,    3,    8,    4,    8,
-        6,    8,    8,    7,    0
+        0,    0,   22,   20,   19,   18,   13,   20,    8,    9,
+       12,   14,   20,   20,    1,   15,    7,    7,    7,    7,
+       10,   11,   19,    0,   16,    1,   17,    2,    1,    7,
+        7,    7,    4,    7,    7,   17,    2,    7,    3,    7,
+        5,    7,    7,    6,    0
     } ;
 
 static yyconst YY_CHAR yy_ec[256] =
@@ -777,7 +777,7 @@ case 2:
 YY_RULE_SETUP
 #line 19 "grammar.lex"
 {
-            printf( "NUM(%d){%d, %d} ", atoi( yytext ), STRING_IDX, SYMBOL_IDX );
+            printf( "NUM(%g){%d, %d} ", atof( yytext ), STRING_IDX, SYMBOL_IDX );
             SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -785,15 +785,15 @@ case 3:
 YY_RULE_SETUP
 #line 24 "grammar.lex"
 {
-            printf( "NUM(%g){%d, %d} ", atof( yytext ), STRING_IDX, SYMBOL_IDX );
-            SYMBOL_IDX += yyleng;
+                printf( "INT(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 29 "grammar.lex"
 {
-                printf( "INT(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "IF(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -801,7 +801,7 @@ case 5:
 YY_RULE_SETUP
 #line 34 "grammar.lex"
 {
-                printf( "IF(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "ELSE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -809,7 +809,7 @@ case 6:
 YY_RULE_SETUP
 #line 39 "grammar.lex"
 {
-                printf( "ELSE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "RETURN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -817,7 +817,7 @@ case 7:
 YY_RULE_SETUP
 #line 44 "grammar.lex"
 {
-                printf( "RETURN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "ID(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -825,7 +825,7 @@ case 8:
 YY_RULE_SETUP
 #line 49 "grammar.lex"
 {
-                printf( "ID(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "LPAREN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -833,7 +833,7 @@ case 9:
 YY_RULE_SETUP
 #line 54 "grammar.lex"
 {
-                printf( "LPAREN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "RPAREN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -841,7 +841,7 @@ case 10:
 YY_RULE_SETUP
 #line 59 "grammar.lex"
 {
-                printf( "RPAREN(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "LBRACE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -849,7 +849,7 @@ case 11:
 YY_RULE_SETUP
 #line 64 "grammar.lex"
 {
-                printf( "LBRACE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "RBRACE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -857,7 +857,7 @@ case 12:
 YY_RULE_SETUP
 #line 69 "grammar.lex"
 {
-                printf( "RBRACE(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "STAR(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -865,7 +865,7 @@ case 13:
 YY_RULE_SETUP
 #line 74 "grammar.lex"
 {
-                printf( "STAR(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "BANG(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -873,7 +873,7 @@ case 14:
 YY_RULE_SETUP
 #line 79 "grammar.lex"
 {
-                printf( "BANG(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
+                printf( "COMMA(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
@@ -881,72 +881,64 @@ case 15:
 YY_RULE_SETUP
 #line 84 "grammar.lex"
 {
-                printf( "COMMA(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
-                SYMBOL_IDX += yyleng;
-            }
-	YY_BREAK
-case 16:
-YY_RULE_SETUP
-#line 89 "grammar.lex"
-{
                 printf( "SEMI(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
-case 17:
-/* rule 17 can match eol */
+case 16:
+/* rule 16 can match eol */
 YY_RULE_SETUP
-#line 94 "grammar.lex"
+#line 89 "grammar.lex"
 {
                 printf( "STRING(%s){%d, %d} ", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
-case 18:
+case 17:
 YY_RULE_SETUP
-#line 99 "grammar.lex"
+#line 94 "grammar.lex"
 {
                 printf( "COMMENT(%s){%d, %d}\n", yytext, STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
-case 19:
-/* rule 19 can match eol */
+case 18:
+/* rule 18 can match eol */
 YY_RULE_SETUP
-#line 104 "grammar.lex"
+#line 99 "grammar.lex"
 {
                 printf( "%s", yytext );
                 STRING_IDX++;
                 SYMBOL_IDX = 1;
             }
 	YY_BREAK
-case 20:
+case 19:
 YY_RULE_SETUP
-#line 110 "grammar.lex"
+#line 105 "grammar.lex"
 {
                 printf( "%s", yytext );
                 SYMBOL_IDX += yyleng;
             }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 115 "grammar.lex"
+#line 110 "grammar.lex"
 {
                 printf( "EOF{%d, %d}\n", STRING_IDX, SYMBOL_IDX );
                 SYMBOL_IDX += yyleng;
                 yyterminate();
             }
 	YY_BREAK
-case 21:
+case 20:
 YY_RULE_SETUP
-#line 121 "grammar.lex"
+#line 116 "grammar.lex"
 printf( "\n\nUnrecognized character: %s, length = %d\n\n\n", yytext, STRING_IDX, SYMBOL_IDX );
 	YY_BREAK
-case 22:
+case 21:
 YY_RULE_SETUP
-#line 123 "grammar.lex"
+#line 118 "grammar.lex"
 ECHO;
 	YY_BREAK
-#line 950 "lex.yy.c"
+#line 942 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1945,7 +1937,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 123 "grammar.lex"
+#line 118 "grammar.lex"
 
 
 
@@ -1954,7 +1946,7 @@ int main( int argc, char **argv ) {
     if ( argc > 0 )
             yyin = fopen( argv[0], "r" );
     else
-            yyin = stdin;           
+            yyin = stdin;
 
     yylex();
 }

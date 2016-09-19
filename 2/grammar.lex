@@ -11,12 +11,7 @@ ID          [a-z][a-z0-9]*
 
 %%
 
-{DIGIT}+    {
-            printf( "NUM(%d){%d, %d} ", atoi( yytext ), STRING_IDX, SYMBOL_IDX );
-            SYMBOL_IDX += yyleng;
-            }
-
--{DIGIT}+   {
+-?{DIGIT}+    {
             printf( "NUM(%d){%d, %d} ", atoi( yytext ), STRING_IDX, SYMBOL_IDX );
             SYMBOL_IDX += yyleng;
             }
@@ -127,7 +122,7 @@ int main( int argc, char **argv ) {
     if ( argc > 0 )
             yyin = fopen( argv[0], "r" );
     else
-            yyin = stdin;           
+            yyin = stdin;
 
     yylex();
 }
