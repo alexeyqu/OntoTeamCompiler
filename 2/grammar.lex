@@ -35,6 +35,11 @@ int         {
                 symbol_idx += yyleng;
             }
 
+double      {
+                std::cout << "DOUBLE{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
+            }
+
 boolean     {
                 std::cout << "BOOL{" << string_idx <<", " << symbol_idx << "} ";
                 symbol_idx += yyleng;
@@ -42,7 +47,7 @@ boolean     {
 
             /* KEYWORDS */
 
-class      {
+class       {
                 std::cout << "CLASS{" << string_idx <<", " << symbol_idx << "} ";
                 symbol_idx += yyleng;
             }
@@ -72,8 +77,8 @@ new         {
                 symbol_idx += yyleng;
             }
 
-delete      {
-                std::cout << "DELETE{" << string_idx <<", " << symbol_idx << "} ";
+null        {
+                std::cout << "NULL{" << string_idx <<", " << symbol_idx << "} ";
                 symbol_idx += yyleng;
             }
 

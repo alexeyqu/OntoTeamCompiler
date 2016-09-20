@@ -1,4 +1,4 @@
-COMMENT(// The classes are basically the same as the BinaryTree ){1, 1} 
+COMMENT(// The classes are basically the same as the BinaryTree){1, 1} 
 COMMENT(// file except the visitor classes and the accept method){2, 1} 
 COMMENT(// in the Tree class){3, 1} 
 
@@ -61,7 +61,7 @@ CLASS{51, 1}  ID(Tree){51, 7} LBRACE{51, 11}
     COMMENT(//Tree new_node ;){61, 5} 
     COMMENT(//Tree current_node ;){62, 5} 
     COMMENT(//Tree parent_node ;){63, 5} 
-    
+
    COMMENT(// boolean ntb ;){65, 4} 
     COMMENT(//boolean cont ;){66, 5} 
     COMMENT(//boolean found ;){67, 5} 
@@ -193,20 +193,20 @@ CLASS{51, 1}  ID(Tree){51, 7} LBRACE{51, 11}
 		    ID(current_node){193, 7}  EQUALS{193, 20}  ID(current_node){193, 22} DOT{193, 34} ID(GetLeft){193, 35} LPAREN{193, 42} RPAREN{193, 43}  SEMI{193, 45} 
 		RBRACE{194, 3} 
 		ELSE{195, 3}  ID(cont){195, 8}  EQUALS{195, 13}  FALSE{195, 15}  SEMI{195, 21} 
-	    ELSE{196, 6}  
+	    ELSE{196, 6} 
 		IF{197, 3}  LPAREN{197, 6} ID(key_aux){197, 7}  LESS{197, 15}  ID(v_key){197, 17} RPAREN{197, 22} 
 		    IF{198, 7}  LPAREN{198, 10} ID(current_node){198, 11} DOT{198, 23} ID(GetHas_Right){198, 24} LPAREN{198, 36} RPAREN{198, 37} RPAREN{198, 38} LBRACE{198, 39} 
 			ID(parent_node){199, 4}  EQUALS{199, 16}  ID(current_node){199, 18}  SEMI{199, 31} 
 			ID(current_node){200, 4}  EQUALS{200, 17}  ID(current_node){200, 19} DOT{200, 31} ID(GetRight){200, 32} LPAREN{200, 40} RPAREN{200, 41}  SEMI{200, 43} 
 		    RBRACE{201, 7} 
 		    ELSE{202, 7}  ID(cont){202, 12}  EQUALS{202, 17}  FALSE{202, 19}  SEMI{202, 25} 
-		ELSE{203, 3}  LBRACE{203, 8}  
-		    IF{204, 7}  LPAREN{204, 10} ID(is_root){204, 11} RPAREN{204, 18}  
-			IF{205, 4}  LPAREN{205, 7} BANG{205, 8} ID(current_node){205, 9} DOT{205, 21} ID(GetHas_Right){205, 22} LPAREN{205, 34} RPAREN{205, 35}  AND{205, 37}  
+		ELSE{203, 3}  LBRACE{203, 8} 
+		    IF{204, 7}  LPAREN{204, 10} ID(is_root){204, 11} RPAREN{204, 18} 
+			IF{205, 4}  LPAREN{205, 7} BANG{205, 8} ID(current_node){205, 9} DOT{205, 21} ID(GetHas_Right){205, 22} LPAREN{205, 34} RPAREN{205, 35}  AND{205, 37} 
 			    BANG{206, 8} ID(current_node){206, 9} DOT{206, 21} ID(GetHas_Left){206, 22} LPAREN{206, 33} RPAREN{206, 34}  RPAREN{206, 36} 
 			    ID(ntb){207, 8}  EQUALS{207, 12}  TRUE{207, 14}  SEMI{207, 19} 
-			ELSE{208, 4}  
-			    ID(ntb){209, 8}  EQUALS{209, 12}  THIS{209, 14} DOT{209, 18} ID(Remove){209, 19} LPAREN{209, 25} ID(parent_node){209, 26} COMMA{209, 37} ID(current_node){209, 38} RPAREN{209, 50} SEMI{209, 51}  
+			ELSE{208, 4} 
+			    ID(ntb){209, 8}  EQUALS{209, 12}  THIS{209, 14} DOT{209, 18} ID(Remove){209, 19} LPAREN{209, 25} ID(parent_node){209, 26} COMMA{209, 37} ID(current_node){209, 38} RPAREN{209, 50} SEMI{209, 51} 
 		    ELSE{210, 7}  ID(ntb){210, 12}  EQUALS{210, 16}  THIS{210, 18} DOT{210, 22} ID(Remove){210, 23} LPAREN{210, 29} ID(parent_node){210, 30} COMMA{210, 41} ID(current_node){210, 42} RPAREN{210, 54} SEMI{210, 55} 
 		    ID(found){211, 7}  EQUALS{211, 13}  TRUE{211, 15}  SEMI{211, 20} 
 		    ID(cont){212, 7}  EQUALS{212, 12}  FALSE{212, 14}  SEMI{212, 20} 
@@ -220,10 +220,10 @@ CLASS{51, 1}  ID(Tree){51, 7} LBRACE{51, 11}
 	BOOL{220, 2}  ID(ntb){220, 10}  SEMI{220, 14} 
 	INT{221, 2}  ID(auxkey1){221, 6}  SEMI{221, 14} 
 	INT{222, 2}  ID(auxkey2){222, 6}  SEMI{222, 14} 
-	
-	IF{224, 2}  LPAREN{224, 5} ID(c_node){224, 6} DOT{224, 12} ID(GetHas_Left){224, 13} LPAREN{224, 24} RPAREN{224, 25} RPAREN{224, 26}  
+
+	IF{224, 2}  LPAREN{224, 5} ID(c_node){224, 6} DOT{224, 12} ID(GetHas_Left){224, 13} LPAREN{224, 24} RPAREN{224, 25} RPAREN{224, 26} 
 	    ID(ntb){225, 6}  EQUALS{225, 10}  THIS{225, 12} DOT{225, 16} ID(RemoveLeft){225, 17} LPAREN{225, 27} ID(p_node){225, 28} COMMA{225, 34} ID(c_node){225, 35} RPAREN{225, 41}  SEMI{225, 43} 
-	ELSE{226, 2}  
+	ELSE{226, 2} 
 	    IF{227, 6}  LPAREN{227, 9} ID(c_node){227, 10} DOT{227, 16} ID(GetHas_Right){227, 17} LPAREN{227, 29} RPAREN{227, 30} RPAREN{227, 31} 
 		ID(ntb){228, 3}  EQUALS{228, 7}  THIS{228, 9} DOT{228, 13} ID(RemoveRight){228, 14} LPAREN{228, 25} ID(p_node){228, 26} COMMA{228, 32} ID(c_node){228, 33} RPAREN{228, 39}  SEMI{228, 41} 
 	    ELSE{229, 6}  LBRACE{229, 11} 
@@ -281,12 +281,12 @@ CLASS{51, 1}  ID(Tree){51, 7} LBRACE{51, 11}
 		IF{281, 3}  LPAREN{281, 6} ID(current_node){281, 7} DOT{281, 19} ID(GetHas_Left){281, 20} LPAREN{281, 31} RPAREN{281, 32} RPAREN{281, 33} 
 		    ID(current_node){282, 7}  EQUALS{282, 20}  ID(current_node){282, 22} DOT{282, 34} ID(GetLeft){282, 35} LPAREN{282, 42} RPAREN{282, 43}  SEMI{282, 45} 
 		ELSE{283, 3}  ID(cont){283, 8}  EQUALS{283, 13}  FALSE{283, 15}  SEMI{283, 21} 
-	    ELSE{284, 6}  
+	    ELSE{284, 6} 
 		IF{285, 3}  LPAREN{285, 6} ID(key_aux){285, 7}  LESS{285, 15}  ID(v_key){285, 17} RPAREN{285, 22} 
 		    IF{286, 7}  LPAREN{286, 10} ID(current_node){286, 11} DOT{286, 23} ID(GetHas_Right){286, 24} LPAREN{286, 36} RPAREN{286, 37} RPAREN{286, 38} 
 			ID(current_node){287, 4}  EQUALS{287, 17}  ID(current_node){287, 19} DOT{287, 31} ID(GetRight){287, 32} LPAREN{287, 40} RPAREN{287, 41}  SEMI{287, 43} 
 		    ELSE{288, 7}  ID(cont){288, 12}  EQUALS{288, 17}  FALSE{288, 19}  SEMI{288, 25} 
-		ELSE{289, 3}  LBRACE{289, 8}  
+		ELSE{289, 3}  LBRACE{289, 8} 
 		    ID(ifound){290, 7}  EQUALS{290, 14}  NUM(1){290, 16}  SEMI{290, 18} 
 		    ID(cont){291, 7}  EQUALS{291, 12}  FALSE{291, 14}  SEMI{291, 20} 
 		RBRACE{292, 3} 
@@ -315,7 +315,7 @@ CLASS{51, 1}  ID(Tree){51, 7} LBRACE{51, 11}
 	RBRACE{315, 2}  ELSE{315, 4}  ID(ntb){315, 9}  EQUALS{315, 13}  TRUE{315, 15}  SEMI{315, 20} 
 	RETURN{316, 2}  TRUE{316, 9}  SEMI{316, 14} 
     RBRACE{317, 5} 
-    
+
     PUBLIC{319, 5}  INT{319, 12}  ID(accept){319, 16} LPAREN{319, 22} ID(Visitor){319, 23}  ID(v){319, 31} RPAREN{319, 32} LBRACE{319, 33} 
 	INT{320, 2}  ID(nti){320, 6}  SEMI{320, 10} 
 
@@ -326,7 +326,7 @@ CLASS{51, 1}  ID(Tree){51, 7} LBRACE{51, 11}
 
 RBRACE{327, 1} 
 
-  
+
 
 CLASS{331, 1}  ID(Visitor){331, 7}  LBRACE{331, 15} 
     ID(Tree){332, 5}  ID(l){332, 10}  SEMI{332, 12} 
@@ -341,7 +341,7 @@ CLASS{331, 1}  ID(Visitor){331, 7}  LBRACE{331, 15}
 	ELSE{341, 2}  ID(nti){341, 7}  EQUALS{341, 11}  NUM(0){341, 13}  SEMI{341, 15} 
 
 	IF{343, 2}  LPAREN{343, 5} ID(n){343, 6} DOT{343, 7} ID(GetHas_Left){343, 8} LPAREN{343, 19} RPAREN{343, 20} RPAREN{343, 21}  LBRACE{343, 23} 
-	    ID(l){344, 6}  EQUALS{344, 8}  ID(n){344, 10} DOT{344, 11} ID(GetLeft){344, 12} LPAREN{344, 19} RPAREN{344, 20} SEMI{344, 21}  
+	    ID(l){344, 6}  EQUALS{344, 8}  ID(n){344, 10} DOT{344, 11} ID(GetLeft){344, 12} LPAREN{344, 19} RPAREN{344, 20} SEMI{344, 21} 
 	    ID(nti){345, 6}  EQUALS{345, 10}  ID(l){345, 12} DOT{345, 13} ID(accept){345, 14} LPAREN{345, 20} THIS{345, 21} RPAREN{345, 25}  SEMI{345, 27}  RBRACE{345, 29} 
 	ELSE{346, 2}  ID(nti){346, 7}  EQUALS{346, 11}  NUM(0){346, 13}  SEMI{346, 15} 
 
@@ -364,7 +364,7 @@ CLASS{354, 1}  ID(MyVisitor){354, 7}  EXTENDS{354, 17}  ID(Visitor){354, 25}  LB
 	ID(System){364, 2} DOT{364, 8} ID(out){364, 9} DOT{364, 12} ID(println){364, 13} LPAREN{364, 20} ID(n){364, 21} DOT{364, 22} ID(GetKey){364, 23} LPAREN{364, 29} RPAREN{364, 30} RPAREN{364, 31} SEMI{364, 32} 
 
 	IF{366, 2}  LPAREN{366, 5} ID(n){366, 6} DOT{366, 7} ID(GetHas_Left){366, 8} LPAREN{366, 19} RPAREN{366, 20} RPAREN{366, 21}  LBRACE{366, 23} 
-	    ID(l){367, 6}  EQUALS{367, 8}  ID(n){367, 10} DOT{367, 11} ID(GetLeft){367, 12} LPAREN{367, 19} RPAREN{367, 20} SEMI{367, 21}  
+	    ID(l){367, 6}  EQUALS{367, 8}  ID(n){367, 10} DOT{367, 11} ID(GetLeft){367, 12} LPAREN{367, 19} RPAREN{367, 20} SEMI{367, 21} 
 	    ID(nti){368, 6}  EQUALS{368, 10} ID(l){368, 11} DOT{368, 12} ID(accept){368, 13} LPAREN{368, 19} THIS{368, 20} RPAREN{368, 24}  SEMI{368, 26}  RBRACE{368, 28} 
 	ELSE{369, 2}  ID(nti){369, 7}  EQUALS{369, 11}  NUM(0){369, 13}  SEMI{369, 15} 
 
