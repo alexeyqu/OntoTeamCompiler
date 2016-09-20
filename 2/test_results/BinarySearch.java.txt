@@ -1,6 +1,6 @@
 CLASS{1, 1}  ID(BinarySearch){1, 7} LBRACE{1, 19} 
     PUBLIC{2, 5}  STATIC{2, 12}  VOID{2, 19}  ID(main){2, 24} LPAREN{2, 28} ID(String){2, 29} LBRACKET{2, 35} RBRACKET{2, 36}  ID(a){2, 38} RPAREN{2, 39} LBRACE{2, 40} 
-	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} ID(new){3, 21}  ID(BS){3, 25} LPAREN{3, 27} RPAREN{3, 28} DOT{3, 29} ID(Start){3, 30} LPAREN{3, 35} NUM(20){3, 36} RPAREN{3, 38} RPAREN{3, 39} SEMI{3, 40} 
+	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} NEW{3, 21}  ID(BS){3, 25} LPAREN{3, 27} RPAREN{3, 28} DOT{3, 29} ID(Start){3, 30} LPAREN{3, 35} NUM(20){3, 36} RPAREN{3, 38} RPAREN{3, 39} SEMI{3, 40} 
     RBRACE{4, 5} 
 RBRACE{5, 1} 
 COMMENT(// This class contains an array of integers and){6, 1} 
@@ -128,7 +128,7 @@ CLASS{10, 1}  ID(BS){10, 7} LBRACE{10, 9}
 	INT{128, 2}  ID(aux01){128, 6}  SEMI{128, 12} 
 
 	ID(size){130, 2}  EQUALS{130, 7}  ID(sz){130, 9}  SEMI{130, 12} 
-	ID(number){131, 2}  EQUALS{131, 9}  ID(new){131, 11}  INT{131, 15} LBRACKET{131, 18} ID(sz){131, 19} RBRACKET{131, 21}  SEMI{131, 23} 
+	ID(number){131, 2}  EQUALS{131, 9}  NEW{131, 11}  INT{131, 15} LBRACKET{131, 18} ID(sz){131, 19} RBRACKET{131, 21}  SEMI{131, 23} 
 
 	ID(j){133, 2}  EQUALS{133, 4}  NUM(1){133, 6}  SEMI{133, 8} 
 	ID(k){134, 2}  EQUALS{134, 4}  ID(size){134, 6}  PLUS{134, 11}  NUM(1){134, 13}  SEMI{134, 15} 

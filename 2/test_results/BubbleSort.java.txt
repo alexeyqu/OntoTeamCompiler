@@ -1,6 +1,6 @@
 CLASS{1, 1}  ID(BubbleSort){1, 7} LBRACE{1, 17} 
     PUBLIC{2, 5}  STATIC{2, 12}  VOID{2, 19}  ID(main){2, 24} LPAREN{2, 28} ID(String){2, 29} LBRACKET{2, 35} RBRACKET{2, 36}  ID(a){2, 38} RPAREN{2, 39} LBRACE{2, 40} 
-	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} ID(new){3, 21}  ID(BBS){3, 25} LPAREN{3, 28} RPAREN{3, 29} DOT{3, 30} ID(Start){3, 31} LPAREN{3, 36} NUM(10){3, 37} RPAREN{3, 39} RPAREN{3, 40} SEMI{3, 41} 
+	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} NEW{3, 21}  ID(BBS){3, 25} LPAREN{3, 28} RPAREN{3, 29} DOT{3, 30} ID(Start){3, 31} LPAREN{3, 36} NUM(10){3, 37} RPAREN{3, 39} RPAREN{3, 40} SEMI{3, 41} 
     RBRACE{4, 5} 
 RBRACE{5, 1} 
 
@@ -74,7 +74,7 @@ CLASS{11, 1}  ID(BBS){11, 7} LBRACE{11, 10}
     COMMENT(// Initialize array of integers){74, 5} 
     PUBLIC{75, 5}  INT{75, 12}  ID(Init){75, 16} LPAREN{75, 20} INT{75, 21}  ID(sz){75, 25} RPAREN{75, 27} LBRACE{75, 28} 
 	ID(size){76, 2}  EQUALS{76, 7}  ID(sz){76, 9}  SEMI{76, 12} 
-	ID(number){77, 2}  EQUALS{77, 9}  ID(new){77, 11}  INT{77, 15} LBRACKET{77, 18} ID(sz){77, 19} RBRACKET{77, 21}  SEMI{77, 23} 
+	ID(number){77, 2}  EQUALS{77, 9}  NEW{77, 11}  INT{77, 15} LBRACKET{77, 18} ID(sz){77, 19} RBRACKET{77, 21}  SEMI{77, 23} 
 	
 	ID(number){79, 2} LBRACKET{79, 8} NUM(0){79, 9} RBRACKET{79, 10}  EQUALS{79, 12}  NUM(20){79, 14}  SEMI{79, 17} 
 	ID(number){80, 2} LBRACKET{80, 8} NUM(1){80, 9} RBRACKET{80, 10}  EQUALS{80, 12}  NUM(7){80, 14}   SEMI{80, 17}  

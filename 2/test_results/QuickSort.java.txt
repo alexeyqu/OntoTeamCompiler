@@ -1,6 +1,6 @@
 CLASS{1, 1}  ID(QuickSort){1, 7} LBRACE{1, 16} 
     PUBLIC{2, 5}  STATIC{2, 12}  VOID{2, 19}  ID(main){2, 24} LPAREN{2, 28} ID(String){2, 29} LBRACKET{2, 35} RBRACKET{2, 36}  ID(a){2, 38} RPAREN{2, 39} LBRACE{2, 40} 
-	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} ID(new){3, 21}  ID(QS){3, 25} LPAREN{3, 27} RPAREN{3, 28} DOT{3, 29} ID(Start){3, 30} LPAREN{3, 35} NUM(10){3, 36} RPAREN{3, 38} RPAREN{3, 39} SEMI{3, 40} 
+	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} NEW{3, 21}  ID(QS){3, 25} LPAREN{3, 27} RPAREN{3, 28} DOT{3, 29} ID(Start){3, 30} LPAREN{3, 35} NUM(10){3, 36} RPAREN{3, 38} RPAREN{3, 39} SEMI{3, 40} 
     RBRACE{4, 5} 
 RBRACE{5, 1} 
 
@@ -93,7 +93,7 @@ CLASS{11, 1}  ID(QS){11, 7} LBRACE{11, 9}
     COMMENT(// Initialize array of integers){93, 5} 
     PUBLIC{94, 5}  INT{94, 12}  ID(Init){94, 16} LPAREN{94, 20} INT{94, 21}  ID(sz){94, 25} RPAREN{94, 27} LBRACE{94, 28} 
 	ID(size){95, 2}  EQUALS{95, 7}  ID(sz){95, 9}  SEMI{95, 12} 
-	ID(number){96, 2}  EQUALS{96, 9}  ID(new){96, 11}  INT{96, 15} LBRACKET{96, 18} ID(sz){96, 19} RBRACKET{96, 21}  SEMI{96, 23} 
+	ID(number){96, 2}  EQUALS{96, 9}  NEW{96, 11}  INT{96, 15} LBRACKET{96, 18} ID(sz){96, 19} RBRACKET{96, 21}  SEMI{96, 23} 
 	
 	ID(number){98, 2} LBRACKET{98, 8} NUM(0){98, 9} RBRACKET{98, 10}  EQUALS{98, 12}  NUM(20){98, 14}  SEMI{98, 17} 
 	ID(number){99, 2} LBRACKET{99, 8} NUM(1){99, 9} RBRACKET{99, 10}  EQUALS{99, 12}  NUM(7){99, 14}   SEMI{99, 17}  

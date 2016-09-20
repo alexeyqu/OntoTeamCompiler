@@ -1,6 +1,6 @@
 CLASS{1, 1}  ID(BinaryTree){1, 7} LBRACE{1, 17} 
     PUBLIC{2, 5}  STATIC{2, 12}  VOID{2, 19}  ID(main){2, 24} LPAREN{2, 28} ID(String){2, 29} LBRACKET{2, 35} RBRACKET{2, 36}  ID(a){2, 38} RPAREN{2, 39} LBRACE{2, 40} 
-	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} ID(new){3, 21}  ID(BT){3, 25} LPAREN{3, 27} RPAREN{3, 28} DOT{3, 29} ID(Start){3, 30} LPAREN{3, 35} RPAREN{3, 36} RPAREN{3, 37} SEMI{3, 38} 
+	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} NEW{3, 21}  ID(BT){3, 25} LPAREN{3, 27} RPAREN{3, 28} DOT{3, 29} ID(Start){3, 30} LPAREN{3, 35} RPAREN{3, 36} RPAREN{3, 37} SEMI{3, 38} 
     RBRACE{4, 5} 
 RBRACE{5, 1} 
 
@@ -14,7 +14,7 @@ CLASS{10, 1}  ID(BT){10, 7}  LBRACE{10, 10}
 	BOOL{14, 2}  ID(ntb){14, 10}  SEMI{14, 14} 
 	INT{15, 2}  ID(nti){15, 6}  SEMI{15, 10} 
 
-	ID(root){17, 2}  EQUALS{17, 7}  ID(new){17, 9}  ID(Tree){17, 13} LPAREN{17, 17} RPAREN{17, 18} SEMI{17, 19} 
+	ID(root){17, 2}  EQUALS{17, 7}  NEW{17, 9}  ID(Tree){17, 13} LPAREN{17, 17} RPAREN{17, 18} SEMI{17, 19} 
 	ID(ntb){18, 2}  EQUALS{18, 6}  ID(root){18, 8} DOT{18, 12} ID(Init){18, 13} LPAREN{18, 17} NUM(16){18, 18} RPAREN{18, 20} SEMI{18, 21} 
 	ID(ntb){19, 2}  EQUALS{19, 6}  ID(root){19, 8} DOT{19, 12} ID(Print){19, 13} LPAREN{19, 18} RPAREN{19, 19} SEMI{19, 20} 
 	ID(System){20, 2} DOT{20, 8} ID(out){20, 9} DOT{20, 12} ID(println){20, 13} LPAREN{20, 20} NUM(100000000){20, 21} RPAREN{20, 30} SEMI{20, 31} 
@@ -128,7 +128,7 @@ CLASS{44, 1}  ID(Tree){44, 7} LBRACE{44, 11}
 	INT{128, 2}  ID(key_aux){128, 6}  SEMI{128, 14} 
 	ID(Tree){129, 2}  ID(current_node){129, 7}  SEMI{129, 20} 
 
-	ID(new_node){131, 2}  EQUALS{131, 11}  ID(new){131, 13}  ID(Tree){131, 17} LPAREN{131, 21} RPAREN{131, 22} SEMI{131, 23} 
+	ID(new_node){131, 2}  EQUALS{131, 11}  NEW{131, 13}  ID(Tree){131, 17} LPAREN{131, 21} RPAREN{131, 22} SEMI{131, 23} 
 	ID(ntb){132, 2}  EQUALS{132, 6}  ID(new_node){132, 8} DOT{132, 16} ID(Init){132, 17} LPAREN{132, 21} ID(v_key){132, 22} RPAREN{132, 27}  SEMI{132, 29} 
 	ID(current_node){133, 2}  EQUALS{133, 15}  THIS{133, 17}  SEMI{133, 22} 
 	ID(cont){134, 2}  EQUALS{134, 7}  TRUE{134, 9}  SEMI{134, 14} 

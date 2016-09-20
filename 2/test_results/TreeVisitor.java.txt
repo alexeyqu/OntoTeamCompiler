@@ -4,7 +4,7 @@ COMMENT(// in the Tree class){3, 1}
 
 CLASS{5, 1}  ID(TreeVisitor){5, 7} LBRACE{5, 18} 
     PUBLIC{6, 5}  STATIC{6, 12}  VOID{6, 19}  ID(main){6, 24} LPAREN{6, 28} ID(String){6, 29} LBRACKET{6, 35} RBRACKET{6, 36}  ID(a){6, 38} RPAREN{6, 39} LBRACE{6, 40} 
-	ID(System){7, 2} DOT{7, 8} ID(out){7, 9} DOT{7, 12} ID(println){7, 13} LPAREN{7, 20} ID(new){7, 21}  ID(TV){7, 25} LPAREN{7, 27} RPAREN{7, 28} DOT{7, 29} ID(Start){7, 30} LPAREN{7, 35} RPAREN{7, 36} RPAREN{7, 37} SEMI{7, 38} 
+	ID(System){7, 2} DOT{7, 8} ID(out){7, 9} DOT{7, 12} ID(println){7, 13} LPAREN{7, 20} NEW{7, 21}  ID(TV){7, 25} LPAREN{7, 27} RPAREN{7, 28} DOT{7, 29} ID(Start){7, 30} LPAREN{7, 35} RPAREN{7, 36} RPAREN{7, 37} SEMI{7, 38} 
     RBRACE{8, 5} 
 RBRACE{9, 1} 
 
@@ -16,7 +16,7 @@ CLASS{11, 1}  ID(TV){11, 7}  LBRACE{11, 10}
 	INT{16, 2}  ID(nti){16, 6}  SEMI{16, 10} 
 	ID(MyVisitor){17, 2}  ID(v){17, 12}  SEMI{17, 14} 
 
-	ID(root){19, 2}  EQUALS{19, 7}  ID(new){19, 9}  ID(Tree){19, 13} LPAREN{19, 17} RPAREN{19, 18} SEMI{19, 19} 
+	ID(root){19, 2}  EQUALS{19, 7}  NEW{19, 9}  ID(Tree){19, 13} LPAREN{19, 17} RPAREN{19, 18} SEMI{19, 19} 
 	ID(ntb){20, 2}  EQUALS{20, 6}  ID(root){20, 8} DOT{20, 12} ID(Init){20, 13} LPAREN{20, 17} NUM(16){20, 18} RPAREN{20, 20} SEMI{20, 21} 
 	ID(ntb){21, 2}  EQUALS{21, 6}  ID(root){21, 8} DOT{21, 12} ID(Print){21, 13} LPAREN{21, 18} RPAREN{21, 19} SEMI{21, 20} 
 	ID(System){22, 2} DOT{22, 8} ID(out){22, 9} DOT{22, 12} ID(println){22, 13} LPAREN{22, 20} NUM(100000000){22, 21} RPAREN{22, 30} SEMI{22, 31} 
@@ -29,7 +29,7 @@ CLASS{11, 1}  ID(TV){11, 7}  LBRACE{11, 10}
 	ID(ntb){29, 2}  EQUALS{29, 6}  ID(root){29, 8} DOT{29, 12} ID(Insert){29, 13} LPAREN{29, 19} NUM(14){29, 20} RPAREN{29, 22}  SEMI{29, 24} 
 	ID(ntb){30, 2}  EQUALS{30, 6}  ID(root){30, 8} DOT{30, 12} ID(Print){30, 13} LPAREN{30, 18} RPAREN{30, 19} SEMI{30, 20} 
 	ID(System){31, 2} DOT{31, 8} ID(out){31, 9} DOT{31, 12} ID(println){31, 13} LPAREN{31, 20} NUM(100000000){31, 21} RPAREN{31, 30} SEMI{31, 31} 
-	ID(v){32, 2}  EQUALS{32, 4}  ID(new){32, 6}  ID(MyVisitor){32, 10} LPAREN{32, 19} RPAREN{32, 20} SEMI{32, 21} 
+	ID(v){32, 2}  EQUALS{32, 4}  NEW{32, 6}  ID(MyVisitor){32, 10} LPAREN{32, 19} RPAREN{32, 20} SEMI{32, 21} 
 	ID(System){33, 2} DOT{33, 8} ID(out){33, 9} DOT{33, 12} ID(println){33, 13} LPAREN{33, 20} NUM(50000000){33, 21} RPAREN{33, 29} SEMI{33, 30} 
 	ID(nti){34, 2}  EQUALS{34, 6}  ID(root){34, 8} DOT{34, 12} ID(accept){34, 13} LPAREN{34, 19} ID(v){34, 20} RPAREN{34, 21} SEMI{34, 22} 
 	ID(System){35, 2} DOT{35, 8} ID(out){35, 9} DOT{35, 12} ID(println){35, 13} LPAREN{35, 20} NUM(100000000){35, 21} RPAREN{35, 30} SEMI{35, 31} 
@@ -143,7 +143,7 @@ CLASS{51, 1}  ID(Tree){51, 7} LBRACE{51, 11}
 	BOOL{143, 2}  ID(cont){143, 10}  SEMI{143, 15} 
 	INT{144, 2}  ID(key_aux){144, 6}  SEMI{144, 14} 
 
-	ID(new_node){146, 2}  EQUALS{146, 11}  ID(new){146, 13}  ID(Tree){146, 17} LPAREN{146, 21} RPAREN{146, 22} SEMI{146, 23} 
+	ID(new_node){146, 2}  EQUALS{146, 11}  NEW{146, 13}  ID(Tree){146, 17} LPAREN{146, 21} RPAREN{146, 22} SEMI{146, 23} 
 	ID(ntb){147, 2}  EQUALS{147, 6}  ID(new_node){147, 8} DOT{147, 16} ID(Init){147, 17} LPAREN{147, 21} ID(v_key){147, 22} RPAREN{147, 27}  SEMI{147, 29} 
 	ID(current_node){148, 2}  EQUALS{148, 15}  THIS{148, 17}  SEMI{148, 22} 
 	ID(cont){149, 2}  EQUALS{149, 7}  TRUE{149, 9}  SEMI{149, 14} 

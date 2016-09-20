@@ -62,8 +62,18 @@ extends     {
                 symbol_idx += yyleng;
             }
 
-this       {
+this        {
                 std::cout << "THIS{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
+            }
+
+new         {
+                std::cout << "NEW{" << string_idx <<", " << symbol_idx << "} ";
+                symbol_idx += yyleng;
+            }
+
+delete      {
+                std::cout << "DELETE{" << string_idx <<", " << symbol_idx << "} ";
                 symbol_idx += yyleng;
             }
 
