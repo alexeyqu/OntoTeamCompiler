@@ -9,9 +9,10 @@ DIGIT       [0-9]
 ID          [a-zA-Z][a-zA-Z0-9_]*
 
 %%
-{DIGIT}+"."{DIGIT}* |
--?{DIGIT}+              return NUM;
+{DIGIT}+"."{DIGIT}*     yylval=strdup(yytext); return NUM;
+-?{DIGIT}+              yylval=strdup(yytext); return NUM;
 int                     return INT;
+char                    return CHAR;
 if                      return IF;
 else                    return ELSE;
 return                  return RETURN;
@@ -23,13 +24,14 @@ return                  return RETURN;
 \)                      return RPAREN;
 \{                      return LBRACE;
 \}                      return RBRACE;
-{ID}+                   return ID;
+{ID}+                   yylval=strdup(yytext); return ID;
 
-\"(\\.|[^"])*\"         return STRING;
+\"(\\.|[^"])*\"         yylval=strdup(yytext); return STRING;
 
-"//"[^\n]*              ;
-"/*"[^"*/"]*"*/"        ;
-\n                      ;
-[ \t]+                  ;
+"//"[^\n]*              yylval=strdup(yytext); return COMMENT;
+"/*"[^"*/"]*"*/"        yylval=strdup(yytext); return COMMENT;
+\n                      return EOL;
+\t                      return TAB;
+[ ]                     return WHITESPACE;
 
 %%

@@ -46,20 +46,25 @@ extern int yydebug;
   enum yytokentype
   {
     NUM = 258,
-    INT = 259,
-    IF = 260,
-    ELSE = 261,
-    RETURN = 262,
-    SEMI = 263,
-    COMMA = 264,
-    STAR = 265,
-    NOT = 266,
-    LPAREN = 267,
-    RPAREN = 268,
-    LBRACE = 269,
-    RBRACE = 270,
-    ID = 271,
-    STRING = 272
+    CHAR = 259,
+    INT = 260,
+    IF = 261,
+    ELSE = 262,
+    RETURN = 263,
+    SEMI = 264,
+    COMMA = 265,
+    STAR = 266,
+    NOT = 267,
+    LPAREN = 268,
+    RPAREN = 269,
+    LBRACE = 270,
+    RBRACE = 271,
+    ID = 272,
+    STRING = 273,
+    COMMENT = 274,
+    EOL = 275,
+    TAB = 276,
+    WHITESPACE = 277
   };
 #endif
 

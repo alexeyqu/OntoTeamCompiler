@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define YYSTYPE char*
+
 int yylex(void);
 
 int yywrap()
@@ -17,6 +19,7 @@ void yyerror(const char *str)
 %}
 
 %token NUM;
+%token CHAR;
 %token INT;
 %token IF;
 %token ELSE;
@@ -33,6 +36,11 @@ void yyerror(const char *str)
 
 %token STRING;
 
+%token COMMENT;
+%token EOL;
+%token TAB;
+%token WHITESPACE;
+
 %%
 
 commands:
@@ -44,21 +52,26 @@ command:
 	;
 
 any_command:
-	  NUM { printf("NUM\n"); }
-	| INT { printf("INT\n"); }
-	| IF { printf("IF\n"); }
-	| ELSE { printf("ELSE\n"); }
-	| RETURN { printf("RETURN\n"); }
-	| SEMI { printf("SEMI\n"); }
-	| COMMA { printf("COMMA\n"); }
-	| STAR { printf("STAR\n"); }
-	| NOT { printf("NOT\n"); }
-	| LPAREN { printf("LPAREN\n"); }
-	| RPAREN { printf("RPAREN\n"); }
-	| LBRACE { printf("LBRACE\n"); }
-	| RBRACE { printf("RBRACE\n"); }
-	| ID { printf("ID\n"); }
-	| STRING { printf("STRING\n"); }
+	  NUM { printf("NUM(%s) ", $1); }
+	| INT { printf("INT "); }
+	| CHAR { printf("CHAR "); }
+	| IF { printf("IF "); }
+	| ELSE { printf("ELSE "); }
+	| RETURN { printf("RETURN "); }
+	| SEMI { printf("SEMI "); }
+	| COMMA { printf("COMMA "); }
+	| STAR { printf("STAR "); }
+	| NOT { printf("NOT "); }
+	| LPAREN { printf("LPAREN "); }
+	| RPAREN { printf("RPAREN "); }
+	| LBRACE { printf("LBRACE "); }
+	| RBRACE { printf("RBRACE "); }
+	| ID { printf("ID(%s) ", $1); }
+	| STRING { printf("STRING(%s) ", $1); }
+	| COMMENT { printf("COMMENT(%s) ", $1); }
+	| EOL { printf("\n"); }
+	| TAB { printf("\t"); }
+	| WHITESPACE { printf(""); }
 ;
 
 %%
