@@ -1,4 +1,19 @@
 # OntoTeamCompiler
 
-Alright, this is super-mini-demoversion of a massive project.
-Upgrade will be soon (hopefully)..
+## Visitor&Dot
+
+to be written
+
+## LexemePrinter
+
+flex-powered lexical translator
+
+Usage: 
+* make 
+* sh test.sh
+
+## Compiler
+
+flex+bison syntactic tree builder
+
+in progress...
