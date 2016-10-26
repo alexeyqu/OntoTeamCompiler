@@ -1,2 +1,0 @@
-class IStatement : public IVisitorTarget {
-};

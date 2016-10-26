@@ -1,9 +1,0 @@
-int match0( char* str ) // поиск нуля
-{
-	if( !strncmp( str, "0.0", 3 ) ) { /* поиск
-	нуля
-	*/  return 0;
-	} else {
-		return -1;
-	}
-}
