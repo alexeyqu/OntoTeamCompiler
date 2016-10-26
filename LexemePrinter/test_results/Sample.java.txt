@@ -1,0 +1,10 @@
+INT{1, 1}  ID(match0){1, 5} LPAREN{1, 11}  ID(char){1, 13} STAR{1, 17}  ID(str){1, 19}  RPAREN{1, 23}  COMMENT(// поиск нуля){1, 25} 
+LBRACE{2, 1} 
+	IF{3, 2} LPAREN{3, 4}  NOT{3, 6} ID(strncmp){3, 7} LPAREN{3, 14}  ID(str){3, 16} COMMA{3, 19}  STRING("0.0"){3, 21} COMMA{3, 26}  NUM(3){3, 28}  RPAREN{3, 30}  RPAREN{3, 32}  LBRACE{3, 34}  COMMENT(/* поиск
+	нуля
+	*/){3, 36}   RETURN{5, 6}  NUM(0){5, 13} SEMI{5, 14} 
+	RBRACE{6, 2}  ELSE{6, 4}  LBRACE{6, 9} 
+		RETURN{7, 3}  NUM(-1){7, 10} SEMI{7, 12} 
+	RBRACE{8, 2} 
+RBRACE{9, 1} 
+EOF{10, 1}
