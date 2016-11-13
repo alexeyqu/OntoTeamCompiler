@@ -1,0 +1,146 @@
+CLASS{1, 1}  ID(BinarySearch){1, 7} LBRACE{1, 19} 
+    PUBLIC{2, 5}  STATIC{2, 12}  VOID{2, 19}  ID(main){2, 24} LPAREN{2, 28} ID(String){2, 29} LBRACKET{2, 35} RBRACKET{2, 36}  ID(a){2, 38} RPAREN{2, 39} LBRACE{2, 40} 
+	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} NEW{3, 21}  ID(BS){3, 25} LPAREN{3, 27} RPAREN{3, 28} DOT{3, 29} ID(Start){3, 30} LPAREN{3, 35} NUM(20){3, 36} RPAREN{3, 38} RPAREN{3, 39} SEMI{3, 40} 
+    RBRACE{4, 5} 
+RBRACE{5, 1} 
+COMMENT(// This class contains an array of integers and){6, 1} 
+COMMENT(// methods to initialize, print and search the array){7, 1} 
+COMMENT(// using Binary Search){8, 1} 
+
+CLASS{10, 1}  ID(BS){10, 7} LBRACE{10, 9} 
+    INT{11, 5} LBRACKET{11, 8} RBRACKET{11, 9}  ID(number){11, 11}  SEMI{11, 18} 
+    INT{12, 5}  ID(size){12, 9}  SEMI{12, 14} 
+
+    COMMENT(// Invoke methods to initialize, print and search){14, 5} 
+    COMMENT(// for elements on the array){15, 5} 
+    PUBLIC{16, 5}  INT{16, 12}  ID(Start){16, 16} LPAREN{16, 21} INT{16, 22}  ID(sz){16, 26} RPAREN{16, 28} LBRACE{16, 29} 
+	INT{17, 2}  ID(aux01){17, 6}  SEMI{17, 12} 
+	INT{18, 2}  ID(aux02){18, 6}  SEMI{18, 12} 
+	ID(aux01){19, 2}  EQUALS{19, 8}  THIS{19, 10} DOT{19, 14} ID(Init){19, 15} LPAREN{19, 19} ID(sz){19, 20} RPAREN{19, 22} SEMI{19, 23} 
+	ID(aux02){20, 2}  EQUALS{20, 8}  THIS{20, 10} DOT{20, 14} ID(Print){20, 15} LPAREN{20, 20} RPAREN{20, 21} SEMI{20, 22} 
+	IF{21, 2}  LPAREN{21, 5} THIS{21, 6} DOT{21, 10} ID(Search){21, 11} LPAREN{21, 17} NUM(8){21, 18} RPAREN{21, 19} RPAREN{21, 20}  ID(System){21, 22} DOT{21, 28} ID(out){21, 29} DOT{21, 32} ID(println){21, 33} LPAREN{21, 40} NUM(1){21, 41} RPAREN{21, 42}  SEMI{21, 44} 
+	ELSE{22, 2}  ID(System){22, 7} DOT{22, 13} ID(out){22, 14} DOT{22, 17} ID(println){22, 18} LPAREN{22, 25} NUM(0){22, 26} RPAREN{22, 27}  SEMI{22, 29} 
+	IF{23, 2}  LPAREN{23, 5} THIS{23, 6} DOT{23, 10} ID(Search){23, 11} LPAREN{23, 17} NUM(19){23, 18} RPAREN{23, 20} RPAREN{23, 21}  ID(System){23, 23} DOT{23, 29} ID(out){23, 30} DOT{23, 33} ID(println){23, 34} LPAREN{23, 41} NUM(1){23, 42} RPAREN{23, 43}  SEMI{23, 45} 
+	ELSE{24, 2}  ID(System){24, 7} DOT{24, 13} ID(out){24, 14} DOT{24, 17} ID(println){24, 18} LPAREN{24, 25} NUM(0){24, 26} RPAREN{24, 27}  SEMI{24, 29} 
+	IF{25, 2}  LPAREN{25, 5} THIS{25, 6} DOT{25, 10} ID(Search){25, 11} LPAREN{25, 17} NUM(20){25, 18} RPAREN{25, 20} RPAREN{25, 21}  ID(System){25, 23} DOT{25, 29} ID(out){25, 30} DOT{25, 33} ID(println){25, 34} LPAREN{25, 41} NUM(1){25, 42} RPAREN{25, 43}  SEMI{25, 45} 
+	ELSE{26, 2}  ID(System){26, 7} DOT{26, 13} ID(out){26, 14} DOT{26, 17} ID(println){26, 18} LPAREN{26, 25} NUM(0){26, 26} RPAREN{26, 27}  SEMI{26, 29} 
+	IF{27, 2}  LPAREN{27, 5} THIS{27, 6} DOT{27, 10} ID(Search){27, 11} LPAREN{27, 17} NUM(21){27, 18} RPAREN{27, 20} RPAREN{27, 21}  ID(System){27, 23} DOT{27, 29} ID(out){27, 30} DOT{27, 33} ID(println){27, 34} LPAREN{27, 41} NUM(1){27, 42} RPAREN{27, 43}  SEMI{27, 45} 
+	ELSE{28, 2}  ID(System){28, 7} DOT{28, 13} ID(out){28, 14} DOT{28, 17} ID(println){28, 18} LPAREN{28, 25} NUM(0){28, 26} RPAREN{28, 27}  SEMI{28, 29} 
+	IF{29, 2}  LPAREN{29, 5} THIS{29, 6} DOT{29, 10} ID(Search){29, 11} LPAREN{29, 17} NUM(37){29, 18} RPAREN{29, 20} RPAREN{29, 21}  ID(System){29, 23} DOT{29, 29} ID(out){29, 30} DOT{29, 33} ID(println){29, 34} LPAREN{29, 41} NUM(1){29, 42} RPAREN{29, 43}  SEMI{29, 45} 
+	ELSE{30, 2}  ID(System){30, 7} DOT{30, 13} ID(out){30, 14} DOT{30, 17} ID(println){30, 18} LPAREN{30, 25} NUM(0){30, 26} RPAREN{30, 27}  SEMI{30, 29} 
+	IF{31, 2}  LPAREN{31, 5} THIS{31, 6} DOT{31, 10} ID(Search){31, 11} LPAREN{31, 17} NUM(38){31, 18} RPAREN{31, 20} RPAREN{31, 21}  ID(System){31, 23} DOT{31, 29} ID(out){31, 30} DOT{31, 33} ID(println){31, 34} LPAREN{31, 41} NUM(1){31, 42} RPAREN{31, 43}  SEMI{31, 45} 
+	ELSE{32, 2}  ID(System){32, 7} DOT{32, 13} ID(out){32, 14} DOT{32, 17} ID(println){32, 18} LPAREN{32, 25} NUM(0){32, 26} RPAREN{32, 27}  SEMI{32, 29} 
+	IF{33, 2}  LPAREN{33, 5} THIS{33, 6} DOT{33, 10} ID(Search){33, 11} LPAREN{33, 17} NUM(39){33, 18} RPAREN{33, 20} RPAREN{33, 21}  ID(System){33, 23} DOT{33, 29} ID(out){33, 30} DOT{33, 33} ID(println){33, 34} LPAREN{33, 41} NUM(1){33, 42} RPAREN{33, 43}  SEMI{33, 45} 
+	ELSE{34, 2}  ID(System){34, 7} DOT{34, 13} ID(out){34, 14} DOT{34, 17} ID(println){34, 18} LPAREN{34, 25} NUM(0){34, 26} RPAREN{34, 27}  SEMI{34, 29} 
+	IF{35, 2}  LPAREN{35, 5} THIS{35, 6} DOT{35, 10} ID(Search){35, 11} LPAREN{35, 17} NUM(50){35, 18} RPAREN{35, 20} RPAREN{35, 21}  ID(System){35, 23} DOT{35, 29} ID(out){35, 30} DOT{35, 33} ID(println){35, 34} LPAREN{35, 41} NUM(1){35, 42} RPAREN{35, 43}  SEMI{35, 45} 
+	ELSE{36, 2}  ID(System){36, 7} DOT{36, 13} ID(out){36, 14} DOT{36, 17} ID(println){36, 18} LPAREN{36, 25} NUM(0){36, 26} RPAREN{36, 27}  SEMI{36, 29} 
+
+	RETURN{38, 2}  NUM(999){38, 9}  SEMI{38, 13} 
+    RBRACE{39, 5} 
+
+
+    COMMENT(// Search for a specific value (num) using){42, 5} 
+    COMMENT(// binary search){43, 5} 
+    PUBLIC{44, 5}  BOOL{44, 12}  ID(Search){44, 20} LPAREN{44, 26} INT{44, 27}  ID(num){44, 31} RPAREN{44, 34} LBRACE{44, 35} 
+	BOOL{45, 2}  ID(bs01){45, 10}  SEMI{45, 15} 
+	INT{46, 2}  ID(right){46, 6}  SEMI{46, 12} 
+	INT{47, 2}  ID(left){47, 6}  SEMI{47, 11} 
+	BOOL{48, 2}  ID(var_cont){48, 10}  SEMI{48, 19} 
+	INT{49, 2}  ID(medium){49, 6}  SEMI{49, 13} 
+	INT{50, 2}  ID(aux01){50, 6}  SEMI{50, 12} 
+	INT{51, 2}  ID(nt){51, 6}  SEMI{51, 9} 
+
+	ID(aux01){53, 2}  EQUALS{53, 8}  NUM(0){53, 10}  SEMI{53, 12} 
+	ID(bs01){54, 2}  EQUALS{54, 7}  FALSE{54, 9}  SEMI{54, 15} 
+	ID(right){55, 2}  EQUALS{55, 8}  ID(number){55, 10} DOT{55, 16} ID(length){55, 17}  SEMI{55, 24} 
+	ID(right){56, 2}  EQUALS{56, 8}  ID(right){56, 10}  MINUS{56, 16}  NUM(1){56, 18}  SEMI{56, 20} 
+	ID(left){57, 2}  EQUALS{57, 7}  NUM(0){57, 9}  SEMI{57, 11} 
+	ID(var_cont){58, 2}  EQUALS{58, 11}  TRUE{58, 13}  SEMI{58, 18} 
+	WHILE{59, 2}  LPAREN{59, 8} ID(var_cont){59, 9} RPAREN{59, 17} LBRACE{59, 18} 
+	    ID(medium){60, 6}  EQUALS{60, 13}  ID(left){60, 15}  PLUS{60, 20}  ID(right){60, 22}  SEMI{60, 28} 
+	    ID(medium){61, 6}  EQUALS{61, 13}  THIS{61, 15} DOT{61, 19} ID(Div){61, 20} LPAREN{61, 23} ID(medium){61, 24} RPAREN{61, 30} SEMI{61, 31} 
+	    ID(aux01){62, 6}  EQUALS{62, 12}  ID(number){62, 14} LBRACKET{62, 20} ID(medium){62, 21} RBRACKET{62, 27}  SEMI{62, 29} 
+	    IF{63, 6}  LPAREN{63, 9} ID(num){63, 10}  LESS{63, 14}  ID(aux01){63, 16} RPAREN{63, 21}  ID(right){63, 23}  EQUALS{63, 29}  ID(medium){63, 31}  MINUS{63, 38}  NUM(1){63, 40}  SEMI{63, 42} 
+	    ELSE{64, 6}  ID(left){64, 11}  EQUALS{64, 16}  ID(medium){64, 18}  PLUS{64, 25}  NUM(1){64, 27}  SEMI{64, 29} 
+	    IF{65, 6}  LPAREN{65, 9} THIS{65, 10} DOT{65, 14} ID(Compare){65, 15} LPAREN{65, 22} ID(aux01){65, 23} COMMA{65, 28} ID(num){65, 29} RPAREN{65, 32} RPAREN{65, 33}  ID(var_cont){65, 35}  EQUALS{65, 44}  FALSE{65, 46}  SEMI{65, 52} 
+	    ELSE{66, 6}  ID(var_cont){66, 11}  EQUALS{66, 20}  TRUE{66, 22}  SEMI{66, 27} 
+	    IF{67, 6}  LPAREN{67, 9} ID(right){67, 10}  LESS{67, 16}  ID(left){67, 18} RPAREN{67, 22}  ID(var_cont){67, 24}  EQUALS{67, 33}  FALSE{67, 35}  SEMI{67, 41} 
+	    ELSE{68, 6}  ID(nt){68, 11}  EQUALS{68, 14}  NUM(0){68, 16}  SEMI{68, 18} 
+	RBRACE{69, 2} 
+
+	IF{71, 2}  LPAREN{71, 5} THIS{71, 6} DOT{71, 10} ID(Compare){71, 11} LPAREN{71, 18} ID(aux01){71, 19} COMMA{71, 24} ID(num){71, 25} RPAREN{71, 28} RPAREN{71, 29}  ID(bs01){71, 31}  EQUALS{71, 36}  TRUE{71, 38}  SEMI{71, 43} 
+	ELSE{72, 2}  ID(bs01){72, 7}  EQUALS{72, 12}  FALSE{72, 14}  SEMI{72, 20} 
+	RETURN{73, 2}  ID(bs01){73, 9}  SEMI{73, 14} 
+    RBRACE{74, 5} 
+
+    COMMENT(// This method computes and returns the){76, 5} 
+    COMMENT(// integer division of a number (num) by 2){77, 5} 
+    PUBLIC{78, 5}  INT{78, 12}  ID(Div){78, 16} LPAREN{78, 19} INT{78, 20}  ID(num){78, 24} RPAREN{78, 27} LBRACE{78, 28} 
+	INT{79, 2}  ID(count01){79, 6}  SEMI{79, 14} 
+	INT{80, 2}  ID(count02){80, 6}  SEMI{80, 14} 
+	INT{81, 2}  ID(aux03){81, 6}  SEMI{81, 12} 
+
+	ID(count01){83, 2}  EQUALS{83, 10}  NUM(0){83, 12}  SEMI{83, 14} 
+	ID(count02){84, 2}  EQUALS{84, 10}  NUM(0){84, 12}  SEMI{84, 14} 
+	ID(aux03){85, 2}  EQUALS{85, 8}  ID(num){85, 10}  MINUS{85, 14}  NUM(1){85, 16}  SEMI{85, 18} 
+	WHILE{86, 2}  LPAREN{86, 8} ID(count02){86, 9}  LESS{86, 17}  ID(aux03){86, 19} RPAREN{86, 24}  LBRACE{86, 26} 
+	    ID(count01){87, 6}  EQUALS{87, 14}  ID(count01){87, 16}  PLUS{87, 24}  NUM(1){87, 26}  SEMI{87, 28} 
+	    ID(count02){88, 6}  EQUALS{88, 14}  ID(count02){88, 16}  PLUS{88, 24}  NUM(2){88, 26}  SEMI{88, 28} 
+	RBRACE{89, 2} 
+	RETURN{90, 2}  ID(count01){90, 9}  SEMI{90, 17} 	
+    RBRACE{91, 5} 
+
+    
+    COMMENT(// This method compares two integers and){94, 5} 
+    COMMENT(// returns true if they are equal and false){95, 5} 
+    COMMENT(// otherwise){96, 5} 
+    PUBLIC{97, 5}  BOOL{97, 12}  ID(Compare){97, 20} LPAREN{97, 27} INT{97, 28}  ID(num1){97, 32}  COMMA{97, 37}  INT{97, 39}  ID(num2){97, 43} RPAREN{97, 47} LBRACE{97, 48} 
+	BOOL{98, 2}  ID(retval){98, 10}  SEMI{98, 17} 
+	INT{99, 2}  ID(aux02){99, 6}  SEMI{99, 12} 
+
+	ID(retval){101, 2}  EQUALS{101, 9}  FALSE{101, 11}  SEMI{101, 17} 
+	ID(aux02){102, 2}  EQUALS{102, 8}  ID(num2){102, 10}  PLUS{102, 15}  NUM(1){102, 17}  SEMI{102, 19} 
+	IF{103, 2}  LPAREN{103, 5} ID(num1){103, 6}  LESS{103, 11}  ID(num2){103, 13} RPAREN{103, 17}  ID(retval){103, 19}  EQUALS{103, 26}  FALSE{103, 28}  SEMI{103, 34} 
+	ELSE{104, 2}  IF{104, 7}  LPAREN{104, 10} BANG{104, 11} LPAREN{104, 12} ID(num1){104, 13}  LESS{104, 18}  ID(aux02){104, 20} RPAREN{104, 25} RPAREN{104, 26}  ID(retval){104, 28}  EQUALS{104, 35}  FALSE{104, 37}  SEMI{104, 43} 
+	ELSE{105, 2}  ID(retval){105, 7}  EQUALS{105, 14}  TRUE{105, 16}  SEMI{105, 21} 
+	RETURN{106, 2}  ID(retval){106, 9}  SEMI{106, 16} 
+    RBRACE{107, 5} 
+
+    COMMENT(// Print the integer array){109, 5} 
+    PUBLIC{110, 5}  INT{110, 12}  ID(Print){110, 16} LPAREN{110, 21} RPAREN{110, 22} LBRACE{110, 23} 
+	INT{111, 2}  ID(j){111, 6}  SEMI{111, 8} 
+
+	ID(j){113, 2}  EQUALS{113, 4}  NUM(1){113, 6}  SEMI{113, 8} 
+	WHILE{114, 2}  LPAREN{114, 8} ID(j){114, 9}  LESS{114, 11}  LPAREN{114, 13} ID(size){114, 14} RPAREN{114, 18} RPAREN{114, 19}  LBRACE{114, 21} 
+	    ID(System){115, 6} DOT{115, 12} ID(out){115, 13} DOT{115, 16} ID(println){115, 17} LPAREN{115, 24} ID(number){115, 25} LBRACKET{115, 31} ID(j){115, 32} RBRACKET{115, 33} RPAREN{115, 34} SEMI{115, 35} 
+	    ID(j){116, 6}  EQUALS{116, 8}  ID(j){116, 10}  PLUS{116, 12}  NUM(1){116, 14}  SEMI{116, 16} 
+	RBRACE{117, 2} 
+	ID(System){118, 2} DOT{118, 8} ID(out){118, 9} DOT{118, 12} ID(println){118, 13} LPAREN{118, 20} NUM(99999){118, 21} RPAREN{118, 26} SEMI{118, 27} 
+	RETURN{119, 2}  NUM(0){119, 9}  SEMI{119, 11} 
+    RBRACE{120, 5} 
+    
+
+    COMMENT(// Initialize the integer array){123, 5} 
+    PUBLIC{124, 5}  INT{124, 12}  ID(Init){124, 16} LPAREN{124, 20} INT{124, 21}  ID(sz){124, 25} RPAREN{124, 27} LBRACE{124, 28} 
+	INT{125, 2}  ID(j){125, 6}  SEMI{125, 8} 
+	INT{126, 2}  ID(k){126, 6}  SEMI{126, 8} 
+	INT{127, 2}  ID(aux02){127, 6}  SEMI{127, 12} 
+	INT{128, 2}  ID(aux01){128, 6}  SEMI{128, 12} 
+
+	ID(size){130, 2}  EQUALS{130, 7}  ID(sz){130, 9}  SEMI{130, 12} 
+	ID(number){131, 2}  EQUALS{131, 9}  NEW{131, 11}  INT{131, 15} LBRACKET{131, 18} ID(sz){131, 19} RBRACKET{131, 21}  SEMI{131, 23} 
+	
+	ID(j){133, 2}  EQUALS{133, 4}  NUM(1){133, 6}  SEMI{133, 8} 
+	ID(k){134, 2}  EQUALS{134, 4}  ID(size){134, 6}  PLUS{134, 11}  NUM(1){134, 13}  SEMI{134, 15} 
+	WHILE{135, 2}  LPAREN{135, 8} ID(j){135, 9}  LESS{135, 11}  LPAREN{135, 13} ID(size){135, 14} RPAREN{135, 18} RPAREN{135, 19}  LBRACE{135, 21} 
+	    ID(aux01){136, 6}  EQUALS{136, 12}  NUM(2){136, 14}  STAR{136, 16}  ID(j){136, 18}  SEMI{136, 20} 
+	    ID(aux02){137, 6}  EQUALS{137, 12}  ID(k){137, 14}  MINUS{137, 16}  NUM(3){137, 18}  SEMI{137, 20} 
+	    ID(number){138, 6} LBRACKET{138, 12} ID(j){138, 13} RBRACKET{138, 14}  EQUALS{138, 16}  ID(aux01){138, 18}  PLUS{138, 24}  ID(aux02){138, 26}  SEMI{138, 32} 
+	    ID(j){139, 6}  EQUALS{139, 8}  ID(j){139, 10}  PLUS{139, 12}  NUM(1){139, 14}  SEMI{139, 16} 
+	    ID(k){140, 6}  EQUALS{140, 8}  ID(k){140, 10}  MINUS{140, 12}  NUM(1){140, 14}  SEMI{140, 16} 
+	RBRACE{141, 2} 
+	RETURN{142, 2}  NUM(0){142, 9}  SEMI{142, 11} 	
+    RBRACE{143, 5} 
+
+RBRACE{145, 1} 
+EOF{146, 1} 

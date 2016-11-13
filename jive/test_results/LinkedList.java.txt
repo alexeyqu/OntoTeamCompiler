@@ -1,0 +1,279 @@
+CLASS{1, 1}  ID(LinkedList){1, 7} LBRACE{1, 17} 
+    PUBLIC{2, 5}  STATIC{2, 12}  VOID{2, 19}  ID(main){2, 24} LPAREN{2, 28} ID(String){2, 29} LBRACKET{2, 35} RBRACKET{2, 36}  ID(a){2, 38} RPAREN{2, 39} LBRACE{2, 40} 
+	ID(System){3, 2} DOT{3, 8} ID(out){3, 9} DOT{3, 12} ID(println){3, 13} LPAREN{3, 20} NEW{3, 21}  ID(LL){3, 25} LPAREN{3, 27} RPAREN{3, 28} DOT{3, 29} ID(Start){3, 30} LPAREN{3, 35} RPAREN{3, 36} RPAREN{3, 37} SEMI{3, 38} 
+    RBRACE{4, 5} 
+RBRACE{5, 1} 
+
+CLASS{7, 1}  ID(Element){7, 7}  LBRACE{7, 15} 
+    INT{8, 5}  ID(Age){8, 9}  SEMI{8, 13}           
+    INT{9, 5}  ID(Salary){9, 9}  SEMI{9, 16} 
+    BOOL{10, 5}  ID(Married){10, 13}  SEMI{10, 21} 
+
+    COMMENT(// Initialize some class variables){12, 5} 
+    PUBLIC{13, 5}  BOOL{13, 12}  ID(Init){13, 20} LPAREN{13, 24} INT{13, 25}  ID(v_Age){13, 29} COMMA{13, 34}  INT{13, 36}  ID(v_Salary){13, 40} COMMA{13, 48}  BOOL{13, 50}  ID(v_Married){13, 58} RPAREN{13, 67} LBRACE{13, 68} 
+	ID(Age){14, 2}  EQUALS{14, 6}  ID(v_Age){14, 8}  SEMI{14, 14} 
+	ID(Salary){15, 2}  EQUALS{15, 9}  ID(v_Salary){15, 11}  SEMI{15, 20} 
+	ID(Married){16, 2}  EQUALS{16, 10}  ID(v_Married){16, 12}  SEMI{16, 22} 
+	RETURN{17, 2}  TRUE{17, 9}  SEMI{17, 14} 
+    RBRACE{18, 5} 
+
+    PUBLIC{20, 5}  INT{20, 12}  ID(GetAge){20, 16} LPAREN{20, 22} RPAREN{20, 23} LBRACE{20, 24} 
+	RETURN{21, 2}  ID(Age){21, 9}  SEMI{21, 13} 
+    RBRACE{22, 5} 
+    
+    PUBLIC{24, 5}  INT{24, 12}  ID(GetSalary){24, 16} LPAREN{24, 25} RPAREN{24, 26} LBRACE{24, 27} 
+	RETURN{25, 2}  ID(Salary){25, 9}  SEMI{25, 16} 
+    RBRACE{26, 5} 
+
+    PUBLIC{28, 5}  BOOL{28, 12}  ID(GetMarried){28, 20} LPAREN{28, 30} RPAREN{28, 31} LBRACE{28, 32} 
+	RETURN{29, 2}  ID(Married){29, 9}  SEMI{29, 17} 
+    RBRACE{30, 5} 
+
+    COMMENT(// This method returns true if the object "other"){32, 5} 
+    COMMENT(// has the same values for age, salary and ){33, 5} 
+    PUBLIC{34, 5}  BOOL{34, 12}  ID(Equal){34, 20} LPAREN{34, 25} ID(Element){34, 26}  ID(other){34, 34} RPAREN{34, 39} LBRACE{34, 40} 
+	BOOL{35, 2}  ID(ret_val){35, 10}  SEMI{35, 18} 
+	INT{36, 2}  ID(aux01){36, 6}  SEMI{36, 12} 
+	INT{37, 2}  ID(aux02){37, 6}  SEMI{37, 12} 
+	INT{38, 2}  ID(nt){38, 6}  SEMI{38, 9} 
+	ID(ret_val){39, 2}  EQUALS{39, 10}  TRUE{39, 12}  SEMI{39, 17} 
+
+	ID(aux01){41, 2}  EQUALS{41, 8}  ID(other){41, 10} DOT{41, 15} ID(GetAge){41, 16} LPAREN{41, 22} RPAREN{41, 23} SEMI{41, 24} 
+	IF{42, 2}  LPAREN{42, 5} BANG{42, 6} THIS{42, 7} DOT{42, 11} ID(Compare){42, 12} LPAREN{42, 19} ID(aux01){42, 20} COMMA{42, 25} ID(Age){42, 26} RPAREN{42, 29} RPAREN{42, 30}  ID(ret_val){42, 32}  EQUALS{42, 40}  FALSE{42, 42}  SEMI{42, 48} 
+	ELSE{43, 2}  LBRACE{43, 7}  
+	    ID(aux02){44, 6}  EQUALS{44, 12}  ID(other){44, 14} DOT{44, 19} ID(GetSalary){44, 20} LPAREN{44, 29} RPAREN{44, 30} SEMI{44, 31} 
+	    IF{45, 6}  LPAREN{45, 9} BANG{45, 10} THIS{45, 11} DOT{45, 15} ID(Compare){45, 16} LPAREN{45, 23} ID(aux02){45, 24} COMMA{45, 29} ID(Salary){45, 30} RPAREN{45, 36} RPAREN{45, 37}  ID(ret_val){45, 39}  EQUALS{45, 47}  FALSE{45, 49}  SEMI{45, 55} 
+	    ELSE{46, 6}  
+		IF{47, 3}  LPAREN{47, 6} ID(Married){47, 7} RPAREN{47, 14}  
+		    IF{48, 7}  LPAREN{48, 10} BANG{48, 11} ID(other){48, 12} DOT{48, 17} ID(GetMarried){48, 18} LPAREN{48, 28} RPAREN{48, 29} RPAREN{48, 30}  ID(ret_val){48, 32}  EQUALS{48, 40}  FALSE{48, 42} SEMI{48, 47} 
+		    ELSE{49, 7}  ID(nt){49, 12}  EQUALS{49, 15}  NUM(0){49, 17}  SEMI{49, 19} 
+		ELSE{50, 3} 
+		    IF{51, 7}  LPAREN{51, 10} ID(other){51, 11} DOT{51, 16} ID(GetMarried){51, 17} LPAREN{51, 27} RPAREN{51, 28} RPAREN{51, 29}  ID(ret_val){51, 31}  EQUALS{51, 39}  FALSE{51, 41} SEMI{51, 46} 
+		    ELSE{52, 7}  ID(nt){52, 12}  EQUALS{52, 15}  NUM(0){52, 17}  SEMI{52, 19} 
+	RBRACE{53, 2} 
+
+	RETURN{55, 2}  ID(ret_val){55, 9}  SEMI{55, 17} 
+    RBRACE{56, 5} 
+
+    COMMENT(// This method compares two integers and){58, 5} 
+    COMMENT(// returns true if they are equal and false){59, 5} 
+    COMMENT(// otherwise){60, 5} 
+    PUBLIC{61, 5}  BOOL{61, 12}  ID(Compare){61, 20} LPAREN{61, 27} INT{61, 28}  ID(num1){61, 32}  COMMA{61, 37}  INT{61, 39}  ID(num2){61, 43} RPAREN{61, 47} LBRACE{61, 48} 
+	BOOL{62, 2}  ID(retval){62, 10}  SEMI{62, 17} 
+	INT{63, 2}  ID(aux02){63, 6}  SEMI{63, 12} 
+	ID(retval){64, 2}  EQUALS{64, 9}  FALSE{64, 11}  SEMI{64, 17} 
+	ID(aux02){65, 2}  EQUALS{65, 8}  ID(num2){65, 10}  PLUS{65, 15}  NUM(1){65, 17}  SEMI{65, 19} 
+	IF{66, 2}  LPAREN{66, 5} ID(num1){66, 6}  LESS{66, 11}  ID(num2){66, 13} RPAREN{66, 17}  ID(retval){66, 19}  EQUALS{66, 26}  FALSE{66, 28}  SEMI{66, 34} 
+	ELSE{67, 2}  IF{67, 7}  LPAREN{67, 10} BANG{67, 11} LPAREN{67, 12} ID(num1){67, 13}  LESS{67, 18}  ID(aux02){67, 20} RPAREN{67, 25} RPAREN{67, 26}  ID(retval){67, 28}  EQUALS{67, 35}  FALSE{67, 37}  SEMI{67, 43} 
+	ELSE{68, 2}  ID(retval){68, 7}  EQUALS{68, 14}  TRUE{68, 16}  SEMI{68, 21} 
+	RETURN{69, 2}  ID(retval){69, 9}  SEMI{69, 16} 
+    RBRACE{70, 5} 
+
+RBRACE{72, 1} 
+
+CLASS{74, 1}  ID(List){74, 7} LBRACE{74, 11} 
+    ID(Element){75, 5}  ID(elem){75, 13}  SEMI{75, 18} 
+    ID(List){76, 5}  ID(next){76, 10}  SEMI{76, 15} 
+    BOOL{77, 5}  ID(end){77, 13}  SEMI{77, 17} 
+
+    COMMENT(// Initialize the node list as the last node){79, 5} 
+    PUBLIC{80, 5}  BOOL{80, 12}  ID(Init){80, 20} LPAREN{80, 24} RPAREN{80, 25} LBRACE{80, 26} 
+	ID(end){81, 2}  EQUALS{81, 6}  TRUE{81, 8}  SEMI{81, 13} 
+	RETURN{82, 2}  TRUE{82, 9}  SEMI{82, 14} 
+    RBRACE{83, 5} 
+
+    COMMENT(// Initialize the values of a new node){85, 5} 
+    PUBLIC{86, 5}  BOOL{86, 12}  ID(InitNew){86, 20} LPAREN{86, 27} ID(Element){86, 28}  ID(v_elem){86, 36} COMMA{86, 42}  ID(List){86, 44}  ID(v_next){86, 49} COMMA{86, 55}  BOOL{86, 57}  ID(v_end){86, 65} RPAREN{86, 70} LBRACE{86, 71} 
+	ID(end){87, 2}  EQUALS{87, 6}  ID(v_end){87, 8}  SEMI{87, 14} 
+	ID(elem){88, 2}  EQUALS{88, 7}  ID(v_elem){88, 9}  SEMI{88, 16} 
+	ID(next){89, 2}  EQUALS{89, 7}  ID(v_next){89, 9}  SEMI{89, 16} 
+	RETURN{90, 2}  TRUE{90, 9}  SEMI{90, 14} 
+    RBRACE{91, 5} 
+    
+    COMMENT(// Insert a new node at the beginning of the list){93, 5} 
+    PUBLIC{94, 5}  ID(List){94, 12}  ID(Insert){94, 17} LPAREN{94, 23} ID(Element){94, 24}  ID(new_elem){94, 32} RPAREN{94, 40} LBRACE{94, 41} 
+	BOOL{95, 2}  ID(ret_val){95, 10}  SEMI{95, 18} 
+	ID(List){96, 2}  ID(aux03){96, 7}  SEMI{96, 13} 
+	ID(List){97, 2}  ID(aux02){97, 7}  SEMI{97, 13} 
+	ID(aux03){98, 2}  EQUALS{98, 8}  THIS{98, 10}  SEMI{98, 15} 
+	ID(aux02){99, 2}  EQUALS{99, 8}  NEW{99, 10}  ID(List){99, 14} LPAREN{99, 18} RPAREN{99, 19} SEMI{99, 20} 
+	ID(ret_val){100, 2}  EQUALS{100, 10}  ID(aux02){100, 12} DOT{100, 17} ID(InitNew){100, 18} LPAREN{100, 25} ID(new_elem){100, 26} COMMA{100, 34} ID(aux03){100, 35} COMMA{100, 40} FALSE{100, 41} RPAREN{100, 46} SEMI{100, 47} 
+	RETURN{101, 2}  ID(aux02){101, 9}  SEMI{101, 15} 
+    RBRACE{102, 5} 
+    
+    
+    COMMENT(// Update the the pointer to the next node){105, 5} 
+    PUBLIC{106, 5}  BOOL{106, 12}  ID(SetNext){106, 20} LPAREN{106, 27} ID(List){106, 28}  ID(v_next){106, 33} RPAREN{106, 39} LBRACE{106, 40} 
+	ID(next){107, 2}  EQUALS{107, 7}  ID(v_next){107, 9}  SEMI{107, 16} 
+	RETURN{108, 2}  TRUE{108, 9}  SEMI{108, 14} 
+    RBRACE{109, 5} 
+    
+    COMMENT(// Delete an element e from the list){111, 5} 
+    PUBLIC{112, 5}  ID(List){112, 12}  ID(Delete){112, 17} LPAREN{112, 23} ID(Element){112, 24}  ID(e){112, 32} RPAREN{112, 33} LBRACE{112, 34} 
+	ID(List){113, 2}  ID(my_head){113, 7}  SEMI{113, 15} 
+	BOOL{114, 2}  ID(ret_val){114, 10}  SEMI{114, 18} 
+	BOOL{115, 2}  ID(aux05){115, 10} SEMI{115, 15} 
+	ID(List){116, 2}  ID(aux01){116, 7}  SEMI{116, 13} 
+	ID(List){117, 2}  ID(prev){117, 7}  SEMI{117, 12} 
+	BOOL{118, 2}  ID(var_end){118, 10}  SEMI{118, 18} 
+	ID(Element){119, 2}  ID(var_elem){119, 10}  SEMI{119, 19} 
+	INT{120, 2}  ID(aux04){120, 6}  SEMI{120, 12} 
+	INT{121, 2}  ID(nt){121, 6}  SEMI{121, 9} 
+
+
+	ID(my_head){124, 2}  EQUALS{124, 10}  THIS{124, 12}  SEMI{124, 17} 
+	ID(ret_val){125, 2}  EQUALS{125, 10}  FALSE{125, 12}  SEMI{125, 18} 
+	ID(aux04){126, 2}  EQUALS{126, 8}  NUM(0){126, 10}  MINUS{126, 12}  NUM(1){126, 14}  SEMI{126, 16} 
+	ID(aux01){127, 2}  EQUALS{127, 8}  THIS{127, 10}  SEMI{127, 15} 
+	ID(prev){128, 2}  EQUALS{128, 7}  THIS{128, 9}  SEMI{128, 14} 
+	ID(var_end){129, 2}  EQUALS{129, 10}  ID(end){129, 12} SEMI{129, 15} 
+	ID(var_elem){130, 2}  EQUALS{130, 11}  ID(elem){130, 13}  SEMI{130, 18} 
+	WHILE{131, 2}  LPAREN{131, 8} LPAREN{131, 9} BANG{131, 10} ID(var_end){131, 11} RPAREN{131, 18}  AND{131, 20}  LPAREN{131, 23} BANG{131, 24} ID(ret_val){131, 25} RPAREN{131, 32} RPAREN{131, 33} LBRACE{131, 34} 
+	    IF{132, 6}  LPAREN{132, 9} ID(e){132, 10} DOT{132, 11} ID(Equal){132, 12} LPAREN{132, 17} ID(var_elem){132, 18} RPAREN{132, 26} RPAREN{132, 27} LBRACE{132, 28} 
+		ID(ret_val){133, 3}  EQUALS{133, 11}  TRUE{133, 13}  SEMI{133, 18} 
+		IF{134, 3}  LPAREN{134, 6} ID(aux04){134, 7}  LESS{134, 13}  NUM(0){134, 15} RPAREN{134, 16}  LBRACE{134, 18}  
+		    COMMENT(// delete first element){135, 7} 
+		    ID(my_head){136, 7}  EQUALS{136, 15}  ID(aux01){136, 17} DOT{136, 22} ID(GetNext){136, 23} LPAREN{136, 30} RPAREN{136, 31}  SEMI{136, 33} 
+		RBRACE{137, 3}  
+		ELSE{138, 3} LBRACE{138, 7}  COMMENT(// delete a non first element){138, 9} 
+		    ID(System){139, 7} DOT{139, 13} ID(out){139, 14} DOT{139, 17} ID(println){139, 18} LPAREN{139, 25} NUM(0){139, 26} NUM(-555){139, 27} RPAREN{139, 31} SEMI{139, 32} 
+		    ID(aux05){140, 7}  EQUALS{140, 13}  ID(prev){140, 15} DOT{140, 19} ID(SetNext){140, 20} LPAREN{140, 27} ID(aux01){140, 28} DOT{140, 33} ID(GetNext){140, 34} LPAREN{140, 41} RPAREN{140, 42} RPAREN{140, 43} SEMI{140, 44} 
+		    ID(System){141, 7} DOT{141, 13} ID(out){141, 14} DOT{141, 17} ID(println){141, 18} LPAREN{141, 25} NUM(0){141, 26} NUM(-555){141, 27} RPAREN{141, 31} SEMI{141, 32} 
+		    
+		RBRACE{143, 3} 
+	    RBRACE{144, 6}  ELSE{144, 8}  ID(nt){144, 13}  EQUALS{144, 16}  NUM(0){144, 18}  SEMI{144, 20} 
+	    IF{145, 6}  LPAREN{145, 9} BANG{145, 10} ID(ret_val){145, 11} RPAREN{145, 18} LBRACE{145, 19} 
+		ID(prev){146, 3}  EQUALS{146, 8}  ID(aux01){146, 10}  SEMI{146, 16} 
+		ID(aux01){147, 3}  EQUALS{147, 9}  ID(aux01){147, 11} DOT{147, 16} ID(GetNext){147, 17} LPAREN{147, 24} RPAREN{147, 25}  SEMI{147, 27} 
+		ID(var_end){148, 3}  EQUALS{148, 11}  ID(aux01){148, 13} DOT{148, 18} ID(GetEnd){148, 19} LPAREN{148, 25} RPAREN{148, 26} SEMI{148, 27} 
+		ID(var_elem){149, 3}  EQUALS{149, 12}  ID(aux01){149, 14} DOT{149, 19} ID(GetElem){149, 20} LPAREN{149, 27} RPAREN{149, 28} SEMI{149, 29} 
+		ID(aux04){150, 3}  EQUALS{150, 9}  NUM(1){150, 11}  SEMI{150, 13}  
+	    RBRACE{151, 6}  ELSE{151, 8}  ID(nt){151, 13}  EQUALS{151, 16}  NUM(0){151, 18}  SEMI{151, 20} 
+	RBRACE{152, 2} 
+	RETURN{153, 2}  ID(my_head){153, 9}  SEMI{153, 17} 
+    RBRACE{154, 5} 
+    
+    
+    COMMENT(// Search for an element e on the list){157, 5} 
+    PUBLIC{158, 5}  INT{158, 12}  ID(Search){158, 16} LPAREN{158, 22} ID(Element){158, 23}  ID(e){158, 31} RPAREN{158, 32} LBRACE{158, 33} 
+	INT{159, 2}  ID(int_ret_val){159, 6}  SEMI{159, 18} 
+	ID(List){160, 2}  ID(aux01){160, 7}  SEMI{160, 13} 
+	ID(Element){161, 2}  ID(var_elem){161, 10}  SEMI{161, 19} 
+	BOOL{162, 2}  ID(var_end){162, 10}  SEMI{162, 18} 
+	INT{163, 2}  ID(nt){163, 6}  SEMI{163, 9} 
+
+	ID(int_ret_val){165, 2}  EQUALS{165, 14}  NUM(0){165, 16}  SEMI{165, 18} 
+	ID(aux01){166, 2}  EQUALS{166, 8}  THIS{166, 10}  SEMI{166, 15} 
+	ID(var_end){167, 2}  EQUALS{167, 10}  ID(end){167, 12} SEMI{167, 15} 
+	ID(var_elem){168, 2}  EQUALS{168, 11}  ID(elem){168, 13}  SEMI{168, 18} 
+	WHILE{169, 2}  LPAREN{169, 8} BANG{169, 9} ID(var_end){169, 10} RPAREN{169, 17} LBRACE{169, 18} 
+	    IF{170, 6}  LPAREN{170, 9} ID(e){170, 10} DOT{170, 11} ID(Equal){170, 12} LPAREN{170, 17} ID(var_elem){170, 18} RPAREN{170, 26} RPAREN{170, 27} LBRACE{170, 28} 
+		ID(int_ret_val){171, 3}  EQUALS{171, 15}  NUM(1){171, 17}  SEMI{171, 19} 
+	    RBRACE{172, 6} 
+	    ELSE{173, 6}  ID(nt){173, 11}  EQUALS{173, 14}  NUM(0){173, 16}  SEMI{173, 18} 
+	    ID(aux01){174, 6}  EQUALS{174, 12}  ID(aux01){174, 14} DOT{174, 19} ID(GetNext){174, 20} LPAREN{174, 27} RPAREN{174, 28}  SEMI{174, 30} 
+	    ID(var_end){175, 6}  EQUALS{175, 14}  ID(aux01){175, 16} DOT{175, 21} ID(GetEnd){175, 22} LPAREN{175, 28} RPAREN{175, 29} SEMI{175, 30} 
+	    ID(var_elem){176, 6}  EQUALS{176, 15}  ID(aux01){176, 17} DOT{176, 22} ID(GetElem){176, 23} LPAREN{176, 30} RPAREN{176, 31} SEMI{176, 32} 
+	RBRACE{177, 2} 
+	RETURN{178, 2}  ID(int_ret_val){178, 9}  SEMI{178, 21} 
+    RBRACE{179, 5} 
+    
+    PUBLIC{181, 5}  BOOL{181, 12}  ID(GetEnd){181, 20} LPAREN{181, 26} RPAREN{181, 27} LBRACE{181, 28} 
+	RETURN{182, 2}  ID(end){182, 9}  SEMI{182, 13} 
+    RBRACE{183, 5} 
+    
+    PUBLIC{185, 5}  ID(Element){185, 12}  ID(GetElem){185, 20} LPAREN{185, 27} RPAREN{185, 28} LBRACE{185, 29} 
+	RETURN{186, 2}  ID(elem){186, 9}  SEMI{186, 14} 
+    RBRACE{187, 5} 
+    
+    PUBLIC{189, 5}  ID(List){189, 12}  ID(GetNext){189, 17} LPAREN{189, 24} RPAREN{189, 25} LBRACE{189, 26} 
+	RETURN{190, 2}  ID(next){190, 9}  SEMI{190, 14} 
+    RBRACE{191, 5} 
+    
+    
+    COMMENT(// Print the linked list){194, 5} 
+    PUBLIC{195, 5}  BOOL{195, 12}  ID(Print){195, 20} LPAREN{195, 25} RPAREN{195, 26} LBRACE{195, 27} 
+	ID(List){196, 2}  ID(aux01){196, 7}  SEMI{196, 13} 
+	BOOL{197, 2}  ID(var_end){197, 10}  SEMI{197, 18} 
+	ID(Element){198, 2}   ID(var_elem){198, 11}  SEMI{198, 20} 
+
+	ID(aux01){200, 2}  EQUALS{200, 8}  THIS{200, 10}  SEMI{200, 15} 
+	ID(var_end){201, 2}  EQUALS{201, 10}  ID(end){201, 12}  SEMI{201, 16} 
+	ID(var_elem){202, 2}  EQUALS{202, 11}  ID(elem){202, 13}  SEMI{202, 18} 
+	WHILE{203, 2}  LPAREN{203, 8} BANG{203, 9} ID(var_end){203, 10} RPAREN{203, 17} LBRACE{203, 18} 
+	    ID(System){204, 6} DOT{204, 12} ID(out){204, 13} DOT{204, 16} ID(println){204, 17} LPAREN{204, 24} ID(var_elem){204, 25} DOT{204, 33} ID(GetAge){204, 34} LPAREN{204, 40} RPAREN{204, 41} RPAREN{204, 42} SEMI{204, 43} 
+	    ID(aux01){205, 6}  EQUALS{205, 12}  ID(aux01){205, 14} DOT{205, 19} ID(GetNext){205, 20} LPAREN{205, 27} RPAREN{205, 28}  SEMI{205, 30} 
+	    ID(var_end){206, 6}  EQUALS{206, 14}  ID(aux01){206, 16} DOT{206, 21} ID(GetEnd){206, 22} LPAREN{206, 28} RPAREN{206, 29} SEMI{206, 30} 
+	    ID(var_elem){207, 6}  EQUALS{207, 15}  ID(aux01){207, 17} DOT{207, 22} ID(GetElem){207, 23} LPAREN{207, 30} RPAREN{207, 31} SEMI{207, 32} 
+	RBRACE{208, 2} 
+
+	RETURN{210, 2}  TRUE{210, 9}  SEMI{210, 14} 
+    RBRACE{211, 5} 
+RBRACE{212, 1} 
+    
+
+COMMENT(// this class invokes the methods to insert, delete,){215, 1} 
+COMMENT(// search and print the linked list){216, 1} 
+CLASS{217, 1}  ID(LL){217, 7} LBRACE{217, 9} 
+
+    PUBLIC{219, 5}  INT{219, 12}  ID(Start){219, 16} LPAREN{219, 21} RPAREN{219, 22} LBRACE{219, 23} 
+
+	ID(List){221, 2}  ID(head){221, 7}  SEMI{221, 12} 
+	ID(List){222, 2}  ID(last_elem){222, 7}  SEMI{222, 17} 
+	BOOL{223, 2}  ID(aux01){223, 10}  SEMI{223, 16} 
+	ID(Element){224, 2}  ID(el01){224, 10}  SEMI{224, 15} 
+	ID(Element){225, 2}  ID(el02){225, 10}  SEMI{225, 15} 
+	ID(Element){226, 2}  ID(el03){226, 10}  SEMI{226, 15} 
+
+	ID(last_elem){228, 2}  EQUALS{228, 12}  NEW{228, 14}  ID(List){228, 18} LPAREN{228, 22} RPAREN{228, 23} SEMI{228, 24} 
+	ID(aux01){229, 2}  EQUALS{229, 8}  ID(last_elem){229, 10} DOT{229, 19} ID(Init){229, 20} LPAREN{229, 24} RPAREN{229, 25} SEMI{229, 26} 
+	ID(head){230, 2}  EQUALS{230, 7}  ID(last_elem){230, 9}  SEMI{230, 19} 
+	ID(aux01){231, 2}  EQUALS{231, 8}  ID(head){231, 10} DOT{231, 14} ID(Init){231, 15} LPAREN{231, 19} RPAREN{231, 20} SEMI{231, 21} 
+	ID(aux01){232, 2}  EQUALS{232, 8}  ID(head){232, 10} DOT{232, 14} ID(Print){232, 15} LPAREN{232, 20} RPAREN{232, 21} SEMI{232, 22} 
+
+	COMMENT(// inserting first element){234, 2} 
+	ID(el01){235, 2}  EQUALS{235, 7}  NEW{235, 9}  ID(Element){235, 13} LPAREN{235, 20} RPAREN{235, 21} SEMI{235, 22} 
+	ID(aux01){236, 2}  EQUALS{236, 8}  ID(el01){236, 10} DOT{236, 14} ID(Init){236, 15} LPAREN{236, 19} NUM(25){236, 20} COMMA{236, 22} NUM(37000){236, 23} COMMA{236, 28} FALSE{236, 29} RPAREN{236, 34} SEMI{236, 35} 
+	ID(head){237, 2}  EQUALS{237, 7}  ID(head){237, 9} DOT{237, 13} ID(Insert){237, 14} LPAREN{237, 20} ID(el01){237, 21} RPAREN{237, 25} SEMI{237, 26} 
+	ID(aux01){238, 2}  EQUALS{238, 8}  ID(head){238, 10} DOT{238, 14} ID(Print){238, 15} LPAREN{238, 20} RPAREN{238, 21} SEMI{238, 22} 
+	ID(System){239, 2} DOT{239, 8} ID(out){239, 9} DOT{239, 12} ID(println){239, 13} LPAREN{239, 20} NUM(10000000){239, 21} RPAREN{239, 29} SEMI{239, 30} 
+	COMMENT(// inserting second  element){240, 2} 
+	ID(el01){241, 2}  EQUALS{241, 7}  NEW{241, 9}  ID(Element){241, 13} LPAREN{241, 20} RPAREN{241, 21} SEMI{241, 22} 
+	ID(aux01){242, 2}  EQUALS{242, 8}  ID(el01){242, 10} DOT{242, 14} ID(Init){242, 15} LPAREN{242, 19} NUM(39){242, 20} COMMA{242, 22} NUM(42000){242, 23} COMMA{242, 28} TRUE{242, 29} RPAREN{242, 33} SEMI{242, 34} 
+	ID(el02){243, 2}  EQUALS{243, 7}  ID(el01){243, 9}  SEMI{243, 14} 
+	ID(head){244, 2}  EQUALS{244, 7}  ID(head){244, 9} DOT{244, 13} ID(Insert){244, 14} LPAREN{244, 20} ID(el01){244, 21} RPAREN{244, 25} SEMI{244, 26} 
+	ID(aux01){245, 2}  EQUALS{245, 8}  ID(head){245, 10} DOT{245, 14} ID(Print){245, 15} LPAREN{245, 20} RPAREN{245, 21} SEMI{245, 22} 
+	ID(System){246, 2} DOT{246, 8} ID(out){246, 9} DOT{246, 12} ID(println){246, 13} LPAREN{246, 20} NUM(10000000){246, 21} RPAREN{246, 29} SEMI{246, 30} 
+	COMMENT(// inserting third element){247, 2} 
+	ID(el01){248, 2}  EQUALS{248, 7}  NEW{248, 9}  ID(Element){248, 13} LPAREN{248, 20} RPAREN{248, 21} SEMI{248, 22} 
+	ID(aux01){249, 2}  EQUALS{249, 8}  ID(el01){249, 10} DOT{249, 14} ID(Init){249, 15} LPAREN{249, 19} NUM(22){249, 20} COMMA{249, 22} NUM(34000){249, 23} COMMA{249, 28} FALSE{249, 29} RPAREN{249, 34} SEMI{249, 35} 
+	ID(head){250, 2}  EQUALS{250, 7}  ID(head){250, 9} DOT{250, 13} ID(Insert){250, 14} LPAREN{250, 20} ID(el01){250, 21} RPAREN{250, 25} SEMI{250, 26} 
+	ID(aux01){251, 2}  EQUALS{251, 8}  ID(head){251, 10} DOT{251, 14} ID(Print){251, 15} LPAREN{251, 20} RPAREN{251, 21} SEMI{251, 22} 
+	ID(el03){252, 2}  EQUALS{252, 7}  NEW{252, 9}  ID(Element){252, 13} LPAREN{252, 20} RPAREN{252, 21} SEMI{252, 22} 
+	ID(aux01){253, 2}  EQUALS{253, 8}  ID(el03){253, 10} DOT{253, 14} ID(Init){253, 15} LPAREN{253, 19} NUM(27){253, 20} COMMA{253, 22} NUM(34000){253, 23} COMMA{253, 28} FALSE{253, 29} RPAREN{253, 34} SEMI{253, 35} 
+	ID(System){254, 2} DOT{254, 8} ID(out){254, 9} DOT{254, 12} ID(println){254, 13} LPAREN{254, 20} ID(head){254, 21} DOT{254, 25} ID(Search){254, 26} LPAREN{254, 32} ID(el02){254, 33} RPAREN{254, 37} RPAREN{254, 38} SEMI{254, 39} 
+	ID(System){255, 2} DOT{255, 8} ID(out){255, 9} DOT{255, 12} ID(println){255, 13} LPAREN{255, 20} ID(head){255, 21} DOT{255, 25} ID(Search){255, 26} LPAREN{255, 32} ID(el03){255, 33} RPAREN{255, 37} RPAREN{255, 38} SEMI{255, 39} 
+	ID(System){256, 2} DOT{256, 8} ID(out){256, 9} DOT{256, 12} ID(println){256, 13} LPAREN{256, 20} NUM(10000000){256, 21} RPAREN{256, 29} SEMI{256, 30} 
+	COMMENT(// inserting fourth element){257, 2} 
+	ID(el01){258, 2}  EQUALS{258, 7}  NEW{258, 9}  ID(Element){258, 13} LPAREN{258, 20} RPAREN{258, 21} SEMI{258, 22} 
+	ID(aux01){259, 2}  EQUALS{259, 8}  ID(el01){259, 10} DOT{259, 14} ID(Init){259, 15} LPAREN{259, 19} NUM(28){259, 20} COMMA{259, 22} NUM(35000){259, 23} COMMA{259, 28} FALSE{259, 29} RPAREN{259, 34} SEMI{259, 35} 
+	ID(head){260, 2}  EQUALS{260, 7}  ID(head){260, 9} DOT{260, 13} ID(Insert){260, 14} LPAREN{260, 20} ID(el01){260, 21} RPAREN{260, 25} SEMI{260, 26} 
+	ID(aux01){261, 2}  EQUALS{261, 8}  ID(head){261, 10} DOT{261, 14} ID(Print){261, 15} LPAREN{261, 20} RPAREN{261, 21} SEMI{261, 22} 
+	ID(System){262, 2} DOT{262, 8} ID(out){262, 9} DOT{262, 12} ID(println){262, 13} LPAREN{262, 20} NUM(2220000){262, 21} RPAREN{262, 28} SEMI{262, 29} 
+
+	ID(head){264, 2}  EQUALS{264, 7}  ID(head){264, 9} DOT{264, 13} ID(Delete){264, 14} LPAREN{264, 20} ID(el02){264, 21} RPAREN{264, 25} SEMI{264, 26} 
+	ID(aux01){265, 2}  EQUALS{265, 8}  ID(head){265, 10} DOT{265, 14} ID(Print){265, 15} LPAREN{265, 20} RPAREN{265, 21} SEMI{265, 22} 
+	ID(System){266, 2} DOT{266, 8} ID(out){266, 9} DOT{266, 12} ID(println){266, 13} LPAREN{266, 20} NUM(33300000){266, 21} RPAREN{266, 29} SEMI{266, 30} 
+
+
+	ID(head){269, 2}  EQUALS{269, 7}  ID(head){269, 9} DOT{269, 13} ID(Delete){269, 14} LPAREN{269, 20} ID(el01){269, 21} RPAREN{269, 25} SEMI{269, 26} 
+	ID(aux01){270, 2}  EQUALS{270, 8}  ID(head){270, 10} DOT{270, 14} ID(Print){270, 15} LPAREN{270, 20} RPAREN{270, 21} SEMI{270, 22} 
+	ID(System){271, 2} DOT{271, 8} ID(out){271, 9} DOT{271, 12} ID(println){271, 13} LPAREN{271, 20} NUM(44440000){271, 21} RPAREN{271, 29} SEMI{271, 30} 
+	
+	RETURN{273, 2}  NUM(0){273, 9}  SEMI{273, 11} 
+	
+	
+    RBRACE{276, 5} 
+    
+RBRACE{278, 1} 
+EOF{279, 1} 
