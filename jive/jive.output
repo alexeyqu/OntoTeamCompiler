@@ -1,0 +1,205 @@
+Terminals unused in grammar
+
+   ID
+   STRING
+   VOID
+   INT
+   BOOL
+   CLASS
+   PUBLIC
+   STATIC
+   EXTENDS
+   THIS
+   MAIN
+   IF
+   ELSE
+   WHILE
+   FOR
+   RETURN
+   NIL
+   LPAREN
+   RPAREN
+   LBRACE
+   RBRACE
+   LBRACKET
+   RBRACKET
+   EQU
+   EQUEQU
+   MUL
+   DIV
+   MOD
+   LESS
+   GREATER
+   TRUE
+   FALSE
+   AND
+   OR
+   NOT
+   COMMA
+   DOT
+   SEMI
+   AMPERSAND
+   ERROR
+
+
+State 7 conflicts: 2 shift/reduce
+State 8 conflicts: 2 shift/reduce
+
+
+Grammar
+
+    0 $accept: Program $end
+
+    1 Program: Expression
+
+    2 Expression: NUM
+    3           | Expression ADD Expression
+    4           | Expression SUB Expression
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+NUM (258) 2
+ID (259)
+STRING (260)
+VOID (261)
+INT (262)
+BOOL (263)
+CLASS (264)
+PUBLIC (265)
+STATIC (266)
+EXTENDS (267)
+THIS (268)
+MAIN (269)
+IF (270)
+ELSE (271)
+WHILE (272)
+FOR (273)
+RETURN (274)
+NIL (275)
+LPAREN (276)
+RPAREN (277)
+LBRACE (278)
+RBRACE (279)
+LBRACKET (280)
+RBRACKET (281)
+EQU (282)
+EQUEQU (283)
+ADD (284) 3
+SUB (285) 4
+MUL (286)
+DIV (287)
+MOD (288)
+LESS (289)
+GREATER (290)
+TRUE (291)
+FALSE (292)
+AND (293)
+OR (294)
+NOT (295)
+COMMA (296)
+DOT (297)
+SEMI (298)
+AMPERSAND (299)
+ERROR (300)
+
+
+Nonterminals, with rules where they appear
+
+$accept (46)
+    on left: 0
+Program (47)
+    on left: 1, on right: 0
+Expression (48)
+    on left: 2 3 4, on right: 1 3 4
+
+
+State 0
+
+    0 $accept: . Program $end
+
+    NUM  shift, and go to state 1
+
+    Program     go to state 2
+    Expression  go to state 3
+
+
+State 1
+
+    2 Expression: NUM .
+
+    $default  reduce using rule 2 (Expression)
+
+
+State 2
+
+    0 $accept: Program . $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    1 Program: Expression .
+    3 Expression: Expression . ADD Expression
+    4           | Expression . SUB Expression
+
+    ADD  shift, and go to state 5
+    SUB  shift, and go to state 6
+
+    $default  reduce using rule 1 (Program)
+
+
+State 4
+
+    0 $accept: Program $end .
+
+    $default  accept
+
+
+State 5
+
+    3 Expression: Expression ADD . Expression
+
+    NUM  shift, and go to state 1
+
+    Expression  go to state 7
+
+
+State 6
+
+    4 Expression: Expression SUB . Expression
+
+    NUM  shift, and go to state 1
+
+    Expression  go to state 8
+
+
+State 7
+
+    3 Expression: Expression . ADD Expression
+    3           | Expression ADD Expression .
+    4           | Expression . SUB Expression
+
+    ADD  shift, and go to state 5
+    SUB  shift, and go to state 6
+
+    ADD       [reduce using rule 3 (Expression)]
+    SUB       [reduce using rule 3 (Expression)]
+    $default  reduce using rule 3 (Expression)
+
+
+State 8
+
+    3 Expression: Expression . ADD Expression
+    4           | Expression . SUB Expression
+    4           | Expression SUB Expression .
+
+    ADD  shift, and go to state 5
+    SUB  shift, and go to state 6
+
+    ADD       [reduce using rule 4 (Expression)]
+    SUB       [reduce using rule 4 (Expression)]
+    $default  reduce using rule 4 (Expression)

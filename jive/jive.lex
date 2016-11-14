@@ -1,320 +1,142 @@
 /* flex grammar for a sample minijava code */
 
 %{
-#include <math.h>
-#include <fstream>
-#include <iostream>
+    #include <math.h>
+    #include <stdio.h>
+    #include "jive.tab.h"
 
-int string_idx = 1, symbol_idx = 1;
+    extern YYLTYPE yylloc;
+    #define YY_USER_INIT yylloc.first_line = 1;
 
-void print_lexeme(const char* token)
-{
-    std::cout << token << "{" << string_idx <<", " << symbol_idx << "} ";
-}
+    #ifdef LEXER
+        #define PRINT_LEXEM( lex ) \
+            { printf("%s(%s){%d, %d} ", #lex, yytext, yylloc.first_line, yylloc.first_column); }
+    #else
+        #define PRINT_LEXEM( lex ) ;
+    #endif
 
-void process_lexeme(const char* token)
-{
-    print_lexeme(token);
-}
+    #define PROCESS_LEXEM( lex ) \
+        { PRINT_LEXEM(lex); return lex; }
+
+    static int line_idx = 1;
+    static int symbol_idx = 1;
+
+    void adjust();
+
+    #define YY_USER_ACTION adjust();
 %}
 
-%option noyywrap
-
 DIGIT       [0-9]
-ID          [a-zA-Z][a-zA-Z0-9_]*
+LETTER      [a-zA-Z_]
+ID          {LETTER}({DIGIT}|{LETTER})*
+INTEGER     [1-9]{DIGIT}*|0
+
+%option noyywrap
 
 %%
             /* NUMBERS */
 
-{DIGIT}+"."{DIGIT}* |
--?{DIGIT}+  {
-                std::cout << "NUM(" << atoi( yytext ) << "){" << string_idx <<", " << symbol_idx << "} ";
-                symbol_idx += yyleng;
-            }
+{INTEGER} { yylval.string = yytext; PROCESS_LEXEM(NUM); }
+
+{INTEGER}"."{DIGIT}* { /* yylval.string = yytext; PROCESS_LEXEM(REAL); */ }
 
             /* TYPES */
 
-void        {
-                process_lexeme("VOID");
-                symbol_idx += yyleng;
-            }
-
-int         {
-                process_lexeme("INT");
-                symbol_idx += yyleng;
-            }
-
-double      {
-                process_lexeme("DOUBLE");
-                symbol_idx += yyleng;
-            }
-
-boolean     {
-                process_lexeme("BOOL");
-                symbol_idx += yyleng;
-            }
+void        { PROCESS_LEXEM(VOID); }
+int         { PROCESS_LEXEM(INT); }
+boolean     { PROCESS_LEXEM(BOOL); }
 
             /* KEYWORDS */
 
-class       {
-                process_lexeme("CLASS");
-                symbol_idx += yyleng;
-            }
-
-public      {
-                process_lexeme("PUBLIC");
-                symbol_idx += yyleng;
-            }
-
-static      {
-                process_lexeme("STATIC");
-                symbol_idx += yyleng;
-            }
-
-extends     {
-                process_lexeme("EXTENDS");
-                symbol_idx += yyleng;
-            }
-
-this        {
-                process_lexeme("THIS");
-                symbol_idx += yyleng;
-            }
-
-new         {
-                process_lexeme("NEW");
-                symbol_idx += yyleng;
-            }
-
-null        {
-                process_lexeme("NULL");
-                symbol_idx += yyleng;
-            }
-
-if          {
-                process_lexeme("IF");
-                symbol_idx += yyleng;
-            }
-
-else        {
-                process_lexeme("ELSE");
-                symbol_idx += yyleng;
-            }
-
-while       {
-                process_lexeme("WHILE");
-                symbol_idx += yyleng;
-            }
-
-for         {
-                process_lexeme("FOR");
-                symbol_idx += yyleng;
-            }
-
-return      {
-                process_lexeme("RETURN");
-                symbol_idx += yyleng;
-            }
+class       { PROCESS_LEXEM(CLASS); }
+public      { PROCESS_LEXEM(PUBLIC); }
+static      { PROCESS_LEXEM(STATIC); }
+main        { PROCESS_LEXEM(MAIN); }
+extends     { PROCESS_LEXEM(EXTENDS); }
+this        { PROCESS_LEXEM(THIS); }
+if          { PROCESS_LEXEM(IF); }
+else        { PROCESS_LEXEM(ELSE); }
+while       { PROCESS_LEXEM(WHILE); }
+for         { PROCESS_LEXEM(FOR); }
+return      { PROCESS_LEXEM(RETURN); }
+null        { PROCESS_LEXEM(NIL); }
 
             /* PARENTHESES */
 
-"("         {
-                process_lexeme("LPAREN");
-                symbol_idx += yyleng;
-            }
-
-")"         {
-                process_lexeme("RPAREN");
-                symbol_idx += yyleng;
-            }
-
-"{"         {
-                process_lexeme("LBRACE");
-                symbol_idx += yyleng;
-            }
-
-"}"         {
-                process_lexeme("RBRACE");
-                symbol_idx += yyleng;
-            }
-
-"["         {
-                process_lexeme("LBRACKET");
-                symbol_idx += yyleng;
-            }
-
-"]"         {
-                process_lexeme("RBRACKET");
-                symbol_idx += yyleng;
-            }
+"("         { PROCESS_LEXEM(LPAREN); }
+")"         { PROCESS_LEXEM(RPAREN); }
+"{"         { PROCESS_LEXEM(LBRACE); }
+"}"         { PROCESS_LEXEM(RBRACE); }
+"["         { PROCESS_LEXEM(LBRACKET); }
+"]"         { PROCESS_LEXEM(RBRACKET); }
 
             /* ARITHMETICS */
 
-"="         {
-                process_lexeme("EQUALS");
-                symbol_idx += yyleng;
-            }
-
-"=="         {
-                process_lexeme("DOUBLEEQUALS");
-                symbol_idx += yyleng;
-            }
-
-"+"         {
-                process_lexeme("PLUS");
-                symbol_idx += yyleng;
-            }
-
-"-"         {
-                process_lexeme("MINUS");
-                symbol_idx += yyleng;
-            }
-
-"*"         {
-                process_lexeme("STAR");
-                symbol_idx += yyleng;
-            }
-
-"/"         {
-                process_lexeme("DIVIDE");
-                symbol_idx += yyleng;
-            }
-
-"<"         {
-                process_lexeme("LESS");
-                symbol_idx += yyleng;
-            }
-
-">"         {
-                process_lexeme("MORE");
-                symbol_idx += yyleng;
-            }
+"=="        { PROCESS_LEXEM(EQUEQU); }
+"="         { PROCESS_LEXEM(EQU); }
+"+"         { PROCESS_LEXEM(ADD); }
+"-"         { PROCESS_LEXEM(SUB); }
+"*"         { PROCESS_LEXEM(MUL); }
+"/"         { PROCESS_LEXEM(DIV); }
+"<"         { PROCESS_LEXEM(LESS); }
+">"         { PROCESS_LEXEM(GREATER); }
+"%"         { PROCESS_LEXEM(MOD); }
 
             /* LOGICAL */
 
-true        {
-                process_lexeme("TRUE");
-                symbol_idx += yyleng;
-            }
-
-false       {
-                process_lexeme("FALSE");
-                symbol_idx += yyleng;
-            }
-
-"&&"        {
-                process_lexeme("AND");
-                symbol_idx += yyleng;
-            }
-
-"||"        {
-                process_lexeme("OR");
-                symbol_idx += yyleng;
-            }
+true        { PROCESS_LEXEM(TRUE); }
+false       { PROCESS_LEXEM(FALSE); }
+"&&"        { PROCESS_LEXEM(AND); }
+"||"        { PROCESS_LEXEM(OR); }
+"!"         { PROCESS_LEXEM(NOT); }
 
             /* SYNTACTIC */
 
-"!"         {
-                process_lexeme("BANG");
-                symbol_idx += yyleng;
-            }
-
-","         {
-                process_lexeme("COMMA");
-                symbol_idx += yyleng;
-            }
-
-"."         {
-                process_lexeme("DOT");
-                symbol_idx += yyleng;
-            }
-
-"&"         {
-                process_lexeme("AMPERSAND");
-                symbol_idx += yyleng;
-            }
-
-"|"         {
-                process_lexeme("BAR");
-                symbol_idx += yyleng;
-            }
-
-";"         {
-                process_lexeme("SEMI");
-                symbol_idx += yyleng;
-            }
+","         { PROCESS_LEXEM(COMMA); }
+"."         { PROCESS_LEXEM(DOT); }
+"&"         { PROCESS_LEXEM(AMPERSAND); }
+";"         { PROCESS_LEXEM(SEMI); }
 
             /* IDENTIFIERS */
 
-{ID}+       {
-                std::cout << "ID(" << yytext << "){" << string_idx <<", " << symbol_idx << "} ";
-                symbol_idx += yyleng;
-            }
+{ID}+       { yylval.string = yytext; PROCESS_LEXEM(ID); }
 
+
+            /* STRING */
+
+\"[^\"]*\"  { PROCESS_LEXEM(STRING); }
 
             /* COMMENTS */
 
-\"(\\.|[^"])*\"  {
-                std::cout << "STRING(" << yytext << "){" << string_idx <<", " << symbol_idx << "} ";
-                symbol_idx += yyleng;
-            }
-
-"//"[^\n]*  {
-                std::cout << "COMMENT(" << yytext << "){" << string_idx <<", " << symbol_idx << "} ";
-                symbol_idx += yyleng;
-            }
-
-"/*"[^"*/"]*"*/" {
-                std::cout << "COMMENT(" << yytext << "){" << string_idx <<", " << symbol_idx << "} ";
-
-                for( int index = 0; index < yyleng; ++index ) {
-                    if( yytext[index] == '\n' ) {
-                        symbol_idx = 1;
-                        string_idx++;
-                    }
-                    else {
-                        symbol_idx++;
-                    }
-                }
-            }
+"//"[^\n]*  { PRINT_LEXEM(COMMENT); }
+"/*"[^"*/"]*"*/" { PRINT_LEXEM(COMMENT); }
 
             /* WHITESPACE */
 
-"\n"        {
-                std::cout << yytext;
-                string_idx++;
-                symbol_idx = 1;
-            }
+"\n"        { printf("\n"); }
+[ \t]+      { printf( "%s", yytext ); }
 
-[ \t]+      {
-                std::cout << yytext;
-                symbol_idx += yyleng;
-            }
+            /* EOFS */
 
-<<EOF>>     {
-                process_lexeme("EOF");
-                symbol_idx += yyleng;
-                yyterminate();
-            }
+            /* ERROR */
 
-.           std::cout << "\n\nUnrecognized character:" << yytext << ", length = " << yyleng << "\n\n\n";
+.           { PROCESS_LEXEM(ERROR); }
 
 %%
 
-int main( int argc, char **argv ) {
-    ++argv, --argc;  /* skip over program name */
-    FlexLexer* lexer = new yyFlexLexer;
-    if ( argc > 0 ) {
-        std::ifstream new_in;
-        new_in.open( argv[0] );
-        if ( new_in.good() ) {
-            std::istream* in_stream = &new_in;
-            lexer->yylex( in_stream, &std::cout );
+void adjust() {
+    yylloc.first_line = line_idx;
+    yylloc.first_column = symbol_idx;
+
+    for( int i = 0; i < yyleng; i++ ) {
+        if( yytext[i] == '\n' ) {
+            line_idx++;
+            symbol_idx = 1;
         } else {
-        lexer->yylex();
+            symbol_idx++;
         }
-    } else {
-        lexer->yylex();
     }
-    return 0;
+
+    yylloc.last_line = line_idx;
+    yylloc.last_column = symbol_idx;
 }
