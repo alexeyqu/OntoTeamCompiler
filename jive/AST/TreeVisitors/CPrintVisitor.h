@@ -17,7 +17,7 @@ public:
 	void Visit( CNumberExpression *expression );
 	
 private:
-	long generateId( void *vertex );
+	std::size_t generateId( void *entity );
 
 	std::ofstream file;
 };

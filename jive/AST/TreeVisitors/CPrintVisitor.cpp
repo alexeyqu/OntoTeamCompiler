@@ -67,7 +67,7 @@ void CPrintVisitor::Visit( CNumberExpression *expression ) {
     file << numberId << "[label=" << expression->number << "];\n";
 }
 
-long CPrintVisitor::generateId( void *entity )
+std::size_t  CPrintVisitor::generateId( void *entity )
 {
     if( entity == nullptr )
     {
