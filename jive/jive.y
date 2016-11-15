@@ -23,11 +23,9 @@
 %locations
 
 %union {
-
 	char *string;
 	CProgram *Program;
 	IExpression *Expression;
-
 }
 
 %token <string> NUM
@@ -45,6 +43,9 @@
 %token COMMA DOT SEMI AMPERSAND
 %token ERROR
 
+%left ADD SUB
+%left MUL DIV
+
 %type <Program> Program
 %type <Expression> Expression
 
@@ -57,9 +58,13 @@ Program: Expression { *program = $$ = new CProgram( $1 ); }
 
 Expression:	NUM { $$ = new CNumberExpression( $1 ); }
 		|
-		Expression ADD Expression { $$ = new CBinaryExpression( $1, CBinaryExpression::OT_Plus, $3 ); }
+		Expression ADD Expression { $$ = new CBinaryExpression( $1, enums::ADD, $3 ); }
 		|
-		Expression SUB Expression { $$ = new CBinaryExpression( $1, CBinaryExpression::OT_Minus, $3 ); }
+		Expression SUB Expression { $$ = new CBinaryExpression( $1, enums::SUB, $3 ); }
+		|
+		Expression MUL Expression { $$ = new CBinaryExpression( $1, enums::MUL, $3 ); }
+		|
+		Expression DIV Expression { $$ = new CBinaryExpression( $1, enums::DIV, $3 ); }
 ;
 
 %%

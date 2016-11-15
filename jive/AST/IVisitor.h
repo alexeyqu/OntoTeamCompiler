@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../jive.h"
+
 class IVisitorTarget;
 class CBinaryExpression;
 class CNumberExpression;

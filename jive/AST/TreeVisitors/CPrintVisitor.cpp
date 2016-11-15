@@ -26,14 +26,24 @@ void CPrintVisitor::Visit(CBinaryExpression* expression) {
 
     file << reinterpret_cast<long>(expression) << "->";
     switch(expression->operation) {
-        case CBinaryExpression::OT_Plus:
-            file << static_cast<int>(expression->operation) << ";\n";
-            file << static_cast<int>(expression->operation) << "[label=Plus];\n";
+        case enums::TOperation::ADD:
+            file << reinterpret_cast<long>(&expression->operation) << ";\n";
+            file << reinterpret_cast<long>(&expression->operation) << "[label=Plus];\n";
             break;
 
-        case CBinaryExpression::OT_Minus:
-            file << static_cast<int>(expression->operation) << ";\n";
-            file << static_cast<int>(expression->operation) << "[label=Minus];\n";
+        case enums::TOperation::SUB:
+            file << reinterpret_cast<long>(&expression->operation) << ";\n";
+            file << reinterpret_cast<long>(&expression->operation) << "[label=Minus];\n";
+            break;
+
+        case enums::TOperation::MUL:
+            file << reinterpret_cast<long>(&expression->operation) << ";\n";
+            file << reinterpret_cast<long>(&expression->operation) << "[label=Mul];\n";
+            break;
+
+        case enums::TOperation::DIV:
+            file << reinterpret_cast<long>(&expression->operation) << ";\n";
+            file << reinterpret_cast<long>(&expression->operation) << "[label=Div];\n";
             break;
     }
 
@@ -44,5 +54,6 @@ void CPrintVisitor::Visit(CBinaryExpression* expression) {
 void CPrintVisitor::Visit(CNumberExpression* expression) {
     file << reinterpret_cast<long>(expression) << "\n";
     file << reinterpret_cast<long>(expression) << "[label = \"NumExp\"];\n";
-    file << reinterpret_cast<long>(expression) << "->" << expression->number << ";\n";
+    file << reinterpret_cast<long>(expression) << "->" << reinterpret_cast<long>(&expression->number) << ";\n";
+    file << reinterpret_cast<long>(&expression->number) << "[label=" << expression->number << "];\n";
 }

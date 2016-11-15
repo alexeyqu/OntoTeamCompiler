@@ -29,4 +29,4 @@ AST/CProgram.o: AST/CProgram.cpp
 	$(CC) $(CFLAGS) -c $^ -o $@
 
 clean:
-	rm lex.yy.* *.lex.h jive.tab.* jive *.o AST/TreeNodes/*.o AST/TreeVisitors/*.o *.output
+	rm lex.yy.* *.lex.h jive.tab.* jive *.o AST/TreeNodes/*.o AST/TreeVisitors/*.o AST/*.o *.ps
