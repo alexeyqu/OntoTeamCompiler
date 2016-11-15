@@ -5,6 +5,7 @@
 class IVisitorTarget
 {
 public:
-   	virtual void Accept( IVisitor* ) = 0;
    	virtual ~IVisitorTarget() {}
+
+   	virtual void Accept( IVisitor *visitor ) = 0;
 };

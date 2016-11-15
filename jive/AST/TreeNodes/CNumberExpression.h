@@ -5,8 +5,9 @@
 class CNumberExpression : public IExpression
 {
 public:
-   	int number;
+   	CNumberExpression( const char *_number );
 
-   	CNumberExpression( const char* number );
-   	virtual void Accept( IVisitor* v ) override;
+   	void Accept( IVisitor *visitor ) override;
+
+   	int number;
 };

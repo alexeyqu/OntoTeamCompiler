@@ -1,10 +1,8 @@
 #include "IVisitor.h"
 #include "CProgram.h"
 
-CProgram::CProgram( IExpression* expr ) {
-	this->expr = expr;
-}
+CProgram::CProgram( IExpression *_expression ) : expression( _expression ) {}
  
-void CProgram::Accept( IVisitor* v ) {
-	v->Visit(this);
+void CProgram::Accept( IVisitor *visitor ) {
+	visitor->Visit(this);
 }

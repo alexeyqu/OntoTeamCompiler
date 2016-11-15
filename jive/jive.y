@@ -12,14 +12,14 @@
 %code {    
 	int yylex (void);
 
-	void yyerror(CProgram** program, const char *str) {
+	void yyerror(CProgram **program, const char *str) {
 	    fprintf(stderr, "Error: %s\n", str);
 	}
 }
 
 %error-verbose
 %verbose
-%parse-param { CProgram** program }
+%parse-param { CProgram **program }
 %locations
 
 %union {
@@ -57,14 +57,14 @@ Program: Expression { *program = $$ = new CProgram( $1 ); }
 ;
 
 Expression:	NUM { $$ = new CNumberExpression( $1 ); }
-		|
-		Expression ADD Expression { $$ = new CBinaryExpression( $1, enums::ADD, $3 ); }
-		|
-		Expression SUB Expression { $$ = new CBinaryExpression( $1, enums::SUB, $3 ); }
-		|
-		Expression MUL Expression { $$ = new CBinaryExpression( $1, enums::MUL, $3 ); }
-		|
-		Expression DIV Expression { $$ = new CBinaryExpression( $1, enums::DIV, $3 ); }
-;
+			|
+			Expression ADD Expression { $$ = new CBinaryExpression( $1, enums::ADD, $3 ); }
+			|
+			Expression SUB Expression { $$ = new CBinaryExpression( $1, enums::SUB, $3 ); }
+			|
+			Expression MUL Expression { $$ = new CBinaryExpression( $1, enums::MUL, $3 ); }
+			|
+			Expression DIV Expression { $$ = new CBinaryExpression( $1, enums::DIV, $3 ); }
+	;
 
 %%

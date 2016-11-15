@@ -1,1 +1,1 @@
-dot -Tps graph.dot -o graph.ps
+dot -Tps my_graph.dot -o my_graph.ps

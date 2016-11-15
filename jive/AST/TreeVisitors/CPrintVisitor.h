@@ -7,15 +7,14 @@
 #include "../TreeNodes/CNumberExpression.h"
 #include <fstream>
 
-class CPrintVisitor : public IVisitor {
+class CPrintVisitor : public IVisitor 
+{
 public:
-
-	void Start(IVisitorTarget*, std::string, std::string);
-	void Visit(CProgram*);
-	void Visit(CBinaryExpression*);
-	void Visit(CNumberExpression*);
+	void Start( IVisitorTarget *vertex, std::string graphname );
+	void Visit( CProgram *program );
+	void Visit( CBinaryExpression *expression );
+	void Visit( CNumberExpression *expression );
 	
 private:
-
 	std::ofstream file;
 };

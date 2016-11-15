@@ -5,10 +5,11 @@
 class CBinaryExpression : public IExpression
 {
 public:
-	IExpression* leftOperand;
-	IExpression* rightOperand;
-	enums::TOperation operation;
+	CBinaryExpression( IExpression *_leftOperand, enums::TOperation _operation, IExpression *_rightOperand );
 
-	CBinaryExpression( IExpression* leftOperand, enums::TOperation operation, IExpression* rightOperand );
-	virtual void Accept( IVisitor* v ) override;
+	void Accept( IVisitor *visitor ) override;
+
+	IExpression *leftOperand;
+	IExpression *rightOperand;
+	enums::TOperation operation;
 };

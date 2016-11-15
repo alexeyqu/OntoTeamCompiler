@@ -1,12 +1,9 @@
 #include "../IVisitor.h"
 #include "CBinaryExpression.h"
 
-CBinaryExpression::CBinaryExpression( IExpression* leftOperand, enums::TOperation operation, IExpression* rightOperand) {
-	this->leftOperand = leftOperand;
-	this->rightOperand = rightOperand;
-	this->operation = operation;
-}
+CBinaryExpression::CBinaryExpression( IExpression *_leftOperand, enums::TOperation _operation, IExpression *_rightOperand) : \
+	leftOperand( _leftOperand ), rightOperand( _rightOperand ), operation( _operation ) {}
  
-void CBinaryExpression::Accept( IVisitor* v ) {
-	v->Visit(this);
+void CBinaryExpression::Accept( IVisitor *visitor ) {
+	visitor->Visit(this);
 }

@@ -7,8 +7,9 @@
 class CProgram : public IVisitorTarget 
 {
 public:
-	IExpression *expr;
+	CProgram( IExpression *_expression );
 
-	CProgram( IExpression* expr );
-	virtual void Accept( IVisitor* v ) override;
+	void Accept( IVisitor *visitor ) override;
+
+	IExpression *expression;
 };
