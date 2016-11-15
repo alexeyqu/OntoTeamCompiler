@@ -1,11 +1,12 @@
 #pragma once
 
+#include <fstream>
+#include <cassert>
 #include "../IVisitor.h"
 #include "../IVisitorTarget.h"
 #include "../CProgram.h"
 #include "../TreeNodes/CBinaryExpression.h"
 #include "../TreeNodes/CNumberExpression.h"
-#include <fstream>
 
 class CPrintVisitor : public IVisitor 
 {
@@ -16,5 +17,7 @@ public:
 	void Visit( CNumberExpression *expression );
 	
 private:
+	long generateId( void *vertex );
+
 	std::ofstream file;
 };

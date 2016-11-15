@@ -20,43 +20,59 @@ void CPrintVisitor::Visit( CProgram *program ) {
 }
 
 void CPrintVisitor::Visit( CBinaryExpression *expression ) {
+    long exprId = generateId(expression);
 
-    file << reinterpret_cast<long>(expression) << ";\n";
-    file << reinterpret_cast<long>(expression) << "[label = \"BinExp\"];\n";
+    file << exprId << ";\n";
+    file << exprId << "[label = \"BinExp\"];\n";
 
-    file << reinterpret_cast<long>(expression) << "->";
+    file << exprId << "->";
     expression->leftOperand->Accept(this);
 
-    file << reinterpret_cast<long>(expression) << "->";
+    file << exprId << "->";
+    long operationId = generateId(&expression->operation);
     switch(expression->operation) {
         case enums::TOperation::ADD:
-            file << reinterpret_cast<long>(&expression->operation) << ";\n";
-            file << reinterpret_cast<long>(&expression->operation) << "[label= \"+\" ];\n";
+            file << operationId << ";\n";
+            file << operationId << "[label= \"+\" ];\n";
             break;
 
         case enums::TOperation::SUB:
-            file << reinterpret_cast<long>(&expression->operation) << ";\n";
-            file << reinterpret_cast<long>(&expression->operation) << "[label= \"-\" ];\n";
+            file << operationId << ";\n";
+            file << operationId << "[label= \"-\" ];\n";
             break;
 
         case enums::TOperation::MUL:
-            file << reinterpret_cast<long>(&expression->operation) << ";\n";
-            file << reinterpret_cast<long>(&expression->operation) << "[label= \"*\" ];\n";
+            file << operationId << ";\n";
+            file << operationId << "[label= \"*\" ];\n";
             break;
 
         case enums::TOperation::DIV:
-            file << reinterpret_cast<long>(&expression->operation) << ";\n";
-            file << reinterpret_cast<long>(&expression->operation) << "[label= \"/\" ];\n";
+            file << operationId << ";\n";
+            file << operationId << "[label= \"/\" ];\n";
             break;
     }
 
-    file << reinterpret_cast<long>(expression) << "->";
+    file << exprId << "->";
     expression->rightOperand->Accept(this);
 }
 
 void CPrintVisitor::Visit( CNumberExpression *expression ) {
-    file << reinterpret_cast<long>(expression) << "\n";
-    file << reinterpret_cast<long>(expression) << "[label = \"NumExp\"];\n";
-    file << reinterpret_cast<long>(expression) << "->" << reinterpret_cast<long>(&expression->number) << ";\n";
-    file << reinterpret_cast<long>(&expression->number) << "[label=" << expression->number << "];\n";
+    long exprId = generateId(expression);
+
+    file << exprId << "\n";
+    file << exprId << "[label = \"NumExp\"];\n";
+
+    long numberId = generateId(&expression->number);
+    file << exprId << "->" << numberId << ";\n";
+    file << numberId << "[label=" << expression->number << "];\n";
+}
+
+long CPrintVisitor::generateId( void *entity )
+{
+    if( entity == nullptr )
+    {
+        assert(!"Error in CPrintVisitor::generateId : nullptr");
+    }
+
+    return reinterpret_cast<long>( entity );
 }
