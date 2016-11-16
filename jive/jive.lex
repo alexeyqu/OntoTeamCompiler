@@ -36,9 +36,7 @@ INTEGER     [1-9]{DIGIT}*|0
 %%
             /* NUMBERS */
 
-{INTEGER} { yylval.string = yytext; PROCESS_LEXEM(NUM); }
-
-{INTEGER}"."{DIGIT}* { /* yylval.string = yytext; PROCESS_LEXEM(REAL); */ }
+{INTEGER}   { yylval.string = yytext; PROCESS_LEXEM(NUM); }
 
             /* TYPES */
 
@@ -99,7 +97,7 @@ false       { PROCESS_LEXEM(FALSE); }
 
             /* COMMANDS */
 
-print       { PROCESS_LEXEM(PRINT); }
+"System.out.println"    { PROCESS_LEXEM(PRINT); }
 
             /* IDENTIFIERS */
 

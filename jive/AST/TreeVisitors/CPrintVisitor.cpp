@@ -36,7 +36,7 @@ void CPrintVisitor::Visit( CAssignStatement *statement ) {
     long stmId = generateId(statement);
 
     file << stmId << ";\n";
-    file << stmId << "[label = \"=\"];\n";
+    file << stmId << "[label = \"AssignStm\"];\n";
 
     file << stmId << "->";
     statement->leftOperand->Accept(this);
@@ -49,10 +49,26 @@ void CPrintVisitor::Visit( CPrintStatement *statement ) {
     long stmId = generateId(statement);
 
     file << stmId << ";\n";
-    file << stmId << "[label = \"Print\"];\n";
+    file << stmId << "[label = \"PrintStm\"];\n";
 
     file << stmId << "->";
     statement->operand->Accept(this);
+}
+
+void CPrintVisitor::Visit( CIfStatement *statement ) {
+    long stmId = generateId(statement);
+
+    file << stmId << ";\n";
+    file << stmId << "[label = \"IfStm\"];\n";
+
+    file << stmId << "->";
+    statement->expression->Accept(this);
+
+    file << stmId << "->";
+    statement->thenStatement->Accept(this);
+
+    file << stmId << "->";
+    statement->elseStatement->Accept(this);
 }
 
 void CPrintVisitor::Visit( CIdExpression *expression ) {
@@ -63,7 +79,7 @@ void CPrintVisitor::Visit( CIdExpression *expression ) {
 
     long nameId = generateId(&expression->name);
     file << exprId << "->" << nameId << ";\n";
-    file << nameId << "[label = \"" << expression->name << "\", xlabel = \"" << expression->address << "\"];\n";
+    file << nameId << "[label = \"" << expression->name << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CBinaryExpression *expression ) {
@@ -78,22 +94,22 @@ void CPrintVisitor::Visit( CBinaryExpression *expression ) {
     file << exprId << "->";
     long operationId = generateId(&expression->operation);
     switch(expression->operation) {
-        case enums::TOperation::ADD:
+        case enums::TArithmeticOperation::ADD:
             file << operationId << ";\n";
             file << operationId << "[label = \"+\" ];\n";
             break;
 
-        case enums::TOperation::SUB:
+        case enums::TArithmeticOperation::SUB:
             file << operationId << ";\n";
             file << operationId << "[label = \"-\" ];\n";
             break;
 
-        case enums::TOperation::MUL:
+        case enums::TArithmeticOperation::MUL:
             file << operationId << ";\n";
             file << operationId << "[label = \"*\" ];\n";
             break;
 
-        case enums::TOperation::DIV:
+        case enums::TArithmeticOperation::DIV:
             file << operationId << ";\n";
             file << operationId << "[label = \"/\" ];\n";
             break;
@@ -113,6 +129,58 @@ void CPrintVisitor::Visit( CNumberExpression *expression ) {
     file << exprId << "->" << numberId << ";\n";
     file << numberId << "[label = \"" << expression->number << "\"];\n";
 }
+
+void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
+    long exprId = generateId(expression);
+
+    file << exprId << ";\n";
+    file << exprId << "[label = \"BinBoolExp\"];\n";
+
+    file << exprId << "->";
+    expression->leftOperand->Accept(this);
+
+    file << exprId << "->";
+    long operationId = generateId(&expression->operation);
+    switch(expression->operation) {
+        case enums::TBooleanOperation::AND:
+            file << operationId << ";\n";
+            file << operationId << "[label = \"AND\" ];\n";
+            break;
+
+        case enums::TBooleanOperation::OR:
+            file << operationId << ";\n";
+            file << operationId << "[label = \"OR\" ];\n";
+            break;
+    }
+
+    file << exprId << "->";
+    expression->rightOperand->Accept(this);
+}
+
+void CPrintVisitor::Visit( CBooleanExpression *expression ) {
+    long exprId = generateId(expression);
+
+    file << exprId << "\n";
+    file << exprId << "[label = \"BoolExp\"];\n";
+
+    long valueId = generateId(&expression->value);
+    file << exprId << "->" << valueId << ";\n";
+    file << valueId << "[label = \"" << expression->value << "\"];\n";
+}
+
+void CPrintVisitor::Visit( CThisExpression *expression ) {
+    long exprId = generateId(expression);
+
+    file << exprId << "\n";
+    file << exprId << "[label = \"ThisExp\"];\n";
+
+    long addressId = generateId(&expression->address);
+    file << exprId << "->" << addressId << ";\n";
+    file << addressId << "[label = \"" << expression->address << "\"];\n";
+}
+
+//<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+//<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 std::size_t  CPrintVisitor::generateId( void *entity )
 {
