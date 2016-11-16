@@ -7,6 +7,7 @@ class CCompoundStatement;
 class CAssignStatement;
 class CPrintStatement;
 class CIfStatement;
+class CWhileStatement;
 class CIdExpression;
 class CBinaryExpression;
 class CNumberExpression;
@@ -22,6 +23,7 @@ public:
 	virtual void Visit( CAssignStatement *statement ) = 0;
 	virtual void Visit( CPrintStatement *statement ) = 0;
 	virtual void Visit( CIfStatement *statement ) = 0;
+	virtual void Visit( CWhileStatement *statement ) = 0;
 	virtual void Visit( CIdExpression *expression ) = 0;
 	virtual void Visit( CBinaryExpression *expression ) = 0;
    	virtual void Visit( CNumberExpression *expression ) = 0;

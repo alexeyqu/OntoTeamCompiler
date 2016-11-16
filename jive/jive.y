@@ -43,9 +43,10 @@
 %token PRINT
 %token ERROR
 
+%left AND OR
+%left LESS GREATER
 %left ADD SUB
 %left MUL DIV
-%left AND OR
 
 %type <Program> Program
 %type <Statement> Statement
@@ -63,7 +64,7 @@ Statement:  Statement Statement { $$ = new CCompoundStatement( $1, $2 ); }
 			|
 			IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfStatement( $3, $5, $7 ); }
 			|
-			WHILE LPAREN Expression RPAREN Statement { $$ = $5; }
+			WHILE LPAREN Expression RPAREN LBRACE Statement RBRACE { $$ = new CWhileStatement( $3, $6 ); }
 			|
 			PRINT LPAREN Identifier RPAREN SEMI { $$ = new CPrintStatement( $3 ); }
 			|
@@ -74,9 +75,9 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			Expression OR Expression { $$ = new CBinaryBooleanExpression( $1, enums::OR, $3 );  }
 			|
-			Expression LESS Expression { $$ = $1; }
+			Expression LESS Expression { $$ = new CBinaryBooleanExpression( $1, enums::LESS, $3 ); }
 			|
-			Expression GREATER Expression { $$ = $1; }
+			Expression GREATER Expression { $$ = new CBinaryBooleanExpression( $1, enums::GREATER, $3 ); }
 			|
 			Expression ADD Expression { $$ = new CBinaryExpression( $1, enums::ADD, $3 ); }
 			|
@@ -120,7 +121,7 @@ Identifier: ID { $$ = new CIdExpression( $1 ); }
 	| Identifier
 	Statement ::= "{" ( Statement )* "}"
 q	| "if" "(" Expression ")" Statement "else" Statement
-	| "while" "(" Expression ")" Statement
+q	| "while" "(" Expression ")" Statement
 q	| "System.out.println" "(" Expression ")" ";"
 q	| Identifier "=" Expression ";"
 	| Identifier "[" Expression "]" "=" Expression ";"

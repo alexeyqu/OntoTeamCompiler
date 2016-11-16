@@ -5,7 +5,7 @@ CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD
 LIBS = -lasan -lfl
 OBJS = AST/CProgram.o \
 	AST/TreeNodes/Statements/CCompoundStatement.o AST/TreeNodes/Statements/CPrintStatement.o AST/TreeNodes/Statements/CAssignStatement.o \
-	AST/TreeNodes/Statements/CIfStatement.o \
+	AST/TreeNodes/Statements/CIfStatement.o AST/TreeNodes/Statements/CWhileStatement.o \
 	AST/TreeNodes/Expressions/CIdExpression.o AST/TreeNodes/Expressions/CNumberExpression.o AST/TreeNodes/Expressions/CBinaryExpression.o \
 	AST/TreeNodes/Expressions/CBooleanExpression.o AST/TreeNodes/Expressions/CBinaryBooleanExpression.o \
 	AST/TreeNodes/Expressions/CThisExpression.o \

@@ -14,6 +14,7 @@ public:
 	void Visit( CAssignStatement *statement );
 	void Visit( CPrintStatement *statement );
 	void Visit( CIfStatement *statement );
+	void Visit( CWhileStatement *statement );
 	void Visit( CIdExpression *expression );
 	void Visit( CBinaryExpression *expression );
 	void Visit( CNumberExpression *expression );   	

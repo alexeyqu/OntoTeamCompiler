@@ -12,8 +12,6 @@ Terminals unused in grammar
    FOR
    RETURN
    NIL
-   LBRACE
-   RBRACE
    LBRACKET
    RBRACKET
    EQUEQU
@@ -25,17 +23,16 @@ Terminals unused in grammar
 
 State 12 conflicts: 4 shift/reduce
 State 26 conflicts: 9 shift/reduce
-State 42 conflicts: 3 shift/reduce
-State 43 conflicts: 3 shift/reduce
-State 44 conflicts: 3 shift/reduce
-State 45 conflicts: 3 shift/reduce
+State 42 conflicts: 1 shift/reduce
+State 43 conflicts: 1 shift/reduce
+State 44 conflicts: 1 shift/reduce
+State 45 conflicts: 1 shift/reduce
 State 46 conflicts: 9 shift/reduce
-State 47 conflicts: 9 shift/reduce
-State 48 conflicts: 9 shift/reduce
-State 49 conflicts: 3 shift/reduce
-State 50 conflicts: 3 shift/reduce
-State 51 conflicts: 4 shift/reduce
-State 54 conflicts: 4 shift/reduce
+State 47 conflicts: 1 shift/reduce
+State 48 conflicts: 1 shift/reduce
+State 49 conflicts: 1 shift/reduce
+State 50 conflicts: 1 shift/reduce
+State 55 conflicts: 4 shift/reduce
 
 
 Grammar
@@ -46,7 +43,7 @@ Grammar
 
     2 Statement: Statement Statement
     3          | IF LPAREN Expression RPAREN Statement ELSE Statement
-    4          | WHILE LPAREN Expression RPAREN Statement
+    4          | WHILE LPAREN Expression RPAREN LBRACE Statement RBRACE
     5          | PRINT LPAREN Identifier RPAREN SEMI
     6          | Identifier EQU Expression SEMI
 
@@ -94,8 +91,8 @@ RETURN (274)
 NIL (275)
 LPAREN (276) 3 4 5 22
 RPAREN (277) 3 4 5 22
-LBRACE (278)
-RBRACE (279)
+LBRACE (278) 4
+RBRACE (279) 4
 LBRACKET (280)
 RBRACKET (281)
 EQU (282) 6
@@ -165,7 +162,7 @@ State 2
 
 State 3
 
-    4 Statement: WHILE . LPAREN Expression RPAREN Statement
+    4 Statement: WHILE . LPAREN Expression RPAREN LBRACE Statement RBRACE
 
     LPAREN  shift, and go to state 9
 
@@ -225,7 +222,7 @@ State 8
 
 State 9
 
-    4 Statement: WHILE LPAREN . Expression RPAREN Statement
+    4 Statement: WHILE LPAREN . Expression RPAREN LBRACE Statement RBRACE
 
     NUM     shift, and go to state 14
     ID      shift, and go to state 1
@@ -385,7 +382,7 @@ State 21
 
 State 22
 
-    4 Statement: WHILE LPAREN Expression . RPAREN Statement
+    4 Statement: WHILE LPAREN Expression . RPAREN LBRACE Statement RBRACE
     7 Expression: Expression . AND Expression
     8           | Expression . OR Expression
     9           | Expression . LESS Expression
@@ -659,15 +656,9 @@ State 36
 
 State 37
 
-    4 Statement: WHILE LPAREN Expression RPAREN . Statement
+    4 Statement: WHILE LPAREN Expression RPAREN . LBRACE Statement RBRACE
 
-    ID     shift, and go to state 1
-    IF     shift, and go to state 2
-    WHILE  shift, and go to state 3
-    PRINT  shift, and go to state 4
-
-    Statement   go to state 51
-    Identifier  go to state 7
+    LBRACE  shift, and go to state 51
 
 
 State 38
@@ -719,17 +710,11 @@ State 42
    14           | Expression . DIV Expression
    15           | Expression . MOD Expression
 
-    MUL      shift, and go to state 30
-    DIV      shift, and go to state 31
-    MOD      shift, and go to state 32
-    LESS     shift, and go to state 33
-    GREATER  shift, and go to state 34
-    AND      shift, and go to state 35
-    OR       shift, and go to state 36
+    MUL  shift, and go to state 30
+    DIV  shift, and go to state 31
+    MOD  shift, and go to state 32
 
     MOD       [reduce using rule 11 (Expression)]
-    LESS      [reduce using rule 11 (Expression)]
-    GREATER   [reduce using rule 11 (Expression)]
     $default  reduce using rule 11 (Expression)
 
 
@@ -746,17 +731,11 @@ State 43
    14           | Expression . DIV Expression
    15           | Expression . MOD Expression
 
-    MUL      shift, and go to state 30
-    DIV      shift, and go to state 31
-    MOD      shift, and go to state 32
-    LESS     shift, and go to state 33
-    GREATER  shift, and go to state 34
-    AND      shift, and go to state 35
-    OR       shift, and go to state 36
+    MUL  shift, and go to state 30
+    DIV  shift, and go to state 31
+    MOD  shift, and go to state 32
 
     MOD       [reduce using rule 12 (Expression)]
-    LESS      [reduce using rule 12 (Expression)]
-    GREATER   [reduce using rule 12 (Expression)]
     $default  reduce using rule 12 (Expression)
 
 
@@ -773,15 +752,9 @@ State 44
    14           | Expression . DIV Expression
    15           | Expression . MOD Expression
 
-    MOD      shift, and go to state 32
-    LESS     shift, and go to state 33
-    GREATER  shift, and go to state 34
-    AND      shift, and go to state 35
-    OR       shift, and go to state 36
+    MOD  shift, and go to state 32
 
     MOD       [reduce using rule 13 (Expression)]
-    LESS      [reduce using rule 13 (Expression)]
-    GREATER   [reduce using rule 13 (Expression)]
     $default  reduce using rule 13 (Expression)
 
 
@@ -798,15 +771,9 @@ State 45
    14           | Expression DIV Expression .
    15           | Expression . MOD Expression
 
-    MOD      shift, and go to state 32
-    LESS     shift, and go to state 33
-    GREATER  shift, and go to state 34
-    AND      shift, and go to state 35
-    OR       shift, and go to state 36
+    MOD  shift, and go to state 32
 
     MOD       [reduce using rule 14 (Expression)]
-    LESS      [reduce using rule 14 (Expression)]
-    GREATER   [reduce using rule 14 (Expression)]
     $default  reduce using rule 14 (Expression)
 
 
@@ -858,25 +825,13 @@ State 47
    14           | Expression . DIV Expression
    15           | Expression . MOD Expression
 
-    ADD      shift, and go to state 28
-    SUB      shift, and go to state 29
-    MUL      shift, and go to state 30
-    DIV      shift, and go to state 31
-    MOD      shift, and go to state 32
-    LESS     shift, and go to state 33
-    GREATER  shift, and go to state 34
-    AND      shift, and go to state 35
-    OR       shift, and go to state 36
+    ADD  shift, and go to state 28
+    SUB  shift, and go to state 29
+    MUL  shift, and go to state 30
+    DIV  shift, and go to state 31
+    MOD  shift, and go to state 32
 
-    ADD       [reduce using rule 9 (Expression)]
-    SUB       [reduce using rule 9 (Expression)]
-    MUL       [reduce using rule 9 (Expression)]
-    DIV       [reduce using rule 9 (Expression)]
     MOD       [reduce using rule 9 (Expression)]
-    LESS      [reduce using rule 9 (Expression)]
-    GREATER   [reduce using rule 9 (Expression)]
-    AND       [reduce using rule 9 (Expression)]
-    OR        [reduce using rule 9 (Expression)]
     $default  reduce using rule 9 (Expression)
 
 
@@ -893,25 +848,13 @@ State 48
    14           | Expression . DIV Expression
    15           | Expression . MOD Expression
 
-    ADD      shift, and go to state 28
-    SUB      shift, and go to state 29
-    MUL      shift, and go to state 30
-    DIV      shift, and go to state 31
-    MOD      shift, and go to state 32
-    LESS     shift, and go to state 33
-    GREATER  shift, and go to state 34
-    AND      shift, and go to state 35
-    OR       shift, and go to state 36
+    ADD  shift, and go to state 28
+    SUB  shift, and go to state 29
+    MUL  shift, and go to state 30
+    DIV  shift, and go to state 31
+    MOD  shift, and go to state 32
 
-    ADD       [reduce using rule 10 (Expression)]
-    SUB       [reduce using rule 10 (Expression)]
-    MUL       [reduce using rule 10 (Expression)]
-    DIV       [reduce using rule 10 (Expression)]
     MOD       [reduce using rule 10 (Expression)]
-    LESS      [reduce using rule 10 (Expression)]
-    GREATER   [reduce using rule 10 (Expression)]
-    AND       [reduce using rule 10 (Expression)]
-    OR        [reduce using rule 10 (Expression)]
     $default  reduce using rule 10 (Expression)
 
 
@@ -928,13 +871,15 @@ State 49
    14           | Expression . DIV Expression
    15           | Expression . MOD Expression
 
+    ADD      shift, and go to state 28
+    SUB      shift, and go to state 29
+    MUL      shift, and go to state 30
+    DIV      shift, and go to state 31
     MOD      shift, and go to state 32
     LESS     shift, and go to state 33
     GREATER  shift, and go to state 34
 
     MOD       [reduce using rule 7 (Expression)]
-    LESS      [reduce using rule 7 (Expression)]
-    GREATER   [reduce using rule 7 (Expression)]
     $default  reduce using rule 7 (Expression)
 
 
@@ -951,33 +896,28 @@ State 50
    14           | Expression . DIV Expression
    15           | Expression . MOD Expression
 
+    ADD      shift, and go to state 28
+    SUB      shift, and go to state 29
+    MUL      shift, and go to state 30
+    DIV      shift, and go to state 31
     MOD      shift, and go to state 32
     LESS     shift, and go to state 33
     GREATER  shift, and go to state 34
 
     MOD       [reduce using rule 8 (Expression)]
-    LESS      [reduce using rule 8 (Expression)]
-    GREATER   [reduce using rule 8 (Expression)]
     $default  reduce using rule 8 (Expression)
 
 
 State 51
 
-    2 Statement: Statement . Statement
-    4          | WHILE LPAREN Expression RPAREN Statement .
+    4 Statement: WHILE LPAREN Expression RPAREN LBRACE . Statement RBRACE
 
     ID     shift, and go to state 1
     IF     shift, and go to state 2
     WHILE  shift, and go to state 3
     PRINT  shift, and go to state 4
 
-    ID        [reduce using rule 4 (Statement)]
-    IF        [reduce using rule 4 (Statement)]
-    WHILE     [reduce using rule 4 (Statement)]
-    PRINT     [reduce using rule 4 (Statement)]
-    $default  reduce using rule 4 (Statement)
-
-    Statement   go to state 12
+    Statement   go to state 54
     Identifier  go to state 7
 
 
@@ -997,11 +937,26 @@ State 53
     WHILE  shift, and go to state 3
     PRINT  shift, and go to state 4
 
-    Statement   go to state 54
+    Statement   go to state 55
     Identifier  go to state 7
 
 
 State 54
+
+    2 Statement: Statement . Statement
+    4          | WHILE LPAREN Expression RPAREN LBRACE Statement . RBRACE
+
+    ID      shift, and go to state 1
+    IF      shift, and go to state 2
+    WHILE   shift, and go to state 3
+    RBRACE  shift, and go to state 56
+    PRINT   shift, and go to state 4
+
+    Statement   go to state 12
+    Identifier  go to state 7
+
+
+State 55
 
     2 Statement: Statement . Statement
     3          | IF LPAREN Expression RPAREN Statement ELSE Statement .
@@ -1019,3 +974,10 @@ State 54
 
     Statement   go to state 12
     Identifier  go to state 7
+
+
+State 56
+
+    4 Statement: WHILE LPAREN Expression RPAREN LBRACE Statement RBRACE .
+
+    $default  reduce using rule 4 (Statement)
