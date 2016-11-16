@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include "../IVisitor.h"
 #include "CIdExpression.h"
 
 CIdExpression::CIdExpression( const char *_name, std::size_t *_address ) : \

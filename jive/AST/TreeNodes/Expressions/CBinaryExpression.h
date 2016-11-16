@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IExpression.h"
+#include "../IExpression.h"
 
 class CBinaryExpression : public IExpression
 {

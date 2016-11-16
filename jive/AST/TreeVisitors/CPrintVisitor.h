@@ -2,15 +2,7 @@
 
 #include <fstream>
 #include <cassert>
-#include "../IVisitor.h"
-#include "../IVisitorTarget.h"
 #include "../CProgram.h"
-#include "../TreeNodes/CCompoundStatement.h"
-#include "../TreeNodes/CAssignStatement.h"
-#include "../TreeNodes/CPrintStatement.h"
-#include "../TreeNodes/CIdExpression.h"
-#include "../TreeNodes/CBinaryExpression.h"
-#include "../TreeNodes/CNumberExpression.h"
 
 class CPrintVisitor : public IVisitor 
 {

@@ -1,4 +1,3 @@
-#include "../IVisitor.h"
 #include "CCompoundStatement.h"
 
 CCompoundStatement::CCompoundStatement( IStatement *_leftStatement, IStatement *_rightStatement ) : \

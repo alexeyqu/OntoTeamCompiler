@@ -1,4 +1,3 @@
-#include "../IVisitor.h"
 #include "CAssignStatement.h"
 
 CAssignStatement::CAssignStatement( IExpression *_leftOperand, IExpression *_rightOperand) : \

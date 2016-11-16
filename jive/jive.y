@@ -1,14 +1,7 @@
 %code requires {
-	#include <stdio.h>
-	#include <string.h>
+	#include <cstdio>
+	#include <cstring>
 	#include "AST/CProgram.h"
-	#include "AST/TreeNodes/CCompoundStatement.h"
-	#include "AST/TreeNodes/CAssignStatement.h"
-	#include "AST/TreeNodes/CPrintStatement.h"
-	#include "AST/TreeNodes/CIdExpression.h"
-	#include "AST/TreeNodes/CBinaryExpression.h"
-	#include "AST/TreeNodes/CNumberExpression.h"
-	#include "AST/TreeNodes/IExpression.h"
 
 	#define YYERROR_VERBOSE 1 
 }

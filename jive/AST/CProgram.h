@@ -1,8 +1,8 @@
 #pragma once
 
 #include "IVisitorTarget.h"
-#include "TreeNodes/IStatement.h"
-#include "TreeNodes/CBinaryExpression.h"
+#include "TreeNodes/Statements.h"
+#include "TreeNodes/Expressions.h"
 
 class CProgram : public IVisitorTarget 
 {

@@ -1,8 +1,6 @@
 #include <iostream>
 #include <sstream>
 #include <memory>
-#include "AST/TreeNodes/CBinaryExpression.h"
-#include "AST/TreeNodes/CNumberExpression.h"
 #include "AST/TreeVisitors/CPrintVisitor.h"
 #include "AST/CProgram.h"
 #include "jive.tab.h"

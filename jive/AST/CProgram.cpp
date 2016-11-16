@@ -1,4 +1,3 @@
-#include "IVisitor.h"
 #include "CProgram.h"
 
 CProgram::CProgram( IStatement *_statement ) : statement( _statement ) {}

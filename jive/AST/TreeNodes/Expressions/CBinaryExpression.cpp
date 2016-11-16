@@ -1,4 +1,3 @@
-#include "../IVisitor.h"
 #include "CBinaryExpression.h"
 
 CBinaryExpression::CBinaryExpression( IExpression *_leftOperand, enums::TOperation _operation, IExpression *_rightOperand) : \

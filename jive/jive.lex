@@ -1,8 +1,8 @@
 /* flex grammar for a sample minijava code */
 
 %{
-    #include <math.h>
-    #include <stdio.h>
+    #include <cmath>
+    #include <cstdio>
     #include "jive.tab.h"
 
     extern YYLTYPE yylloc;

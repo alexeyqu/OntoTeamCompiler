@@ -1,4 +1,3 @@
-#include "../IVisitor.h"
 #include "CPrintStatement.h"
 
 CPrintStatement::CPrintStatement( IExpression *_operand ) : \
