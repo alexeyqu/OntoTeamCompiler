@@ -16,7 +16,31 @@ void CPrintVisitor::Start( IVisitorTarget *vertex, std::string graphname ) {
 }
 
 void CPrintVisitor::Visit( CProgram *program ) {
-    program->expression->Accept(this);
+    program->statement->Accept(this);
+}
+
+void CPrintVisitor::Visit( CAssignStatement *statement ) {
+    long stmId = generateId(statement);
+
+    file << stmId << ";\n";
+    file << stmId << "[label = \"=\"];\n";
+
+    file << stmId << "->";
+    statement->leftOperand->Accept(this);
+
+    file << stmId << "->";
+    statement->rightOperand->Accept(this);
+}
+
+void CPrintVisitor::Visit( CIdExpression *expression ) {
+    long exprId = generateId(expression);
+
+    file << exprId << "\n";
+    file << exprId << "[label = \"IdExp\"];\n";
+
+    long nameId = generateId(&expression->name);
+    file << exprId << "->" << nameId << ";\n";
+    file << nameId << "[label = \"" << expression->name << "\", xlabel = \"" << expression->address << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CBinaryExpression *expression ) {
@@ -33,22 +57,22 @@ void CPrintVisitor::Visit( CBinaryExpression *expression ) {
     switch(expression->operation) {
         case enums::TOperation::ADD:
             file << operationId << ";\n";
-            file << operationId << "[label= \"+\" ];\n";
+            file << operationId << "[label = \"+\" ];\n";
             break;
 
         case enums::TOperation::SUB:
             file << operationId << ";\n";
-            file << operationId << "[label= \"-\" ];\n";
+            file << operationId << "[label = \"-\" ];\n";
             break;
 
         case enums::TOperation::MUL:
             file << operationId << ";\n";
-            file << operationId << "[label= \"*\" ];\n";
+            file << operationId << "[label = \"*\" ];\n";
             break;
 
         case enums::TOperation::DIV:
             file << operationId << ";\n";
-            file << operationId << "[label= \"/\" ];\n";
+            file << operationId << "[label = \"/\" ];\n";
             break;
     }
 
@@ -64,7 +88,7 @@ void CPrintVisitor::Visit( CNumberExpression *expression ) {
 
     long numberId = generateId(&expression->number);
     file << exprId << "->" << numberId << ";\n";
-    file << numberId << "[label=" << expression->number << "];\n";
+    file << numberId << "[label = \"" << expression->number << "\"];\n";
 }
 
 std::size_t  CPrintVisitor::generateId( void *entity )
@@ -74,5 +98,5 @@ std::size_t  CPrintVisitor::generateId( void *entity )
         assert(!"Error in CPrintVisitor::generateId : nullptr");
     }
 
-    return reinterpret_cast<long>( entity );
+    return reinterpret_cast<long>( entity ); // TODO move to std::hash
 }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "IVisitor.h"
 #include "../jive.h"
 

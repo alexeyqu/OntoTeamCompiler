@@ -1,10 +1,12 @@
 %code requires {
 	#include <stdio.h>
 	#include <string.h>
+	#include "AST/CProgram.h"
+	#include "AST/TreeNodes/CAssignStatement.h"
+	#include "AST/TreeNodes/CIdExpression.h"
 	#include "AST/TreeNodes/CBinaryExpression.h"
 	#include "AST/TreeNodes/CNumberExpression.h"
 	#include "AST/TreeNodes/IExpression.h"
-	#include "AST/CProgram.h"
 
 	#define YYERROR_VERBOSE 1 
 }
@@ -25,7 +27,9 @@
 %union {
 	char *string;
 	CProgram *Program;
+	IStatement *Statement;
 	IExpression *Expression;
+	IExpression *Identifier;
 }
 
 %token <string> NUM
@@ -47,16 +51,23 @@
 %left MUL DIV
 
 %type <Program> Program
+%type <Statement> Statement
 %type <Expression> Expression
+%type <Expression> Identifier
 
 %start Program
 
 %%
 
-Program: Expression { *program = $$ = new CProgram( $1 ); }
+Program: Statement { *program = $$ = new CProgram( $1 ); }
+;
+
+Statement: Identifier EQU Expression SEMI { $$ = new CAssignStatement( $1, $3 ); }
 ;
 
 Expression:	NUM { $$ = new CNumberExpression( $1 ); }
+			|
+			Identifier { $$ = $1; }
 			|
 			Expression ADD Expression { $$ = new CBinaryExpression( $1, enums::ADD, $3 ); }
 			|
@@ -65,6 +76,11 @@ Expression:	NUM { $$ = new CNumberExpression( $1 ); }
 			Expression MUL Expression { $$ = new CBinaryExpression( $1, enums::MUL, $3 ); }
 			|
 			Expression DIV Expression { $$ = new CBinaryExpression( $1, enums::DIV, $3 ); }
-	;
+			|
+			LPAREN Expression RPAREN { $$ = $2; }
+;
+
+Identifier: ID { $$ = new CIdExpression( $1 ); }
+;
 
 %%

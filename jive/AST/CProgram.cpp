@@ -1,7 +1,7 @@
 #include "IVisitor.h"
 #include "CProgram.h"
 
-CProgram::CProgram( IExpression *_expression ) : expression( _expression ) {}
+CProgram::CProgram( IStatement *_statement ) : statement( _statement ) {}
  
 void CProgram::Accept( IVisitor *visitor ) {
 	visitor->Visit(this);
