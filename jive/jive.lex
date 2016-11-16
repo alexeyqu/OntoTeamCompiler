@@ -97,10 +97,13 @@ false       { PROCESS_LEXEM(FALSE); }
 "&"         { PROCESS_LEXEM(AMPERSAND); }
 ";"         { PROCESS_LEXEM(SEMI); }
 
+            /* COMMANDS */
+
+print       { PROCESS_LEXEM(PRINT); }
+
             /* IDENTIFIERS */
 
 {ID}+       { yylval.string = yytext; PROCESS_LEXEM(ID); }
-
 
             /* STRING */
 
@@ -113,8 +116,8 @@ false       { PROCESS_LEXEM(FALSE); }
 
             /* WHITESPACE */
 
-"\n"        { printf("\n"); }
-[ \t]+      { printf( "%s", yytext ); }
+"\n"        { ; /* printf("\n"); */ }
+[ \t]+      { ; /* printf( "%s", yytext ); */ }
 
             /* EOFS */
 

@@ -2,7 +2,9 @@
 	#include <stdio.h>
 	#include <string.h>
 	#include "AST/CProgram.h"
+	#include "AST/TreeNodes/CCompoundStatement.h"
 	#include "AST/TreeNodes/CAssignStatement.h"
+	#include "AST/TreeNodes/CPrintStatement.h"
 	#include "AST/TreeNodes/CIdExpression.h"
 	#include "AST/TreeNodes/CBinaryExpression.h"
 	#include "AST/TreeNodes/CNumberExpression.h"
@@ -45,6 +47,7 @@
 %token EQU EQUEQU ADD SUB MUL DIV MOD LESS GREATER
 %token TRUE FALSE AND OR NOT
 %token COMMA DOT SEMI AMPERSAND
+%token PRINT
 %token ERROR
 
 %left ADD SUB
@@ -62,7 +65,11 @@
 Program: Statement { *program = $$ = new CProgram( $1 ); }
 ;
 
-Statement: Identifier EQU Expression SEMI { $$ = new CAssignStatement( $1, $3 ); }
+Statement:  Statement Statement { $$ = new CCompoundStatement( $1, $2 ); }
+			|
+			Identifier EQU Expression SEMI { $$ = new CAssignStatement( $1, $3 ); }
+			|
+			PRINT LPAREN Identifier RPAREN SEMI { $$ = new CPrintStatement( $3 ); }
 ;
 
 Expression:	NUM { $$ = new CNumberExpression( $1 ); }

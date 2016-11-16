@@ -2,7 +2,7 @@ CC = g++
 LEX = flex
 CFLAGS = --std=c++11 # -lasan -O -g -fsanitize=address -fno-omit-frame-pointer
 
-jive: jive.tab.o lex.yy.o AST/CProgram.o AST/TreeNodes/CAssignStatement.o AST/TreeNodes/CIdExpression.o AST/TreeNodes/CNumberExpression.o AST/TreeNodes/CBinaryExpression.o AST/TreeNodes/CPrintVisitor.o main.o
+jive: jive.tab.o lex.yy.o AST/CProgram.o AST/TreeNodes/CCompoundStatement.o AST/TreeNodes/CPrintStatement.o AST/TreeNodes/CAssignStatement.o AST/TreeNodes/CIdExpression.o AST/TreeNodes/CNumberExpression.o AST/TreeNodes/CBinaryExpression.o AST/TreeNodes/CPrintVisitor.o main.o
 	$(CC) $(CFLAGS) $^ -lfl -o $@
 
 main.o: main.cpp
@@ -19,7 +19,13 @@ jive.tab.o: jive.y
 AST/CProgram.o: AST/CProgram.cpp
 	$(CC) $(CFLAGS) -c $^ -o $@
 
+AST/TreeNodes/CCompoundStatement.o: AST/TreeNodes/CCompoundStatement.cpp
+	$(CC) $(CFLAGS) -c $^ -o $@
+
 AST/TreeNodes/CAssignStatement.o: AST/TreeNodes/CAssignStatement.cpp
+	$(CC) $(CFLAGS) -c $^ -o $@
+
+AST/TreeNodes/CPrintStatement.o: AST/TreeNodes/CPrintStatement.cpp
 	$(CC) $(CFLAGS) -c $^ -o $@
 
 AST/TreeNodes/CIdExpression.o: AST/TreeNodes/CIdExpression.cpp

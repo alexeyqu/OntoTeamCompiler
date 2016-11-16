@@ -35,31 +35,36 @@ Terminals unused in grammar
    ERROR
 
 
+State 8 conflicts: 2 shift/reduce
+
+
 Grammar
 
     0 $accept: Program $end
 
     1 Program: Statement
 
-    2 Statement: Identifier EQU Expression SEMI
+    2 Statement: Statement Statement
+    3          | Identifier EQU Expression SEMI
+    4          | PRINT LPAREN Identifier RPAREN SEMI
 
-    3 Expression: NUM
-    4           | Identifier
-    5           | Expression ADD Expression
-    6           | Expression SUB Expression
-    7           | Expression MUL Expression
-    8           | Expression DIV Expression
-    9           | LPAREN Expression RPAREN
+    5 Expression: NUM
+    6           | Identifier
+    7           | Expression ADD Expression
+    8           | Expression SUB Expression
+    9           | Expression MUL Expression
+   10           | Expression DIV Expression
+   11           | LPAREN Expression RPAREN
 
-   10 Identifier: ID
+   12 Identifier: ID
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
 error (256)
-NUM (258) 3
-ID (259) 10
+NUM (258) 5
+ID (259) 12
 STRING (260)
 VOID (261)
 INT (262)
@@ -76,18 +81,18 @@ WHILE (272)
 FOR (273)
 RETURN (274)
 NIL (275)
-LPAREN (276) 9
-RPAREN (277) 9
+LPAREN (276) 4 11
+RPAREN (277) 4 11
 LBRACE (278)
 RBRACE (279)
 LBRACKET (280)
 RBRACKET (281)
-EQU (282) 2
+EQU (282) 3
 EQUEQU (283)
-ADD (284) 5
-SUB (285) 6
-MUL (286) 7
-DIV (287) 8
+ADD (284) 7
+SUB (285) 8
+MUL (286) 9
+DIV (287) 10
 MOD (288)
 LESS (289)
 GREATER (290)
@@ -98,246 +103,308 @@ OR (294)
 NOT (295)
 COMMA (296)
 DOT (297)
-SEMI (298) 2
+SEMI (298) 3 4
 AMPERSAND (299)
-ERROR (300)
+PRINT (300) 4
+ERROR (301)
 
 
 Nonterminals, with rules where they appear
 
-$accept (46)
+$accept (47)
     on left: 0
-Program (47)
+Program (48)
     on left: 1, on right: 0
-Statement (48)
-    on left: 2, on right: 1
-Expression (49)
-    on left: 3 4 5 6 7 8 9, on right: 2 5 6 7 8 9
-Identifier (50)
-    on left: 10, on right: 2 4
+Statement (49)
+    on left: 2 3 4, on right: 1 2
+Expression (50)
+    on left: 5 6 7 8 9 10 11, on right: 3 7 8 9 10 11
+Identifier (51)
+    on left: 12, on right: 3 4 6
 
 
 State 0
 
     0 $accept: . Program $end
 
-    ID  shift, and go to state 1
+    ID     shift, and go to state 1
+    PRINT  shift, and go to state 2
 
-    Program     go to state 2
-    Statement   go to state 3
-    Identifier  go to state 4
+    Program     go to state 3
+    Statement   go to state 4
+    Identifier  go to state 5
 
 
 State 1
 
-   10 Identifier: ID .
+   12 Identifier: ID .
 
-    $default  reduce using rule 10 (Identifier)
+    $default  reduce using rule 12 (Identifier)
 
 
 State 2
 
-    0 $accept: Program . $end
+    4 Statement: PRINT . LPAREN Identifier RPAREN SEMI
 
-    $end  shift, and go to state 5
+    LPAREN  shift, and go to state 6
 
 
 State 3
 
-    1 Program: Statement .
+    0 $accept: Program . $end
 
-    $default  reduce using rule 1 (Program)
+    $end  shift, and go to state 7
 
 
 State 4
 
-    2 Statement: Identifier . EQU Expression SEMI
+    1 Program: Statement .
+    2 Statement: Statement . Statement
 
-    EQU  shift, and go to state 6
+    ID     shift, and go to state 1
+    PRINT  shift, and go to state 2
+
+    $default  reduce using rule 1 (Program)
+
+    Statement   go to state 8
+    Identifier  go to state 5
 
 
 State 5
+
+    3 Statement: Identifier . EQU Expression SEMI
+
+    EQU  shift, and go to state 9
+
+
+State 6
+
+    4 Statement: PRINT LPAREN . Identifier RPAREN SEMI
+
+    ID  shift, and go to state 1
+
+    Identifier  go to state 10
+
+
+State 7
 
     0 $accept: Program $end .
 
     $default  accept
 
 
-State 6
-
-    2 Statement: Identifier EQU . Expression SEMI
-
-    NUM     shift, and go to state 7
-    ID      shift, and go to state 1
-    LPAREN  shift, and go to state 8
-
-    Expression  go to state 9
-    Identifier  go to state 10
-
-
-State 7
-
-    3 Expression: NUM .
-
-    $default  reduce using rule 3 (Expression)
-
-
 State 8
 
-    9 Expression: LPAREN . Expression RPAREN
+    2 Statement: Statement . Statement
+    2          | Statement Statement .
 
-    NUM     shift, and go to state 7
-    ID      shift, and go to state 1
-    LPAREN  shift, and go to state 8
+    ID     shift, and go to state 1
+    PRINT  shift, and go to state 2
 
-    Expression  go to state 11
-    Identifier  go to state 10
+    ID        [reduce using rule 2 (Statement)]
+    PRINT     [reduce using rule 2 (Statement)]
+    $default  reduce using rule 2 (Statement)
+
+    Statement   go to state 8
+    Identifier  go to state 5
 
 
 State 9
 
-    2 Statement: Identifier EQU Expression . SEMI
-    5 Expression: Expression . ADD Expression
-    6           | Expression . SUB Expression
-    7           | Expression . MUL Expression
-    8           | Expression . DIV Expression
+    3 Statement: Identifier EQU . Expression SEMI
 
-    ADD   shift, and go to state 12
-    SUB   shift, and go to state 13
-    MUL   shift, and go to state 14
-    DIV   shift, and go to state 15
-    SEMI  shift, and go to state 16
+    NUM     shift, and go to state 11
+    ID      shift, and go to state 1
+    LPAREN  shift, and go to state 12
+
+    Expression  go to state 13
+    Identifier  go to state 14
 
 
 State 10
 
-    4 Expression: Identifier .
+    4 Statement: PRINT LPAREN Identifier . RPAREN SEMI
 
-    $default  reduce using rule 4 (Expression)
+    RPAREN  shift, and go to state 15
 
 
 State 11
 
-    5 Expression: Expression . ADD Expression
-    6           | Expression . SUB Expression
-    7           | Expression . MUL Expression
-    8           | Expression . DIV Expression
-    9           | LPAREN Expression . RPAREN
-
-    RPAREN  shift, and go to state 17
-    ADD     shift, and go to state 12
-    SUB     shift, and go to state 13
-    MUL     shift, and go to state 14
-    DIV     shift, and go to state 15
-
-
-State 12
-
-    5 Expression: Expression ADD . Expression
-
-    NUM     shift, and go to state 7
-    ID      shift, and go to state 1
-    LPAREN  shift, and go to state 8
-
-    Expression  go to state 18
-    Identifier  go to state 10
-
-
-State 13
-
-    6 Expression: Expression SUB . Expression
-
-    NUM     shift, and go to state 7
-    ID      shift, and go to state 1
-    LPAREN  shift, and go to state 8
-
-    Expression  go to state 19
-    Identifier  go to state 10
-
-
-State 14
-
-    7 Expression: Expression MUL . Expression
-
-    NUM     shift, and go to state 7
-    ID      shift, and go to state 1
-    LPAREN  shift, and go to state 8
-
-    Expression  go to state 20
-    Identifier  go to state 10
-
-
-State 15
-
-    8 Expression: Expression DIV . Expression
-
-    NUM     shift, and go to state 7
-    ID      shift, and go to state 1
-    LPAREN  shift, and go to state 8
-
-    Expression  go to state 21
-    Identifier  go to state 10
-
-
-State 16
-
-    2 Statement: Identifier EQU Expression SEMI .
-
-    $default  reduce using rule 2 (Statement)
-
-
-State 17
-
-    9 Expression: LPAREN Expression RPAREN .
-
-    $default  reduce using rule 9 (Expression)
-
-
-State 18
-
-    5 Expression: Expression . ADD Expression
-    5           | Expression ADD Expression .
-    6           | Expression . SUB Expression
-    7           | Expression . MUL Expression
-    8           | Expression . DIV Expression
-
-    MUL  shift, and go to state 14
-    DIV  shift, and go to state 15
+    5 Expression: NUM .
 
     $default  reduce using rule 5 (Expression)
 
 
-State 19
+State 12
 
-    5 Expression: Expression . ADD Expression
-    6           | Expression . SUB Expression
-    6           | Expression SUB Expression .
-    7           | Expression . MUL Expression
-    8           | Expression . DIV Expression
+   11 Expression: LPAREN . Expression RPAREN
 
-    MUL  shift, and go to state 14
-    DIV  shift, and go to state 15
+    NUM     shift, and go to state 11
+    ID      shift, and go to state 1
+    LPAREN  shift, and go to state 12
+
+    Expression  go to state 16
+    Identifier  go to state 14
+
+
+State 13
+
+    3 Statement: Identifier EQU Expression . SEMI
+    7 Expression: Expression . ADD Expression
+    8           | Expression . SUB Expression
+    9           | Expression . MUL Expression
+   10           | Expression . DIV Expression
+
+    ADD   shift, and go to state 17
+    SUB   shift, and go to state 18
+    MUL   shift, and go to state 19
+    DIV   shift, and go to state 20
+    SEMI  shift, and go to state 21
+
+
+State 14
+
+    6 Expression: Identifier .
 
     $default  reduce using rule 6 (Expression)
 
 
+State 15
+
+    4 Statement: PRINT LPAREN Identifier RPAREN . SEMI
+
+    SEMI  shift, and go to state 22
+
+
+State 16
+
+    7 Expression: Expression . ADD Expression
+    8           | Expression . SUB Expression
+    9           | Expression . MUL Expression
+   10           | Expression . DIV Expression
+   11           | LPAREN Expression . RPAREN
+
+    RPAREN  shift, and go to state 23
+    ADD     shift, and go to state 17
+    SUB     shift, and go to state 18
+    MUL     shift, and go to state 19
+    DIV     shift, and go to state 20
+
+
+State 17
+
+    7 Expression: Expression ADD . Expression
+
+    NUM     shift, and go to state 11
+    ID      shift, and go to state 1
+    LPAREN  shift, and go to state 12
+
+    Expression  go to state 24
+    Identifier  go to state 14
+
+
+State 18
+
+    8 Expression: Expression SUB . Expression
+
+    NUM     shift, and go to state 11
+    ID      shift, and go to state 1
+    LPAREN  shift, and go to state 12
+
+    Expression  go to state 25
+    Identifier  go to state 14
+
+
+State 19
+
+    9 Expression: Expression MUL . Expression
+
+    NUM     shift, and go to state 11
+    ID      shift, and go to state 1
+    LPAREN  shift, and go to state 12
+
+    Expression  go to state 26
+    Identifier  go to state 14
+
+
 State 20
 
-    5 Expression: Expression . ADD Expression
-    6           | Expression . SUB Expression
-    7           | Expression . MUL Expression
-    7           | Expression MUL Expression .
-    8           | Expression . DIV Expression
+   10 Expression: Expression DIV . Expression
 
-    $default  reduce using rule 7 (Expression)
+    NUM     shift, and go to state 11
+    ID      shift, and go to state 1
+    LPAREN  shift, and go to state 12
+
+    Expression  go to state 27
+    Identifier  go to state 14
 
 
 State 21
 
-    5 Expression: Expression . ADD Expression
-    6           | Expression . SUB Expression
-    7           | Expression . MUL Expression
-    8           | Expression . DIV Expression
-    8           | Expression DIV Expression .
+    3 Statement: Identifier EQU Expression SEMI .
+
+    $default  reduce using rule 3 (Statement)
+
+
+State 22
+
+    4 Statement: PRINT LPAREN Identifier RPAREN SEMI .
+
+    $default  reduce using rule 4 (Statement)
+
+
+State 23
+
+   11 Expression: LPAREN Expression RPAREN .
+
+    $default  reduce using rule 11 (Expression)
+
+
+State 24
+
+    7 Expression: Expression . ADD Expression
+    7           | Expression ADD Expression .
+    8           | Expression . SUB Expression
+    9           | Expression . MUL Expression
+   10           | Expression . DIV Expression
+
+    MUL  shift, and go to state 19
+    DIV  shift, and go to state 20
+
+    $default  reduce using rule 7 (Expression)
+
+
+State 25
+
+    7 Expression: Expression . ADD Expression
+    8           | Expression . SUB Expression
+    8           | Expression SUB Expression .
+    9           | Expression . MUL Expression
+   10           | Expression . DIV Expression
+
+    MUL  shift, and go to state 19
+    DIV  shift, and go to state 20
 
     $default  reduce using rule 8 (Expression)
+
+
+State 26
+
+    7 Expression: Expression . ADD Expression
+    8           | Expression . SUB Expression
+    9           | Expression . MUL Expression
+    9           | Expression MUL Expression .
+   10           | Expression . DIV Expression
+
+    $default  reduce using rule 9 (Expression)
+
+
+State 27
+
+    7 Expression: Expression . ADD Expression
+    8           | Expression . SUB Expression
+    9           | Expression . MUL Expression
+   10           | Expression . DIV Expression
+   10           | Expression DIV Expression .
+
+    $default  reduce using rule 10 (Expression)

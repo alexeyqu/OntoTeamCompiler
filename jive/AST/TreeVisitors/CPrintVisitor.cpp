@@ -19,6 +19,19 @@ void CPrintVisitor::Visit( CProgram *program ) {
     program->statement->Accept(this);
 }
 
+void CPrintVisitor::Visit( CCompoundStatement *statement ) {
+    long stmId = generateId(statement);
+
+    file << stmId << ";\n";
+    file << stmId << "[label = \"CompoundStm\"];\n";
+
+    file << stmId << "->";
+    statement->leftStatement->Accept(this);
+
+    file << stmId << "->";
+    statement->rightStatement->Accept(this);
+}
+
 void CPrintVisitor::Visit( CAssignStatement *statement ) {
     long stmId = generateId(statement);
 
@@ -30,6 +43,16 @@ void CPrintVisitor::Visit( CAssignStatement *statement ) {
 
     file << stmId << "->";
     statement->rightOperand->Accept(this);
+}
+
+void CPrintVisitor::Visit( CPrintStatement *statement ) {
+    long stmId = generateId(statement);
+
+    file << stmId << ";\n";
+    file << stmId << "[label = \"Print\"];\n";
+
+    file << stmId << "->";
+    statement->operand->Accept(this);
 }
 
 void CPrintVisitor::Visit( CIdExpression *expression ) {
