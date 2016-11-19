@@ -1,7 +1,7 @@
 %code requires {
 	#include <cstdio>
 	#include <cstring>
-	#include "AST/CProgram.h"
+	#include "CProgram.h"
 
 	#define YYERROR_VERBOSE 1 
 }
