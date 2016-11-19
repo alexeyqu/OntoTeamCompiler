@@ -54,7 +54,7 @@
 %left MUL DIV
 
 %type <Program> Program
-%type <Tmp> Tmp;
+%type <Tmp> Tmp
 %type <Type> Type
 %type <VarDeclaration> VarDeclaration
 %type <Identifier> Identifier
@@ -80,9 +80,15 @@ VarDeclaration:	Type Identifier SEMI { $$ = new CField( $1, $2 ); }
 
 Statement:  Statement Statement { $$ = new CCompoundStatement( $1, $2 ); }
 			|
-			IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfStatement( $3, $5, $7 ); }
+			IF LPAREN Expression RPAREN 
+				Statement 
+			ELSE 
+				Statement { $$ = new CIfStatement( $3, $5, $7 ); }
 			|
-			WHILE LPAREN Expression RPAREN LBRACE Statement RBRACE { $$ = new CWhileStatement( $3, $6 ); }
+			WHILE LPAREN Expression RPAREN 
+			LBRACE 
+				Statement 
+			RBRACE { $$ = new CWhileStatement( $3, $6 ); }
 			|
 			PRINT LPAREN Identifier RPAREN SEMI { $$ = new CPrintStatement( $3 ); }
 			|
