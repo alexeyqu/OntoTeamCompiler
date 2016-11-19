@@ -26,7 +26,9 @@ CC = g++-4.8
 
 # flags #
 CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD
-INCLUDES = -I $(AUTO_PATH) -I include -I include/AST -I include/AST/TreeNodes -I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeVisitors -I /usr/local/include
+INCLUDES = -I $(AUTO_PATH) -I include -I include/AST \
+	-I include/AST/TreeNodes -I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities \
+	-I include/AST/TreeVisitors -I /usr/local/include
 LIBS = -lasan -lfl
 
 .PHONY: default_target
@@ -80,5 +82,5 @@ obj/jive.yy.o: src/jive.lex
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(AUTO_PATH)/jive.yy.c -o $(BUILD_PATH)/jive.yy.o
 
 obj/jive.tab.o: src/jive.y
-	bison -d -v -o $(AUTO_PATH)/jive.tab.c $^
+	bison -d -v -o $(AUTO_PATH)/jive.tab.c src/jive.y
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(AUTO_PATH)/jive.tab.c -o $(BUILD_PATH)/jive.tab.o

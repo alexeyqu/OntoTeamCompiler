@@ -70,8 +70,8 @@ null        { PROCESS_LEXEM(NIL); }
 
             /* ARITHMETICS */
 
-"=="        { PROCESS_LEXEM(EQUEQU); }
-"="         { PROCESS_LEXEM(EQU); }
+"=="        { PROCESS_LEXEM(EQU); }
+"="         { PROCESS_LEXEM(ASSIGN); }
 "+"         { PROCESS_LEXEM(ADD); }
 "-"         { PROCESS_LEXEM(SUB); }
 "*"         { PROCESS_LEXEM(MUL); }

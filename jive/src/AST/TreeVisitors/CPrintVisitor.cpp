@@ -16,7 +16,50 @@ void CPrintVisitor::Start( IVisitorTarget *vertex, std::string graphname ) {
 }
 
 void CPrintVisitor::Visit( CProgram *program ) {
-    program->statement->Accept(this);
+    program->rootVertex->Accept(this);
+}
+
+
+void CPrintVisitor::Visit( CCompoundTmp *tmp )
+{
+    long tmpId = generateId(tmp);
+
+    file << tmpId << ";\n";
+    file << tmpId << "[label = \"tmp\"];\n";
+
+    file << tmpId << "->";
+    tmp->tmp1->Accept(this);
+
+    file << tmpId << "->";
+    tmp->tmp2->Accept(this);
+}
+
+void CPrintVisitor::Visit( CType *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    switch(entity->type) {
+    case enums::TType::INTEGER:
+        file << entityId << "[label = \"int\" ];\n";
+        break;
+
+    case enums::TType::BOOLEAN:
+        file << entityId << "[label = \"bool\" ];\n";
+        break;
+    }
+}
+
+void CPrintVisitor::Visit( CField *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"FieldNtt\"];\n";
+
+    file << entityId << "->";
+    entity->type->Accept(this);
+
+    file << entityId << "->";
+    entity->id->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundStatement *statement ) {

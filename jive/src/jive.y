@@ -22,9 +22,14 @@
 %union {
 	char *string;
 	CProgram *Program;
+	IVisitorTarget *Tmp;
+	CType* Type;
+	CField* VarDeclaration;
+	CIdExpression *Identifier;
+
+	IEntity *Entity;
 	IStatement *Statement;
 	IExpression *Expression;
-	IExpression *Identifier;
 }
 
 %token <string> NUM
@@ -37,7 +42,7 @@
 %token WHILE FOR
 %token RETURN NIL
 %token LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET
-%token EQU EQUEQU ADD SUB MUL DIV MOD LESS GREATER
+%token ASSIGN EQU ADD SUB MUL DIV MOD LESS GREATER
 %token TRUE FALSE AND OR NOT
 %token COMMA DOT SEMI AMPERSAND
 %token PRINT
@@ -49,15 +54,28 @@
 %left MUL DIV
 
 %type <Program> Program
+%type <Tmp> Tmp;
+%type <Type> Type
+%type <VarDeclaration> VarDeclaration
+%type <Identifier> Identifier
 %type <Statement> Statement
 %type <Expression> Expression
-%type <Expression> Identifier
 
 %start Program
 
 %%
 
-Program: Statement { *program = $$ = new CProgram( $1 ); }
+Program: 	Tmp { *program = $$ = new CProgram( $1 ); }
+;
+
+Tmp:	Tmp Tmp { $$ = new CCompoundTmp( $1, $2 ); }
+		|
+		VarDeclaration { $$ = $1; }
+		|
+		Statement { $$ = $1; }
+;
+
+VarDeclaration:	Type Identifier SEMI { $$ = new CField( $1, $2 ); }
 ;
 
 Statement:  Statement Statement { $$ = new CCompoundStatement( $1, $2 ); }
@@ -68,7 +86,12 @@ Statement:  Statement Statement { $$ = new CCompoundStatement( $1, $2 ); }
 			|
 			PRINT LPAREN Identifier RPAREN SEMI { $$ = new CPrintStatement( $3 ); }
 			|
-			Identifier EQU Expression SEMI { $$ = new CAssignStatement( $1, $3 ); }
+			Identifier ASSIGN Expression SEMI { $$ = new CAssignStatement( $1, $3 ); }
+;
+
+Type:	INT { $$ = new CType( enums::INTEGER ); }
+		|
+		BOOL { $$ = new CType( enums::BOOLEAN ); }
 ;
 
 Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, enums::AND, $3 ); }
@@ -102,6 +125,8 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			NOT Expression { $$ = new CBooleanExpression( !$2 ); }
 			|
 			LPAREN Expression RPAREN { $$ = $2; }
+			|
+			SUB Expression { $$ = new CBinaryExpression ($2, enums::MUL, new CNumberExpression ( "-1" ) ); } // FIXIT
 ;
 
 Identifier: ID { $$ = new CIdExpression( $1 ); }
@@ -113,11 +138,11 @@ Identifier: ID { $$ = new CIdExpression( $1 ); }
 	Goal ::= MainClass ( ClassDeclaration )* <EOF>
 	MainClass ::= "class" Identifier "{" "public" "static" "void" "main" "(" "String" "[" "]" Identifier ")" "{" Statement "}" "}"
 	ClassDeclaration ::= "class" Identifier ( "extends" Identifier )? "{" ( VarDeclaration )* ( MethodDeclaration )* "}"
-	VarDeclaration ::= Type Identifier ";"
+q	VarDeclaration ::= Type Identifier ";"
 	MethodDeclaration ::= "public" | “private” Type Identifier "(" ( Type Identifier ( "," Type Identifier )* )? ")" "{" ( VarDeclaration )*( Statement )* "return" Expression ";" "}"
 	Type ::= "int" "[" "]"
-	| "boolean"
-	| "int"
+q	| "boolean"
+q	| "int"
 	| Identifier
 	Statement ::= "{" ( Statement )* "}"
 q	| "if" "(" Expression ")" Statement "else" Statement

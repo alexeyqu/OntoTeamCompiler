@@ -10,6 +10,9 @@ public:
 	void Start( IVisitorTarget *vertex, std::string graphname );
 	
 	void Visit( CProgram *program );
+   	void Visit( CCompoundTmp *tmp );
+	void Visit( CType *entity );
+	void Visit( CField *entity );
 	void Visit( CCompoundStatement *statement );
 	void Visit( CAssignStatement *statement );
 	void Visit( CPrintStatement *statement );

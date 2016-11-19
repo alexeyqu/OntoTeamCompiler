@@ -79,8 +79,8 @@ extern int yydebug;
     RBRACE = 279,
     LBRACKET = 280,
     RBRACKET = 281,
-    EQU = 282,
-    EQUEQU = 283,
+    ASSIGN = 282,
+    EQU = 283,
     ADD = 284,
     SUB = 285,
     MUL = 286,
@@ -111,11 +111,16 @@ union YYSTYPE
 
 	char *string;
 	CProgram *Program;
+	IVisitorTarget *Tmp;
+	CType* Type;
+	CField* VarDeclaration;
+	CIdExpression *Identifier;
+
+	IEntity *Entity;
 	IStatement *Statement;
 	IExpression *Expression;
-	IExpression *Identifier;
 
-#line 119 "auto/jive.tab.h" /* yacc.c:1909  */
+#line 124 "auto/jive.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

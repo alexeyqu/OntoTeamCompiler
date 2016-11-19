@@ -3,6 +3,9 @@
 #include "../jive.h"
 
 class CProgram;
+class CCompoundTmp;
+class CType;
+class CField;
 class CCompoundStatement;
 class CAssignStatement;
 class CPrintStatement;
@@ -19,6 +22,9 @@ class IVisitor
 {
 public:
    	virtual void Visit( CProgram *program ) = 0;
+   	virtual void Visit( CCompoundTmp *tmp ) = 0;
+   	virtual void Visit( CType *entity ) = 0;
+   	virtual void Visit( CField *entity ) = 0;
 	virtual void Visit( CCompoundStatement *statement ) = 0;
 	virtual void Visit( CAssignStatement *statement ) = 0;
 	virtual void Visit( CPrintStatement *statement ) = 0;

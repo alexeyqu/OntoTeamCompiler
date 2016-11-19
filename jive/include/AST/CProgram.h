@@ -1,15 +1,16 @@
 #pragma once
 
 #include "IVisitorTarget.h"
+#include "TreeNodes/Entities.h"
 #include "TreeNodes/Statements.h"
 #include "TreeNodes/Expressions.h"
 
 class CProgram : public IVisitorTarget 
 {
 public:
-	CProgram( IStatement *_statement );
+	CProgram( IVisitorTarget *_rootVertex );
 
 	void Accept( IVisitor *visitor ) override;
 
-	IStatement *statement;
+	IVisitorTarget *rootVertex;
 };
