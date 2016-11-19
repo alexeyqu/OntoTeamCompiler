@@ -71,6 +71,19 @@ void CPrintVisitor::Visit( CIfStatement *statement ) {
     statement->elseStatement->Accept(this);
 }
 
+void CPrintVisitor::Visit( CWhileStatement *statement ) {
+    long stmId = generateId(statement);
+
+    file << stmId << ";\n";
+    file << stmId << "[label = \"WhileStm\"];\n";
+
+    file << stmId << "->";
+    statement->expression->Accept(this);
+
+    file << stmId << "->";
+    statement->loopStatement->Accept(this);
+}
+
 void CPrintVisitor::Visit( CIdExpression *expression ) {
     long exprId = generateId(expression);
 
