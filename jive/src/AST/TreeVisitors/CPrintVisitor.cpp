@@ -19,7 +19,6 @@ void CPrintVisitor::Visit( CProgram *program ) {
     program->rootVertex->Accept(this);
 }
 
-
 void CPrintVisitor::Visit( CCompoundTmp *tmp )
 {
     long tmpId = generateId(tmp);
@@ -49,7 +48,7 @@ void CPrintVisitor::Visit( CType *entity ) {
     }
 }
 
-void CPrintVisitor::Visit( CField *entity ) {
+void CPrintVisitor::Visit( CLocalVariable *entity ) {
     long entityId = generateId(entity);
 
     file << entityId << ";\n";
@@ -207,16 +206,6 @@ void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
             file << operationId << ";\n";
             file << operationId << "[label = \"OR\" ];\n";
             break;
-
-        case enums::TBooleanOperation::LESS:
-            file << operationId << ";\n";
-            file << operationId << "[label = \"<\" ];\n";
-            break;
-
-        case enums::TBooleanOperation::GREATER:
-            file << operationId << ";\n";
-            file << operationId << "[label = \">\" ];\n";
-            break;
     }
 
     file << exprId << "->";
@@ -232,17 +221,6 @@ void CPrintVisitor::Visit( CBooleanExpression *expression ) {
     long valueId = generateId(&expression->value);
     file << exprId << "->" << valueId << ";\n";
     file << valueId << "[label = \"" << expression->value << "\"];\n";
-}
-
-void CPrintVisitor::Visit( CThisExpression *expression ) {
-    long exprId = generateId(expression);
-
-    file << exprId << "\n";
-    file << exprId << "[label = \"ThisExp\"];\n";
-
-    long addressId = generateId(&expression->address);
-    file << exprId << "->" << addressId << ";\n";
-    file << addressId << "[label = \"" << expression->address << "\"];\n";
 }
 
 //<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>

@@ -2,7 +2,7 @@
 #include <sstream>
 #include <memory>
 #include "AST/TreeVisitors/CPrintVisitor.h"
-#include "AST/CProgram.h"
+#include "CProgram.h"
 #include "jive.tab.h"
 #include "jive.lex.h"
 

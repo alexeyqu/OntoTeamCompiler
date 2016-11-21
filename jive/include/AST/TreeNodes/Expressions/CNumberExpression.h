@@ -9,6 +9,8 @@ public:
    	CNumberExpression( const char *_number );
 
    	void Accept( IVisitor *visitor ) override;
+   	enums::TType getType() override;
 
    	int number;
+	enums::TType type;
 };

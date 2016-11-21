@@ -1,7 +1,8 @@
 %code requires {
-	#include <cstdio>
 	#include <cstring>
+	#include <iostream>
 	#include "CProgram.h"
+	#include "CSymbolTable.h"
 
 	#define YYERROR_VERBOSE 1 
 }
@@ -10,8 +11,10 @@
 	int yylex (void);
 
 	void yyerror(CProgram **program, const char *str) {
-	    fprintf(stderr, "Error: %s\n", str);
+	    std::cerr << "Error: " << str << "\n";
 	}
+
+	CSymbolTable symbolTable;
 }
 
 %error-verbose
@@ -24,7 +27,7 @@
 	CProgram *Program;
 	IVisitorTarget *Tmp;
 	CType* Type;
-	CField* VarDeclaration;
+	CLocalVariable* VarDeclaration;
 	CIdExpression *Identifier;
 
 	IEntity *Entity;
@@ -47,6 +50,7 @@
 %token COMMA DOT SEMI AMPERSAND
 %token PRINT
 %token ERROR
+%token DEBUG
 
 %left AND OR
 %left LESS GREATER
@@ -65,7 +69,7 @@
 
 %%
 
-Program: 	Tmp { *program = $$ = new CProgram( $1 ); }
+Program: Tmp { *program = $$ = new CProgram( $1 ); }
 ;
 
 Tmp:	Tmp Tmp { $$ = new CCompoundTmp( $1, $2 ); }
@@ -75,7 +79,7 @@ Tmp:	Tmp Tmp { $$ = new CCompoundTmp( $1, $2 ); }
 		Statement { $$ = $1; }
 ;
 
-VarDeclaration:	Type Identifier SEMI { $$ = new CField( $1, $2 ); }
+VarDeclaration:	Type Identifier SEMI { symbolTable.Insert( $$ = new CLocalVariable( $1, $2 ) ); }
 ;
 
 Statement:  Statement Statement { $$ = new CCompoundStatement( $1, $2 ); }
@@ -83,16 +87,40 @@ Statement:  Statement Statement { $$ = new CCompoundStatement( $1, $2 ); }
 			IF LPAREN Expression RPAREN 
 				Statement 
 			ELSE 
-				Statement { $$ = new CIfStatement( $3, $5, $7 ); }
+				Statement { 
+				if($3->getType() == enums::BOOLEAN) 
+					$$ = new CIfStatement( $3, $5, $7 );  
+				else
+					yyerror(program, "ERROR");
+			}
 			|
 			WHILE LPAREN Expression RPAREN 
 			LBRACE 
 				Statement 
-			RBRACE { $$ = new CWhileStatement( $3, $6 ); }
+			RBRACE { 
+				if($3->getType() == enums::BOOLEAN) 
+					$$ = new CWhileStatement( $3, $6 ); 
+				else
+					yyerror(program, "ERROR");
+			}
 			|
-			PRINT LPAREN Identifier RPAREN SEMI { $$ = new CPrintStatement( $3 ); }
+			PRINT LPAREN Identifier RPAREN SEMI { 
+				if(symbolTable.Lookup( $3 ) &&
+					symbolTable.Lookup( $3 )->getType() == enums::INTEGER) 
+					$$ = new CPrintStatement( $3 ); 
+				else
+					yyerror(program, "ERROR");
+			}
 			|
-			Identifier ASSIGN Expression SEMI { $$ = new CAssignStatement( $1, $3 ); }
+			Identifier ASSIGN Expression SEMI { 
+				if(symbolTable.Lookup( $1 ) &&
+					symbolTable.Lookup( $1 )->getType() == $3->getType()) 
+					$$ = new CAssignStatement( $1, $3 ); 
+				else
+					yyerror(program, "ERROR");
+			}
+			|
+			DEBUG { symbolTable.Dump(); }
 ;
 
 Type:	INT { $$ = new CType( enums::INTEGER ); }
@@ -100,23 +128,54 @@ Type:	INT { $$ = new CType( enums::INTEGER ); }
 		BOOL { $$ = new CType( enums::BOOLEAN ); }
 ;
 
-Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, enums::AND, $3 ); }
+Expression: Expression AND Expression { 
+				if( $1->getType() == enums::BOOLEAN && $3->getType() == enums::BOOLEAN ) 
+					$$ = new CBinaryBooleanExpression( $1, enums::AND, $3 ); 
+				else
+					yyerror(program, "ERROR");
+			}
 			|
-			Expression OR Expression { $$ = new CBinaryBooleanExpression( $1, enums::OR, $3 );  }
+			Expression OR Expression { 
+				if( $1->getType() == enums::BOOLEAN && $3->getType() == enums::BOOLEAN ) 
+					$$ = new CBinaryBooleanExpression( $1, enums::OR, $3 );  
+				else
+					yyerror(program, "ERROR");
+			}
 			|
-			Expression LESS Expression { $$ = new CBinaryBooleanExpression( $1, enums::LESS, $3 ); }
+			Expression ADD Expression { 
+				if( $1->getType() == enums::INTEGER && $3->getType() == enums::INTEGER ) 
+					$$ = new CBinaryExpression( $1, enums::ADD, $3 ); 
+				else
+					yyerror(program, "ERROR");
+			}
 			|
-			Expression GREATER Expression { $$ = new CBinaryBooleanExpression( $1, enums::GREATER, $3 ); }
+			Expression SUB Expression { 
+				if( $1->getType() == enums::INTEGER && $3->getType() == enums::INTEGER ) 
+					$$ = new CBinaryExpression( $1, enums::SUB, $3 );
+				else
+					yyerror(program, "ERROR");
+			}
 			|
-			Expression ADD Expression { $$ = new CBinaryExpression( $1, enums::ADD, $3 ); }
+			Expression MUL Expression { 
+				if( $1->getType() == enums::INTEGER && $3->getType() == enums::INTEGER ) 
+					$$ = new CBinaryExpression( $1, enums::MUL, $3 ); 
+				else
+					yyerror(program, "ERROR");
+			}
 			|
-			Expression SUB Expression { $$ = new CBinaryExpression( $1, enums::SUB, $3 ); }
+			Expression DIV Expression { 
+				if( $1->getType() == enums::INTEGER && $3->getType() == enums::INTEGER ) 
+					$$ = new CBinaryExpression( $1, enums::DIV, $3 ); 
+				else
+					yyerror(program, "ERROR");
+			}
 			|
-			Expression MUL Expression { $$ = new CBinaryExpression( $1, enums::MUL, $3 ); }
-			|
-			Expression DIV Expression { $$ = new CBinaryExpression( $1, enums::DIV, $3 ); }
-			|
-			Expression MOD Expression { $$ = new CBinaryExpression( $1, enums::MOD, $3 ); }
+			Expression MOD Expression { 
+				if( $1->getType() == enums::INTEGER && $3->getType() == enums::INTEGER ) 
+					$$ = new CBinaryExpression( $1, enums::MOD, $3 ); 
+				else
+					yyerror(program, "ERROR");
+			}
 			|
 			NUM { $$ = new CNumberExpression( $1 ); }
 			|
@@ -124,15 +183,23 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			FALSE { $$ = new CBooleanExpression( false ); }
 			|
-			THIS { $$ = new CThisExpression(); }
+			Identifier { if(symbolTable.Lookup( $1 )) $$ = $1; }
 			|
-			Identifier { $$ = $1; }
-			|
-			NOT Expression { $$ = new CBooleanExpression( !$2 ); }
+			NOT Expression { 
+				if( $2->getType() == enums::BOOLEAN ) 
+					$$ = new CBooleanExpression( !$2 );
+				else
+					yyerror(program, "ERROR"); 
+			}
 			|
 			LPAREN Expression RPAREN { $$ = $2; }
 			|
-			SUB Expression { $$ = new CBinaryExpression ($2, enums::MUL, new CNumberExpression ( "-1" ) ); } // FIXIT
+			SUB Expression { // FIXIT
+			if( $2->getType() == enums::INTEGER ) 
+				$$ = new CBinaryExpression ($2, enums::MUL, new CNumberExpression ( "-1" ) );
+			else
+				yyerror(program, "ERROR");
+			} 
 ;
 
 Identifier: ID { $$ = new CIdExpression( $1 ); }
@@ -156,7 +223,7 @@ q	| "while" "(" Expression ")" Statement
 q	| "System.out.println" "(" Expression ")" ";"
 q	| Identifier "=" Expression ";"
 	| Identifier "[" Expression "]" "=" Expression ";"
-q	Expression ::= Expression ( "&&" | "<" | "+" | "-" | "*" | "%" | "||" ) Expression
+q?	Expression ::= Expression ( "&&" | "<" | "+" | "-" | "*" | "%" | "||" ) Expression
 	| Expression "[" Expression "]"
 	| Expression "." "length"
 	| Expression "." Identifier "(" ( Expression ( "," Expression )* )? ")"
@@ -164,7 +231,7 @@ q	| <INTEGER_LITERAL>
 q	| "true"
 q	| "false"
 q	| Identifier
-q	| "this"
+	| "this"
 	| "new" "int" "[" Expression "]"
 	| "new" Identifier "(" ")"
 q	| "!" Expression 

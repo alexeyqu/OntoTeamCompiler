@@ -2,4 +2,4 @@
 
 #include "IEntity.h"
 #include "Entities/CType.h"
-#include "Entities/CField.h"
+#include "Entities/CLocalVariable.h"

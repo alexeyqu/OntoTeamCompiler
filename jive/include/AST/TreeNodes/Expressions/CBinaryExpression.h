@@ -8,8 +8,10 @@ public:
 	CBinaryExpression( IExpression *_leftOperand, enums::TArithmeticOperation _operation, IExpression *_rightOperand );
 
 	void Accept( IVisitor *visitor ) override;
+   	enums::TType getType() override;
 
 	IExpression *leftOperand;
 	IExpression *rightOperand;
 	enums::TArithmeticOperation operation;
+	enums::TType type;
 };

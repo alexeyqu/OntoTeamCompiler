@@ -2,7 +2,7 @@
 
 %{
     #include <cmath>
-    #include <cstdio>
+    #include <iostream>
     #include "jive.tab.h"
 
     extern YYLTYPE yylloc;
@@ -10,7 +10,7 @@
 
     #ifdef LEXER
         #define PRINT_LEXEM( lex ) \
-            { printf("%s(%s){%d, %d} ", #lex, yytext, yylloc.first_line, yylloc.first_column); }
+            { std::cout << #lex << '(' << yytext << "){" <<  yylloc.first_line << ", " << yylloc.first_column << "}\n"; }
     #else
         #define PRINT_LEXEM( lex ) ;
     #endif
@@ -99,6 +99,10 @@ false       { PROCESS_LEXEM(FALSE); }
 
 "System.out.println"    { PROCESS_LEXEM(PRINT); }
 
+            /* DEBUG */
+
+"#debug#"   { PROCESS_LEXEM(DEBUG); }
+
             /* IDENTIFIERS */
 
 {ID}+       { yylval.string = yytext; PROCESS_LEXEM(ID); }
@@ -114,8 +118,8 @@ false       { PROCESS_LEXEM(FALSE); }
 
             /* WHITESPACE */
 
-"\n"        { ; /* printf("\n"); */ }
-[ \t]+      { ; /* printf( "%s", yytext ); */ }
+"\n"        { ; /* std::cout << "\n"; */ }
+[ \t]+      { ; /* std::cout << yytext << "\n"; */ }
 
             /* EOFS */
 

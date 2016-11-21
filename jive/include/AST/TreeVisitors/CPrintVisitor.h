@@ -12,7 +12,7 @@ public:
 	void Visit( CProgram *program );
    	void Visit( CCompoundTmp *tmp );
 	void Visit( CType *entity );
-	void Visit( CField *entity );
+	void Visit( CLocalVariable *entity );
 	void Visit( CCompoundStatement *statement );
 	void Visit( CAssignStatement *statement );
 	void Visit( CPrintStatement *statement );
@@ -23,7 +23,6 @@ public:
 	void Visit( CNumberExpression *expression );   	
 	void Visit( CBinaryBooleanExpression *expression );
    	void Visit( CBooleanExpression *expression );
-   	void Visit( CThisExpression *expression );
 	
 private:
 	std::size_t generateId( void *entity );

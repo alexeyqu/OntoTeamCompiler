@@ -9,6 +9,8 @@ public:
    	CBooleanExpression( bool _value );
 
    	void Accept( IVisitor *visitor ) override;
+   	enums::TType getType() override;
 
    	bool value;
+	enums::TType type;
 };

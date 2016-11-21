@@ -4,4 +4,6 @@
 
 class IExpression : public IVisitorTarget 
 {
+public:
+	virtual enums::TType getType() = 0;
 };
