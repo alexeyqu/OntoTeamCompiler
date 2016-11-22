@@ -24,6 +24,7 @@
 	CProgram *Program;
 	IVisitorTarget *Tmp;
 	CType* Type;
+	CArray* Array;
 	CVariable* Variable;
 	CCompoundVariable* Variables;
 	CMethod* Method;
@@ -62,6 +63,7 @@
 %type <Program> Program
 %type <Tmp> Tmp
 %type <Type> Type
+%type <Array> Array
 %type <Variable> Variable
 %type <Variables> Variables
 %type <Method> Method
@@ -106,8 +108,11 @@ Methods: 	Methods Method { $$ = new CCompoundMethod( $1, $2 ); }
 ;
 
 Variable:	Type Identifier SEMI { $$ = new CVariable( $1, $2 ); }
+			|
+			Array Identifier SEMI { $$ = new CVariable( $1, $2 ); }
 ;
 
+Array:      Type LBRACKET RBRACKET { $$ = new CArray( $1, 0 ); }
 
 Variables:  Variables Variable { $$ = new CCompoundVariable( $1, $2 ); }
 			|
@@ -141,6 +146,8 @@ Statement:  IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfS
 Type:	INT { $$ = new CType( enums::INTEGER ); }
 		|
 		BOOL { $$ = new CType( enums::BOOLEAN ); }
+		|
+		STRING { $$ = new CType( enums::STRING ); }
 ;
 
 Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, enums::AND, $3 ); }
@@ -189,7 +196,7 @@ Identifier: ID { $$ = new CIdExpression( $1 ); }
 n	ClassDeclaration ::= "class" Identifier ( "extends" Identifier )? "{" ( VarDeclaration )* ( MethodDeclaration )* "}"
 q	VarDeclaration ::= Type Identifier ";"
 n	MethodDeclaration ::= "public" | “private” Type Identifier "(" ( Type Identifier ( "," Type Identifier )* )? ")" "{" ( VarDeclaration )*( Statement )* "return" Expression ";" "}"
-	Type ::= "int" "[" "]"
+n	Type ::= "int" "[" "]"
 q	| "boolean"
 q	| "int"
 	| Identifier
