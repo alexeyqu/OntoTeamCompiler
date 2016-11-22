@@ -46,7 +46,20 @@ void CPrintVisitor::Visit( CType *entity ) {
     case enums::TType::BOOLEAN:
         file << entityId << "[label = \"bool\" ];\n";
         break;
+    case enums::TType::STRING:
+        file << entityId << "[label = \"String\" ];\n";
+        break;
     }
+}
+
+void CPrintVisitor::Visit( CArray *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"Array[" << entity->size << "]\" ];\n";
+    
+    file << entityId << "->";
+    entity->type->Accept(this);
 }
 
 void CPrintVisitor::Visit( CVariable *entity ) {

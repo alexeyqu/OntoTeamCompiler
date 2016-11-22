@@ -113,6 +113,7 @@ union YYSTYPE
 	CProgram *Program;
 	IVisitorTarget *Tmp;
 	CType* Type;
+	CArray* Array;
 	CVariable* Variable;
 	CCompoundVariable* Variables;
 	CMethod* Method;
@@ -126,7 +127,7 @@ union YYSTYPE
 	IStatement *Statement;
 	IExpression *Expression;
 
-#line 130 "auto/jive.tab.h" /* yacc.c:1909  */
+#line 131 "auto/jive.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

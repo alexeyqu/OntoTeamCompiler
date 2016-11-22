@@ -12,6 +12,7 @@ public:
 	void Visit( CProgram *program );
    	void Visit( CCompoundTmp *tmp );
 	void Visit( CType *entity );
+	void Visit( CArray *entity );
 	void Visit( CVariable *entity );
 	void Visit( CCompoundVariable *entity );
     void Visit( CArgument *entity );

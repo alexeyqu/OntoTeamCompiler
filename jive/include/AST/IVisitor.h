@@ -5,6 +5,7 @@
 class CProgram;
 class CCompoundTmp;
 class CType;
+class CArray;
 class CVariable;
 class CCompoundVariable;
 class CArgument;
@@ -30,6 +31,7 @@ public:
    	virtual void Visit( CProgram *program ) = 0;
    	virtual void Visit( CCompoundTmp *tmp ) = 0;
    	virtual void Visit( CType *entity ) = 0;
+    virtual void Visit( CArray *entity ) = 0;
    	virtual void Visit( CVariable *entity ) = 0;
     virtual void Visit( CCompoundVariable *entity ) = 0;
     virtual void Visit( CArgument *entity ) = 0;
