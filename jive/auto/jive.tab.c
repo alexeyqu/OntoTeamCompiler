@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.0.2.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.4"
+#define YYBISON_VERSION "3.0.2"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -157,7 +157,7 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-
+typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
 #line 22 "src/jive.y" /* yacc.c:355  */
@@ -166,17 +166,21 @@ union YYSTYPE
 	CProgram *Program;
 	IVisitorTarget *Tmp;
 	CType* Type;
-	CField* VarDeclaration;
+	CVariable* Variable;
+	CCompoundVariable* Variables;
+	CMethod* Method;
+	CCompoundMethod* Methods;
+	CClass* Class;
+	CCompoundArgument* Arguments;
+	CCompoundStatement* Statements;
 	CIdExpression *Identifier;
 
 	IEntity *Entity;
 	IStatement *Statement;
 	IExpression *Expression;
 
-#line 177 "auto/jive.tab.c" /* yacc.c:355  */
+#line 183 "auto/jive.tab.c" /* yacc.c:355  */
 };
-
-typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -204,7 +208,7 @@ int yyparse (CProgram **program);
 
 /* Copy the second part of user declarations.  */
 
-#line 208 "auto/jive.tab.c" /* yacc.c:358  */
+#line 212 "auto/jive.tab.c" /* yacc.c:358  */
 /* Unqualified %code blocks.  */
 #line 9 "src/jive.y" /* yacc.c:359  */
     
@@ -214,7 +218,7 @@ int yyparse (CProgram **program);
 	    fprintf(stderr, "Error: %s\n", str);
 	}
 
-#line 218 "auto/jive.tab.c" /* yacc.c:359  */
+#line 222 "auto/jive.tab.c" /* yacc.c:359  */
 
 #ifdef short
 # undef short
@@ -456,18 +460,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  16
+#define YYFINAL  22
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   174
+#define YYLAST   202
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  47
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  8
+#define YYNNTS  15
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  31
+#define YYNRULES  45
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  67
+#define YYNSTATES  100
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -518,10 +522,11 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    68,    68,    71,    73,    75,    78,    81,    83,    85,
-      87,    89,    92,    94,    97,    99,   101,   103,   105,   107,
-     109,   111,   113,   115,   117,   119,   121,   123,   125,   127,
-     129,   132
+       0,    81,    81,    84,    86,    88,    90,    92,    95,    97,
+     100,   103,   105,   108,   112,   114,   117,   119,   122,   124,
+     127,   129,   132,   134,   136,   138,   141,   143,   146,   148,
+     150,   152,   154,   156,   158,   160,   162,   164,   166,   168,
+     170,   172,   174,   176,   178,   181
 };
 #endif
 
@@ -536,8 +541,9 @@ static const char *const yytname[] =
   "RBRACE", "LBRACKET", "RBRACKET", "ASSIGN", "EQU", "ADD", "SUB", "MUL",
   "DIV", "MOD", "LESS", "GREATER", "TRUE", "FALSE", "AND", "OR", "NOT",
   "COMMA", "DOT", "SEMI", "AMPERSAND", "PRINT", "ERROR", "$accept",
-  "Program", "Tmp", "VarDeclaration", "Statement", "Type", "Expression",
-  "Identifier", YY_NULLPTR
+  "Program", "Tmp", "Class", "Method", "Methods", "Variable", "Variables",
+  "Arguments", "RestArguments", "Statements", "Statement", "Type",
+  "Expression", "Identifier", YY_NULLPTR
 };
 #endif
 
@@ -554,12 +560,12 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -21
+#define YYPACT_NINF -58
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-21)))
+  (!!((Yystate) == (-58)))
 
-#define YYTABLE_NINF -1
+#define YYTABLE_NINF -18
 
 #define yytable_value_is_error(Yytable_value) \
   0
@@ -568,13 +574,16 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-      -1,   -21,   -21,   -21,   -20,   -19,   -17,     9,    -1,   -21,
-      30,    16,    -6,    37,    37,    16,   -21,    -1,    30,   -14,
-      37,   -21,   -21,    37,    37,   -21,   -21,    37,    81,   -21,
-      95,    11,   -21,   120,   109,    -5,   135,    30,    37,    37,
-      37,    37,    37,    37,    37,    37,    37,    12,   -12,   -21,
-     -21,     8,    -5,    -5,     3,     3,   135,    75,    75,    55,
-      55,    30,   -21,    30,    15,    30,   -21
+      46,   -58,   -58,   -58,     3,    12,   -12,     6,    20,    24,
+      46,   -58,   -58,   -58,   -58,     3,    15,    37,     3,    75,
+      75,     3,   -58,    46,   -18,    75,     3,   -58,    30,   -58,
+     -58,    75,    75,   -58,   -58,    75,    87,   -58,   101,    52,
+     -58,   126,    57,    12,    53,   115,    13,   156,    55,    75,
+      75,    75,    75,    75,    75,    75,    75,    75,    58,    39,
+     -58,   -58,    -2,   -58,    63,    12,   -58,    70,    13,    13,
+      56,    56,   156,    35,    35,   167,   167,    55,   -58,    12,
+     -58,   -58,    64,     3,    55,    66,     4,   -58,    51,   -58,
+     -58,   -58,    12,   -58,    54,    75,   -58,   141,    69,   -58
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -582,103 +591,119 @@ static const yytype_int16 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,    31,    12,    13,     0,     0,     0,     0,     2,     4,
-       5,     0,     0,     0,     0,     0,     1,     3,     7,     0,
-       0,    23,    26,     0,     0,    24,    25,     0,     0,    27,
-       0,     0,     6,     0,     0,    30,    28,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    11,
-      29,     0,    18,    19,    20,    21,    22,    16,    17,    14,
-      15,     0,    10,     0,     0,     8,     9
+       0,    45,    26,    27,     0,     0,     0,     0,     0,     0,
+       2,     6,     5,     4,     7,     0,     0,     0,     0,     0,
+       0,     0,     1,     3,     0,     0,     0,    15,     0,    37,
+      40,     0,     0,    38,    39,     0,     0,    41,     0,     0,
+      13,     0,     0,    12,    19,     0,    44,    42,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+      25,    15,     0,    14,     0,     0,    43,     0,    32,    33,
+      34,    35,    36,    30,    31,    28,    29,     0,    24,    12,
+       9,    11,     0,     0,     0,     0,     0,    15,    16,    22,
+      23,     8,    21,    18,     0,     0,    20,     0,     0,    10
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -21,   -21,    38,   -21,     5,   -21,    56,     0
+     -58,   -58,    95,   -58,   -57,    18,   -40,   -44,   -58,   -58,
+     -58,   -37,    -3,   -19,     0
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     7,    17,     9,    18,    11,    28,    29
+      -1,     9,    23,    11,    12,    62,    13,    43,    64,    65,
+      94,    14,    15,    36,    37
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
      positive, shift that token.  If negative, reduce the rule whose
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
-static const yytype_uint8 yytable[] =
+static const yytype_int8 yytable[] =
 {
-      12,    13,    14,     1,    15,    10,     2,     3,    12,    16,
-      12,    19,     1,    10,     4,    31,     5,    12,    12,     1,
-       1,    20,    10,     4,    63,     5,    40,    41,    42,    32,
-       4,    62,     5,    48,     1,    61,    42,    12,     8,    66,
-      21,     1,    51,     0,     6,     4,     0,     5,     0,     0,
-      22,    12,     0,     6,     0,     0,     0,     0,    23,     0,
-       6,    12,     0,    12,    12,    12,    64,    24,    65,     0,
-      30,     0,     0,    25,    26,     6,    33,    27,     0,    34,
-      35,     0,     0,    36,    38,    39,    40,    41,    42,    43,
-      44,     0,     0,     0,    52,    53,    54,    55,    56,    57,
-      58,    59,    60,    37,    38,    39,    40,    41,    42,     0,
-      38,    39,    40,    41,    42,    43,    44,    47,     0,    45,
-      46,     0,     0,     0,    38,    39,    40,    41,    42,    43,
-      44,    50,     0,    45,    46,     0,     0,     0,    38,    39,
-      40,    41,    42,    43,    44,     0,     0,    45,    46,    38,
-      39,    40,    41,    42,    43,    44,     0,     0,    45,    46,
-       0,     0,     0,    49,    38,    39,    40,    41,    42,    43,
-      44,     0,     0,    45,    46
+      16,    38,    18,    63,    17,    81,    41,     1,     5,    19,
+      16,    67,    45,    46,     5,    24,    47,    79,    28,     2,
+       3,    39,    80,    16,    22,    40,    42,    20,    91,    81,
+      68,    69,    70,    71,    72,    73,    74,    75,    76,    63,
+      85,    21,    25,    92,    51,    52,    53,    89,    16,    26,
+       1,    44,    63,     2,     3,     4,     5,    96,     1,     1,
+      27,     6,    83,     7,    49,    50,    51,    52,    53,     6,
+       6,     7,     7,    95,    59,   -17,    97,    16,    29,     1,
+      61,    77,    78,    88,    16,    82,    84,    87,    30,    53,
+      90,     8,    93,    99,    16,    10,    31,    86,     0,     8,
+       8,     0,     0,     0,     0,    32,     0,     0,     0,    48,
+       0,    33,    34,     0,     0,    35,    49,    50,    51,    52,
+      53,    54,    55,    58,     0,    56,    57,     0,     0,     0,
+      49,    50,    51,    52,    53,    54,    55,    66,     0,    56,
+      57,     0,     0,     0,    49,    50,    51,    52,    53,    54,
+      55,     0,     0,    56,    57,    49,    50,    51,    52,    53,
+      54,    55,     0,     0,    56,    57,     0,     0,     0,    60,
+      49,    50,    51,    52,    53,    54,    55,     0,     0,    56,
+      57,     0,     0,     0,    98,    49,    50,    51,    52,    53,
+      54,    55,     0,     0,    56,    57,    49,    50,    51,    52,
+      53,    54,    55
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0,    21,    21,     4,    21,     0,     7,     8,     8,     0,
-      10,    11,     4,     8,    15,    15,    17,    17,    18,     4,
-       4,    27,    17,    15,    16,    17,    31,    32,    33,    43,
-      15,    43,    17,    22,     4,    23,    33,    37,     0,    24,
-       3,     4,    37,    -1,    45,    15,    -1,    17,    -1,    -1,
-      13,    51,    -1,    45,    -1,    -1,    -1,    -1,    21,    -1,
-      45,    61,    -1,    63,    64,    65,    61,    30,    63,    -1,
-      14,    -1,    -1,    36,    37,    45,    20,    40,    -1,    23,
-      24,    -1,    -1,    27,    29,    30,    31,    32,    33,    34,
-      35,    -1,    -1,    -1,    38,    39,    40,    41,    42,    43,
-      44,    45,    46,    22,    29,    30,    31,    32,    33,    -1,
+       0,    20,     5,    43,     4,    62,    25,     4,    10,    21,
+      10,    48,    31,    32,    10,    15,    35,    61,    18,     7,
+       8,    21,    24,    23,     0,    43,    26,    21,    24,    86,
+      49,    50,    51,    52,    53,    54,    55,    56,    57,    79,
+      77,    21,    27,    87,    31,    32,    33,    84,    48,    12,
+       4,    21,    92,     7,     8,     9,    10,    94,     4,     4,
+      23,    15,    65,    17,    29,    30,    31,    32,    33,    15,
+      15,    17,    17,    19,    22,    22,    95,    77,     3,     4,
+      23,    23,    43,    83,    84,    22,    16,    23,    13,    33,
+      24,    45,    41,    24,    94,     0,    21,    79,    -1,    45,
+      45,    -1,    -1,    -1,    -1,    30,    -1,    -1,    -1,    22,
+      -1,    36,    37,    -1,    -1,    40,    29,    30,    31,    32,
+      33,    34,    35,    22,    -1,    38,    39,    -1,    -1,    -1,
       29,    30,    31,    32,    33,    34,    35,    22,    -1,    38,
       39,    -1,    -1,    -1,    29,    30,    31,    32,    33,    34,
-      35,    22,    -1,    38,    39,    -1,    -1,    -1,    29,    30,
-      31,    32,    33,    34,    35,    -1,    -1,    38,    39,    29,
-      30,    31,    32,    33,    34,    35,    -1,    -1,    38,    39,
-      -1,    -1,    -1,    43,    29,    30,    31,    32,    33,    34,
-      35,    -1,    -1,    38,    39
+      35,    -1,    -1,    38,    39,    29,    30,    31,    32,    33,
+      34,    35,    -1,    -1,    38,    39,    -1,    -1,    -1,    43,
+      29,    30,    31,    32,    33,    34,    35,    -1,    -1,    38,
+      39,    -1,    -1,    -1,    43,    29,    30,    31,    32,    33,
+      34,    35,    -1,    -1,    38,    39,    29,    30,    31,    32,
+      33,    34,    35
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     4,     7,     8,    15,    17,    45,    48,    49,    50,
-      51,    52,    54,    21,    21,    21,     0,    49,    51,    54,
-      27,     3,    13,    21,    30,    36,    37,    40,    53,    54,
-      53,    54,    43,    53,    53,    53,    53,    22,    29,    30,
-      31,    32,    33,    34,    35,    38,    39,    22,    22,    43,
-      22,    51,    53,    53,    53,    53,    53,    53,    53,    53,
-      53,    23,    43,    16,    51,    51,    24
+       0,     4,     7,     8,     9,    10,    15,    17,    45,    48,
+      49,    50,    51,    53,    58,    59,    61,    61,    59,    21,
+      21,    21,     0,    49,    61,    27,    12,    23,    61,     3,
+      13,    21,    30,    36,    37,    40,    60,    61,    60,    61,
+      43,    60,    61,    54,    21,    60,    60,    60,    22,    29,
+      30,    31,    32,    33,    34,    35,    38,    39,    22,    22,
+      43,    23,    52,    53,    55,    56,    22,    58,    60,    60,
+      60,    60,    60,    60,    60,    60,    60,    23,    43,    54,
+      24,    51,    22,    59,    16,    58,    52,    23,    61,    58,
+      24,    24,    54,    41,    57,    19,    58,    60,    43,    24
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    47,    48,    49,    49,    49,    50,    51,    51,    51,
-      51,    51,    52,    52,    53,    53,    53,    53,    53,    53,
-      53,    53,    53,    53,    53,    53,    53,    53,    53,    53,
-      53,    54
+       0,    47,    48,    49,    49,    49,    49,    49,    50,    50,
+      51,    52,    52,    53,    54,    54,    55,    55,    56,    56,
+      57,    57,    58,    58,    58,    58,    59,    59,    60,    60,
+      60,    60,    60,    60,    60,    60,    60,    60,    60,    60,
+      60,    60,    60,    60,    60,    61
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     1,     2,     1,     1,     3,     2,     7,     7,
-       5,     4,     1,     1,     3,     3,     3,     3,     3,     3,
-       3,     3,     3,     1,     1,     1,     1,     1,     2,     3,
-       2,     1
+       0,     2,     1,     2,     1,     1,     1,     1,     8,     6,
+      13,     2,     0,     3,     2,     0,     3,     0,     4,     0,
+       2,     0,     7,     7,     5,     4,     1,     1,     3,     3,
+       3,     3,     3,     3,     3,     3,     3,     1,     1,     1,
+       1,     1,     2,     3,     2,     1
 };
 
 
@@ -1450,187 +1475,271 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 68 "src/jive.y" /* yacc.c:1646  */
+#line 81 "src/jive.y" /* yacc.c:1646  */
     { *program = (yyval.Program) = new CProgram( (yyvsp[0].Tmp) ); }
-#line 1456 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 1481 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 71 "src/jive.y" /* yacc.c:1646  */
+#line 84 "src/jive.y" /* yacc.c:1646  */
     { (yyval.Tmp) = new CCompoundTmp( (yyvsp[-1].Tmp), (yyvsp[0].Tmp) ); }
-#line 1462 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 1487 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 73 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Tmp) = (yyvsp[0].VarDeclaration); }
-#line 1468 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 86 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Tmp) = (yyvsp[0].Variable); }
+#line 1493 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 75 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Tmp) = (yyvsp[0].Statement); }
-#line 1474 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 88 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Tmp) = (yyvsp[0].Method); }
+#line 1499 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 78 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.VarDeclaration) = new CField( (yyvsp[-2].Type), (yyvsp[-1].Identifier) ); }
-#line 1480 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 90 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Tmp) = (yyvsp[0].Class); }
+#line 1505 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 81 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Statement) = new CCompoundStatement( (yyvsp[-1].Statement), (yyvsp[0].Statement) ); }
-#line 1486 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 92 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Tmp) = (yyvsp[0].Statement); }
+#line 1511 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 83 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Statement) = new CIfStatement( (yyvsp[-4].Expression), (yyvsp[-2].Statement), (yyvsp[0].Statement) ); }
-#line 1492 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 95 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Class) = new CClass( (yyvsp[-6].Identifier), (yyvsp[-4].Identifier), (yyvsp[-2].Variables), (yyvsp[-1].Methods) ); }
+#line 1517 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 85 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Statement) = new CWhileStatement( (yyvsp[-4].Expression), (yyvsp[-1].Statement) ); }
-#line 1498 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 97 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Class) = new CClass( (yyvsp[-4].Identifier), nullptr, (yyvsp[-2].Variables), (yyvsp[-1].Methods) ); }
+#line 1523 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 87 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Statement) = new CPrintStatement( (yyvsp[-2].Identifier) ); }
-#line 1504 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 100 "src/jive.y" /* yacc.c:1646  */
+    {	(yyval.Method) = new CMethod( (yyvsp[-11].Type), (yyvsp[-10].Identifier), (yyvsp[-8].Arguments), (yyvsp[-5].Variables), (yyvsp[-4].Statements), (yyvsp[-2].Expression) ); }
+#line 1529 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 89 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Statement) = new CAssignStatement( (yyvsp[-3].Identifier), (yyvsp[-1].Expression) ); }
-#line 1510 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 103 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Methods) = new CCompoundMethod( (yyvsp[-1].Methods), (yyvsp[0].Method) ); }
+#line 1535 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 92 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Type) = new CType( enums::INTEGER ); }
-#line 1516 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 105 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Methods) = nullptr; }
+#line 1541 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 94 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Type) = new CType( enums::BOOLEAN ); }
-#line 1522 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 108 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Variable) = new CVariable( (yyvsp[-2].Type), (yyvsp[-1].Identifier) ); }
+#line 1547 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 97 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryBooleanExpression( (yyvsp[-2].Expression), enums::AND, (yyvsp[0].Expression) ); }
-#line 1528 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 112 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Variables) = new CCompoundVariable( (yyvsp[-1].Variables), (yyvsp[0].Variable) ); }
+#line 1553 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 99 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryBooleanExpression( (yyvsp[-2].Expression), enums::OR, (yyvsp[0].Expression) );  }
-#line 1534 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 114 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Variables) = nullptr; }
+#line 1559 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 101 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryBooleanExpression( (yyvsp[-2].Expression), enums::LESS, (yyvsp[0].Expression) ); }
-#line 1540 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 117 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Arguments) = new CCompoundArgument( (yyvsp[-2].Arguments), new CArgument( (yyvsp[-1].Type), (yyvsp[0].Identifier) ) ); }
+#line 1565 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 103 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryBooleanExpression( (yyvsp[-2].Expression), enums::GREATER, (yyvsp[0].Expression) ); }
-#line 1546 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 119 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Arguments) = nullptr; }
+#line 1571 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 105 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::ADD, (yyvsp[0].Expression) ); }
-#line 1552 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 122 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Arguments) = new CCompoundArgument( (yyvsp[-3].Arguments), new CArgument( (yyvsp[-2].Type), (yyvsp[-1].Identifier) ) ); }
+#line 1577 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 107 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::SUB, (yyvsp[0].Expression) ); }
-#line 1558 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 124 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Arguments) = nullptr; }
+#line 1583 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 109 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::MUL, (yyvsp[0].Expression) ); }
-#line 1564 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 127 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Statements) = new CCompoundStatement( (yyvsp[-1].Statements), (yyvsp[0].Statement) ); }
+#line 1589 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 111 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::DIV, (yyvsp[0].Expression) ); }
-#line 1570 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 129 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Statements) = nullptr; }
+#line 1595 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 113 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::MOD, (yyvsp[0].Expression) ); }
-#line 1576 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 132 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Statement) = new CIfStatement( (yyvsp[-4].Expression), (yyvsp[-2].Statement), (yyvsp[0].Statement) ); }
+#line 1601 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 115 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CNumberExpression( (yyvsp[0].string) ); }
-#line 1582 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 134 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Statement) = new CWhileStatement( (yyvsp[-4].Expression), (yyvsp[-1].Statement) ); }
+#line 1607 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 117 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBooleanExpression( true ); }
-#line 1588 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 136 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Statement) = new CPrintStatement( (yyvsp[-2].Identifier) ); }
+#line 1613 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 119 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBooleanExpression( false ); }
-#line 1594 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 138 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Statement) = new CAssignStatement( (yyvsp[-3].Identifier), (yyvsp[-1].Expression) ); }
+#line 1619 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 121 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CThisExpression(); }
-#line 1600 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 141 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Type) = new CType( enums::INTEGER ); }
+#line 1625 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 123 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = (yyvsp[0].Identifier); }
-#line 1606 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 143 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Type) = new CType( enums::BOOLEAN ); }
+#line 1631 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 125 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBooleanExpression( !(yyvsp[0].Expression) ); }
-#line 1612 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 146 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryBooleanExpression( (yyvsp[-2].Expression), enums::AND, (yyvsp[0].Expression) ); }
+#line 1637 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 127 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = (yyvsp[-1].Expression); }
-#line 1618 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 148 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryBooleanExpression( (yyvsp[-2].Expression), enums::OR, (yyvsp[0].Expression) );  }
+#line 1643 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 129 "src/jive.y" /* yacc.c:1646  */
-    { (yyval.Expression) = new CBinaryExpression ((yyvsp[0].Expression), enums::MUL, new CNumberExpression ( "-1" ) ); }
-#line 1624 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 150 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryBooleanExpression( (yyvsp[-2].Expression), enums::LESS, (yyvsp[0].Expression) ); }
+#line 1649 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 132 "src/jive.y" /* yacc.c:1646  */
+#line 152 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryBooleanExpression( (yyvsp[-2].Expression), enums::GREATER, (yyvsp[0].Expression) ); }
+#line 1655 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 32:
+#line 154 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::ADD, (yyvsp[0].Expression) ); }
+#line 1661 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 33:
+#line 156 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::SUB, (yyvsp[0].Expression) ); }
+#line 1667 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 34:
+#line 158 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::MUL, (yyvsp[0].Expression) ); }
+#line 1673 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 35:
+#line 160 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::DIV, (yyvsp[0].Expression) ); }
+#line 1679 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 36:
+#line 162 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryExpression( (yyvsp[-2].Expression), enums::MOD, (yyvsp[0].Expression) ); }
+#line 1685 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 37:
+#line 164 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CNumberExpression( (yyvsp[0].string) ); }
+#line 1691 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 38:
+#line 166 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBooleanExpression( true ); }
+#line 1697 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 39:
+#line 168 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBooleanExpression( false ); }
+#line 1703 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 40:
+#line 170 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CThisExpression(); }
+#line 1709 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 41:
+#line 172 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = (yyvsp[0].Identifier); }
+#line 1715 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 42:
+#line 174 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBooleanExpression( !(yyvsp[0].Expression) ); }
+#line 1721 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 43:
+#line 176 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = (yyvsp[-1].Expression); }
+#line 1727 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 44:
+#line 178 "src/jive.y" /* yacc.c:1646  */
+    { (yyval.Expression) = new CBinaryExpression ((yyvsp[0].Expression), enums::MUL, new CNumberExpression ( "-1" ) ); }
+#line 1733 "auto/jive.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 45:
+#line 181 "src/jive.y" /* yacc.c:1646  */
     { (yyval.Identifier) = new CIdExpression( (yyvsp[0].string) ); }
-#line 1630 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 1739 "auto/jive.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1634 "auto/jive.tab.c" /* yacc.c:1646  */
+#line 1743 "auto/jive.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1865,15 +1974,15 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 135 "src/jive.y" /* yacc.c:1906  */
+#line 184 "src/jive.y" /* yacc.c:1906  */
 
 
 /*
 	Goal ::= MainClass ( ClassDeclaration )* <EOF>
 	MainClass ::= "class" Identifier "{" "public" "static" "void" "main" "(" "String" "[" "]" Identifier ")" "{" Statement "}" "}"
-	ClassDeclaration ::= "class" Identifier ( "extends" Identifier )? "{" ( VarDeclaration )* ( MethodDeclaration )* "}"
+n	ClassDeclaration ::= "class" Identifier ( "extends" Identifier )? "{" ( VarDeclaration )* ( MethodDeclaration )* "}"
 q	VarDeclaration ::= Type Identifier ";"
-	MethodDeclaration ::= "public" | “private” Type Identifier "(" ( Type Identifier ( "," Type Identifier )* )? ")" "{" ( VarDeclaration )*( Statement )* "return" Expression ";" "}"
+n	MethodDeclaration ::= "public" | “private” Type Identifier "(" ( Type Identifier ( "," Type Identifier )* )? ")" "{" ( VarDeclaration )*( Statement )* "return" Expression ";" "}"
 	Type ::= "int" "[" "]"
 q	| "boolean"
 q	| "int"

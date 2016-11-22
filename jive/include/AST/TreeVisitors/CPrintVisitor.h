@@ -12,7 +12,13 @@ public:
 	void Visit( CProgram *program );
    	void Visit( CCompoundTmp *tmp );
 	void Visit( CType *entity );
-	void Visit( CField *entity );
+	void Visit( CVariable *entity );
+	void Visit( CCompoundVariable *entity );
+    void Visit( CArgument *entity );
+    void Visit( CCompoundArgument *entity );
+    void Visit( CMethod *entity );
+    void Visit( CCompoundMethod *entity );
+    void Visit( CClass *entity );
 	void Visit( CCompoundStatement *statement );
 	void Visit( CAssignStatement *statement );
 	void Visit( CPrintStatement *statement );

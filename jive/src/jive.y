@@ -24,7 +24,13 @@
 	CProgram *Program;
 	IVisitorTarget *Tmp;
 	CType* Type;
-	CField* VarDeclaration;
+	CVariable* Variable;
+	CCompoundVariable* Variables;
+	CMethod* Method;
+	CCompoundMethod* Methods;
+	CClass* Class;
+	CCompoundArgument* Arguments;
+	CCompoundStatement* Statements;
 	CIdExpression *Identifier;
 
 	IEntity *Entity;
@@ -54,11 +60,18 @@
 %left MUL DIV
 
 %type <Program> Program
-%type <Tmp> Tmp;
+%type <Tmp> Tmp
 %type <Type> Type
-%type <VarDeclaration> VarDeclaration
+%type <Variable> Variable
+%type <Variables> Variables
+%type <Method> Method
+%type <Methods> Methods
+%type <Class> Class
+%type <Arguments> Arguments
+%type <Arguments> RestArguments
 %type <Identifier> Identifier
 %type <Statement> Statement
+%type <Statements> Statements
 %type <Expression> Expression
 
 %start Program
@@ -70,17 +83,53 @@ Program: 	Tmp { *program = $$ = new CProgram( $1 ); }
 
 Tmp:	Tmp Tmp { $$ = new CCompoundTmp( $1, $2 ); }
 		|
-		VarDeclaration { $$ = $1; }
+		Variable { $$ = $1; }
+		|
+		Method { $$ = $1; } 
+		|
+		Class { $$ = $1; } 
 		|
 		Statement { $$ = $1; }
 ;
 
-VarDeclaration:	Type Identifier SEMI { $$ = new CField( $1, $2 ); }
+Class: 	CLASS Identifier EXTENDS Identifier LBRACE Variables Methods RBRACE { $$ = new CClass( $2, $4, $6, $7 ); }
+		|
+		CLASS Identifier LBRACE Variables Methods RBRACE { $$ = new CClass( $2, nullptr, $4, $5 ); }
 ;
 
-Statement:  Statement Statement { $$ = new CCompoundStatement( $1, $2 ); }
+Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements RETURN Expression SEMI RBRACE {	$$ = new CMethod( $2, $3, $5, $8, $9, $11 ); }
+;
+
+Methods: 	Methods Method { $$ = new CCompoundMethod( $1, $2 ); }
 			|
-			IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfStatement( $3, $5, $7 ); }
+			{ $$ = nullptr; }
+;
+
+Variable:	Type Identifier SEMI { $$ = new CVariable( $1, $2 ); }
+;
+
+
+Variables:  Variables Variable { $$ = new CCompoundVariable( $1, $2 ); }
+			|
+			{ $$ = nullptr; }
+;
+
+Arguments:  RestArguments Type Identifier { $$ = new CCompoundArgument( $1, new CArgument( $2, $3 ) ); }
+			|
+			{ $$ = nullptr; }
+;
+
+RestArguments: RestArguments Type Identifier COMMA { $$ = new CCompoundArgument( $1, new CArgument( $2, $3 ) ); }
+			|
+			{ $$ = nullptr; }
+;
+
+Statements: Statements Statement { $$ = new CCompoundStatement( $1, $2 ); }
+			|
+			{ $$ = nullptr; }
+;
+
+Statement:  IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfStatement( $3, $5, $7 ); }
 			|
 			WHILE LPAREN Expression RPAREN LBRACE Statement RBRACE { $$ = new CWhileStatement( $3, $6 ); }
 			|
@@ -137,9 +186,9 @@ Identifier: ID { $$ = new CIdExpression( $1 ); }
 /*
 	Goal ::= MainClass ( ClassDeclaration )* <EOF>
 	MainClass ::= "class" Identifier "{" "public" "static" "void" "main" "(" "String" "[" "]" Identifier ")" "{" Statement "}" "}"
-	ClassDeclaration ::= "class" Identifier ( "extends" Identifier )? "{" ( VarDeclaration )* ( MethodDeclaration )* "}"
+n	ClassDeclaration ::= "class" Identifier ( "extends" Identifier )? "{" ( VarDeclaration )* ( MethodDeclaration )* "}"
 q	VarDeclaration ::= Type Identifier ";"
-	MethodDeclaration ::= "public" | “private” Type Identifier "(" ( Type Identifier ( "," Type Identifier )* )? ")" "{" ( VarDeclaration )*( Statement )* "return" Expression ";" "}"
+n	MethodDeclaration ::= "public" | “private” Type Identifier "(" ( Type Identifier ( "," Type Identifier )* )? ")" "{" ( VarDeclaration )*( Statement )* "return" Expression ";" "}"
 	Type ::= "int" "[" "]"
 q	| "boolean"
 q	| "int"

@@ -49,17 +49,171 @@ void CPrintVisitor::Visit( CType *entity ) {
     }
 }
 
-void CPrintVisitor::Visit( CField *entity ) {
+void CPrintVisitor::Visit( CVariable *entity ) {
     long entityId = generateId(entity);
 
     file << entityId << ";\n";
-    file << entityId << "[label = \"FieldNtt\"];\n";
+    file << entityId << "[label = \"VarDeclNtt\"];\n";
 
     file << entityId << "->";
     entity->type->Accept(this);
 
     file << entityId << "->";
     entity->id->Accept(this);
+}
+
+void CPrintVisitor::Visit( CCompoundVariable *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"CompoundVariableNtt\"];\n";
+
+    if( entity->var1 ) {
+        if( entity->var1->var1 ) {
+            file << entityId << "->";
+            entity->var1->Accept(this);
+        } else {
+            file << entityId << "->";
+            entity->var1->var2->Accept(this);
+        }
+    }
+
+    file << entityId << "->";
+    entity->var2->Accept(this);
+}
+
+void CPrintVisitor::Visit( CArgument *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"ArgumentNtt\"];\n";
+
+    file << entityId << "->";
+    entity->type->Accept(this);
+
+    file << entityId << "->";
+    entity->id->Accept(this);
+}
+
+void CPrintVisitor::Visit( CCompoundArgument *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"CompoundArgumentNtt\"];\n";
+
+    if( entity->arg1 ) {
+    	if( entity->arg1->arg1 ) {
+			file << entityId << "->";
+			entity->arg1->Accept(this);
+		} else {
+			file << entityId << "->";
+			entity->arg1->arg2->Accept(this);
+		}
+	}
+
+    file << entityId << "->";
+    entity->arg2->Accept(this);
+}
+
+void CPrintVisitor::Visit( CMethod *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"MethodNtt\"];\n";
+
+    file << entityId << "->";
+    entity->returnType->Accept(this);
+
+    file << entityId << "->";
+    entity->id->Accept(this);
+
+    if( entity->arguments ) {
+    	if( entity->arguments->arg1 ) {
+			file << entityId << "->";
+			entity->arguments->Accept(this);
+		} else {
+			file << entityId << "->";
+			entity->arguments->arg2->Accept(this);
+		}
+	}
+
+    if( entity->variables ) {
+        if( entity->variables->var1 ) {
+            file << entityId << "->";
+            entity->variables->Accept(this);
+        } else {
+            file << entityId << "->";
+            entity->variables->var2->Accept(this);
+        }
+    }
+
+    if( entity->statements ) {
+        if( entity->statements->leftStatement ) {
+            file << entityId << "->";
+            entity->statements->Accept(this);
+        } else {
+            file << entityId << "->";
+            entity->statements->rightStatement->Accept(this);
+        }
+    }
+
+    file << entityId << "->";
+    entity->returnExpression->Accept(this);
+}
+
+void CPrintVisitor::Visit( CCompoundMethod *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"CompoundMethodNtt\"];\n";
+
+    if( entity->method1 ) {
+        if( entity->method1->method1 ) {
+            file << entityId << "->";
+            entity->method1->Accept(this);
+        } else {
+            file << entityId << "->";
+            entity->method1->method2->Accept(this);
+        }
+    }
+
+    file << entityId << "->";
+    entity->method2->Accept(this);
+}
+
+void CPrintVisitor::Visit( CClass *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"ClassNtt\"];\n";
+
+    file << entityId << "->";
+    entity->name->Accept(this);
+
+    if( entity->parentName ) {
+        file << entityId << "->";
+        entity->parentName->Accept(this);
+    }
+
+    if( entity->fields ) {
+        if( entity->fields->var1 ) {
+            file << entityId << "->";
+            entity->fields->Accept(this);
+        } else {
+            file << entityId << "->";
+            entity->fields->var2->Accept(this);
+        }
+    }
+
+    if( entity->methods ) {
+        if( entity->methods->method1 ) {
+            file << entityId << "->";
+            entity->methods->Accept(this);
+        } else {
+            file << entityId << "->";
+            entity->methods->method2->Accept(this);
+        }
+    }
 }
 
 void CPrintVisitor::Visit( CCompoundStatement *statement ) {
