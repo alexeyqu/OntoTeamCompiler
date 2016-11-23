@@ -1,6 +1,7 @@
 jive
 code.txt
 graph.png
-my_graph.ps
+*.ps
+*.png
 obj/
 auto/
