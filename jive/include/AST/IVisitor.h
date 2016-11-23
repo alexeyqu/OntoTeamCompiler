@@ -3,7 +3,7 @@
 #include "../jive.h"
 
 class CProgram;
-class CCompoundTmp;
+class CGoal;
 class CType;
 class CArray;
 class CVariable;
@@ -12,6 +12,8 @@ class CArgument;
 class CCompoundArgument;
 class CMethod;
 class CCompoundMethod;
+class CCompoundClass;
+class CMainClass;
 class CClass;
 class CCompoundStatement;
 class CAssignStatement;
@@ -29,7 +31,7 @@ class IVisitor
 {
 public:
    	virtual void Visit( CProgram *program ) = 0;
-   	virtual void Visit( CCompoundTmp *tmp ) = 0;
+   	virtual void Visit( CGoal *goal ) = 0;
    	virtual void Visit( CType *entity ) = 0;
     virtual void Visit( CArray *entity ) = 0;
    	virtual void Visit( CVariable *entity ) = 0;
@@ -38,6 +40,8 @@ public:
     virtual void Visit( CCompoundArgument *entity ) = 0;
     virtual void Visit( CMethod *entity ) = 0;
     virtual void Visit( CCompoundMethod *entity ) = 0;
+    virtual void Visit( CCompoundClass *entity ) = 0;
+    virtual void Visit( CMainClass *entity ) = 0;
     virtual void Visit( CClass *entity ) = 0;
 	virtual void Visit( CCompoundStatement *statement ) = 0;
 	virtual void Visit( CAssignStatement *statement ) = 0;

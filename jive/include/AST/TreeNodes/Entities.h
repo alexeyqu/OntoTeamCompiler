@@ -9,4 +9,8 @@
 #include "Entities/CCompoundArgument.h"
 #include "Entities/CMethod.h"
 #include "Entities/CCompoundMethod.h"
+#include "Entities/CMainClass.h"
 #include "Entities/CClass.h"
+#include "Entities/CCompoundClass.h"
+
+#include "CGoal.h"

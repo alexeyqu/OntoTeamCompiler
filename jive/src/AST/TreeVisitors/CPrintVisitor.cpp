@@ -19,18 +19,18 @@ void CPrintVisitor::Visit( CProgram *program ) {
     program->rootVertex->Accept(this);
 }
 
-void CPrintVisitor::Visit( CCompoundTmp *tmp )
+void CPrintVisitor::Visit( CGoal *goal )
 {
-    long tmpId = generateId(tmp);
+    long goalId = generateId(goal);
 
-    file << tmpId << ";\n";
-    file << tmpId << "[label = \"tmp\"];\n";
+    file << goalId << ";\n";
+    file << goalId << "[label = \"Goal\"];\n";
 
-    file << tmpId << "->";
-    tmp->tmp1->Accept(this);
+    file << goalId << "->";
+    goal->tmp1->Accept(this);
 
-    file << tmpId << "->";
-    tmp->tmp2->Accept(this);
+    file << goalId << "->";
+    goal->tmp2->Accept(this);
 }
 
 void CPrintVisitor::Visit( CType *entity ) {
@@ -193,6 +193,22 @@ void CPrintVisitor::Visit( CCompoundMethod *entity ) {
     entity->method2->Accept(this);
 }
 
+void CPrintVisitor::Visit( CMainClass *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"MainClassNtt\"];\n";
+
+    file << entityId << "->";
+    entity->name->Accept(this);
+
+    file << entityId << "->";
+    entity->cmdArgs->Accept(this);
+
+    file << entityId << "->";
+    entity->statement->Accept(this);
+}
+
 void CPrintVisitor::Visit( CClass *entity ) {
     long entityId = generateId(entity);
 
@@ -227,6 +243,27 @@ void CPrintVisitor::Visit( CClass *entity ) {
         }
     }
 }
+
+void CPrintVisitor::Visit( CCompoundClass *entity ) {
+    long entityId = generateId(entity);
+
+    file << entityId << ";\n";
+    file << entityId << "[label = \"CompoundClassNtt\"];\n";
+
+    if( entity->class1 ) {
+        if( entity->class1->class1 ) {
+            file << entityId << "->";
+            entity->class1->Accept(this);
+        } else {
+            file << entityId << "->";
+            entity->class1->class2->Accept(this);
+        }
+    }
+
+    file << entityId << "->";
+    entity->class2->Accept(this);
+}
+
 
 void CPrintVisitor::Visit( CCompoundStatement *statement ) {
     long stmId = generateId(statement);

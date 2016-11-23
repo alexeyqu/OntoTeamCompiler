@@ -52,6 +52,7 @@ static      { PROCESS_LEXEM(STATIC); }
 main        { PROCESS_LEXEM(MAIN); }
 extends     { PROCESS_LEXEM(EXTENDS); }
 this        { PROCESS_LEXEM(THIS); }
+new         { PROCESS_LEXEM(NEW); }
 if          { PROCESS_LEXEM(IF); }
 else        { PROCESS_LEXEM(ELSE); }
 while       { PROCESS_LEXEM(WHILE); }
@@ -99,13 +100,14 @@ false       { PROCESS_LEXEM(FALSE); }
 
 "System.out.println"    { PROCESS_LEXEM(PRINT); }
 
+            /* STRING */
+
+            /* \"[^\"]*\"  { PROCESS_LEXEM(STRING); } */
+"String"    { PROCESS_LEXEM(STRING); }
+
             /* IDENTIFIERS */
 
 {ID}+       { yylval.string = yytext; PROCESS_LEXEM(ID); }
-
-            /* STRING */
-
-\"[^\"]*\"  { PROCESS_LEXEM(STRING); }
 
             /* COMMENTS */
 

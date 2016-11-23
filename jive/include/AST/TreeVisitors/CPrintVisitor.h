@@ -10,7 +10,7 @@ public:
 	void Start( IVisitorTarget *vertex, std::string graphname );
 	
 	void Visit( CProgram *program );
-   	void Visit( CCompoundTmp *tmp );
+   	void Visit( CGoal *goal );
 	void Visit( CType *entity );
 	void Visit( CArray *entity );
 	void Visit( CVariable *entity );
@@ -19,6 +19,8 @@ public:
     void Visit( CCompoundArgument *entity );
     void Visit( CMethod *entity );
     void Visit( CCompoundMethod *entity );
+    void Visit( CCompoundClass *entity );
+    void Visit( CMainClass *entity );
     void Visit( CClass *entity );
 	void Visit( CCompoundStatement *statement );
 	void Visit( CAssignStatement *statement );
