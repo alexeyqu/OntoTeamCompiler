@@ -19,7 +19,6 @@ void CPrintVisitor::Visit( CProgram *program ) {
     program->rootVertex->Accept(this);
 }
 
-
 void CPrintVisitor::Visit( CCompoundTmp *tmp )
 {
     long tmpId = generateId(tmp);
