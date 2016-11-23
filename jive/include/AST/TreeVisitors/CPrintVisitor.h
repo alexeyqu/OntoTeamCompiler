@@ -1,6 +1,6 @@
 #pragma once
 
-#include <fstream>
+#include <iostream>
 #include <cassert>
 #include "../CProgram.h"
 
@@ -36,6 +36,4 @@ public:
 	
 private:
 	std::size_t generateId( void *entity );
-
-	std::ofstream file;
 };

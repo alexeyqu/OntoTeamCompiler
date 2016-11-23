@@ -87,26 +87,33 @@
 Program: Goal { *program = $$ = new CProgram( $1 ); }
 ;
 
-Goal:	MainClass Classes { $$ = new CGoal( $1, $2 ); }
+Goal: 	MainClass Classes { $$ = new CGoal( $1, $2 ); }
 ;
 
-MainClass:	CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE { $$ = new CMainClass( $2, $12, $15 ); }
+MainClass:	CLASS Identifier LBRACE 
+				PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE 
+				Statement 
+				RBRACE 
+			RBRACE { $$ = new CMainClass( $2, $12, $15 ); }
 ;
 
-Class: 	CLASS Identifier EXTENDS Identifier LBRACE Variables Methods RBRACE { $$ = new CClass( $2, $4, $6, $7 ); }
-		|
-		CLASS Identifier LBRACE Variables Methods RBRACE { $$ = new CClass( $2, nullptr, $4, $5 ); }
-;
-
-Classes: Classes Class { $$ = new CCompoundClass( $1, $2 ); }
+Classes: 	Classes Class { $$ = new CCompoundClass( $1, $2 ); }
 			|
 			{ $$ = nullptr; }
 ;
 
-Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements RETURN Expression SEMI RBRACE {	$$ = new CMethod( $2, $3, $5, $8, $9, $11 ); }
+Class: 	CLASS Identifier EXTENDS Identifier LBRACE 
+			Variables 
+			Methods 
+		RBRACE { $$ = new CClass( $2, $4, $6, $7 ); }
+		|
+		CLASS Identifier LBRACE 
+			Variables 
+			Methods 
+		RBRACE { $$ = new CClass( $2, nullptr, $4, $5 ); }
 ;
 
-Methods: 	Methods Method { $$ = new CCompoundMethod( $1, $2 ); }
+Variables:  Variables Variable { $$ = new CCompoundVariable( $1, $2 ); }
 			|
 			{ $$ = nullptr; }
 ;
@@ -116,14 +123,21 @@ Variable:	Type Identifier SEMI { $$ = new CVariable( $1, $2 ); }
 			Array Identifier SEMI { $$ = new CVariable( $1, $2 ); }
 ;
 
+Methods: 	Methods Method { $$ = new CCompoundMethod( $1, $2 ); }
+			|
+			{ $$ = nullptr; }
+;
+
+Method: 	PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE 
+				Variables 
+				Statements 
+				RETURN Expression SEMI
+			RBRACE {	$$ = new CMethod( $2, $3, $5, $8, $9, $11 ); }
+;
+
 Array:      Type LBRACKET RBRACKET { $$ = new CArray( $1, 0 ); }
 			|
 			Type LBRACKET NUM RBRACKET { $$ = new CArray( $1, atoi( $3 ) ); }
-;
-
-Variables:  Variables Variable { $$ = new CCompoundVariable( $1, $2 ); }
-			|
-			{ $$ = nullptr; }
 ;
 
 Arguments:  RestArguments Type Identifier { $$ = new CCompoundArgument( $1, new CArgument( $2, $3 ) ); }
@@ -138,6 +152,8 @@ RestArguments: RestArguments Type Identifier COMMA { $$ = new CCompoundArgument(
 
 Statements: Statements Statement { $$ = new CCompoundStatement( $1, $2 ); }
 			|
+			LBRACE Statements RBRACE { $$ = new CCompoundStatement( $2, nullptr ); }
+			|
 			{ $$ = nullptr; }
 ;
 
@@ -148,6 +164,8 @@ Statement:  IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfS
 			PRINT LPAREN Expression RPAREN SEMI { $$ = new CPrintStatement( $3 ); }
 			|
 			Identifier ASSIGN Expression SEMI { $$ = new CAssignStatement( $1, $3 ); }
+			|
+			Identifier ASSIGN Expression LBRACKET Expression RBRACKET SEMI { $$ = new CAssignStatement( $1, $3 ); }
 ;
 
 Type:	INT { $$ = new CType( enums::INTEGER ); }
@@ -155,6 +173,8 @@ Type:	INT { $$ = new CType( enums::INTEGER ); }
 		BOOL { $$ = new CType( enums::BOOLEAN ); }
 		|
 		STRING { $$ = new CType( enums::STRING ); }
+		|
+		Identifier { $$ = nullptr; }
 ;
 
 Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, enums::AND, $3 ); }
@@ -175,6 +195,10 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			Expression MOD Expression { $$ = new CBinaryExpression( $1, enums::MOD, $3 ); }
 			|
+			Expression LBRACKET Expression RBRACKET { $$ = $1; }
+			|
+			Expression DOT "length" { $$ = $1; }
+			|
 			Expression DOT Identifier LPAREN Expression RPAREN { $$ = $1; }
 			|
 			NUM { $$ = new CNumberExpression( $1 ); }
@@ -186,6 +210,8 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			THIS { $$ = new CThisExpression(); }
 			|
 			Identifier { $$ = $1; }
+			|	
+			NEW INT LBRACKET Expression RBRACKET { $$ = $4; }
 			|
 			NEW Identifier LPAREN RPAREN { $$ = $2; }
 			|
@@ -210,23 +236,23 @@ n	MethodDeclaration ::= "public" | “private” Type Identifier "(" ( Type Iden
 n	Type ::= "int" "[" "]"
 q	| "boolean"
 q	| "int"
-	| Identifier
-	Statement ::= "{" ( Statement )* "}"
+q	| Identifier
+q	Statement ::= "{" ( Statement )* "}"
 q	| "if" "(" Expression ")" Statement "else" Statement
 q	| "while" "(" Expression ")" Statement
 q	| "System.out.println" "(" Expression ")" ";"
 q	| Identifier "=" Expression ";"
-	| Identifier "[" Expression "]" "=" Expression ";"
+q	| Identifier "[" Expression "]" "=" Expression ";"
 q	Expression ::= Expression ( "&&" | "<" | "+" | "-" | "*" | "%" | "||" ) Expression
-	| Expression "[" Expression "]"
-	| Expression "." "length"
-	| Expression "." Identifier "(" ( Expression ( "," Expression )* )? ")"
+q	| Expression "[" Expression "]"
+q	| Expression "." "length"
+q	| Expression "." Identifier "(" ( Expression ( "," Expression )* )? ")"
 q	| <INTEGER_LITERAL>
 q	| "true"
 q	| "false"
 q	| Identifier
 q	| "this"
-	| "new" "int" "[" Expression "]"
+q	| "new" "int" "[" Expression "]"
 q	| "new" Identifier "(" ")"
 q	| "!" Expression 
 q	| "(" Expression ")"
