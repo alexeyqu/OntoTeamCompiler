@@ -24,7 +24,6 @@
 	CProgram *Program;
 	IVisitorTarget *Goal;
 	CType* Type;
-	CArray* Array;
 	CVariable* Variable;
 	CCompoundVariable* Variables;
 	CMethod* Method;
@@ -65,7 +64,6 @@
 %type <Program> Program
 %type <Goal> Goal
 %type <Type> Type
-%type <Array> Array
 %type <Variable> Variable
 %type <Variables> Variables
 %type <Method> Method
@@ -119,8 +117,6 @@ Variables:  Variables Variable { $$ = new CCompoundVariable( $1, $2 ); }
 ;
 
 Variable:	Type Identifier SEMI { $$ = new CVariable( $1, $2 ); }
-			|
-			Array Identifier SEMI { $$ = new CVariable( $1, $2 ); }
 ;
 
 Methods: 	Methods Method { $$ = new CCompoundMethod( $1, $2 ); }
@@ -132,12 +128,7 @@ Method: 	PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE
 				Variables 
 				Statements 
 				RETURN Expression SEMI
-			RBRACE {	$$ = new CMethod( $2, $3, $5, $8, $9, $11 ); }
-;
-
-Array:      Type LBRACKET RBRACKET { $$ = new CArray( $1, 0 ); }
-			|
-			Type LBRACKET NUM RBRACKET { $$ = new CArray( $1, atoi( $3 ) ); }
+			RBRACE { $$ = new CMethod( $2, $3, $5, $8, $9, $11 ); }
 ;
 
 Arguments:  RestArguments Type Identifier { $$ = new CCompoundArgument( $1, new CArgument( $2, $3 ) ); }
@@ -157,9 +148,16 @@ Statements: Statements Statement { $$ = new CCompoundStatement( $1, $2 ); }
 			{ $$ = nullptr; }
 ;
 
-Statement:  IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfStatement( $3, $5, $7 ); }
+Statement:  LBRACE Statements RBRACE { $$ = new CCompoundStatement( $2, nullptr ); }
 			|
-			WHILE LPAREN Expression RPAREN LBRACE Statement RBRACE { $$ = new CWhileStatement( $3, $6 ); }
+			IF LPAREN Expression RPAREN 
+				Statement 
+			ELSE 	
+				Statement { $$ = new CIfStatement( $3, $5, $7 ); }
+			|
+			WHILE LPAREN Expression RPAREN LBRACE 
+				Statement 
+			RBRACE { $$ = new CWhileStatement( $3, $6 ); }
 			|
 			PRINT LPAREN Expression RPAREN SEMI { $$ = new CPrintStatement( $3 ); }
 			|
@@ -169,6 +167,8 @@ Statement:  IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfS
 ;
 
 Type:	INT { $$ = new CType( enums::INTEGER ); }
+		|
+		INT LBRACKET RBRACKET { $$ = new CType( enums::INTEGERARRAY ); }
 		|
 		BOOL { $$ = new CType( enums::BOOLEAN ); }
 		|
@@ -199,7 +199,7 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			Expression DOT "length" { $$ = $1; }
 			|
-			Expression DOT Identifier LPAREN Expression RPAREN { $$ = $1; }
+			Expression DOT Identifier LPAREN Expression RPAREN { $$ = new CMethodCallExpression( $1, $3, $5 ); }
 			|
 			NUM { $$ = new CNumberExpression( $1 ); }
 			|
@@ -211,9 +211,9 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			Identifier { $$ = $1; }
 			|	
-			NEW INT LBRACKET Expression RBRACKET { $$ = $4; }
+			NEW INT LBRACKET Expression RBRACKET { $$ = new CNewIntArrayExpression( $4 ); }
 			|
-			NEW Identifier LPAREN RPAREN { $$ = $2; }
+			NEW Identifier LPAREN RPAREN { $$ = new CNewObjectExpression( $2 ); }
 			|
 			NOT Expression { $$ = new CBooleanExpression( !$2 ); }
 			|

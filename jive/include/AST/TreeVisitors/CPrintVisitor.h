@@ -32,7 +32,10 @@ public:
 	void Visit( CNumberExpression *expression );   	
 	void Visit( CBinaryBooleanExpression *expression );
    	void Visit( CBooleanExpression *expression );
-   	void Visit( CThisExpression *expression );
+   	void Visit( CThisExpression *expression );    
+    void Visit( CNewObjectExpression *expression );
+    void Visit( CNewIntArrayExpression *expression );
+    void Visit( CMethodCallExpression *expression );
 	
 private:
 	std::size_t generateId( void *entity );
