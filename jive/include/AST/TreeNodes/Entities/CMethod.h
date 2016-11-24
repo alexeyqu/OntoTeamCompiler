@@ -1,12 +1,13 @@
 #pragma once
 
+#include "../IType.h"
 #include "../IEntity.h"
 #include "../IExpression.h"
 
 class CMethod : public IEntity
 {
 public:
-   	CMethod( CType *_returnType, CIdExpression *_id, 
+   	CMethod( IType *_returnType, CIdExpression *_id, 
    		CCompoundArgument *_arguments,
    		CCompoundVariable *_variables,
 		CCompoundStatement *_statements,
@@ -14,7 +15,7 @@ public:
 
    	void Accept( IVisitor *visitor ) override;
 
-	CType *returnType;
+	IType *returnType;
 	CIdExpression *id;
 	CCompoundArgument *arguments;
 	CCompoundVariable *variables;

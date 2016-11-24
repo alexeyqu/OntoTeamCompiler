@@ -6,11 +6,11 @@
 class CBooleanExpression : public IExpression
 {
 public:
-   	CBooleanExpression( bool _value, CType *_type = new CType ( enums::BOOLEAN ) );
+   	CBooleanExpression( bool _value, IType *_type = new CBuiltInType ( enums::BOOLEAN ) );
 
    	void Accept( IVisitor *visitor ) override;
-    CType *getType() override;
+    IType *getType() override;
 
    	bool value;
-    CType *type;
+    IType *type;
 };

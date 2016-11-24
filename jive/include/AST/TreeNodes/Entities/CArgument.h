@@ -1,14 +1,15 @@
 #pragma once
 
+#include "../IType.h"
 #include "../IEntity.h"
 
 class CArgument : public IEntity
 {
 public:
-   	CArgument( CType *_type, CIdExpression *_id );
+   	CArgument( IType *_type, CIdExpression *_id );
 
    	void Accept( IVisitor *visitor ) override;
 
-	CType *type;
+	IType *type;
 	CIdExpression *id;
 };

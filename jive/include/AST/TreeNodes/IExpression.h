@@ -1,10 +1,10 @@
 #pragma once
 
 #include "../IVisitorTarget.h"
-#include "CType.h"
+#include "CTypes.h"
 
 class IExpression : public IVisitorTarget 
 {
 public:
-   virtual CType *getType() = 0;
+   virtual IType *getType() = 0;
 };

@@ -6,11 +6,11 @@
 class CArrayLengthExpression : public IExpression
 {
 public:
-    CArrayLengthExpression( IExpression *_exp, CType *_type = new CType ( enums::INTEGER ) );
+    CArrayLengthExpression( IExpression *_exp, IType *_type = new CBuiltInType ( enums::INTEGER ) );
 
     void Accept( IVisitor *visitor ) override;
-    CType *getType() override;
+    IType *getType() override;
 
     IExpression *exp;
-    CType *type;
+    IType *type;
 };

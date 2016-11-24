@@ -6,12 +6,12 @@
 class CArrayIndexExpression : public IExpression
 {
 public:
-    CArrayIndexExpression( IExpression *_id, IExpression *_index, CType *_type = new CType ( enums::INTEGER ) );
+    CArrayIndexExpression( IExpression *_id, IExpression *_index, IType *_type = new CBuiltInType ( enums::INTEGER ) );
 
     void Accept( IVisitor *visitor ) override;
-    CType *getType() override;
+    IType *getType() override;
 
     IExpression *id;
     IExpression *index;
-    CType *type;
+    IType *type;
 };

@@ -4,8 +4,8 @@
 
 class CProgram;
 class CGoal;
-class CType;
-class CArray;
+class CBuiltInType;
+class CUserType;
 class CVariable;
 class CCompoundVariable;
 class CArgument;
@@ -37,8 +37,8 @@ class IVisitor
 public:
    	virtual void Visit( CProgram *program ) = 0;
    	virtual void Visit( CGoal *goal ) = 0;
-   	virtual void Visit( CType *entity ) = 0;
-    virtual void Visit( CArray *entity ) = 0;
+   	virtual void Visit( CBuiltInType *type ) = 0;
+    virtual void Visit( CUserType *type ) = 0;
    	virtual void Visit( CVariable *entity ) = 0;
     virtual void Visit( CCompoundVariable *entity ) = 0;
     virtual void Visit( CArgument *entity ) = 0;

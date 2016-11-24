@@ -24,7 +24,7 @@
 	char *string;
 	CJiveEnvironment *JiveEnv;
 	IVisitorTarget *Goal;
-	CType* Type;
+	IType* Type;
 	CVariable* Variable;
 	CCompoundVariable* Variables;
 	CMethod* Method;
@@ -105,7 +105,7 @@ Classes: 	Classes Class { $$ = new CCompoundClass( $1, $2 ); }
 Class: 	CLASS Identifier EXTENDS Identifier LBRACE 
 			Variables 
 			Methods 
-		RBRACE { $$ = new CClass( $2, $4, $6, $7 ); }
+		RBRACE { $$ = new CClass( $2, $4, $6, $7 ); }				 
 		|
 		CLASS Identifier LBRACE 
 			Variables 
@@ -168,15 +168,15 @@ Statement:  LBRACE Statements RBRACE { $$ = new CCompoundStatement( $2, nullptr 
 			Identifier LBRACKET Expression RBRACKET ASSIGN Expression  SEMI { $$ = new CAssignStatement( $1, $3 ); }
 ;
 
-Type:	INT { $$ = new CType( enums::INTEGER ); }
+Type:	INT { $$ = new CBuiltInType( enums::INTEGER ); }
 		|
-		INT LBRACKET RBRACKET { $$ = new CType( enums::INTEGERARRAY ); }
+		INT LBRACKET RBRACKET { $$ = new CBuiltInType( enums::INTEGERARRAY ); }
 		|
-		BOOL { $$ = new CType( enums::BOOLEAN ); }
+		BOOL { $$ = new CBuiltInType( enums::BOOLEAN ); }
 		|
-		STRING { $$ = new CType( enums::STRING ); }
+		STRING { $$ = new CBuiltInType( enums::STRING ); }
 		|
-		Identifier { $$ = new CType( enums::CLASS ); }
+		Identifier { $$ = new CBuiltInType( enums::CLASS ); }
 ;
 
 Expressions: 	Expressions COMMA Expression { $$ = $3; }

@@ -5,11 +5,11 @@
 class CNewIntArrayExpression : public IExpression
 {
 public:
-    CNewIntArrayExpression( IExpression *_arrSize, CType *_type = new CType ( enums::INTEGERARRAY ) );
+    CNewIntArrayExpression( IExpression *_arrSize, IType *_type = new CBuiltInType ( enums::INTEGERARRAY ) );
 
     void Accept( IVisitor *visitor ) override;
-    CType *getType() override;
+    IType *getType() override;
 
     IExpression *arrSize;
-    CType *type;
+    IType *type;
 };

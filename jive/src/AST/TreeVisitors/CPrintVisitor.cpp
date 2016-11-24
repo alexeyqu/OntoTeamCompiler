@@ -28,31 +28,28 @@ void CPrintVisitor::Visit( CGoal *goal )
     goal->tmp2->Accept(this);
 }
 
-void CPrintVisitor::Visit( CType *entity ) {
-    long entityId = generateId(entity);
+void CPrintVisitor::Visit( CBuiltInType *type ) {
+    long typeId = generateId(type);
 
-    std::cout << entityId << ";\n";
-    switch(entity->type) {
+    std::cout << typeId << ";\n";
+    switch(type->type) {
     case enums::TType::INTEGER:
-        std::cout << entityId << "[label = \"int\" ];\n";
+        std::cout << typeId << "[label = \"int\" ];\n";
         break;
     case enums::TType::BOOLEAN:
-        std::cout << entityId << "[label = \"bool\" ];\n";
+        std::cout << typeId << "[label = \"bool\" ];\n";
         break;
     case enums::TType::STRING:
-        std::cout << entityId << "[label = \"String\" ];\n";
+        std::cout << typeId << "[label = \"String\" ];\n";
         break;
     }
 }
 
-void CPrintVisitor::Visit( CArray *entity ) {
-    long entityId = generateId(entity);
+void CPrintVisitor::Visit( CUserType *type ) {
+    long typeId = generateId(type);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"Array[" << entity->size << "]\" ];\n";
-    
-    std::cout << entityId << "->";
-    entity->type->Accept(this);
+    std::cout << typeId << ";\n";
+    std::cout << typeId << "[label = \"" << type->typeClass->name->name << "\" ];\n";
 }
 
 void CPrintVisitor::Visit( CVariable *entity ) {
