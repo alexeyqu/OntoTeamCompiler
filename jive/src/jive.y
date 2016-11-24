@@ -13,6 +13,8 @@
 	    fprintf(stderr, "Error: {%d, %d} %s\n", yylloc.first_line, yylloc.first_column, str);
 	    exit(1);
 	}
+
+	CSymbolTable *symbolTable = new CSymbolTable();
 }
 
 %error-verbose
@@ -84,7 +86,10 @@
 
 %%
 
-JiveEnv: Goal { (*jiveEnv)->LoadProgram( new CProgram( $1, *jiveEnv ) ); $$ = *jiveEnv; }
+JiveEnv: Goal { 
+	(*jiveEnv)->LoadProgram( new CProgram( $1 ) ); 
+	(*jiveEnv)->symbolTable = symbolTable;
+	$$ = *jiveEnv; }
 ;
 
 Goal: 	MainClass Classes { $$ = new CGoal( $1, $2 ); }
@@ -118,7 +123,11 @@ Variables:  Variables Variable { $$ = new CCompoundVariable( $1, $2 ); }
 			%empty { $$ = nullptr; }
 ;
 
-Variable:	Type Identifier SEMI { (*jiveEnv)->symbolTable->Dump(); (*jiveEnv)->symbolTable->Insert( $$ = new CVariable( $1, $2 ) ); }
+Variable:	Type Identifier SEMI { 
+				symbolTable->Dump(); 
+				$2->type = $1; 
+				symbolTable->Insert( $$ = new CVariable( $1, $2 ) ); 
+			}
 ;
 
 Methods: 	Methods Method { $$ = new CCompoundMethod( $1, $2 ); }
@@ -239,7 +248,7 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			Expression COMMA Expression { $$ = $3; }
 ;
 
-Identifier: ID { $$ = new CIdExpression( $1, *jiveEnv ); }
+Identifier: ID { $$ = new CIdExpression( $1 ); }
 ;
 
 %%

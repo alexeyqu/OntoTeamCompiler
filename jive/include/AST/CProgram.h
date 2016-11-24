@@ -10,10 +10,9 @@ class CJiveEnvironment;
 class CProgram : public IVisitorTarget 
 {
 public:
-	CProgram( IVisitorTarget *_rootVertex, CJiveEnvironment *_jiveEnv );
+	CProgram( IVisitorTarget *_rootVertex );
 
 	void Accept( IVisitor *visitor ) override;
 
 	IVisitorTarget *rootVertex;
-    CJiveEnvironment *jiveEnv;
 };

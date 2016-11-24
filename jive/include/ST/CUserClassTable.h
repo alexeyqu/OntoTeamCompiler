@@ -13,7 +13,7 @@ public:
 
    void Clear();
    void Insert( CClass* userClass );
-   CClass *Lookup( CIdExpression *id ) 
+   CClass *Lookup( CIdExpression *id );
 
    std::unordered_map< std::string, CClass* > table;
 };  

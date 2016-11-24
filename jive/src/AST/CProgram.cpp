@@ -1,6 +1,6 @@
 #include "CProgram.h"
 
-CProgram::CProgram( IVisitorTarget *_rootVertex, CJiveEnvironment *_jiveEnv ) : rootVertex( _rootVertex ), jiveEnv( _jiveEnv ) {}
+CProgram::CProgram( IVisitorTarget *_rootVertex ) : rootVertex( _rootVertex ) {}
  
 void CProgram::Accept( IVisitor *visitor ) {
 	visitor->Visit(this);
