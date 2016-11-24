@@ -508,9 +508,6 @@ void CPrintVisitor::Visit( CArrayIndexExpression *expression ) {
     expression->index->Accept(this);
 }
 
-//<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-//<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-
 std::size_t  CPrintVisitor::generateId( void *entity )
 {
     if( entity == nullptr )
