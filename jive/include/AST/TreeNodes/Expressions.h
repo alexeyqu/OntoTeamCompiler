@@ -7,3 +7,4 @@
 #include "Expressions/CBinaryBooleanExpression.h"
 #include "Expressions/CBooleanExpression.h"
 #include "Expressions/CThisExpression.h"
+#include "CArrayLengthExpression.h"

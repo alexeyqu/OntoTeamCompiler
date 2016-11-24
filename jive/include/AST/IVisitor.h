@@ -26,6 +26,7 @@ class CNumberExpression;
 class CBinaryBooleanExpression;
 class CBooleanExpression;
 class CThisExpression;
+class CArrayLengthExpression;
 
 class IVisitor
 {
@@ -54,4 +55,5 @@ public:
    	virtual void Visit( CBinaryBooleanExpression *expression ) = 0;
    	virtual void Visit( CBooleanExpression *expression ) = 0;   	
    	virtual void Visit( CThisExpression *expression ) = 0;
+    virtual void Visit( CArrayLengthExpression *expression ) = 0;
 };

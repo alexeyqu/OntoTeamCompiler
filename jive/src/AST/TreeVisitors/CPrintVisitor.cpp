@@ -443,6 +443,16 @@ void CPrintVisitor::Visit( CThisExpression *expression ) {
     std::cout << addressId << "[label = \"" << expression->address << "\"];\n";
 }
 
+void CPrintVisitor::Visit( CArrayLengthExpression *expression ) {
+    long exprId = generateId(expression);
+
+    std::cout << exprId << "\n";
+    std::cout << exprId << "[label = \"ArrayLengthExp\"];\n";
+
+    std::cout << exprId << "->";
+    expression->exp->Accept(this);
+}
+
 //<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 //<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 

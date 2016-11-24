@@ -99,6 +99,7 @@ false       { PROCESS_LEXEM(FALSE); }
             /* COMMANDS */
 
 "System.out.println"    { PROCESS_LEXEM(PRINT); }
+"length"                { PROCESS_LEXEM(LENGTH); }
 
             /* STRING */
 

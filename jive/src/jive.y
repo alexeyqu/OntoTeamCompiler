@@ -55,6 +55,7 @@
 %token TRUE FALSE AND OR NOT
 %token COMMA DOT SEMI AMPERSAND
 %token PRINT
+%token LENGTH
 %token ERROR
 
 %left AND OR
@@ -197,7 +198,7 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			Expression LBRACKET Expression RBRACKET { $$ = $1; }
 			|
-			Expression DOT "length" { $$ = $1; }
+			Expression DOT LENGTH { $$ = new CArrayLengthExpression( $1 ); }
 			|
 			Expression DOT Identifier LPAREN Expression RPAREN { $$ = $1; }
 			|

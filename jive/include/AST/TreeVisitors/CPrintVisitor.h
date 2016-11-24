@@ -33,6 +33,7 @@ public:
 	void Visit( CBinaryBooleanExpression *expression );
    	void Visit( CBooleanExpression *expression );
    	void Visit( CThisExpression *expression );
+   	void Visit( CArrayLengthExpression *expression );
 	
 private:
 	std::size_t generateId( void *entity );
