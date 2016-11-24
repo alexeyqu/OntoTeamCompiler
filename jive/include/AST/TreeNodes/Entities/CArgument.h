@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../IEntity.h"
-#include "../IExpression.h"
 
 class CArgument : public IEntity
 {

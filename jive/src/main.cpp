@@ -2,7 +2,8 @@
 #include <sstream>
 #include <memory>
 #include "AST/TreeVisitors/CPrintVisitor.h"
-#include "AST/CProgram.h"
+#include "../include/CJiveEnvironment.h"
+#include "CProgram.h"
 #include "jive.tab.h"
 #include "jive.lex.h"
 
@@ -13,12 +14,12 @@ int main( int argc, char **argv ) {
     else
         yyin = stdin;
 
-    CProgram *program;
+    CJiveEnvironment *jiveEnv;
 
-    yyparse(&program);
+    yyparse(&jiveEnv);
 
     CPrintVisitor printVisitor;
-	printVisitor.Start(program, "my_graph");
+	printVisitor.Start(jiveEnv->program, "my_graph");
 
 	return 0;
 }

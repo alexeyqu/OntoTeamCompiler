@@ -1,8 +1,8 @@
  #pragma once
 
 #include "../IEntity.h"
-#include "../IStatement.h"
 #include "../IExpression.h"
+#include "../IStatement.h"
 
 class CMainClass : public IEntity
 {

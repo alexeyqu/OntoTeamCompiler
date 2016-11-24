@@ -1,7 +1,7 @@
 %code requires {
 	#include <cstdio>
 	#include <cstring>
-	#include "CProgram.h"
+	#include "CJiveEnvironment.h"
 
 	#define YYERROR_VERBOSE 1 
 }
@@ -9,19 +9,19 @@
 %code {    
 	int yylex (void);
 
-	void yyerror(CProgram **program, const char *str) {
+	void yyerror(CJiveEnvironment **jiveEnv, const char *str) {
 	    fprintf(stderr, "Error: {%d, %d} %s\n", yylloc.first_line, yylloc.first_column, str);
 	}
 }
 
 %error-verbose
 %verbose
-%parse-param { CProgram **program }
+%parse-param { CJiveEnvironment **jiveEnv }
 %locations
 
 %union {
 	char *string;
-	CProgram *Program;
+	CJiveEnvironment *JiveEnv;
 	IVisitorTarget *Goal;
 	CType* Type;
 	CVariable* Variable;
@@ -61,7 +61,7 @@
 %left ADD SUB
 %left MUL DIV
 
-%type <Program> Program
+%type <JiveEnv> JiveEnv
 %type <Goal> Goal
 %type <Type> Type
 %type <Variable> Variable
@@ -79,11 +79,11 @@
 %type <Expression> Expression
 %type <Expression> Expressions
 
-%start Program
+%start JiveEnv
 
 %%
 
-Program: Goal { *program = $$ = new CProgram( $1 ); }
+JiveEnv: Goal { *jiveEnv = $$ = new CJiveEnvironment( new CProgram( $1 ) ); }
 ;
 
 Goal: 	MainClass Classes { $$ = new CGoal( $1, $2 ); }
