@@ -36,6 +36,8 @@ public:
     void Visit( CNewObjectExpression *expression );
     void Visit( CNewIntArrayExpression *expression );
     void Visit( CMethodCallExpression *expression );
+    void Visit( CArrayLengthExpression *expression );
+    void Visit( CArrayIndexExpression *expression );
 	
 private:
 	std::size_t generateId( void *entity );

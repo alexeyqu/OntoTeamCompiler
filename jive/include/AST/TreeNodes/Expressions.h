@@ -10,3 +10,5 @@
 #include "Expressions/CNewObjectExpression.h"
 #include "Expressions/CNewIntArrayExpression.h"
 #include "Expressions/CMethodCallExpression.h"
+#include "Expressions/CArrayLengthExpression.h"
+#include "Expressions/CArrayIndexExpression.h"
