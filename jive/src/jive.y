@@ -53,12 +53,8 @@
 %token ASSIGN EQU ADD SUB MUL DIV MOD LESS GREATER
 %token TRUE FALSE AND OR NOT
 %token COMMA DOT SEMI AMPERSAND
-<<<<<<< HEAD
-%token PRINT
 %token LENGTH
-=======
 %token PRINT LENGTH
->>>>>>> 22b48962cfc28b7fd56e27d1c890b4369659c6d8
 %token ERROR
 
 %left AND OR
