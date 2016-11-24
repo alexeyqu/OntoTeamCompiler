@@ -1,9 +1,9 @@
 #pragma once
 
 #include "IVisitorTarget.h"
-#include "TreeNodes/Entities.h"
-#include "TreeNodes/Statements.h"
-#include "TreeNodes/Expressions.h"
+#include "TreeNodes/CEntities.h"
+#include "TreeNodes/CStatements.h"
+#include "TreeNodes/CExpressions.h"
 
 class CProgram : public IVisitorTarget 
 {

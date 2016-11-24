@@ -266,11 +266,15 @@ void CPrintVisitor::Visit( CCompoundStatement *statement ) {
     std::cout << stmId << ";\n";
     std::cout << stmId << "[label = \"CompoundStm\"];\n";
 
-    std::cout << stmId << "->";
-    statement->leftStatement->Accept(this);
+    if(statement->leftStatement) {
+        std::cout << stmId << "->";
+        statement->leftStatement->Accept(this);
+    }
 
-    std::cout << stmId << "->";
-    statement->rightStatement->Accept(this);
+    if(statement->rightStatement) {
+        std::cout << stmId << "->";
+        statement->rightStatement->Accept(this);
+    }
 }
 
 void CPrintVisitor::Visit( CAssignStatement *statement ) {
@@ -443,6 +447,45 @@ void CPrintVisitor::Visit( CThisExpression *expression ) {
     std::cout << addressId << "[label = \"" << expression->address << "\"];\n";
 }
 
+void CPrintVisitor::Visit( CNewObjectExpression *expression ) {
+    long newObjId = generateId(expression);
+
+    std::cout << newObjId << "\n";
+    std::cout << newObjId << "[label = \"NewObjExp\"];\n";
+
+    std::cout << newObjId << "->";
+    expression->objTypeId->Accept(this);
+}
+
+void CPrintVisitor::Visit( CNewIntArrayExpression *expression ) {
+    long exprId = generateId(expression);
+
+    std::cout << exprId << "\n";
+    std::cout << exprId << "[label = \"NewIntArrayExp\"];\n";
+
+    long sizeId = generateId(&expression->arrSize);
+    std::cout << exprId << "->" << sizeId << ";\n";
+    std::cout << sizeId << "[label = \"" << expression->arrSize << "\"];\n";
+}
+
+void CPrintVisitor::Visit( CMethodCallExpression *expression ) {
+    long exprId = generateId(expression);
+
+    std::cout << exprId << "\n";
+    std::cout << exprId << "[label = \"MethodCallExp\"];\n";
+
+    std::cout << exprId << "->";
+    expression->base->Accept(this);
+
+    std::cout << exprId << "->";
+    expression->methodId->Accept(this);
+
+    if(expression->arg) {
+        std::cout << exprId << "->";
+        expression->arg->Accept(this);        
+    }
+}
+
 void CPrintVisitor::Visit( CArrayLengthExpression *expression ) {
     long exprId = generateId(expression);
 
@@ -453,8 +496,18 @@ void CPrintVisitor::Visit( CArrayLengthExpression *expression ) {
     expression->exp->Accept(this);
 }
 
-//<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-//<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+void CPrintVisitor::Visit( CArrayIndexExpression *expression ) {
+    long exprId = generateId(expression);
+
+    std::cout << exprId << "\n";
+    std::cout << exprId << "[label = \"ArrayIndexExp\"];\n";
+
+    std::cout << exprId << "->";
+    expression->id->Accept(this);
+
+    std::cout << exprId << "->";
+    expression->index->Accept(this);
+}
 
 std::size_t  CPrintVisitor::generateId( void *entity )
 {

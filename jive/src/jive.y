@@ -1,7 +1,7 @@
 %code requires {
 	#include <cstdio>
 	#include <cstring>
-	#include "CProgram.h"
+	#include "CJiveEnvironment.h"
 
 	#define YYERROR_VERBOSE 1 
 }
@@ -9,22 +9,21 @@
 %code {    
 	int yylex (void);
 
-	void yyerror(CProgram **program, const char *str) {
+	void yyerror(CJiveEnvironment **jiveEnv, const char *str) {
 	    fprintf(stderr, "Error: {%d, %d} %s\n", yylloc.first_line, yylloc.first_column, str);
 	}
 }
 
 %error-verbose
 %verbose
-%parse-param { CProgram **program }
+%parse-param { CJiveEnvironment **jiveEnv }
 %locations
 
 %union {
 	char *string;
-	CProgram *Program;
+	CJiveEnvironment *JiveEnv;
 	IVisitorTarget *Goal;
 	CType* Type;
-	CArray* Array;
 	CVariable* Variable;
 	CCompoundVariable* Variables;
 	CMethod* Method;
@@ -54,8 +53,12 @@
 %token ASSIGN EQU ADD SUB MUL DIV MOD LESS GREATER
 %token TRUE FALSE AND OR NOT
 %token COMMA DOT SEMI AMPERSAND
+<<<<<<< HEAD
 %token PRINT
 %token LENGTH
+=======
+%token PRINT LENGTH
+>>>>>>> 22b48962cfc28b7fd56e27d1c890b4369659c6d8
 %token ERROR
 
 %left AND OR
@@ -63,10 +66,9 @@
 %left ADD SUB
 %left MUL DIV
 
-%type <Program> Program
+%type <JiveEnv> JiveEnv
 %type <Goal> Goal
 %type <Type> Type
-%type <Array> Array
 %type <Variable> Variable
 %type <Variables> Variables
 %type <Method> Method
@@ -80,12 +82,13 @@
 %type <Statement> Statement
 %type <Statements> Statements
 %type <Expression> Expression
+%type <Expression> Expressions
 
-%start Program
+%start JiveEnv
 
 %%
 
-Program: Goal { *program = $$ = new CProgram( $1 ); }
+JiveEnv: Goal { *jiveEnv = $$ = new CJiveEnvironment( new CProgram( $1 ) ); }
 ;
 
 Goal: 	MainClass Classes { $$ = new CGoal( $1, $2 ); }
@@ -100,7 +103,7 @@ MainClass:	CLASS Identifier LBRACE
 
 Classes: 	Classes Class { $$ = new CCompoundClass( $1, $2 ); }
 			|
-			{ $$ = nullptr; }
+			%empty { $$ = nullptr; }
 ;
 
 Class: 	CLASS Identifier EXTENDS Identifier LBRACE 
@@ -116,66 +119,75 @@ Class: 	CLASS Identifier EXTENDS Identifier LBRACE
 
 Variables:  Variables Variable { $$ = new CCompoundVariable( $1, $2 ); }
 			|
-			{ $$ = nullptr; }
+			%empty { $$ = nullptr; }
 ;
 
 Variable:	Type Identifier SEMI { $$ = new CVariable( $1, $2 ); }
-			|
-			Array Identifier SEMI { $$ = new CVariable( $1, $2 ); }
 ;
 
 Methods: 	Methods Method { $$ = new CCompoundMethod( $1, $2 ); }
 			|
-			{ $$ = nullptr; }
+			%empty { $$ = nullptr; }
 ;
 
 Method: 	PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE 
 				Variables 
 				Statements 
 				RETURN Expression SEMI
-			RBRACE {	$$ = new CMethod( $2, $3, $5, $8, $9, $11 ); }
-;
-
-Array:      Type LBRACKET RBRACKET { $$ = new CArray( $1, 0 ); }
-			|
-			Type LBRACKET NUM RBRACKET { $$ = new CArray( $1, atoi( $3 ) ); }
+			RBRACE { $$ = new CMethod( $2, $3, $5, $8, $9, $11 ); }
 ;
 
 Arguments:  RestArguments Type Identifier { $$ = new CCompoundArgument( $1, new CArgument( $2, $3 ) ); }
 			|
-			{ $$ = nullptr; }
+			%empty { $$ = nullptr; }
 ;
 
 RestArguments: RestArguments Type Identifier COMMA { $$ = new CCompoundArgument( $1, new CArgument( $2, $3 ) ); }
 			|
-			{ $$ = nullptr; }
+			%empty { $$ = nullptr; }
 ;
 
-Statements: Statements Statement { $$ = new CCompoundStatement( $1, $2 ); }
+Statements: Statement Statements { $$ = new CCompoundStatement( $2, $1 ); }
 			|
 			LBRACE Statements RBRACE { $$ = new CCompoundStatement( $2, nullptr ); }
 			|
-			{ $$ = nullptr; }
+			%empty { $$ = nullptr; }
 ;
 
-Statement:  IF LPAREN Expression RPAREN Statement ELSE Statement { $$ = new CIfStatement( $3, $5, $7 ); }
+Statement:  LBRACE Statements RBRACE { $$ = new CCompoundStatement( $2, nullptr ); }
 			|
-			WHILE LPAREN Expression RPAREN LBRACE Statement RBRACE { $$ = new CWhileStatement( $3, $6 ); }
+			IF LPAREN Expression RPAREN 
+				Statements 
+			ELSE 	
+				Statements { $$ = new CIfStatement( $3, $5, $7 ); }
+			|
+			WHILE LPAREN Expression RPAREN LBRACE 
+				Statements
+			RBRACE { $$ = new CWhileStatement( $3, $6 ); }
 			|
 			PRINT LPAREN Expression RPAREN SEMI { $$ = new CPrintStatement( $3 ); }
 			|
 			Identifier ASSIGN Expression SEMI { $$ = new CAssignStatement( $1, $3 ); }
 			|
-			Identifier ASSIGN Expression LBRACKET Expression RBRACKET SEMI { $$ = new CAssignStatement( $1, $3 ); }
+			Identifier LBRACKET Expression RBRACKET ASSIGN Expression  SEMI { $$ = new CAssignStatement( $1, $3 ); }
 ;
 
 Type:	INT { $$ = new CType( enums::INTEGER ); }
+		|
+		INT LBRACKET RBRACKET { $$ = new CType( enums::INTEGERARRAY ); }
 		|
 		BOOL { $$ = new CType( enums::BOOLEAN ); }
 		|
 		STRING { $$ = new CType( enums::STRING ); }
 		|
-		Identifier { $$ = nullptr; }
+		Identifier { $$ = new CType( enums::CLASS ); }
+;
+
+Expressions: 	Expressions COMMA Expression { $$ = $3; }
+				|
+				Expression { $$ = $1; }
+				|
+				%empty { $$ = nullptr; }
 ;
 
 Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, enums::AND, $3 ); }
@@ -196,11 +208,11 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			Expression MOD Expression { $$ = new CBinaryExpression( $1, enums::MOD, $3 ); }
 			|
-			Expression LBRACKET Expression RBRACKET { $$ = $1; }
+			Expression LBRACKET Expression RBRACKET { $$ = new CArrayIndexExpression( $1, $3 ); }
 			|
 			Expression DOT LENGTH { $$ = new CArrayLengthExpression( $1 ); }
 			|
-			Expression DOT Identifier LPAREN Expression RPAREN { $$ = $1; }
+			Expression DOT Identifier LPAREN Expressions RPAREN { $$ = new CMethodCallExpression( $1, $3, $5 ); }
 			|
 			NUM { $$ = new CNumberExpression( $1 ); }
 			|
@@ -212,15 +224,17 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			Identifier { $$ = $1; }
 			|	
-			NEW INT LBRACKET Expression RBRACKET { $$ = $4; }
+			NEW INT LBRACKET Expression RBRACKET { $$ = new CNewIntArrayExpression( $4 ); }
 			|
-			NEW Identifier LPAREN RPAREN { $$ = $2; }
+			NEW Identifier LPAREN RPAREN { $$ = new CNewObjectExpression( $2 ); }
 			|
 			NOT Expression { $$ = new CBooleanExpression( !$2 ); }
 			|
 			LPAREN Expression RPAREN { $$ = $2; }
 			|
 			SUB Expression { $$ = new CBinaryExpression ($2, enums::MUL, new CNumberExpression ( "-1" ) ); } // FIXIT
+			|
+			Expression COMMA Expression { $$ = $3; }
 ;
 
 Identifier: ID { $$ = new CIdExpression( $1 ); }

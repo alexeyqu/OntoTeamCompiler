@@ -32,8 +32,12 @@ public:
 	void Visit( CNumberExpression *expression );   	
 	void Visit( CBinaryBooleanExpression *expression );
    	void Visit( CBooleanExpression *expression );
-   	void Visit( CThisExpression *expression );
-   	void Visit( CArrayLengthExpression *expression );
+   	void Visit( CThisExpression *expression );    
+    void Visit( CNewObjectExpression *expression );
+    void Visit( CNewIntArrayExpression *expression );
+    void Visit( CMethodCallExpression *expression );
+    void Visit( CArrayLengthExpression *expression );
+    void Visit( CArrayIndexExpression *expression );
 	
 private:
 	std::size_t generateId( void *entity );
