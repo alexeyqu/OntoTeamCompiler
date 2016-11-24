@@ -14,7 +14,7 @@ int main( int argc, char **argv ) {
     else
         yyin = stdin;
 
-    CJiveEnvironment *jiveEnv;
+    CJiveEnvironment *jiveEnv = new CJiveEnvironment();
 
     yyparse(&jiveEnv);
 

@@ -28,7 +28,8 @@ CC = g++-4.8
 CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD
 INCLUDES = -I $(AUTO_PATH) -I include -I include/AST \
 	-I include/AST/TreeNodes -I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities \
-	-I include/AST/TreeVisitors -I /usr/local/include
+	-I include/AST/TreeVisitors -I include/ST \
+	-I /usr/local/include
 LIBS = -lasan -lfl
 
 .PHONY: default_target

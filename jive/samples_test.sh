@@ -9,6 +9,6 @@ for f in *.java
 do
     echo $f
     ../../jive < $f > ../parsetrees/dot/$f.dot
-    dot -Tps ../parsetrees/dot/$f.dot -o ../parsetrees/$f.ps
-    dot -Tpng ../parsetrees/dot/$f.dot -o ../parsetrees/$f.png
+  #  dot -Tps ../parsetrees/dot/$f.dot -o ../parsetrees/$f.ps
+  #  dot -Tpng ../parsetrees/dot/$f.dot -o ../parsetrees/$f.png
 done

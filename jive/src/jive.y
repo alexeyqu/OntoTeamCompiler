@@ -11,6 +11,7 @@
 
 	void yyerror(CJiveEnvironment **jiveEnv, const char *str) {
 	    fprintf(stderr, "Error: {%d, %d} %s\n", yylloc.first_line, yylloc.first_column, str);
+	    exit(1);
 	}
 }
 
@@ -83,7 +84,7 @@
 
 %%
 
-JiveEnv: Goal { *jiveEnv = $$ = new CJiveEnvironment( new CProgram( $1 ) ); }
+JiveEnv: Goal { (*jiveEnv)->LoadProgram( new CProgram( $1, *jiveEnv ) ); $$ = *jiveEnv; }
 ;
 
 Goal: 	MainClass Classes { $$ = new CGoal( $1, $2 ); }
@@ -117,7 +118,7 @@ Variables:  Variables Variable { $$ = new CCompoundVariable( $1, $2 ); }
 			%empty { $$ = nullptr; }
 ;
 
-Variable:	Type Identifier SEMI { $$ = new CVariable( $1, $2 ); }
+Variable:	Type Identifier SEMI { (*jiveEnv)->symbolTable->Dump(); (*jiveEnv)->symbolTable->Insert( $$ = new CVariable( $1, $2 ) ); }
 ;
 
 Methods: 	Methods Method { $$ = new CCompoundMethod( $1, $2 ); }
@@ -193,7 +194,13 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			|
 			Expression GREATER Expression { $$ = new CBinaryBooleanExpression( $1, enums::GREATER, $3 ); }
 			|
-			Expression ADD Expression { $$ = new CBinaryExpression( $1, enums::ADD, $3 ); }
+			Expression ADD Expression { 
+				if( $1->getType()->type == enums::INTEGER &&
+					$3->getType()->type == enums::INTEGER )
+					$$ = new CBinaryExpression( $1, enums::ADD, $3 ); 
+				else
+					yyerror(jiveEnv, "INTEGER");
+			}
 			|
 			Expression SUB Expression { $$ = new CBinaryExpression( $1, enums::SUB, $3 ); }
 			|
@@ -232,7 +239,7 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			Expression COMMA Expression { $$ = $3; }
 ;
 
-Identifier: ID { $$ = new CIdExpression( $1 ); }
+Identifier: ID { $$ = new CIdExpression( $1, *jiveEnv ); }
 ;
 
 %%

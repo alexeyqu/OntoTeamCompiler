@@ -36,7 +36,6 @@ void CPrintVisitor::Visit( CType *entity ) {
     case enums::TType::INTEGER:
         std::cout << entityId << "[label = \"int\" ];\n";
         break;
-
     case enums::TType::BOOLEAN:
         std::cout << entityId << "[label = \"bool\" ];\n";
         break;

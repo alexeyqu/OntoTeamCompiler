@@ -6,9 +6,11 @@
 class CNumberExpression : public IExpression
 {
 public:
-   	CNumberExpression( const char *_number );
+   	CNumberExpression( const char *_number, CType *_type = new CType ( enums::INTEGER ) );
 
    	void Accept( IVisitor *visitor ) override;
+    CType *getType() override;
 
    	int number;
+    CType *type;
 };
