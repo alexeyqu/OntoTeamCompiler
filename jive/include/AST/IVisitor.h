@@ -31,6 +31,7 @@ class CNewIntArrayExpression;
 class CMethodCallExpression;
 class CArrayLengthExpression;
 class CArrayIndexExpression;
+class CCompoundExpression;
 
 class IVisitor
 {
@@ -64,4 +65,5 @@ public:
     virtual void Visit( CMethodCallExpression *expression ) = 0;
     virtual void Visit( CArrayLengthExpression *expression ) = 0;
     virtual void Visit( CArrayIndexExpression *expression ) = 0;
+    virtual void Visit( CCompoundExpression *expression ) = 0;
 };

@@ -505,6 +505,23 @@ void CPrintVisitor::Visit( CArrayIndexExpression *expression ) {
     expression->index->Accept(this);
 }
 
+void CPrintVisitor::Visit( CCompoundExpression *expression ) {
+    long exprId = generateId(expression);
+
+    std::cout << exprId << ";\n";
+    std::cout << exprId << "[label = \"CompoundExp\"];\n";
+
+    if(expression->leftExpression) {
+        std::cout << exprId << "->";
+        expression->leftExpression->Accept(this);
+    }
+
+    if(expression->rightExpression) {
+        std::cout << exprId << "->";
+        expression->rightExpression->Accept(this);
+    }
+}
+
 std::size_t  CPrintVisitor::generateId( void *entity )
 {
     if( entity == nullptr )
