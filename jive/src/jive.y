@@ -226,8 +226,6 @@ Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, e
 			LPAREN Expression RPAREN { $$ = $2; }
 			|
 			SUB Expression { $$ = new CBinaryExpression ($2, enums::MUL, new CNumberExpression ( "-1" ) ); } // FIXIT
-			|
-			Expression COMMA Expression { $$ = $3; }
 ;
 
 Expressions:	RestExpressions Expression { $$ = new CCompoundExpression( $1, $2 ); }

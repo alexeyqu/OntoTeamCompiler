@@ -2,6 +2,7 @@
 #include <sstream>
 #include <memory>
 #include "AST/TreeVisitors/CPrintVisitor.h"
+#include "AST/TreeVisitors/CTypeCheckerVisitor.h"
 #include "../include/CJiveEnvironment.h"
 #include "CProgram.h"
 #include "jive.tab.h"
@@ -20,6 +21,9 @@ int main( int argc, char **argv ) {
 
     CPrintVisitor printVisitor;
 	printVisitor.Start(jiveEnv->program, "my_graph");
+
+    CTypeCheckerVisitor typeCheckerVisitor;
+    typeCheckerVisitor.Start(jiveEnv->program);
 
 	return 0;
 }
