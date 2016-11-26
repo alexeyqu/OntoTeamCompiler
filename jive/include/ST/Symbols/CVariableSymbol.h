@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ISymbol.h"
 
 class CVariableSymbol : public ISymbol {

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "IType.h"
 #include <string>
 

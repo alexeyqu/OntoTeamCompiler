@@ -3,12 +3,16 @@
 #include <iostream>
 #include <cassert>
 #include "../CProgram.h"
-#include "CSymbolTableScope.h"
+#include "CSymbolTable.h"
+#include <vector>
+#include <map>
+#include <string>
 
 class CTableCreatorVisitor : public IVisitor 
 {
 public:
 	void Start( IVisitorTarget *vertex );
+	std::map<std::string, CClassSymbol*>& GetTable();
 	
 	void Visit( CProgram *program );
    	void Visit( CGoal *goal );
@@ -41,7 +45,9 @@ public:
     void Visit( CArrayIndexExpression *expression );
     void Visit( CCompoundExpression *expression );
 private:
-	std::vector<CSymbolTableScope*> scopes;
+	std::map<std::string, CClassSymbol*> table;
+	CClassSymbol* curClassSymbol;
+	CMethodSymbol* curMethodSymbol;
 }; 
  
  

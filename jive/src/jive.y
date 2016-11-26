@@ -24,7 +24,6 @@
 	char *string;
 	CJiveEnvironment *JiveEnv;
 	IVisitorTarget *Goal;
-	IType* Type;
 	CVariable* Variable;
 	CCompoundVariable* Variables;
 	CMethod* Method;
@@ -37,6 +36,7 @@
 	CCompoundExpression* Expressions;
 	CIdExpression *Identifier;
 
+	IType* Type;
 	IEntity *Entity;
 	IStatement *Statement;
 	IExpression *Expression;

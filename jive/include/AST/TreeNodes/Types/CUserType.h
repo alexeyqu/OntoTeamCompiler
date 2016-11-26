@@ -11,4 +11,6 @@ public:
    	void Accept( IVisitor *visitor ) override;
 
 	std::string name;
+
+	std::string ToString() override;
 }; 

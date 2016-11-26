@@ -1,11 +1,17 @@
-#include "ISymbol.h"
-#include "CClass.h"
+#pragma once
 
-class CMethodSymbol : public ISymbol {
+#include <map>
+#include "ISymbol.h"
+#include "CMethodSymbol.h"
+#include "CVariableSymbol.h"
+
+class CClassSymbol : public ISymbol {
 
 public:
-	CMethodSymbol( std::string _name, IType* _type, CClass* _thisClass) : ISymbol( _name, _type ), thisClass( _thisClass ) {}
+	CClassSymbol( std::string _name, IType* _type ) : ISymbol( _name, _type ), parentName( "" ) {}
 
-	CClass* thisClass;
+	std::string parentName;
+	std::map<std::string, CVariableSymbol*> fields;
+	std::map<std::string, CMethodSymbol*> methods;
 }; 
 

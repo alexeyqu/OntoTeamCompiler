@@ -8,4 +8,6 @@ public:
    	CBuiltInType( enums::TType _type );
 
    	void Accept( IVisitor *visitor ) override;
+
+   	std::string ToString() override;
 };

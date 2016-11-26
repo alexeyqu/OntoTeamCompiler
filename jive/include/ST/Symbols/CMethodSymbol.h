@@ -1,10 +1,16 @@
+#pragma once
+
+#include <map>
+#include <vector>
 #include "ISymbol.h"
-#include "CMethod.h"
+#include "CVariableSymbol.h"
 
 class CMethodSymbol : public ISymbol {
 
 public:
-	CMethodSymbol( std::string _name, IType* _type, CMethod* _method) : ISymbol( _name, _type ), method( _method ) {}
+	CMethodSymbol( std::string _name, IType* _type ) : ISymbol( _name, _type ) {}
 
-	CMethod* method;
+	std::vector<IType*> argumentTypes;
+	std::map<std::string, CVariableSymbol*> arguments;
+	std::map<std::string, CVariableSymbol*> variables;
 }; 
