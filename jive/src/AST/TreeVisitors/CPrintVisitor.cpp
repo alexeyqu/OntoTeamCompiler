@@ -49,7 +49,7 @@ void CPrintVisitor::Visit( CUserType *type ) {
     long typeId = generateId(type);
 
     std::cout << typeId << ";\n";
-    std::cout << typeId << "[label = \"" << type->typeClass->name->name << "\" ];\n";
+    std::cout << typeId << "[label = \"" << type->name << "\" ];\n";
 }
 
 void CPrintVisitor::Visit( CVariable *entity ) {

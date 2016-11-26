@@ -5,11 +5,9 @@
 class CNewObjectExpression : public IExpression
 {
 public:
-    CNewObjectExpression( CIdExpression *_objTypeId, IType *_type = new CBuiltInType ( enums::FAKETYPE ) );
+    CNewObjectExpression( CIdExpression *_objTypeId );
 
     void Accept( IVisitor *visitor ) override;
-    IType *getType() override;
 
     CIdExpression *objTypeId;
-    IType *type;
 };

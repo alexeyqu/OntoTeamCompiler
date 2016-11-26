@@ -3,14 +3,9 @@
 #include "CJiveEnvironment.h"
 extern CJiveEnvironment *jiveEnv;
 
-CIdExpression::CIdExpression( const char *_name, IType *_type ) : \
-	name( _name ), type( _type ) {}
+CIdExpression::CIdExpression( const char *_name ) : \
+	name( _name ) {}
 
 void CIdExpression::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
-}
-
-IType *CIdExpression::getType() {
-   // std::cout << this->name << "\n";
-    return type;
 }

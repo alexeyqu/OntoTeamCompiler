@@ -6,11 +6,9 @@
 class CThisExpression : public IExpression
 {
 public:
-   	CThisExpression( std::size_t _address = 0, IType *_type = new CBuiltInType ( enums::FAKETYPE ) );
+   	CThisExpression( std::size_t _address = 0 );
 
    	void Accept( IVisitor *visitor ) override;
-    IType *getType() override;
 
    	std::size_t address;
-    IType *type;
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IVisitorTarget.h"
+#include "TreeNodes/CTypes.h"
 #include "TreeNodes/CEntities.h"
 #include "TreeNodes/CStatements.h"
 #include "TreeNodes/CExpressions.h"

@@ -1,7 +1,7 @@
 #include "CUserType.h"
 
-CUserType::CUserType( CClass *_typeClass ) : \
-	IType( enums::TType::USERTYPE ), typeClass( _typeClass ) {}
+CUserType::CUserType( std::string _name ) : \
+	IType( enums::TType::CLASS ), name( _name ) {}
 
 void CUserType::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );

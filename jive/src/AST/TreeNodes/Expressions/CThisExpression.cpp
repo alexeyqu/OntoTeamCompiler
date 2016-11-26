@@ -1,13 +1,8 @@
 #include "CThisExpression.h"
 
-CThisExpression::CThisExpression( std::size_t _address, IType *_type ) : \
-	address( _address ), type( _type ) {}
+CThisExpression::CThisExpression( std::size_t _address ) : \
+	address( _address ) {}
 
 void CThisExpression::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
-}
-
-IType *CThisExpression::getType() {
-    //return new CType( enums::FAKETYPE );
-    return type;
 }

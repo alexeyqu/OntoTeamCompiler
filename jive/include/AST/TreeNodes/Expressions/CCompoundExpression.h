@@ -5,12 +5,10 @@
 class CCompoundExpression : public IExpression
 {
 public:
-	CCompoundExpression( IExpression *_leftExpression, IExpression *_rightExpression, IType *_type = new CBuiltInType ( enums::FAKETYPE ) );
+	CCompoundExpression( IExpression *_leftExpression, IExpression *_rightExpression );
 
 	void Accept( IVisitor *visitor ) override;
-	IType *getType() override;
 
 	IExpression *leftExpression;
 	IExpression *rightExpression;
-	IType *type;
 };

@@ -1,14 +1,14 @@
 #pragma once
 
 #include "../IType.h"
-#include "CClass.h"
+#include <string>
 
 class CUserType : public IType
 {
 public:
-   	CUserType( CClass *type );
+   	CUserType( std::string name );
 
    	void Accept( IVisitor *visitor ) override;
 
-	CClass *typeClass;
+	std::string name;
 }; 

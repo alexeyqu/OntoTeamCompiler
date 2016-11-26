@@ -180,7 +180,7 @@ Type:	INT { $$ = new CBuiltInType( enums::INTEGER ); }
 		|
 		STRING { $$ = new CBuiltInType( enums::STRING ); }
 		|
-		Identifier { $$ = new CBuiltInType( enums::CLASS ); }
+		Identifier { $$ = new CUserType( $1->name ); }
 ;
 
 Expression: Expression AND Expression { $$ = new CBinaryBooleanExpression( $1, enums::AND, $3 ); }

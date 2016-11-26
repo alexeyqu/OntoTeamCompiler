@@ -5,13 +5,11 @@
 class CBinaryBooleanExpression : public IExpression
 {
 public:
-	CBinaryBooleanExpression( IExpression *_leftOperand, enums::TBooleanOperation _operation, IExpression *_rightOperand, IType *_type = new CBuiltInType ( enums::BOOLEAN ) );
+	CBinaryBooleanExpression( IExpression *_leftOperand, enums::TBooleanOperation _operation, IExpression *_rightOperand );
 
 	void Accept( IVisitor *visitor ) override;
-    IType *getType() override;
 
 	IExpression *leftOperand;
 	IExpression *rightOperand;
 	enums::TBooleanOperation operation;
-    IType *type;
 };
