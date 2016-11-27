@@ -3,6 +3,7 @@
 #include <memory>
 #include "AST/TreeVisitors/CPrintVisitor.h"
 #include "AST/TreeVisitors/CTableCreatorVisitor.h"
+#include "AST/TreeVisitors/CTypeCheckerVisitor.h"
 #include "../include/CJiveEnvironment.h"
 #include "CProgram.h"
 #include "jive.tab.h"
@@ -25,7 +26,9 @@ int main( int argc, char **argv ) {
     CTableCreatorVisitor tableCreatorVisitor;
     tableCreatorVisitor.Start(jiveEnv->program);
     auto table = tableCreatorVisitor.GetTable();
-    for( auto classIt : table ) {
+    CTypeCheckerVisitor typeCheckerVisitor( table );
+    typeCheckerVisitor.Start(jiveEnv->program);
+    /*for( auto classIt : table ) {
         std::cout << "Class " << classIt.first << ":\n";
         std::cout << "Field:\n";
             for( auto varIt : classIt.second->fields ) {
@@ -43,6 +46,6 @@ int main( int argc, char **argv ) {
                 std::cout << "Var " << varIt.first << " of Type " << varIt.second->type->ToString() << "\n";
             }
         }
-    }
+    }*/
 	return 0;
 }

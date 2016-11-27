@@ -56,6 +56,7 @@ void CTableCreatorVisitor::Visit( CCompoundVariable *entity ) {
 
 void CTableCreatorVisitor::Visit( CArgument *entity ) {
     CVariableSymbol* varSymbol = new CVariableSymbol(entity->id->name, entity->type );
+    curMethodSymbol->argumentTypes.push_back( entity->type );
     if( curMethodSymbol->arguments.find( varSymbol->name ) != curMethodSymbol->arguments.end() ) {
             std::cerr << "Error: Redeclaration of variable \"" << varSymbol->name << "\"\n";
             delete varSymbol;

@@ -1,7 +1,5 @@
 #include "CPrintVisitor.h"
 
-// TODO: fix .dot labels
-
 void CPrintVisitor::Start( IVisitorTarget *vertex, std::string graphname ) {
     std::cout << "digraph " << graphname << " {\n";
 
@@ -32,17 +30,8 @@ void CPrintVisitor::Visit( CBuiltInType *type ) {
     long typeId = generateId(type);
 
     std::cout << typeId << ";\n";
-    switch(type->type) {
-    case enums::TType::INTEGER:
-        std::cout << typeId << "[label = \"int\" ];\n";
-        break;
-    case enums::TType::BOOLEAN:
-        std::cout << typeId << "[label = \"bool\" ];\n";
-        break;
-    case enums::TType::STRING:
-        std::cout << typeId << "[label = \"String\" ];\n";
-        break;
-    }
+    
+    std::cout << typeId << "[label = \"" << type->ToString() << "\" ];\n";
 }
 
 void CPrintVisitor::Visit( CUserType *type ) {
@@ -366,7 +355,7 @@ void CPrintVisitor::Visit( CBinaryExpression *expression ) {
         case enums::TArithmeticOperation::DIV:
             std::cout << operationId << ";\n";
             std::cout << operationId << "[label = \"/\" ];\n";
-            break;
+            break;        
     }
 
     std::cout << exprId << "->";
@@ -405,7 +394,6 @@ void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
             std::cout << operationId << ";\n";
             std::cout << operationId << "[label = \"OR\" ];\n";
             break;
-
         case enums::TBooleanOperation::LESS:
             std::cout << operationId << ";\n";
             std::cout << operationId << "[label = \"<\" ];\n";

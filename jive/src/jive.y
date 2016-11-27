@@ -25,6 +25,7 @@
 	CJiveEnvironment *JiveEnv;
 	IVisitorTarget *Goal;
 	CVariable* Variable;
+	CArgument* Argument;
 	CCompoundVariable* Variables;
 	CMethod* Method;
 	CCompoundMethod* Methods;
@@ -73,6 +74,7 @@
 %type <Class> Class
 %type <Classes> Classes
 %type <MainClass> MainClass
+%type <Argument> Argument
 %type <Arguments> Arguments
 %type <Arguments> RestArguments
 %type <Identifier> Identifier
@@ -137,9 +139,12 @@ Method: 	PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE
 			RBRACE { $$ = new CMethod( $2, $3, $5, $8, $9, $11 ); }
 ;
 
-Arguments:  RestArguments Type Identifier { $$ = new CCompoundArgument( $1, new CArgument( $2, $3 ) ); }
+Arguments:  RestArguments Argument { $$ = new CCompoundArgument( $1, $2 ); }
 			|
 			%empty { $$ = nullptr; }
+;
+
+Argument:	Type Identifier { $$ = new CArgument( $1, $2 ); }
 ;
 
 RestArguments: RestArguments Type Identifier COMMA { $$ = new CCompoundArgument( $1, new CArgument( $2, $3 ) ); }

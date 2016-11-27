@@ -19,8 +19,8 @@ std::string CBuiltInType::ToString() {
 			return "String";
 		case enums::STRINGARRAY :
 			return "String[]";
-		case enums::FAKETYPE :
-			return "FakeType";
+		case enums::UNKNOWNTYPE :
+			return "UnknownType";
 		case enums::VOID :
 			return "void";
 		default:

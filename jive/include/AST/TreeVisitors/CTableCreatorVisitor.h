@@ -3,10 +3,10 @@
 #include <iostream>
 #include <cassert>
 #include "../CProgram.h"
-#include "CSymbolTable.h"
 #include <vector>
 #include <map>
 #include <string>
+#include "CSymbols.h"
 
 class CTableCreatorVisitor : public IVisitor 
 {
