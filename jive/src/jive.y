@@ -101,34 +101,36 @@ MainClass:	CLASS Identifier LBRACE
 				Statement 
 				RBRACE 
 			RBRACE { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CMainClass( $2, $12, $15 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CMainClass( $2, $12, $15 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 ;
 
 Classes: 	Classes Class { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CCompoundClass( $1, $2 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CCompoundClass( $1, $2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
-			%empty { $$ = nullptr;
-			 }
+			%empty { $$ = nullptr; }
 ;
 
 Class: 	CLASS Identifier EXTENDS Identifier LBRACE 
 			Variables 
 			Methods 
 		RBRACE { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CClass( $2, $4, $6, $7 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }				 
-			|
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CClass( $2, $4, $6, $7 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}				 
+		|
 		CLASS Identifier LBRACE 
 			Variables 
 			Methods 
@@ -137,33 +139,37 @@ Class: 	CLASS Identifier EXTENDS Identifier LBRACE
 			int temp_column = yyloc.first_column;
 			$$ = new CClass( $2, nullptr, $4, $5 );
 			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+			$$->coordinates.first_column = temp_column; 
+		}
 ;
 
 Variables:  Variables Variable { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CCompoundVariable( $1, $2 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CCompoundVariable( $1, $2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			%empty { $$ = nullptr; }
 ;
 
 Variable:	Type Identifier SEMI { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CVariable( $1, $2 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CVariable( $1, $2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 ;
 
 Methods: 	Methods Method { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CCompoundMethod( $1, $2 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CCompoundMethod( $1, $2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			%empty { $$ = nullptr; }
 ;
@@ -173,323 +179,357 @@ Method: 	PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE
 				Statements 
 				RETURN Expression SEMI
 			RBRACE {
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CMethod( $2, $3, $5, $8, $9, $11 ); 
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CMethod( $2, $3, $5, $8, $9, $11 ); 
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 ;
 
 Arguments:  RestArguments Argument { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CCompoundArgument( $1, $2 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CCompoundArgument( $1, $2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			%empty { $$ = nullptr; }
 ;
 
 RestArguments: RestArguments Argument COMMA {
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CCompoundArgument( $1, $2 );
-			$$->coordinates.first_line = yylloc.first_line;
-			$$->coordinates.first_column = yylloc.first_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CCompoundArgument( $1, $2 );
+				$$->coordinates.first_line = yylloc.first_line;
+				$$->coordinates.first_column = yylloc.first_column; 
+			}
 			|
 			%empty { $$ = nullptr; }
 ;
 
 Argument:	Type Identifier { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CArgument( $1, $2 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CArgument( $1, $2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 ;
 
 Statements: Statement Statements { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CCompoundStatement( $2, $1 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CCompoundStatement( $2, $1 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			LBRACE Statements RBRACE { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CCompoundStatement( $2, nullptr );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CCompoundStatement( $2, nullptr );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			%empty { $$ = nullptr; }
 ;
 
 Statement:  LBRACE Statements RBRACE { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CCompoundStatement( $2, nullptr );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CCompoundStatement( $2, nullptr );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			IF LPAREN Expression RPAREN 
 				Statements 
 			ELSE 	
 				Statements { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CIfStatement( $3, $5, $7 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CIfStatement( $3, $5, $7 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			WHILE LPAREN Expression RPAREN LBRACE 
 				Statements
 			RBRACE { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CWhileStatement( $3, $6 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CWhileStatement( $3, $6 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			PRINT LPAREN Expression RPAREN SEMI { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CPrintStatement( $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CPrintStatement( $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Identifier ASSIGN Expression SEMI { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CAssignStatement( $1, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
-			|
-			Identifier LBRACKET Expression RBRACKET ASSIGN Expression  SEMI {
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CAssignStatement( $1, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CAssignStatement( $1, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 ;
 
 Type:	INT { 
-		int temp_line = yyloc.first_line;
-		int temp_column = yyloc.first_column;
-		$$ = new CBuiltInType( enums::INTEGER );
-		$$->coordinates.first_line = temp_line;
-		$$->coordinates.first_column = temp_column; }
+			int temp_line = yyloc.first_line;
+			int temp_column = yyloc.first_column;
+			$$ = new CBuiltInType( enums::INTEGER );
+			$$->coordinates.first_line = temp_line;
+			$$->coordinates.first_column = temp_column; 
+		}
 		|
 		INT LBRACKET RBRACKET { 
-		int temp_line = yyloc.first_line;
-		int temp_column = yyloc.first_column;
-		$$ = new CBuiltInType( enums::INTEGERARRAY );
-		$$->coordinates.first_line = temp_line;
-		$$->coordinates.first_column = temp_column; }
+			int temp_line = yyloc.first_line;
+			int temp_column = yyloc.first_column;
+			$$ = new CBuiltInType( enums::INTEGERARRAY );
+			$$->coordinates.first_line = temp_line;
+			$$->coordinates.first_column = temp_column; 
+		}
 		|
 		BOOL { 
-		int temp_line = yyloc.first_line;
-		int temp_column = yyloc.first_column;
-		$$ = new CBuiltInType( enums::BOOLEAN );
-		$$->coordinates.first_line = temp_line;
-		$$->coordinates.first_column = temp_column; }
+			int temp_line = yyloc.first_line;
+			int temp_column = yyloc.first_column;
+			$$ = new CBuiltInType( enums::BOOLEAN );
+			$$->coordinates.first_line = temp_line;
+			$$->coordinates.first_column = temp_column; 
+		}
 		|
 		STRING { 
-		int temp_line = yyloc.first_line;
-		int temp_column = yyloc.first_column;
-		$$ = new CBuiltInType( enums::STRING );
-		$$->coordinates.first_line = temp_line;
-		$$->coordinates.first_column = temp_column; }
+			int temp_line = yyloc.first_line;
+			int temp_column = yyloc.first_column;
+			$$ = new CBuiltInType( enums::STRING );
+			$$->coordinates.first_line = temp_line;
+			$$->coordinates.first_column = temp_column; 
+		}
 		|
 		Identifier { 
-		int temp_line = yyloc.first_line;
-		int temp_column = yyloc.first_column;
-		$$ = new CUserType( $1->name );
-		$$->coordinates.first_line = temp_line;
-		$$->coordinates.first_column = yylloc.first_column; }
+			int temp_line = yyloc.first_line;
+			int temp_column = yyloc.first_column;
+			$$ = new CUserType( $1->name );
+			$$->coordinates.first_line = temp_line;
+			$$->coordinates.first_column = yylloc.first_column; 
+		}
 ;
 
 Expression: Expression AND Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryBooleanExpression( $1, enums::AND, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryBooleanExpression( $1, enums::AND, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression OR Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryBooleanExpression( $1, enums::OR, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column;  }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryBooleanExpression( $1, enums::OR, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column;  
+			}
 			|
 			Expression LESS Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryBooleanExpression( $1, enums::LESS, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryBooleanExpression( $1, enums::LESS, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression GREATER Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryBooleanExpression( $1, enums::GREATER, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryBooleanExpression( $1, enums::GREATER, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression ADD Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryExpression( $1, enums::ADD, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryExpression( $1, enums::ADD, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression SUB Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryExpression( $1, enums::SUB, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryExpression( $1, enums::SUB, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression MUL Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryExpression( $1, enums::MUL, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryExpression( $1, enums::MUL, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression DIV Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryExpression( $1, enums::DIV, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryExpression( $1, enums::DIV, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression MOD Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryExpression( $1, enums::MOD, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryExpression( $1, enums::MOD, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression LBRACKET Expression RBRACKET { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CArrayIndexExpression( $1, $3 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CArrayIndexExpression( $1, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression DOT LENGTH {
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CArrayLengthExpression( $1 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CArrayLengthExpression( $1 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Expression DOT Identifier LPAREN Expressions RPAREN { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CMethodCallExpression( $1, $3, $5 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CMethodCallExpression( $1, $3, $5 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			NUM { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CNumberExpression( $1 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CNumberExpression( $1 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			TRUE { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBooleanExpression( true );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBooleanExpression( true );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			FALSE { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBooleanExpression( false );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBooleanExpression( false );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			THIS { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CThisExpression();
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CThisExpression();
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			Identifier { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = $1;
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = $1;
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|	
 			NEW INT LBRACKET Expression RBRACKET { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CNewIntArrayExpression( $4 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CNewIntArrayExpression( $4 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			NEW Identifier LPAREN RPAREN { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CNewObjectExpression( $2 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CNewObjectExpression( $2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			NOT Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBooleanExpression( !$2 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBooleanExpression( !$2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			LPAREN Expression RPAREN { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = $2;
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = $2;
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 			|
 			SUB Expression { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CBinaryExpression ($2, enums::MUL, new CNumberExpression ( "-1" ) );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; } // FIXIT
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CBinaryExpression ($2, enums::MUL, new CNumberExpression ( "-1" ) );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			} // FIXIT
 ;
 
 Expressions:	RestExpressions Expression { 
-				int temp_line = yyloc.first_line;
-				int temp_column = yyloc.first_column;
-				$$ = new CCompoundExpression( $1, $2 );
-				$$->coordinates.first_line = temp_line;
-				$$->coordinates.first_column = temp_column; }
+					int temp_line = yyloc.first_line;
+					int temp_column = yyloc.first_column;
+					$$ = new CCompoundExpression( $1, $2 );
+					$$->coordinates.first_line = temp_line;
+					$$->coordinates.first_column = temp_column; 
+				}
 				|
 				%empty { $$ = nullptr; }
 ;
 
 RestExpressions: RestExpressions Expression COMMA { 
-				int temp_line = yyloc.first_line;
-				int temp_column = yyloc.first_column;
-				$$ = new CCompoundExpression( $1, $2 );
-				$$->coordinates.first_line = temp_line;
-				$$->coordinates.first_column = temp_column; }
+					int temp_line = yyloc.first_line;
+					int temp_column = yyloc.first_column;
+					$$ = new CCompoundExpression( $1, $2 );
+					$$->coordinates.first_line = temp_line;
+					$$->coordinates.first_column = temp_column; 
+				}
 				|
 				%empty { $$ = nullptr; }
 ;
 
 Identifier: ID { 
-			int temp_line = yyloc.first_line;
-			int temp_column = yyloc.first_column;
-			$$ = new CIdExpression( $1 );
-			$$->coordinates.first_line = temp_line;
-			$$->coordinates.first_column = temp_column; }
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CIdExpression( $1 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 ;
 
 %%

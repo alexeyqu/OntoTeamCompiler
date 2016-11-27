@@ -118,7 +118,7 @@ false       { PROCESS_LEXEM(FALSE); }
             /* WHITESPACE */
 
 "\n"        { ; /* printf("\n"); */ }
-[ \t]+      { ; /* printf( "%s", yytext ); */ }
+[ \t\r]+      { ; /* printf( "%s", yytext ); */ }
 
             /* EOFS */
 

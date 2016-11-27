@@ -27,8 +27,11 @@ void CTypeCheckerVisitor::Visit( CUserType *type ) {
 void CTypeCheckerVisitor::Visit( CVariable *entity ) {
     std::string varName = entity->id->name;
     std::string varType = entity->type->ToString();
-    if( table.find( varType ) == table.end() ) {
-        std::cerr << "Error: Unknown type of variable \"" << varName << "\": " << varType << ".\n";
+    if( varType != "int" && varType != "boolean" &&
+        table.find( varType ) == table.end() ) {
+        std::cerr << "[" << entity->coordinates.first_line << ", " 
+            << entity->coordinates.first_column << "] " 
+            << "Error: Unknown type of variable \"" << varName << "\": " << varType << ".\n";
     }
 }
 
@@ -42,8 +45,11 @@ void CTypeCheckerVisitor::Visit( CCompoundVariable *entity ) {
 void CTypeCheckerVisitor::Visit( CArgument *entity ) {
     std::string argName = entity->id->name;
     std::string argType = entity->type->ToString();
-    if( table.find( argType ) == table.end() ) {
-        std::cerr << "Error: Unknown type of argument \"" << argName << "\": " << argType << ".\n";
+    if( argType != "int" && argType != "boolean" &&
+        table.find( argType ) == table.end() ) {
+        std::cerr << "[" << entity->coordinates.first_line << ", " 
+            << entity->coordinates.first_column << "] " 
+            << "Error: Unknown type of argument \"" << argName << "\": " << argType << ".\n";
     }
 }
 
@@ -56,15 +62,33 @@ void CTypeCheckerVisitor::Visit( CCompoundArgument *entity ) {
 
 void CTypeCheckerVisitor::Visit( CMethod *entity ) {
     curMethodName = entity->id->name;
+    if( entity->arguments ) {
+        entity->arguments->Accept(this);
+    }
+    if( entity->variables ) {
+        entity->variables->Accept(this);
+    }
     if( entity->statements ) {
         entity->statements->Accept(this);
     }
     entity->returnExpression->Accept(this);
     std::string retExpType = entity->returnExpression->type->ToString();
     std::string retType = entity->returnType->ToString();
+    if( retType != "int" && retType != "boolean" &&
+            table.find( retType ) == table.end() ) {
+        std::cerr << "[" << entity->returnType->coordinates.first_line << ", " 
+            << entity->returnType->coordinates.first_column << "] " 
+            << "Error: Return type of method \"" << curMethodName 
+            << "\" is of unknown type \"" << retType  << "\".\n";
+        curMethodName = "";
+        return;
+    }
     if( retExpType != retType ) {
-        std::cerr << "Error: Type of return expression doesn't match method return type.\n"
-                        << "Expected: \"" << retType  << "\". Found: \"" << retExpType  << "\".\n";
+        std::cerr << "[" << entity->returnExpression->coordinates.first_line << ", " 
+            << entity->returnExpression->coordinates.first_column << "] " 
+            << "Error: Type of return expression doesn't match "
+            << "method \"" << curMethodName << "\" return type.\n"
+            << "Expected: \"" << retType  << "\". Found: \"" << retExpType  << "\".\n";
     }
     curMethodName = "";
 }
@@ -85,6 +109,32 @@ void CTypeCheckerVisitor::Visit( CMainClass *entity ) {
 
 void CTypeCheckerVisitor::Visit( CClass *entity ) {
     curClassName = entity->name->name;
+    if( entity->parentName ) {
+        std::string parentName = entity->parentName->name;
+        auto parentIt = table.find( parentName );
+        if( parentIt == table.end() ) {
+            std::cerr << "[" << entity->parentName->coordinates.first_line << ", " 
+                << entity->parentName->coordinates.first_column << "] " 
+                << "Error: unknown base class \"" 
+                << curClassName << "\" for class \"" 
+                << curClassName << "\"\n";
+        }
+        while( !parentName.empty() ) {
+            if( curClassName == parentName ) {
+                std::cerr << "[" << entity->name->coordinates.first_line << ", " 
+                    << entity->name->coordinates.first_column << "] " 
+                    << "Error: cyclic inheritance for class \"" 
+                    << curClassName << "\" detected.\n";
+                break;
+            }
+            auto parentIt = table.find( parentName );
+            if( parentIt == table.end() ) {
+                break;
+            } else {
+                parentName = parentIt->second->parentName;
+            }
+        }
+    }
     if( entity->methods ) {
         entity->methods->Accept(this);
     }
@@ -114,9 +164,11 @@ void CTypeCheckerVisitor::Visit( CAssignStatement *statement ) {
     statement->rightOperand->Accept(this);
     std::string rightExpType = statement->rightOperand->type->ToString();
     if( leftExpType != rightExpType ) {
-        std::cerr << "Error: Incorrect types of assign statement expressions.\n"
-                << "Expected: \"" << leftExpType << "\" and \"" << leftExpType <<"\". "
-                        <<"Found \"" << leftExpType << "\" and \"" << rightExpType <<"\".\n";
+        std::cerr << "[" << statement->coordinates.first_line << ", " 
+            << statement->coordinates.first_column << "] "  
+            << "Error: Incorrect types of assign statement expressions.\n"
+            << "Expected: \"" << leftExpType << "\" and \"" << leftExpType <<"\". "
+            << "Found \"" << leftExpType << "\" and \"" << rightExpType <<"\".\n";
     }
 }
 
@@ -124,8 +176,10 @@ void CTypeCheckerVisitor::Visit( CPrintStatement *statement ) {
     statement->operand->Accept(this);
     std::string expType = statement->operand->type->ToString();
     if ( expType != "int" ) {
-        std::cerr << "Error: Incorrect type of expression in Print statement.\n"
-                        << "Expected: \"int\". Found \"" << expType << "\"\n";
+        std::cerr << "[" << statement->operand->coordinates.first_line << ", " 
+            << statement->operand->coordinates.first_column << "] "  
+            << "Error: Incorrect type of expression in Print statement.\n"
+            << "Expected: \"int\". Found \"" << expType << "\"\n";
     }
 }
 
@@ -133,8 +187,10 @@ void CTypeCheckerVisitor::Visit( CIfStatement *statement ) {
     statement->expression->Accept(this);
     std::string expType = statement->expression->type->ToString();
     if ( expType != "boolean" ) {
-        std::cerr << "Error: Incorrect type of expression in If statement.\n"
-                        << "Expected: \"boolean\". Found \"" << expType << "\"\n";
+        std::cerr << "[" << statement->expression->coordinates.first_line << ", " 
+            << statement->expression->coordinates.first_column << "] "
+            << "Error: Incorrect type of expression in If statement.\n"
+            << "Expected: \"boolean\". Found \"" << expType << "\"\n";
     }
     statement->thenStatement->Accept(this);
     statement->elseStatement->Accept(this);
@@ -144,8 +200,10 @@ void CTypeCheckerVisitor::Visit( CWhileStatement *statement ) {
     statement->expression->Accept(this);
     std::string expType = statement->expression->type->ToString();
     if ( expType != "boolean" ) {
-        std::cerr << "Error: Incorrect type of expression in While statement.\n"
-                        << "Expected: \"boolean\". Found \"" << expType << "\"\n";
+        std::cerr << "[" << statement->expression->coordinates.first_line << ", " 
+            << statement->expression->coordinates.first_column << "] "
+            << "Error: Incorrect type of expression in While statement.\n"
+            << "Expected: \"boolean\". Found \"" << expType << "\"\n";
     }
     statement->loopStatement->Accept(this);
 }
@@ -159,7 +217,9 @@ void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
         return;
     }
     if( curMethodName == "" ) {
-        std::cerr << "Error: Unknown identifier \"" << name << "\"\n";
+        std::cerr << "[" << expression->coordinates.first_line << ", " 
+            << expression->coordinates.first_column << "] "
+            << "Error: Unknown identifier \"" << name << "\"\n";
         expression->type = new CBuiltInType( enums::UNKNOWNTYPE );
     } else {
         auto methodIt = classIt->second->methods.find( curMethodName );
@@ -167,7 +227,9 @@ void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
         if( argIt == methodIt->second->arguments.end() ) {
             auto varIt = methodIt->second->variables.find( name );
             if( varIt == methodIt->second->variables.end() ) {
-                std::cerr << "Error: Unknown identifier \"" << name << "\"\n";
+                std::cerr << "[" << expression->coordinates.first_line << ", " 
+                    << expression->coordinates.first_column << "] "
+                    << "Error: Unknown identifier \"" << name << "\"\n";
                 expression->type = new CBuiltInType( enums::UNKNOWNTYPE );
             } else {
                 expression->type = varIt->second->type;
@@ -175,6 +237,11 @@ void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
         } else {
             expression->type = argIt->second->type;
         }
+    }
+    if( expression->type->ToString() == name ) {
+        std::cerr << "[" << expression->coordinates.first_line << ", " 
+            << expression->coordinates.first_column << "] "
+            << "Error: The name of variable \"" << name << "\" and its type are the same.\n";
     }
 }
 
@@ -184,9 +251,11 @@ void CTypeCheckerVisitor::Visit( CBinaryExpression *expression ) {
     expression->rightOperand->Accept(this);
     std::string rightExpType = expression->rightOperand->type->ToString();
     if( leftExpType != "int" || rightExpType != "int" ) {
-        std::cerr << "Error: Incorrect types of binary operation.\n"
-                << "Expected: \"int\" and \"int\". "
-                        <<"Found \"" << leftExpType << "\" and \"" << rightExpType <<"\".\n";
+        std::cerr << "[" << expression->coordinates.first_line << ", " 
+            << expression->coordinates.first_column << "] "
+            << "Error: Incorrect types of binary operation.\n"
+            << "Expected: \"int\" and \"int\". "
+            <<"Found \"" << leftExpType << "\" and \"" << rightExpType <<"\".\n";
     }
     expression->type = new CBuiltInType( enums::INTEGER );
 }
@@ -202,15 +271,19 @@ void CTypeCheckerVisitor::Visit( CBinaryBooleanExpression *expression ) {
     std::string rightExpType = expression->rightOperand->type->ToString();
     if( expression->operation == enums::GREATER || expression->operation == enums::LESS ) {
         if( leftExpType != "int" || rightExpType != "int" ) {
-        std::cerr << "Error: Incorrect types of binary operation.\n"
-                << "Expected: \"int\" and \"int\". "
-                        <<"Found \"" << leftExpType << "\" and \"" << rightExpType <<"\".\n";
+        std::cerr << "[" << expression->coordinates.first_line << ", " 
+            << expression->coordinates.first_column << "] "
+            << "Error: Incorrect types of binary operation.\n"
+            << "Expected: \"int\" and \"int\". "
+            <<"Found \"" << leftExpType << "\" and \"" << rightExpType <<"\".\n";
         }
     } else {
         if( leftExpType != "boolean" || rightExpType != "boolean" ) {
-            std::cerr << "Error: Incorrect types of binary operation.\n"
-                    << "Expected: \"int\" and \"int\". "
-                            <<"Found \"" << leftExpType << "\" and \"" << rightExpType <<"\".\n";
+            std::cerr << "[" << expression->coordinates.first_line << ", " 
+                << expression->coordinates.first_column << "] "
+                << "Error: Incorrect types of binary operation.\n"
+                << "Expected: \"int\" and \"int\". "
+                <<"Found \"" << leftExpType << "\" and \"" << rightExpType <<"\".\n";
         }
     }
     expression->type = new CBuiltInType( enums::BOOLEAN );
@@ -227,7 +300,9 @@ void CTypeCheckerVisitor::Visit( CThisExpression *expression ) {
 void CTypeCheckerVisitor::Visit( CNewObjectExpression *expression ) {
     std::string className = expression->objTypeId->name;
     if( table.find( className ) == table.end() ) {
-        std::cerr << "Error: Unknown class \"" << className << "\"\n";
+        std::cerr << "[" << expression->objTypeId->coordinates.first_line << ", " 
+            << expression->objTypeId->coordinates.first_column << "] "
+            << "Error: Unknown class \"" << className << "\"\n";
         expression->type = new CBuiltInType( enums::UNKNOWNTYPE );
     }
     expression->type = new CUserType( className );
@@ -237,9 +312,11 @@ void CTypeCheckerVisitor::Visit( CNewIntArrayExpression *expression ) {
     expression->arrSize->Accept(this);
     std::string sizeType = expression->arrSize->type->ToString();
     if( sizeType != "int" ) {
-        std::cerr << "Error: Incorrect type of array size.\n"
-                << "Expected: \"int\". "
-                        <<"Found \"" << sizeType << "\".\n";
+        std::cerr << "[" << expression->arrSize->coordinates.first_line << ", " 
+            << expression->arrSize->coordinates.first_column << "] "
+            << "Error: Incorrect type of array size.\n"
+            << "Expected: \"int\". "
+            <<"Found \"" << sizeType << "\".\n";
     }
     expression->type = new CBuiltInType( enums::INTEGERARRAY );    
 }
@@ -249,26 +326,32 @@ void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
     std::string baseName = expression->base->type->ToString();
     auto classIt = table.find( baseName );
     if( classIt == table.end() ) {
-        std::cerr << "Error: Unknown class of base of method call: \""
-                << baseName << "\".\n";
+        std::cerr << "[" << expression->base->coordinates.first_line << ", " 
+            << expression->base->coordinates.first_column << "] "
+            << "Error: Unknown class \"" << baseName 
+            << "\" method call.\n";
         expression->type = new CBuiltInType( enums::UNKNOWNTYPE ); 
         return;
     }
     std::string methodName = expression->methodId->name;
     auto methodIt = classIt->second->methods.find( methodName );
     if( methodIt == classIt->second->methods.end() ) {
-        std::cerr << "Error: Method \"" << methodName << "\" in class \""
+        std::cerr << "[" << expression->methodId->coordinates.first_line << ", " 
+            << expression->methodId->coordinates.first_column << "] "
+            << "Error: Method \"" << methodName << "\" in class \""
             << baseName << "\" doesn't exist.\n";
         expression->type = new CBuiltInType( enums::UNKNOWNTYPE ); 
         return;
     }
     auto mehodArgumentsTypes = methodIt->second->argumentTypes;
     curCallArgumentsTypes.clear();
-    if(expression->arg) {
+    if( expression->arg ) {
         expression->arg->Accept(this);        
     }
     if( mehodArgumentsTypes.size() != curCallArgumentsTypes.size() ) {
-        std::cerr << "Error: Method \n" << methodName << "\" of class \"" 
+        std::cerr << "[" << expression->methodId->coordinates.first_line << ", " 
+            << expression->methodId->coordinates.first_column << "] "
+            << "Error: Method \"" << methodName << "\" of class \"" 
             << baseName << "\" expected to take " << mehodArgumentsTypes.size()
             << " arguments but takes " << curCallArgumentsTypes.size() << " arguments\n";
         expression->type = methodIt->second->type; 
@@ -277,23 +360,27 @@ void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
     for( std::size_t i = 0; i < mehodArgumentsTypes.size(); ++i ) {
         if( mehodArgumentsTypes[i]->ToString() !=
             curCallArgumentsTypes[i]->ToString() ) {
-            std::cerr << "Error: " << i + 1 << "th argument's type of method \n" 
+            std::cerr << "[" << curCallArgumentsTypes[i]->coordinates.first_line << ", " 
+                << curCallArgumentsTypes[i]->coordinates.first_column << "] "
+                << "Error: " << i + 1 << "th argument's type of method \"" 
                 << methodName << "\" call of class \"" 
-            << baseName << "\" doesn't match to method argument type.\n"
-            << "Expected: \"" << mehodArgumentsTypes[i]->ToString() 
-            << "\". Found \"" << curCallArgumentsTypes[i]->ToString() << "\".\n";
+                << baseName << "\" doesn't match to method argument type.\n"
+                << "Expected: \"" << mehodArgumentsTypes[i]->ToString() 
+                << "\". Found \"" << curCallArgumentsTypes[i]->ToString() << "\".\n";
         }
-        expression->type = methodIt->second->type;
     }
+    expression->type = methodIt->second->type;
 }
 
 void CTypeCheckerVisitor::Visit( CArrayLengthExpression *expression ) {
     expression->exp->Accept(this);
     std::string expType = expression->exp->type->ToString();
     if( expType != "int[]" ) {
-        std::cerr << "Error: Incorrect type of array.\n"
-                << "Expected: \"int[]\". "
-                        <<"Found \"" << expType << "\".\n";
+        std::cerr << "[" << expression->exp->coordinates.first_line << ", " 
+            << expression->exp->coordinates.first_column << "] "
+            << "Error: Incorrect type of array.\n"
+            << "Expected: \"int[]\". "
+            << "Found \"" << expType << "\".\n";
     }
     expression->type = new CBuiltInType( enums::INTEGER );
 }
@@ -302,16 +389,20 @@ void CTypeCheckerVisitor::Visit( CArrayIndexExpression *expression ) {
     expression->id->Accept(this);
     std::string idType = expression->id->type->ToString();
     if( idType != "int[]" ) {
-        std::cerr << "Error: Incorrect type of array.\n"
-                << "Expected: \"int[]\". "
-                        <<"Found \"" << idType << "\".\n";
+       std::cerr << "[" << expression->id->coordinates.first_line << ", " 
+            << expression->id->coordinates.first_column << "] "
+            << "Error: Incorrect type of array.\n"
+            << "Expected: \"int[]\". "
+            << "Found \"" << idType << "\".\n";
     }
     expression->index->Accept(this);
     std::string indexType = expression->index->type->ToString();
     if( indexType != "int" ) {
-        std::cerr << "Error: Incorrect type of array index.\n"
-                << "Expected: \"int\". "
-                        <<"Found \"" << indexType << "\".\n";
+        std::cerr << "[" << expression->index->coordinates.first_line << ", " 
+            << expression->index->coordinates.first_column << "] "
+            << "Error: Incorrect type of array index.\n"
+            << "Expected: \"int\". "
+            << "Found \"" << indexType << "\".\n";
     }
     expression->type = new CBuiltInType( enums::INTEGER );
 }
@@ -323,6 +414,7 @@ void CTypeCheckerVisitor::Visit( CCompoundExpression *expression ) {
 
     if(expression->rightExpression) {
         expression->rightExpression->Accept(this);
+        expression->rightExpression->type->coordinates = expression->rightExpression->coordinates;
         curCallArgumentsTypes.push_back( expression->rightExpression->type );
     }
 }

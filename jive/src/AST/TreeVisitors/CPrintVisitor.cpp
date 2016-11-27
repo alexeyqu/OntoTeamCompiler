@@ -447,9 +447,8 @@ void CPrintVisitor::Visit( CNewIntArrayExpression *expression ) {
     std::cout << exprId << "\n";
     std::cout << exprId << "[label = \"NewIntArrayExp\"];\n";
 
-    long sizeId = generateId(&expression->arrSize);
-    std::cout << exprId << "->" << sizeId << ";\n";
-    std::cout << sizeId << "[label = \"" << expression->arrSize << "\"];\n";
+    std::cout << exprId << "->";
+    expression->arrSize->Accept(this);
 }
 
 void CPrintVisitor::Visit( CMethodCallExpression *expression ) {
