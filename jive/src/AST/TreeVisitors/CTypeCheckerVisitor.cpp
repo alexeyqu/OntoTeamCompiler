@@ -358,8 +358,24 @@ void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
         return;
     }
     for( std::size_t i = 0; i < mehodArgumentsTypes.size(); ++i ) {
-        if( mehodArgumentsTypes[i]->ToString() !=
-            curCallArgumentsTypes[i]->ToString() ) {
+        bool found = false;
+        std::string mehodTypeName = mehodArgumentsTypes[i]->ToString();
+        std::string curTypeName = curCallArgumentsTypes[i]->ToString();
+        std::string startTypeName = curTypeName;
+        if( mehodTypeName == curTypeName ) {
+            found = true;
+        } else {
+            if( !( curTypeName == "int" || curTypeName == "bool" || curTypeName == "int[]" ) ) {
+                while( curTypeName != "" || curTypeName != startTypeName ) {
+                    curTypeName = table[curTypeName]->parentName;
+                    if( mehodTypeName == curTypeName ) {
+                        found = true;
+                        break;
+                    } 
+                }
+            }
+        }
+        if( !found ) {
             std::cerr << "[" << curCallArgumentsTypes[i]->coordinates.first_line << ", " 
                 << curCallArgumentsTypes[i]->coordinates.first_column << "] "
                 << "Error: " << i + 1 << "th argument's type of method \"" 

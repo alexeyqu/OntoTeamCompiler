@@ -60,9 +60,12 @@
 %token ERROR
 
 %left AND OR
+%right NOT
 %left LESS GREATER
 %left ADD SUB
+%left MOD
 %left MUL DIV
+%left DOT
 
 %type <JiveEnv> JiveEnv
 %type <Goal> Goal
@@ -81,6 +84,8 @@
 %type <Statement> Statement
 %type <Statements> Statements
 %type <Expression> Expression
+%type <Expression> CallableExpression
+%type <Expression> LeftExpression
 %type <Expressions> Expressions
 %type <Expressions> RestExpressions
 
@@ -226,14 +231,6 @@ Statements: Statement Statements {
 				$$->coordinates.first_column = temp_column; 
 			}
 			|
-			LBRACE Statements RBRACE { 
-				int temp_line = yyloc.first_line;
-				int temp_column = yyloc.first_column;
-				$$ = new CCompoundStatement( $2, nullptr );
-				$$->coordinates.first_line = temp_line;
-				$$->coordinates.first_column = temp_column; 
-			}
-			|
 			%empty { $$ = nullptr; }
 ;
 
@@ -274,10 +271,52 @@ Statement:  LBRACE Statements RBRACE {
 				$$->coordinates.first_column = temp_column; 
 			}
 			|
-			Identifier ASSIGN Expression SEMI { 
+			LeftExpression ASSIGN Expression SEMI { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
 				$$ = new CAssignStatement( $1, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
+;
+
+CallableExpression: LeftExpression {
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = $1;
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
+			|
+			THIS { 
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CThisExpression();
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
+			|
+			NEW Identifier LPAREN RPAREN { 
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CNewObjectExpression( $2 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}	
+;
+
+LeftExpression: LeftExpression LBRACKET Expression RBRACKET { 
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CArrayIndexExpression( $1, $3 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
+			|
+			Identifier { 
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = $1;
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -396,14 +435,6 @@ Expression: Expression AND Expression {
 				$$->coordinates.first_column = temp_column; 
 			}
 			|
-			Expression LBRACKET Expression RBRACKET { 
-				int temp_line = yyloc.first_line;
-				int temp_column = yyloc.first_column;
-				$$ = new CArrayIndexExpression( $1, $3 );
-				$$->coordinates.first_line = temp_line;
-				$$->coordinates.first_column = temp_column; 
-			}
-			|
 			Expression DOT LENGTH {
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
@@ -444,34 +475,10 @@ Expression: Expression AND Expression {
 				$$->coordinates.first_column = temp_column; 
 			}
 			|
-			THIS { 
-				int temp_line = yyloc.first_line;
-				int temp_column = yyloc.first_column;
-				$$ = new CThisExpression();
-				$$->coordinates.first_line = temp_line;
-				$$->coordinates.first_column = temp_column; 
-			}
-			|
-			Identifier { 
-				int temp_line = yyloc.first_line;
-				int temp_column = yyloc.first_column;
-				$$ = $1;
-				$$->coordinates.first_line = temp_line;
-				$$->coordinates.first_column = temp_column; 
-			}
-			|	
 			NEW INT LBRACKET Expression RBRACKET { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
 				$$ = new CNewIntArrayExpression( $4 );
-				$$->coordinates.first_line = temp_line;
-				$$->coordinates.first_column = temp_column; 
-			}
-			|
-			NEW Identifier LPAREN RPAREN { 
-				int temp_line = yyloc.first_line;
-				int temp_column = yyloc.first_column;
-				$$ = new CNewObjectExpression( $2 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -499,6 +506,14 @@ Expression: Expression AND Expression {
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			} // FIXIT
+			|
+			CallableExpression {
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = $1;
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
+			}
 ;
 
 Expressions:	RestExpressions Expression { 
