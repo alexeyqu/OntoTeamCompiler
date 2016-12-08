@@ -243,9 +243,9 @@ Statement:  LBRACE Statements RBRACE {
 			}
 			|
 			IF LPAREN Expression RPAREN 
-				Statements 
+				Statement 
 			ELSE 	
-				Statements { 
+				Statement { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
 				$$ = new CIfStatement( $3, $5, $7 );
