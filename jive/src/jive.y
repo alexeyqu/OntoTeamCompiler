@@ -1,4 +1,4 @@
-%code requires {
+ %code requires {
 	#include <cstdio>
 	#include <cstring>
 	#include "CJiveEnvironment.h"

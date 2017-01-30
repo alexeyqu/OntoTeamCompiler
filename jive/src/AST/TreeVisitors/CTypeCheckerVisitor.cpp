@@ -27,7 +27,7 @@ void CTypeCheckerVisitor::Visit( CUserType *type ) {
 void CTypeCheckerVisitor::Visit( CVariable *entity ) {
     std::string varName = entity->id->name;
     std::string varType = entity->type->ToString();
-    if( varType != "int" && varType != "boolean" &&
+    if( varType != "int" && varType != "boolean" && varType != "int[]" &&
         table.find( varType ) == table.end() ) {
         std::cerr << "[" << entity->coordinates.first_line << ", " 
             << entity->coordinates.first_column << "] " 
@@ -45,7 +45,7 @@ void CTypeCheckerVisitor::Visit( CCompoundVariable *entity ) {
 void CTypeCheckerVisitor::Visit( CArgument *entity ) {
     std::string argName = entity->id->name;
     std::string argType = entity->type->ToString();
-    if( argType != "int" && argType != "boolean" &&
+    if( argType != "int" && argType != "boolean" && argType != "int[]" &&
         table.find( argType ) == table.end() ) {
         std::cerr << "[" << entity->coordinates.first_line << ", " 
             << entity->coordinates.first_column << "] " 
@@ -74,7 +74,7 @@ void CTypeCheckerVisitor::Visit( CMethod *entity ) {
     entity->returnExpression->Accept(this);
     std::string retExpType = entity->returnExpression->type->ToString();
     std::string retType = entity->returnType->ToString();
-    if( retType != "int" && retType != "boolean" &&
+    if( retType != "int" && retType != "boolean" && retType != "int[]" &&
             table.find( retType ) == table.end() ) {
         std::cerr << "[" << entity->returnType->coordinates.first_line << ", " 
             << entity->returnType->coordinates.first_column << "] " 
@@ -216,6 +216,16 @@ void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
         expression->type = fieldIt->second->type;
         return;
     }
+
+    if( classIt->second->parentName != "" ) {
+        auto parentClassIt = table.find( classIt->second->parentName );
+        auto parentClassFieldIt = parentClassIt->second->fields.find( name );
+        if( parentClassFieldIt != parentClassIt->second->fields.end() ) {
+            expression->type = parentClassFieldIt->second->type;
+            return;
+        }
+    }
+
     if( curMethodName == "" ) {
         std::cerr << "[" << expression->coordinates.first_line << ", " 
             << expression->coordinates.first_column << "] "
