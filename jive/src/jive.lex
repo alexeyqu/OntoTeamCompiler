@@ -103,7 +103,7 @@ false       { PROCESS_LEXEM(FALSE); }
 
             /* STRING */
 
-            /* \"[^\"]*\"  { PROCESS_LEXEM(STRING); } */
+ \"[^\"]*\"  { PROCESS_LEXEM(STRING); }
 "String"    { PROCESS_LEXEM(STRING); }
 
             /* IDENTIFIERS */

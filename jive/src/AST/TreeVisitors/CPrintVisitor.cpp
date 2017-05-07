@@ -1,11 +1,11 @@
 #include "CPrintVisitor.h"
 
 void CPrintVisitor::Start( IVisitorTarget *vertex, std::string graphname ) {
-    std::cout << "digraph " << graphname << " {\n";
+    outputStream << "digraph " << graphname << " {\n";
 
     vertex->Accept(this);
 
-    std::cout << "\n}";
+    outputStream << "\n}";
 }
 
 void CPrintVisitor::Visit( CProgram *program ) {
@@ -16,209 +16,209 @@ void CPrintVisitor::Visit( CGoal *goal )
 {
     long goalId = generateId(goal);
 
-    std::cout << goalId << ";\n";
-    std::cout << goalId << "[label = \"Goal\"];\n";
+    outputStream << goalId << ";\n";
+    outputStream << goalId << "[label = \"Goal\"];\n";
 
-    std::cout << goalId << "->";
+    outputStream << goalId << "->";
     goal->tmp1->Accept(this);
 
-    std::cout << goalId << "->";
+    outputStream << goalId << "->";
     goal->tmp2->Accept(this);
 }
 
 void CPrintVisitor::Visit( CBuiltInType *type ) {
     long typeId = generateId(type);
 
-    std::cout << typeId << ";\n";
+    outputStream << typeId << ";\n";
     
-    std::cout << typeId << "[label = \"" << type->ToString() << "\" ];\n";
+    outputStream << typeId << "[label = \"" << type->ToString() << "\" ];\n";
 }
 
 void CPrintVisitor::Visit( CUserType *type ) {
     long typeId = generateId(type);
 
-    std::cout << typeId << ";\n";
-    std::cout << typeId << "[label = \"" << type->name << "\" ];\n";
+    outputStream << typeId << ";\n";
+    outputStream << typeId << "[label = \"" << type->name << "\" ];\n";
 }
 
 void CPrintVisitor::Visit( CVariable *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"VarDeclNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"VarDeclNtt\"];\n";
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->type->Accept(this);
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->id->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundVariable *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"CompoundVariableNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"CompoundVariableNtt\"];\n";
 
     if( entity->var1 ) {
         if( entity->var1->var1 ) {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->var1->Accept(this);
         } else {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->var1->var2->Accept(this);
         }
     }
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->var2->Accept(this);
 }
 
 void CPrintVisitor::Visit( CArgument *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"ArgumentNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"ArgumentNtt\"];\n";
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->type->Accept(this);
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->id->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundArgument *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"CompoundArgumentNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"CompoundArgumentNtt\"];\n";
 
     if( entity->arg1 ) {
     	if( entity->arg1->arg1 ) {
-			std::cout << entityId << "->";
+			outputStream << entityId << "->";
 			entity->arg1->Accept(this);
 		} else {
-			std::cout << entityId << "->";
+			outputStream << entityId << "->";
 			entity->arg1->arg2->Accept(this);
 		}
 	}
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->arg2->Accept(this);
 }
 
 void CPrintVisitor::Visit( CMethod *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"MethodNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"MethodNtt\"];\n";
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->returnType->Accept(this);
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->id->Accept(this);
 
     if( entity->arguments ) {
     	if( entity->arguments->arg1 ) {
-			std::cout << entityId << "->";
+			outputStream << entityId << "->";
 			entity->arguments->Accept(this);
 		} else {
-			std::cout << entityId << "->";
+			outputStream << entityId << "->";
 			entity->arguments->arg2->Accept(this);
 		}
 	}
 
     if( entity->variables ) {
         if( entity->variables->var1 ) {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->variables->Accept(this);
         } else {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->variables->var2->Accept(this);
         }
     }
 
     if( entity->statements ) {
         if( entity->statements->leftStatement ) {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->statements->Accept(this);
         } else {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->statements->rightStatement->Accept(this);
         }
     }
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->returnExpression->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundMethod *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"CompoundMethodNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"CompoundMethodNtt\"];\n";
 
     if( entity->method1 ) {
         if( entity->method1->method1 ) {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->method1->Accept(this);
         } else {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->method1->method2->Accept(this);
         }
     }
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->method2->Accept(this);
 }
 
 void CPrintVisitor::Visit( CMainClass *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"MainClassNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"MainClassNtt\"];\n";
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->name->Accept(this);
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->cmdArgs->Accept(this);
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->statement->Accept(this);
 }
 
 void CPrintVisitor::Visit( CClass *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"ClassNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"ClassNtt\"];\n";
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->name->Accept(this);
 
     if( entity->parentName ) {
-        std::cout << entityId << "->";
+        outputStream << entityId << "->";
         entity->parentName->Accept(this);
     }
 
     if( entity->fields ) {
         if( entity->fields->var1 ) {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->fields->Accept(this);
         } else {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->fields->var2->Accept(this);
         }
     }
 
     if( entity->methods ) {
         if( entity->methods->method1 ) {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->methods->Accept(this);
         } else {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->methods->method2->Accept(this);
         }
     }
@@ -227,20 +227,20 @@ void CPrintVisitor::Visit( CClass *entity ) {
 void CPrintVisitor::Visit( CCompoundClass *entity ) {
     long entityId = generateId(entity);
 
-    std::cout << entityId << ";\n";
-    std::cout << entityId << "[label = \"CompoundClassNtt\"];\n";
+    outputStream << entityId << ";\n";
+    outputStream << entityId << "[label = \"CompoundClassNtt\"];\n";
 
     if( entity->class1 ) {
         if( entity->class1->class1 ) {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->class1->Accept(this);
         } else {
-            std::cout << entityId << "->";
+            outputStream << entityId << "->";
             entity->class1->class2->Accept(this);
         }
     }
 
-    std::cout << entityId << "->";
+    outputStream << entityId << "->";
     entity->class2->Accept(this);
 }
 
@@ -248,16 +248,16 @@ void CPrintVisitor::Visit( CCompoundClass *entity ) {
 void CPrintVisitor::Visit( CCompoundStatement *statement ) {
     long stmId = generateId(statement);
 
-    std::cout << stmId << ";\n";
-    std::cout << stmId << "[label = \"CompoundStm\"];\n";
+    outputStream << stmId << ";\n";
+    outputStream << stmId << "[label = \"CompoundStm\"];\n";
 
     if(statement->leftStatement) {
-        std::cout << stmId << "->";
+        outputStream << stmId << "->";
         statement->leftStatement->Accept(this);
     }
 
     if(statement->rightStatement) {
-        std::cout << stmId << "->";
+        outputStream << stmId << "->";
         statement->rightStatement->Accept(this);
     }
 }
@@ -265,206 +265,206 @@ void CPrintVisitor::Visit( CCompoundStatement *statement ) {
 void CPrintVisitor::Visit( CAssignStatement *statement ) {
     long stmId = generateId(statement);
 
-    std::cout << stmId << ";\n";
-    std::cout << stmId << "[label = \"AssignStm\"];\n";
+    outputStream << stmId << ";\n";
+    outputStream << stmId << "[label = \"AssignStm\"];\n";
 
-    std::cout << stmId << "->";
+    outputStream << stmId << "->";
     statement->leftOperand->Accept(this);
 
-    std::cout << stmId << "->";
+    outputStream << stmId << "->";
     statement->rightOperand->Accept(this);
 }
 
 void CPrintVisitor::Visit( CPrintStatement *statement ) {
     long stmId = generateId(statement);
 
-    std::cout << stmId << ";\n";
-    std::cout << stmId << "[label = \"PrintStm\"];\n";
+    outputStream << stmId << ";\n";
+    outputStream << stmId << "[label = \"PrintStm\"];\n";
 
-    std::cout << stmId << "->";
+    outputStream << stmId << "->";
     statement->operand->Accept(this);
 }
 
 void CPrintVisitor::Visit( CIfStatement *statement ) {
     long stmId = generateId(statement);
 
-    std::cout << stmId << ";\n";
-    std::cout << stmId << "[label = \"IfStm\"];\n";
+    outputStream << stmId << ";\n";
+    outputStream << stmId << "[label = \"IfStm\"];\n";
 
-    std::cout << stmId << "->";
+    outputStream << stmId << "->";
     statement->expression->Accept(this);
 
-    std::cout << stmId << "->";
+    outputStream << stmId << "->";
     statement->thenStatement->Accept(this);
 
-    std::cout << stmId << "->";
+    outputStream << stmId << "->";
     statement->elseStatement->Accept(this);
 }
 
 void CPrintVisitor::Visit( CWhileStatement *statement ) {
     long stmId = generateId(statement);
 
-    std::cout << stmId << ";\n";
-    std::cout << stmId << "[label = \"WhileStm\"];\n";
+    outputStream << stmId << ";\n";
+    outputStream << stmId << "[label = \"WhileStm\"];\n";
 
-    std::cout << stmId << "->";
+    outputStream << stmId << "->";
     statement->expression->Accept(this);
 
-    std::cout << stmId << "->";
+    outputStream << stmId << "->";
     statement->loopStatement->Accept(this);
 }
 
 void CPrintVisitor::Visit( CIdExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << "\n";
-    std::cout << exprId << "[label = \"IdExp\"];\n";
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"IdExp\"];\n";
 
     long nameId = generateId(&expression->name);
-    std::cout << exprId << "->" << nameId << ";\n";
-    std::cout << nameId << "[label = \"" << expression->name << "\"];\n";
+    outputStream << exprId << "->" << nameId << ";\n";
+    outputStream << nameId << "[label = \"" << expression->name << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CBinaryExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << ";\n";
-    std::cout << exprId << "[label = \"BinExp\"];\n";
+    outputStream << exprId << ";\n";
+    outputStream << exprId << "[label = \"BinExp\"];\n";
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->leftOperand->Accept(this);
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     long operationId = generateId(&expression->operation);
     switch(expression->operation) {
         case enums::TArithmeticOperation::ADD:
-            std::cout << operationId << ";\n";
-            std::cout << operationId << "[label = \"+\" ];\n";
+            outputStream << operationId << ";\n";
+            outputStream << operationId << "[label = \"+\" ];\n";
             break;
 
         case enums::TArithmeticOperation::SUB:
-            std::cout << operationId << ";\n";
-            std::cout << operationId << "[label = \"-\" ];\n";
+            outputStream << operationId << ";\n";
+            outputStream << operationId << "[label = \"-\" ];\n";
             break;
 
         case enums::TArithmeticOperation::MUL:
-            std::cout << operationId << ";\n";
-            std::cout << operationId << "[label = \"*\" ];\n";
+            outputStream << operationId << ";\n";
+            outputStream << operationId << "[label = \"*\" ];\n";
             break;
 
         case enums::TArithmeticOperation::DIV:
-            std::cout << operationId << ";\n";
-            std::cout << operationId << "[label = \"/\" ];\n";
+            outputStream << operationId << ";\n";
+            outputStream << operationId << "[label = \"/\" ];\n";
             break;        
     }
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->rightOperand->Accept(this);
 }
 
 void CPrintVisitor::Visit( CNumberExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << "\n";
-    std::cout << exprId << "[label = \"NumExp\"];\n";
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"NumExp\"];\n";
 
     long numberId = generateId(&expression->number);
-    std::cout << exprId << "->" << numberId << ";\n";
-    std::cout << numberId << "[label = \"" << expression->number << "\"];\n";
+    outputStream << exprId << "->" << numberId << ";\n";
+    outputStream << numberId << "[label = \"" << expression->number << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << ";\n";
-    std::cout << exprId << "[label = \"BinBoolExp\"];\n";
+    outputStream << exprId << ";\n";
+    outputStream << exprId << "[label = \"BinBoolExp\"];\n";
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->leftOperand->Accept(this);
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     long operationId = generateId(&expression->operation);
     switch(expression->operation) {
         case enums::TBooleanOperation::AND:
-            std::cout << operationId << ";\n";
-            std::cout << operationId << "[label = \"AND\" ];\n";
+            outputStream << operationId << ";\n";
+            outputStream << operationId << "[label = \"AND\" ];\n";
             break;
 
         case enums::TBooleanOperation::OR:
-            std::cout << operationId << ";\n";
-            std::cout << operationId << "[label = \"OR\" ];\n";
+            outputStream << operationId << ";\n";
+            outputStream << operationId << "[label = \"OR\" ];\n";
             break;
         case enums::TBooleanOperation::LESS:
-            std::cout << operationId << ";\n";
-            std::cout << operationId << "[label = \"<\" ];\n";
+            outputStream << operationId << ";\n";
+            outputStream << operationId << "[label = \"<\" ];\n";
             break;
 
         case enums::TBooleanOperation::GREATER:
-            std::cout << operationId << ";\n";
-            std::cout << operationId << "[label = \">\" ];\n";
+            outputStream << operationId << ";\n";
+            outputStream << operationId << "[label = \">\" ];\n";
             break;
     }
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->rightOperand->Accept(this);
 }
 
 void CPrintVisitor::Visit( CBooleanExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << "\n";
-    std::cout << exprId << "[label = \"BoolExp\"];\n";
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"BoolExp\"];\n";
 
     long valueId = generateId(&expression->value);
-    std::cout << exprId << "->" << valueId << ";\n";
-    std::cout << valueId << "[label = \"" << expression->value << "\"];\n";
+    outputStream << exprId << "->" << valueId << ";\n";
+    outputStream << valueId << "[label = \"" << expression->value << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CThisExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << "\n";
-    std::cout << exprId << "[label = \"ThisExp\"];\n";
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"ThisExp\"];\n";
 
     long addressId = generateId(&expression->address);
-    std::cout << exprId << "->" << addressId << ";\n";
-    std::cout << addressId << "[label = \"" << expression->address << "\"];\n";
+    outputStream << exprId << "->" << addressId << ";\n";
+    outputStream << addressId << "[label = \"" << expression->address << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CNewObjectExpression *expression ) {
     long newObjId = generateId(expression);
 
-    std::cout << newObjId << "\n";
-    std::cout << newObjId << "[label = \"NewObjExp\"];\n";
+    outputStream << newObjId << "\n";
+    outputStream << newObjId << "[label = \"NewObjExp\"];\n";
 
-    std::cout << newObjId << "->";
+    outputStream << newObjId << "->";
     expression->objTypeId->Accept(this);
 }
 
 void CPrintVisitor::Visit( CNewIntArrayExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << "\n";
-    std::cout << exprId << "[label = \"NewIntArrayExp\"];\n";
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"NewIntArrayExp\"];\n";
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->arrSize->Accept(this);
 }
 
 void CPrintVisitor::Visit( CMethodCallExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << "\n";
-    std::cout << exprId << "[label = \"MethodCallExp\"];\n";
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"MethodCallExp\"];\n";
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->base->Accept(this);
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->methodId->Accept(this);
 
     if(expression->arg) {
-        std::cout << exprId << "->";
+        outputStream << exprId << "->";
         expression->arg->Accept(this);        
     }
 }
@@ -472,39 +472,39 @@ void CPrintVisitor::Visit( CMethodCallExpression *expression ) {
 void CPrintVisitor::Visit( CArrayLengthExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << "\n";
-    std::cout << exprId << "[label = \"ArrayLengthExp\"];\n";
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"ArrayLengthExp\"];\n";
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->exp->Accept(this);
 }
 
 void CPrintVisitor::Visit( CArrayIndexExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << "\n";
-    std::cout << exprId << "[label = \"ArrayIndexExp\"];\n";
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"ArrayIndexExp\"];\n";
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->id->Accept(this);
 
-    std::cout << exprId << "->";
+    outputStream << exprId << "->";
     expression->index->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundExpression *expression ) {
     long exprId = generateId(expression);
 
-    std::cout << exprId << ";\n";
-    std::cout << exprId << "[label = \"CompoundExp\"];\n";
+    outputStream << exprId << ";\n";
+    outputStream << exprId << "[label = \"CompoundExp\"];\n";
 
     if(expression->leftExpression) {
-        std::cout << exprId << "->";
+        outputStream << exprId << "->";
         expression->leftExpression->Accept(this);
     }
 
     if(expression->rightExpression) {
-        std::cout << exprId << "->";
+        outputStream << exprId << "->";
         expression->rightExpression->Accept(this);
     }
 }
