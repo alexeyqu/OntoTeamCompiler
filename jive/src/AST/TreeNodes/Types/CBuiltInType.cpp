@@ -1,4 +1,4 @@
-#include "CBuiltInType.h"
+#include "AST/TreeNodes/Types/CBuiltInType.h"
 
 CBuiltInType::CBuiltInType( enums::TType _type ) : \
 	IType( _type ) {}

@@ -1,4 +1,4 @@
- #include "CCompoundMethod.h"
+#include "AST/TreeNodes/Entities/CCompoundMethod.h"
 
 CCompoundMethod::CCompoundMethod( 
 	CCompoundMethod *_method1, 

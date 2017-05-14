@@ -1,18 +1,21 @@
 #pragma once
 
+#include "AST/CProgram.h"
+#include "ST/CSymbols.h"
+#include "ST/CSymbolsTable.h"
+
 #include <iostream>
 #include <cassert>
-#include "../CProgram.h"
 #include <vector>
 #include <map>
 #include <string>
-#include "CSymbols.h"
 
 class CTableCreatorVisitor : public IVisitor 
 {
 public:
+	CTableCreatorVisitor( CSymbolsTable* _table ) : table( _table ) {}
+
 	void Start( IVisitorTarget *vertex );
-	std::map<std::string, CClassSymbol*>& GetTable();
 	
 	void Visit( CProgram *program );
    	void Visit( CGoal *goal );
@@ -45,7 +48,7 @@ public:
     void Visit( CArrayIndexExpression *expression );
     void Visit( CCompoundExpression *expression );
 private:
-	std::map<std::string, CClassSymbol*> table;
+	CSymbolsTable* table;
 	CClassSymbol* curClassSymbol;
 	CMethodSymbol* curMethodSymbol;
 }; 

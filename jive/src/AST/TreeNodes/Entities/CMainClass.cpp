@@ -1,4 +1,4 @@
-#include "CMainClass.h"
+#include "AST/TreeNodes/Entities/CMainClass.h"
 
 CMainClass::CMainClass( CIdExpression *_name, 
         CIdExpression *_cmdArgs,

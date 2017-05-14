@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CProgram.h"
+#include "AST/CProgram.h"
 
 class CJiveEnvironment
 {

@@ -1,11 +1,7 @@
-#include "CTableCreatorVisitor.h"
+#include "AST/TreeVisitors/CTableCreatorVisitor.h"
 
 void CTableCreatorVisitor::Start( IVisitorTarget *vertex ) {
     vertex->Accept(this);
-}
-
-std::map<std::string, CClassSymbol*>& CTableCreatorVisitor::GetTable() {
-    return table;
 }
 
 void CTableCreatorVisitor::Visit( CProgram *program ) {
@@ -14,7 +10,9 @@ void CTableCreatorVisitor::Visit( CProgram *program ) {
 
 void CTableCreatorVisitor::Visit( CGoal *goal ) {
     goal->tmp1->Accept(this);
-    goal->tmp2->Accept(this);
+	if (goal->tmp2) {
+		goal->tmp2->Accept( this );
+	}
 }
 
 void CTableCreatorVisitor::Visit( CBuiltInType *type ) {
@@ -26,29 +24,29 @@ void CTableCreatorVisitor::Visit( CUserType *type ) {
 void CTableCreatorVisitor::Visit( CVariable *entity ) {
     CVariableSymbol* varSymbol = new CVariableSymbol(entity->id->name, entity->type );
     if( curMethodSymbol == nullptr ) {
-        if( curClassSymbol->fields.find( varSymbol->name ) != curClassSymbol->fields.end() ) {
+        if( curClassSymbol->fields.GetObject( varSymbol->name ) ) {
             std::cerr << "[" << entity->id->coordinates.first_line << ", " 
                 << entity->id->coordinates.first_column << "] "  
-                << "Error: Redefinition of the field \"" << varSymbol->name << "\"\n";
+                << "Error: Redefinition of the field \"" << varSymbol->GetName() << "\"\n";
             delete varSymbol;
             return;
         }
-        curClassSymbol->fields.insert( std::make_pair( varSymbol->name, varSymbol ) );
+        curClassSymbol->fields.InsertObject( varSymbol->name, varSymbol );
     } else {
-        if( curMethodSymbol->arguments.find( varSymbol->name ) != curMethodSymbol->arguments.end() ) {
+        if( curMethodSymbol->arguments.GetObject( varSymbol->name ) ) {
             std::cerr << "[" << entity->id->coordinates.first_line << ", " 
                 << entity->id->coordinates.first_column << "] " 
-                << "Error: Redeclaration of argument \"" << varSymbol->name << "\"\n";
+                << "Error: Redeclaration of argument \"" << varSymbol->GetName() << "\"\n";
             return;
         }
-        if( curMethodSymbol->variables.find( varSymbol->name ) != curMethodSymbol->variables.end() ) {
+        if( curMethodSymbol->variables.GetObject( varSymbol->name ) ) {
             std::cerr << "[" << entity->id->coordinates.first_line << ", " 
                 << entity->id->coordinates.first_column << "] "  
-                << "Error: Redeclaration of variable \"" << varSymbol->name << "\"\n";
+                << "Error: Redeclaration of variable \"" << varSymbol->GetName() << "\"\n";
             delete varSymbol;
             return;
         }
-        curMethodSymbol->variables.insert( std::make_pair( varSymbol->name, varSymbol ) );
+        curMethodSymbol->variables.InsertObject(varSymbol->name, varSymbol );
     }
 }
 
@@ -61,15 +59,15 @@ void CTableCreatorVisitor::Visit( CCompoundVariable *entity ) {
 
 void CTableCreatorVisitor::Visit( CArgument *entity ) {
     CVariableSymbol* varSymbol = new CVariableSymbol(entity->id->name, entity->type );
-    curMethodSymbol->argumentTypes.push_back( entity->type );
-    if( curMethodSymbol->arguments.find( varSymbol->name ) != curMethodSymbol->arguments.end() ) {
+    curMethodSymbol->argumentTypes.push_back( varSymbol->type );
+    if( curMethodSymbol->arguments.GetObject( varSymbol->name ) ) {
         std::cerr << "[" << entity->id->coordinates.first_line << ", " 
             << entity->id->coordinates.first_column << "] " 
-            << "Error: Redeclaration of argument \"" << varSymbol->name << "\"\n";
+            << "Error: Redeclaration of argument \"" << varSymbol->GetName() << "\"\n";
         delete varSymbol;
         return;
     }
-    curMethodSymbol->arguments.insert( std::make_pair( varSymbol->name, varSymbol ) );
+    curMethodSymbol->arguments.InsertObject( varSymbol->name, varSymbol );
 }
 
 void CTableCreatorVisitor::Visit( CCompoundArgument *entity ) {
@@ -81,14 +79,15 @@ void CTableCreatorVisitor::Visit( CCompoundArgument *entity ) {
 
 void CTableCreatorVisitor::Visit( CMethod *entity ) {
     CMethodSymbol* methodSymbol = new CMethodSymbol( entity->id->name, entity->returnType );
-    if( curClassSymbol->methods.find( methodSymbol->name ) != curClassSymbol->methods.end() ) {
+    if( curClassSymbol->methods.GetObject( methodSymbol->name ) ) {
         std::cerr << "[" << entity->id->coordinates.first_line << ", " 
             << entity->id->coordinates.first_column << "] "
-            << "Error: Redeclaration of method \"" << methodSymbol->name << "\"\n";
+            << "Error: Redeclaration of method \"" 
+			<< methodSymbol->GetName() << "\"\n";
         delete methodSymbol;
         return;
     }
-    curClassSymbol->methods.insert( std::make_pair( methodSymbol->name, methodSymbol ) );
+    curClassSymbol->methods.InsertObject( methodSymbol->name, methodSymbol );
     curMethodSymbol = methodSymbol;
     if( entity->arguments ) {
     	entity->arguments->Accept(this);
@@ -115,31 +114,30 @@ void CTableCreatorVisitor::Visit( CCompoundMethod *entity ) {
 void CTableCreatorVisitor::Visit( CMainClass *entity ) {
     CClassSymbol* classSymbol = new CClassSymbol( entity->name->name,
         new CBuiltInType( enums::CLASS ) );
-    table.insert( std::make_pair( classSymbol->name, classSymbol ) );
+    table->AddClass( classSymbol );
     curClassSymbol = classSymbol;
     CMethodSymbol* methodSymbol = new CMethodSymbol( "main", new CBuiltInType( enums::VOID ) );
-    classSymbol->methods.insert( std::make_pair( methodSymbol->name , methodSymbol ) );
+    classSymbol->methods.InsertObject( methodSymbol->name , methodSymbol );
     curMethodSymbol = methodSymbol;
     CVariableSymbol* varSymbol = new CVariableSymbol( entity->cmdArgs->name, new CBuiltInType( enums::STRINGARRAY ) );
-    methodSymbol->arguments.insert( std::make_pair( varSymbol->name, varSymbol ) );
+    methodSymbol->arguments.InsertObject( varSymbol->name, varSymbol );
 }
 
 void CTableCreatorVisitor::Visit( CClass *entity ) {
-    CClassSymbol* classSymbol = new CClassSymbol( entity->name->name,
-        new CBuiltInType( enums::CLASS ) );
-    if( table.find( classSymbol->name ) != table.end() ) {
+    if( table->GetClassByName( entity->name->name ) ) {
         std::cerr << "[" << entity->name->coordinates.first_line << ", " 
             << entity->name->coordinates.first_column << "] " 
-            << "Error: Redefinition of class \"" << classSymbol->name << "\"\n";
-        delete classSymbol;
+            << "Error: Redefinition of class \"" << entity->name->name << "\"\n";
         return;
     }
-    table.insert( std::make_pair( classSymbol->name, classSymbol ) );
+	CClassSymbol* classSymbol = new CClassSymbol( entity->name->name,
+        new CBuiltInType( enums::CLASS ) );
+    table->AddClass( classSymbol );
     curClassSymbol = classSymbol;
     curMethodSymbol = nullptr;
 
     if( entity->parentName ) {
-        classSymbol->parentName = entity->parentName->name;
+		classSymbol->parentName = CSymbol::GetSymbol( entity->parentName->name );
     }
 
     if( entity->fields ) {

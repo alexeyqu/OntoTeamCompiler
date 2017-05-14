@@ -1,4 +1,4 @@
-#include "CBinaryExpression.h"
+#include "AST/TreeNodes/Expressions/CBinaryExpression.h"
 
 CBinaryExpression::CBinaryExpression( IExpression *_leftOperand, enums::TArithmeticOperation _operation, IExpression *_rightOperand ) : \
 	leftOperand( _leftOperand ), operation( _operation ), rightOperand( _rightOperand ) {}

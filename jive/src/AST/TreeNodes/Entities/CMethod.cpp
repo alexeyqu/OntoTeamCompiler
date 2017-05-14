@@ -1,4 +1,4 @@
-#include "CMethod.h"
+#include "AST/TreeNodes/Entities/CMethod.h"
 
 CMethod::CMethod( IType *_returnType, CIdExpression *_id, 
    		CCompoundArgument *_arguments,

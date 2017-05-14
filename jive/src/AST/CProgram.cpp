@@ -1,4 +1,4 @@
-#include "CProgram.h"
+#include "AST/CProgram.h"
 
 CProgram::CProgram( IVisitorTarget *_rootVertex ) : rootVertex( _rootVertex ) {}
  

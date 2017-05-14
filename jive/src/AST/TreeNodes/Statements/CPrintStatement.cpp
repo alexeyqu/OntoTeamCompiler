@@ -1,4 +1,4 @@
-#include "CPrintStatement.h"
+#include "AST/TreeNodes/Statements/CPrintStatement.h"
 
 CPrintStatement::CPrintStatement( IExpression *_operand ) : \
 	operand( _operand ) {}

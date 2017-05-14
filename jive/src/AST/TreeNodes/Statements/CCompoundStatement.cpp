@@ -1,4 +1,4 @@
-#include "CCompoundStatement.h"
+#include "AST/TreeNodes/Statements/CCompoundStatement.h"
 
 CCompoundStatement::CCompoundStatement( IStatement *_leftStatement, IStatement *_rightStatement ) : \
 	leftStatement( _leftStatement ), rightStatement( _rightStatement ) {}

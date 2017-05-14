@@ -1,4 +1,4 @@
- #include "CCompoundVariable.h"
+#include "AST/TreeNodes/Entities/CCompoundVariable.h"
 
 CCompoundVariable::CCompoundVariable( 
 	CCompoundVariable *_var1, 

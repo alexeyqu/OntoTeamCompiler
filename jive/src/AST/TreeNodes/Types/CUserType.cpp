@@ -1,4 +1,4 @@
-#include "CUserType.h"
+#include "AST/TreeNodes/Types/CUserType.h"
 
 CUserType::CUserType( std::string _name ) : \
 	IType( enums::TType::CLASS ), name( _name ) {}

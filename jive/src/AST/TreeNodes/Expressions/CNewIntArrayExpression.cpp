@@ -1,4 +1,4 @@
-#include "CNewIntArrayExpression.h"
+#include "AST/TreeNodes/Expressions/CNewIntArrayExpression.h"
 
 CNewIntArrayExpression::CNewIntArrayExpression( IExpression *_arrSize ) : arrSize( _arrSize ) {}
 

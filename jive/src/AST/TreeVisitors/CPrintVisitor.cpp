@@ -1,4 +1,4 @@
-#include "CPrintVisitor.h"
+#include "AST/TreeVisitors/CPrintVisitor.h"
 
 void CPrintVisitor::Start( IVisitorTarget *vertex, std::string graphname ) {
     std::cout << "digraph " << graphname << " {\n";
@@ -22,8 +22,10 @@ void CPrintVisitor::Visit( CGoal *goal )
     std::cout << goalId << "->";
     goal->tmp1->Accept(this);
 
-    std::cout << goalId << "->";
-    goal->tmp2->Accept(this);
+	if (goal->tmp2) {
+		std::cout << goalId << "->";
+		goal->tmp2->Accept(this);
+	}
 }
 
 void CPrintVisitor::Visit( CBuiltInType *type ) {

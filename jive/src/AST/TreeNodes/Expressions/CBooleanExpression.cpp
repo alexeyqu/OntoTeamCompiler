@@ -1,4 +1,4 @@
-#include "CBooleanExpression.h"
+#include "AST/TreeNodes/Expressions/CBooleanExpression.h"
 
 CBooleanExpression::CBooleanExpression( bool _value ) : value( _value ) {}
 

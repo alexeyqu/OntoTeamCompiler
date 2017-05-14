@@ -1,4 +1,4 @@
-#include "CArrayIndexExpression.h"
+#include "AST/TreeNodes/Expressions/CArrayIndexExpression.h"
 
 CArrayIndexExpression::CArrayIndexExpression( IExpression *_id, IExpression *_index ) : \
     id( _id ), index( _index ) {}

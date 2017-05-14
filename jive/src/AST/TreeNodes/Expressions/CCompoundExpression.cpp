@@ -1,4 +1,4 @@
-#include "CCompoundExpression.h"
+#include "AST/TreeNodes/Expressions/CCompoundExpression.h"
 
 CCompoundExpression::CCompoundExpression( IExpression *_leftExpression, IExpression *_rightExpression ) : \
 	leftExpression( _leftExpression ), rightExpression( _rightExpression ) {}

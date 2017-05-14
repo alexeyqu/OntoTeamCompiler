@@ -1,4 +1,4 @@
-#include "CAssignStatement.h"
+#include "AST/TreeNodes/Statements/CAssignStatement.h"
 
 CAssignStatement::CAssignStatement( IExpression *_leftOperand, IExpression *_rightOperand) : \
 	leftOperand( _leftOperand ), rightOperand( _rightOperand ) {}

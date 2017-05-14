@@ -1,17 +1,19 @@
 #pragma once
 
+#include "AST/CProgram.h"
+#include "ST/CSymbols.h"
+#include "ST/CSymbolsTable.h"
+
 #include <iostream>
 #include <cassert>
-#include "../CProgram.h"
 #include <vector>
 #include <map>
 #include <string>
-#include "CSymbols.h"
 
 class CTypeCheckerVisitor : public IVisitor 
 {
 public:
-	CTypeCheckerVisitor( std::map<std::string, CClassSymbol*>& table );
+	CTypeCheckerVisitor( CSymbolsTable* _table ) : table( _table ) {}
 	void Start( IVisitorTarget *vertex );
 	
 	void Visit( CProgram *program ); 
@@ -26,7 +28,7 @@ public:
     void Visit( CCompoundMethod *entity ); 
     void Visit( CCompoundClass *entity ); 
     void Visit( CMainClass *entity ); 
-    void Visit( CClass *entity ); // Дописать циклические зависимости
+    void Visit( CClass *entity );
 	void Visit( CCompoundStatement *statement ); 
 	void Visit( CAssignStatement *statement ); 
 	void Visit( CPrintStatement *statement ); 
@@ -45,9 +47,9 @@ public:
     void Visit( CArrayIndexExpression *expression );
     void Visit( CCompoundExpression *expression );
 private:
-	std::map<std::string, CClassSymbol*> table;
-	std::string curClassName;
-	std::string curMethodName;
+	CSymbolsTable* table;
+	CSymbol* curClassName;
+	CSymbol* curMethodName;
 	std::vector<IType*> curCallArgumentsTypes;
 }; 
  

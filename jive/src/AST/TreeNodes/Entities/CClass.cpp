@@ -1,4 +1,4 @@
-#include "CClass.h"
+#include "AST/TreeNodes/Entities/CClass.h"
 
 CClass::CClass( CIdExpression *_name, 
    		CIdExpression *_parentName,

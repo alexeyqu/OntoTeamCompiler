@@ -1,8 +1,8 @@
 #pragma once
 
-#include "IType.h"
-#include "IEntity.h"
-#include "CIdExpression.h"
+#include "../IType.h"
+#include "../IEntity.h"
+#include "../Expressions/CIdExpression.h"
 
 class CVariable : public IEntity
 {

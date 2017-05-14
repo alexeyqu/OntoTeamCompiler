@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ISymbol.h"
+#include "../ISymbol.h"
 
 class CVariableSymbol : public ISymbol {
 

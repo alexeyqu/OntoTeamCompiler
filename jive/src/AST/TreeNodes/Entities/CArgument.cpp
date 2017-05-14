@@ -1,4 +1,4 @@
-#include "CArgument.h"
+#include "AST/TreeNodes/Entities/CArgument.h"
 
 CArgument::CArgument( IType *_type, CIdExpression *_id ) : \
 	type( _type ), id( _id ) {}

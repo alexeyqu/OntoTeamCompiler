@@ -1,4 +1,4 @@
- #include "CCompoundClass.h"
+#include "AST/TreeNodes/Entities/CCompoundClass.h"
 
 CCompoundClass::CCompoundClass( 
     CCompoundClass *_class1, 

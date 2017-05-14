@@ -1,4 +1,4 @@
-#include "CNewObjectExpression.h"
+#include "AST/TreeNodes/Expressions/CNewObjectExpression.h"
 
 CNewObjectExpression::CNewObjectExpression( CIdExpression *_objTypeId ) : objTypeId( _objTypeId ) {}
 

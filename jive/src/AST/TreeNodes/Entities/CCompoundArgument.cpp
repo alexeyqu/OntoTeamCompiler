@@ -1,4 +1,4 @@
-#include "CCompoundArgument.h"
+#include "AST/TreeNodes/Entities/CCompoundArgument.h"
 
 CCompoundArgument::CCompoundArgument( 
 	CCompoundArgument *_arg1, 

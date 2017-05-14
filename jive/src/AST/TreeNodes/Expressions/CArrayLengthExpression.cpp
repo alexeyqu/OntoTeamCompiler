@@ -1,4 +1,4 @@
-#include "CArrayLengthExpression.h"
+#include "AST/TreeNodes/Expressions/CArrayLengthExpression.h"
 
 CArrayLengthExpression::CArrayLengthExpression( IExpression *_exp ) : exp( _exp ) {}
 
