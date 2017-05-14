@@ -22,7 +22,8 @@ OBJECTS = $(BUILD_PATH)/jive.tab.o $(BUILD_PATH)/jive.yy.o $(SOURCES:$(SRC_PATH)
 # Set the dependency files that will be used to add header dependencies
 DEPS = $(OBJECTS:.o=.d)
 
-CC = g++-4.8
+# CC = g++-4.8
+CC = g++
 
 # flags #
 CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD

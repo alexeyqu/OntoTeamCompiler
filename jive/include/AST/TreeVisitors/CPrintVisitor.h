@@ -2,11 +2,14 @@
 
 #include <iostream>
 #include <cassert>
+#include <fstream>
 #include "../CProgram.h"
 
 class CPrintVisitor : public IVisitor 
 {
 public:
+	CPrintVisitor( std::ofstream &_outputStream ) : outputStream( _outputStream ) {};
+
 	void Start( IVisitorTarget *vertex, std::string graphname );
 	
 	void Visit( CProgram *program );
@@ -42,4 +45,5 @@ public:
 	
 private:
 	std::size_t generateId( void *entity );
+	std::ofstream &outputStream;
 };

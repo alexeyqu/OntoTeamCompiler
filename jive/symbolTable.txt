@@ -1,0 +1,59 @@
+Class BS:
+	Fields:
+		Field number : int[]
+		Field size : int
+	Methods:
+		Compare : boolean
+			Args:
+				num1 : int
+				num2 : int
+			Vars:
+				aux02 : int
+				retval : boolean
+		Div : int
+			Args:
+				num : int
+			Vars:
+				aux03 : int
+				count01 : int
+				count02 : int
+		Init : int
+			Args:
+				sz : int
+			Vars:
+				aux01 : int
+				aux02 : int
+				j : int
+				k : int
+		Print : int
+			Args:
+			Vars:
+				j : int
+		Search : boolean
+			Args:
+				num : int
+			Vars:
+				aux01 : int
+				bs01 : boolean
+				left : int
+				medium : int
+				nt : int
+				right : int
+				var_cont : boolean
+		Start : int
+			Args:
+				sz : int
+			Vars:
+				aux01 : int
+				aux02 : int
+---
+
+Class BinarySearch:
+	Fields:
+	Methods:
+		main : void
+			Args:
+				a : String[]
+			Vars:
+---
+

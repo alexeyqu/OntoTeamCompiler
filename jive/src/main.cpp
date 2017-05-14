@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <memory>
 #include "AST/TreeVisitors/CPrintVisitor.h"
@@ -21,10 +22,13 @@ int main( int argc, char **argv ) {
 
     CJiveEnvironment *jiveEnv = new CJiveEnvironment();
 
-    yyparse(&jiveEnv);
+    yyparse( &jiveEnv );
 
-    /*CPrintVisitor printVisitor;
-	printVisitor.Start(jiveEnv->program, "my_graph");*/
+    /*std::ofstream outstream;
+    outstream.open( "graph.dot", std::ios::out );
+    CPrintVisitor printVisitor( outstream );
+	printVisitor.Start( jiveEnv->program, "my_graph" );
+    outstream.close();*/
 
 	CSymbolsTable* table = new CSymbolsTable();
     CTableCreatorVisitor tableCreatorVisitor( table );
@@ -46,26 +50,29 @@ int main( int argc, char **argv ) {
 		irTreePrinter->WriteGraphToFile();
 	}
 	irTreePrinter->CloseFile();
-    /*
+    
+	/*
+    outstream.open( "symbolTable.txt", std::ios::out );
     for( auto classIt : table ) {
-        std::cout << "Class " << classIt.first << ":\n";
-        std::cout << "Fields:\n";
+        outstream << "Class " << classIt.first << ":\n";
+        outstream << "\tFields:\n";
             for( auto varIt : classIt.second->fields ) {
-                std::cout << "\tField " << varIt.first << " of Type " << varIt.second->type->ToString() << "\n";
+                outstream << "\t\tField " << varIt.first << " : " << varIt.second->type->ToString() << "\n";
             }
-        std::cout << "Methods:\n";
+        outstream << "\tMethods:\n";
         for( auto methodIt : classIt.second->methods ) {
-            std::cout << "Method " << methodIt.first << " with return Type " << methodIt.second->type->ToString() << "\n";
-            std::cout << "\tArgs:\n";
+            outstream << "\t\t" << methodIt.first << " : " << methodIt.second->type->ToString() << "\n";
+            outstream << "\t\t\tArgs:\n";
             for( auto argIt : methodIt.second->arguments ) {
-                std::cout << "\t\tArg " << argIt.first << " of Type " << argIt.second->type->ToString() << "\n";
+                outstream << "\t\t\t\t" << argIt.first << " : " << argIt.second->type->ToString() << "\n";
             }
-            std::cout << "\tVars:\n";
+            outstream << "\t\t\tVars:\n";
             for( auto varIt : methodIt.second->variables ) {
-                std::cout << "\t\tVar " << varIt.first << " of Type " << varIt.second->type->ToString() << "\n";
+                outstream << "\t\t\t\t" << varIt.first << " : " << varIt.second->type->ToString() << "\n";
             }
         }
 
+<<<<<<< HEAD
         std::cout << "---\n\n";
     }*/
 	return 0;

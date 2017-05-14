@@ -8,7 +8,7 @@ cd test/samples
 for f in *.java
 do
     echo $f
-    ../../Debug/jive < $f > ../parsetrees/dot/$f.dot
-  #  dot -Tps ../parsetrees/dot/$f.dot -o ../parsetrees/$f.ps
-    dot -Tpng ../parsetrees/dot/$f.dot -o ../parsetrees/dot/$f.png
+    ../../jive < $f > ../parsetrees/dot/$f.dot
+    dot -Tps ../parsetrees/dot/$f.dot -o ../parsetrees/$f.ps
+    dot -Tpng ../parsetrees/dot/$f.dot -o ../parsetrees/$f.png
 done
