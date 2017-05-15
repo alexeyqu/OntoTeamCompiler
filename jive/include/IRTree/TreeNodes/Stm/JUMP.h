@@ -12,6 +12,9 @@ public:
 	CLabelList* GetTargets() const;
 	void Accept( IIRTreeVisitor *visitor );
 
+	CExpList* Kids();
+	IStm* Build( CExpList* kids );
+
 private:
 	IExp* exp;
 	CLabelList* targets;

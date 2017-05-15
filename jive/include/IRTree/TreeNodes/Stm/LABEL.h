@@ -9,6 +9,9 @@ public:
 	CLabel* GetLabel() const;
 	void Accept( IIRTreeVisitor *visitor );
 
+	CExpList* Kids();
+	IStm* Build( CExpList* kids );
+
 private:
 	CLabel* label;
 };

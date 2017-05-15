@@ -3,15 +3,17 @@
 #include "../IExp.h"
 #include "IRTree/IIRTreeVisitor.h"
 
-class CExpList : public IExp
+// Выражения в обратном порядке
+
+class CExpList
 {
 public:
-	CExpList( CExpList*  _head, IExp* _tail ) : head( _head ), tail( _tail ) {};
-	CExpList* GetHead() const;
-	IExp* GetTail() const;
+	CExpList( IExp* _head, CExpList* _tail ) : head( _head ), tail( _tail ) {};
+	IExp* GetHead() const;
+	CExpList* GetTail() const;
 	void Accept( IIRTreeVisitor *visitor );
 
 private:
-	CExpList* head;
-	IExp* tail;
+	IExp* head;
+	CExpList* tail;
 };

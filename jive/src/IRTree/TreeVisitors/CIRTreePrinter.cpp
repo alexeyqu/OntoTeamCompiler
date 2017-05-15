@@ -81,13 +81,11 @@ void CIRTreePrinter::Visit( TEMP* node ) {
 }
 
 void CIRTreePrinter::Visit( CExpList* node ) {
-	IExp* tail = node->GetTail();
-	CExpList* headExp = node->GetHead();	
-	if ( tail ) {
-		tail->Accept( this );
+	if ( node->GetHead() ) {
+		node->GetHead()->Accept( this );
 	}	
-	if ( headExp ) {
-		headExp->Accept( this );
+	if ( node->GetTail() ) {
+		node->GetTail()->Accept( this );
 	}	
 }
 
@@ -168,7 +166,7 @@ void CIRTreePrinter::Visit( LABEL* node ) {
 void CIRTreePrinter::Visit( MOVE* node ) {
 	visitNewNode();
 	nodeLabels[curNodeId] = "MOVE";	
-	node->GetDst()->Accept( this );
+	node->GetDest()->Accept( this );
 	node->GetSrc()->Accept( this );
 	leaveNode();
 }

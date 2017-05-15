@@ -9,6 +9,9 @@ public:
 	int GetValue() const;
 	void Accept( IIRTreeVisitor *visitor );
 
+	CExpList* Kids();
+	IExp* Build( CExpList* kids );
+
 private:
 	int value;
 };

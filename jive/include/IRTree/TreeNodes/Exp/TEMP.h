@@ -12,6 +12,9 @@ public:
 	const CTemp* GetTemp() const;
 	void Accept( IIRTreeVisitor *visitor );
 
+	CExpList* Kids();
+	IExp* Build( CExpList* kids );
+
 private:
 	const CTemp* temp;
 };

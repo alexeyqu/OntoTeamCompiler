@@ -3,7 +3,7 @@
 #include "../IStm.h"
 #include "IRTree/IIRTreeVisitor.h"
 
-class CStmList : public IStm
+class CStmList
 {
 public:
 	CStmList( IStm* _head, CStmList* _tail ) : head( _head ), tail( _tail ) {};

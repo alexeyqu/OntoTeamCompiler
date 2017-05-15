@@ -1,4 +1,5 @@
 #include "IRTree/TreeNodes/Stm/CJUMP.h"
+#include "IRTree/TreeNodes/Exp/CExpList.h"
 #include <cassert>
 
 enums::TCJump CJUMP::GetOp() const { 
@@ -43,4 +44,13 @@ CLabel* CJUMP::GetIfFalse() const {
 
 void CJUMP::Accept( IIRTreeVisitor *visitor ) { 
 	visitor->Visit( this ); 
+}
+
+CExpList* CJUMP::Kids() {
+	return new CExpList( left, new CExpList( right, nullptr ) );
+}
+
+IStm* CJUMP::Build( CExpList* kids ) {
+	return new CJUMP( op, kids->GetHead(), 
+		kids->GetTail()->GetHead(), ifTrue, ifFalse ); 
 }

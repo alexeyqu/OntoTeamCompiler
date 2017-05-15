@@ -15,7 +15,7 @@ Grammar
 
     2 Goal: MainClass Classes
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     4 Classes: Classes Class
     5        | %empty
@@ -33,10 +33,10 @@ Grammar
 
    13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements RETURN Expression SEMI RBRACE
 
-   14 Arguments: Argument RestArguments
+   14 Arguments: RestArguments Argument
    15          | %empty
 
-   16 RestArguments: COMMA Argument RestArguments
+   16 RestArguments: RestArguments Argument COMMA
    17              | %empty
 
    18 Argument: Type Identifier
@@ -83,10 +83,10 @@ Grammar
    53           | SUB Expression
    54           | CallableExpression
 
-   55 Expressions: Expression RestExpressions
+   55 Expressions: RestExpressions Expression
    56            | %empty
 
-   57 RestExpressions: COMMA Expression RestExpressions
+   57 RestExpressions: RestExpressions Expression COMMA
    58                | %empty
 
    59 Identifier: ID
@@ -173,9 +173,9 @@ RestArguments (60)
 Argument (61)
     on left: 18, on right: 14 16
 Statements (62)
-    on left: 19 20, on right: 3 13 19 21 23
+    on left: 19 20, on right: 13 19 21 23
 Statement (63)
-    on left: 21 22 23 24 25, on right: 19 22
+    on left: 21 22 23 24 25, on right: 3 19 22
 CallableExpression (64)
     on left: 26 27 28, on right: 54
 LeftExpression (65)
@@ -207,7 +207,7 @@ State 0
 
 State 1
 
-    3 MainClass: CLASS . Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS . Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     ID  shift, and go to state 5
 
@@ -246,7 +246,7 @@ State 5
 
 State 6
 
-    3 MainClass: CLASS Identifier . LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier . LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     LBRACE  shift, and go to state 9
 
@@ -272,7 +272,7 @@ State 8
 
 State 9
 
-    3 MainClass: CLASS Identifier LBRACE . PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE . PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     PUBLIC  shift, and go to state 12
 
@@ -296,7 +296,7 @@ State 11
 
 State 12
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC . STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC . STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     STATIC  shift, and go to state 14
 
@@ -312,7 +312,7 @@ State 13
 
 State 14
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC . VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC . VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     VOID  shift, and go to state 17
 
@@ -337,7 +337,7 @@ State 16
 
 State 17
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID . MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID . MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     MAIN  shift, and go to state 20
 
@@ -369,7 +369,7 @@ State 19
 
 State 20
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN . LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN . LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     LPAREN  shift, and go to state 29
 
@@ -443,7 +443,7 @@ State 28
 
 State 29
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN . STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN . STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     STRING  shift, and go to state 36
 
@@ -509,7 +509,7 @@ State 35
 
 State 36
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING . LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING . LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     LBRACKET  shift, and go to state 41
 
@@ -550,7 +550,7 @@ State 40
 
 State 41
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET . RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET . RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     RBRACKET  shift, and go to state 44
 
@@ -571,7 +571,7 @@ State 43
 
 State 44
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET . Identifier RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET . Identifier RPAREN LBRACE Statement RBRACE RBRACE
 
     ID  shift, and go to state 5
 
@@ -582,214 +582,176 @@ State 45
 
    13 Method: PUBLIC Type Identifier LPAREN . Arguments RPAREN LBRACE Variables Statements RETURN Expression SEMI RBRACE
 
-    ID      shift, and go to state 5
-    STRING  shift, and go to state 22
-    INT     shift, and go to state 23
-    BOOL    shift, and go to state 24
+    RPAREN    reduce using rule 15 (Arguments)
+    $default  reduce using rule 17 (RestArguments)
 
-    $default  reduce using rule 15 (Arguments)
-
-    Arguments   go to state 47
-    Argument    go to state 48
-    Type        go to state 49
-    Identifier  go to state 28
+    Arguments      go to state 47
+    RestArguments  go to state 48
 
 
 State 46
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier . RPAREN LBRACE Statements RBRACE RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier . RPAREN LBRACE Statement RBRACE RBRACE
 
-    RPAREN  shift, and go to state 50
+    RPAREN  shift, and go to state 49
 
 
 State 47
 
    13 Method: PUBLIC Type Identifier LPAREN Arguments . RPAREN LBRACE Variables Statements RETURN Expression SEMI RBRACE
 
-    RPAREN  shift, and go to state 51
+    RPAREN  shift, and go to state 50
 
 
 State 48
 
-   14 Arguments: Argument . RestArguments
-
-    COMMA  shift, and go to state 52
-
-    $default  reduce using rule 17 (RestArguments)
-
-    RestArguments  go to state 53
-
-
-State 49
-
-   18 Argument: Type . Identifier
-
-    ID  shift, and go to state 5
-
-    Identifier  go to state 54
-
-
-State 50
-
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN . LBRACE Statements RBRACE RBRACE
-
-    LBRACE  shift, and go to state 55
-
-
-State 51
-
-   13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN . LBRACE Variables Statements RETURN Expression SEMI RBRACE
-
-    LBRACE  shift, and go to state 56
-
-
-State 52
-
-   16 RestArguments: COMMA . Argument RestArguments
+   14 Arguments: RestArguments . Argument
+   16 RestArguments: RestArguments . Argument COMMA
 
     ID      shift, and go to state 5
     STRING  shift, and go to state 22
     INT     shift, and go to state 23
     BOOL    shift, and go to state 24
 
-    Argument    go to state 57
-    Type        go to state 49
+    Argument    go to state 51
+    Type        go to state 52
     Identifier  go to state 28
 
 
-State 53
+State 49
 
-   14 Arguments: Argument RestArguments .
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN . LBRACE Statement RBRACE RBRACE
+
+    LBRACE  shift, and go to state 53
+
+
+State 50
+
+   13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN . LBRACE Variables Statements RETURN Expression SEMI RBRACE
+
+    LBRACE  shift, and go to state 54
+
+
+State 51
+
+   14 Arguments: RestArguments Argument .
+   16 RestArguments: RestArguments Argument . COMMA
+
+    COMMA  shift, and go to state 55
 
     $default  reduce using rule 14 (Arguments)
 
 
+State 52
+
+   18 Argument: Type . Identifier
+
+    ID  shift, and go to state 5
+
+    Identifier  go to state 56
+
+
+State 53
+
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE . Statement RBRACE RBRACE
+
+    ID      shift, and go to state 5
+    IF      shift, and go to state 57
+    WHILE   shift, and go to state 58
+    LBRACE  shift, and go to state 59
+    PRINT   shift, and go to state 60
+
+    Statement       go to state 61
+    LeftExpression  go to state 62
+    Identifier      go to state 63
+
+
 State 54
+
+   13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE . Variables Statements RETURN Expression SEMI RBRACE
+
+    $default  reduce using rule 9 (Variables)
+
+    Variables  go to state 64
+
+
+State 55
+
+   16 RestArguments: RestArguments Argument COMMA .
+
+    $default  reduce using rule 16 (RestArguments)
+
+
+State 56
 
    18 Argument: Type Identifier .
 
     $default  reduce using rule 18 (Argument)
 
 
-State 55
-
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE . Statements RBRACE RBRACE
-
-    ID      shift, and go to state 5
-    IF      shift, and go to state 58
-    WHILE   shift, and go to state 59
-    LBRACE  shift, and go to state 60
-    PRINT   shift, and go to state 61
-
-    $default  reduce using rule 20 (Statements)
-
-    Statements      go to state 62
-    Statement       go to state 63
-    LeftExpression  go to state 64
-    Identifier      go to state 65
-
-
-State 56
-
-   13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE . Variables Statements RETURN Expression SEMI RBRACE
-
-    $default  reduce using rule 9 (Variables)
-
-    Variables  go to state 66
-
-
 State 57
 
-   16 RestArguments: COMMA Argument . RestArguments
+   22 Statement: IF . LPAREN Expression RPAREN Statement ELSE Statement
 
-    COMMA  shift, and go to state 52
-
-    $default  reduce using rule 17 (RestArguments)
-
-    RestArguments  go to state 67
+    LPAREN  shift, and go to state 65
 
 
 State 58
 
-   22 Statement: IF . LPAREN Expression RPAREN Statement ELSE Statement
+   23 Statement: WHILE . LPAREN Expression RPAREN LBRACE Statements RBRACE
 
-    LPAREN  shift, and go to state 68
+    LPAREN  shift, and go to state 66
 
 
 State 59
 
-   23 Statement: WHILE . LPAREN Expression RPAREN LBRACE Statements RBRACE
+   21 Statement: LBRACE . Statements RBRACE
 
-    LPAREN  shift, and go to state 69
+    ID      shift, and go to state 5
+    IF      shift, and go to state 57
+    WHILE   shift, and go to state 58
+    LBRACE  shift, and go to state 59
+    PRINT   shift, and go to state 60
+
+    $default  reduce using rule 20 (Statements)
+
+    Statements      go to state 67
+    Statement       go to state 68
+    LeftExpression  go to state 62
+    Identifier      go to state 63
 
 
 State 60
 
-   21 Statement: LBRACE . Statements RBRACE
+   24 Statement: PRINT . LPAREN Expression RPAREN SEMI
 
-    ID      shift, and go to state 5
-    IF      shift, and go to state 58
-    WHILE   shift, and go to state 59
-    LBRACE  shift, and go to state 60
-    PRINT   shift, and go to state 61
-
-    $default  reduce using rule 20 (Statements)
-
-    Statements      go to state 70
-    Statement       go to state 63
-    LeftExpression  go to state 64
-    Identifier      go to state 65
+    LPAREN  shift, and go to state 69
 
 
 State 61
 
-   24 Statement: PRINT . LPAREN Expression RPAREN SEMI
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement . RBRACE RBRACE
 
-    LPAREN  shift, and go to state 71
+    RBRACE  shift, and go to state 70
 
 
 State 62
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements . RBRACE RBRACE
-
-    RBRACE  shift, and go to state 72
-
-
-State 63
-
-   19 Statements: Statement . Statements
-
-    ID      shift, and go to state 5
-    IF      shift, and go to state 58
-    WHILE   shift, and go to state 59
-    LBRACE  shift, and go to state 60
-    PRINT   shift, and go to state 61
-
-    $default  reduce using rule 20 (Statements)
-
-    Statements      go to state 73
-    Statement       go to state 63
-    LeftExpression  go to state 64
-    Identifier      go to state 65
-
-
-State 64
-
    25 Statement: LeftExpression . ASSIGN Expression SEMI
    29 LeftExpression: LeftExpression . LBRACKET Expression RBRACKET
 
-    LBRACKET  shift, and go to state 74
-    ASSIGN    shift, and go to state 75
+    LBRACKET  shift, and go to state 71
+    ASSIGN    shift, and go to state 72
 
 
-State 65
+State 63
 
    30 LeftExpression: Identifier .
 
     $default  reduce using rule 30 (LeftExpression)
 
 
-State 66
+State 64
 
     8 Variables: Variables . Variable
    13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables . Statements RETURN Expression SEMI RBRACE
@@ -798,157 +760,161 @@ State 66
     STRING  shift, and go to state 22
     INT     shift, and go to state 23
     BOOL    shift, and go to state 24
-    IF      shift, and go to state 58
-    WHILE   shift, and go to state 59
-    LBRACE  shift, and go to state 60
-    PRINT   shift, and go to state 61
+    IF      shift, and go to state 57
+    WHILE   shift, and go to state 58
+    LBRACE  shift, and go to state 59
+    PRINT   shift, and go to state 60
 
     $default  reduce using rule 20 (Statements)
 
     Variable        go to state 25
-    Statements      go to state 76
-    Statement       go to state 63
-    LeftExpression  go to state 64
+    Statements      go to state 73
+    Statement       go to state 68
+    LeftExpression  go to state 62
     Type            go to state 27
-    Identifier      go to state 77
+    Identifier      go to state 74
+
+
+State 65
+
+   22 Statement: IF LPAREN . Expression RPAREN Statement ELSE Statement
+
+    NUM     shift, and go to state 75
+    ID      shift, and go to state 5
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
+
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 85
+    Identifier          go to state 63
+
+
+State 66
+
+   23 Statement: WHILE LPAREN . Expression RPAREN LBRACE Statements RBRACE
+
+    NUM     shift, and go to state 75
+    ID      shift, and go to state 5
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
+
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 86
+    Identifier          go to state 63
 
 
 State 67
 
-   16 RestArguments: COMMA Argument RestArguments .
+   21 Statement: LBRACE Statements . RBRACE
 
-    $default  reduce using rule 16 (RestArguments)
+    RBRACE  shift, and go to state 87
 
 
 State 68
 
-   22 Statement: IF LPAREN . Expression RPAREN Statement ELSE Statement
+   19 Statements: Statement . Statements
 
-    NUM     shift, and go to state 78
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    IF      shift, and go to state 57
+    WHILE   shift, and go to state 58
+    LBRACE  shift, and go to state 59
+    PRINT   shift, and go to state 60
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 88
-    Identifier          go to state 65
+    $default  reduce using rule 20 (Statements)
+
+    Statements      go to state 88
+    Statement       go to state 68
+    LeftExpression  go to state 62
+    Identifier      go to state 63
 
 
 State 69
 
-   23 Statement: WHILE LPAREN . Expression RPAREN LBRACE Statements RBRACE
+   24 Statement: PRINT LPAREN . Expression RPAREN SEMI
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 89
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 70
 
-   21 Statement: LBRACE Statements . RBRACE
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE . RBRACE
 
     RBRACE  shift, and go to state 90
 
 
 State 71
 
-   24 Statement: PRINT LPAREN . Expression RPAREN SEMI
+   29 LeftExpression: LeftExpression LBRACKET . Expression RBRACKET
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 91
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 72
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE . RBRACE
+   25 Statement: LeftExpression ASSIGN . Expression SEMI
 
-    RBRACE  shift, and go to state 92
+    NUM     shift, and go to state 75
+    ID      shift, and go to state 5
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
+
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 92
+    Identifier          go to state 63
 
 
 State 73
 
-   19 Statements: Statement Statements .
+   13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements . RETURN Expression SEMI RBRACE
 
-    $default  reduce using rule 19 (Statements)
+    RETURN  shift, and go to state 93
 
 
 State 74
-
-   29 LeftExpression: LeftExpression LBRACKET . Expression RBRACKET
-
-    NUM     shift, and go to state 78
-    ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
-
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 93
-    Identifier          go to state 65
-
-
-State 75
-
-   25 Statement: LeftExpression ASSIGN . Expression SEMI
-
-    NUM     shift, and go to state 78
-    ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
-
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 94
-    Identifier          go to state 65
-
-
-State 76
-
-   13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements . RETURN Expression SEMI RBRACE
-
-    RETURN  shift, and go to state 95
-
-
-State 77
 
    30 LeftExpression: Identifier .
    35 Type: Identifier .
@@ -957,123 +923,123 @@ State 77
     $default  reduce using rule 30 (LeftExpression)
 
 
-State 78
+State 75
 
    47 Expression: NUM .
 
     $default  reduce using rule 47 (Expression)
 
 
-State 79
+State 76
 
    27 CallableExpression: THIS .
 
     $default  reduce using rule 27 (CallableExpression)
 
 
-State 80
+State 77
 
    28 CallableExpression: NEW . Identifier LPAREN RPAREN
    50 Expression: NEW . INT LBRACKET Expression RBRACKET
 
     ID   shift, and go to state 5
-    INT  shift, and go to state 96
+    INT  shift, and go to state 94
 
-    Identifier  go to state 97
+    Identifier  go to state 95
 
 
-State 81
+State 78
 
    52 Expression: LPAREN . Expression RPAREN
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 98
-    Identifier          go to state 65
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 96
+    Identifier          go to state 63
 
 
-State 82
+State 79
 
    53 Expression: SUB . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 99
-    Identifier          go to state 65
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 97
+    Identifier          go to state 63
 
 
-State 83
+State 80
 
    48 Expression: TRUE .
 
     $default  reduce using rule 48 (Expression)
 
 
-State 84
+State 81
 
    49 Expression: FALSE .
 
     $default  reduce using rule 49 (Expression)
 
 
-State 85
+State 82
 
    51 Expression: NOT . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 100
-    Identifier          go to state 65
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 98
+    Identifier          go to state 63
 
 
-State 86
+State 83
 
    54 Expression: CallableExpression .
 
     $default  reduce using rule 54 (Expression)
 
 
-State 87
+State 84
 
    26 CallableExpression: LeftExpression .
    29 LeftExpression: LeftExpression . LBRACKET Expression RBRACKET
 
-    LBRACKET  shift, and go to state 74
+    LBRACKET  shift, and go to state 71
 
     $default  reduce using rule 26 (CallableExpression)
 
 
-State 88
+State 85
 
    22 Statement: IF LPAREN Expression . RPAREN Statement ELSE Statement
    36 Expression: Expression . AND Expression
@@ -1088,20 +1054,20 @@ State 88
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    RPAREN   shift, and go to state 101
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    AND      shift, and go to state 109
-    OR       shift, and go to state 110
-    DOT      shift, and go to state 111
+    RPAREN   shift, and go to state 99
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    AND      shift, and go to state 107
+    OR       shift, and go to state 108
+    DOT      shift, and go to state 109
 
 
-State 89
+State 86
 
    23 Statement: WHILE LPAREN Expression . RPAREN LBRACE Statements RBRACE
    36 Expression: Expression . AND Expression
@@ -1116,27 +1082,34 @@ State 89
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    RPAREN   shift, and go to state 112
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    AND      shift, and go to state 109
-    OR       shift, and go to state 110
-    DOT      shift, and go to state 111
+    RPAREN   shift, and go to state 110
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    AND      shift, and go to state 107
+    OR       shift, and go to state 108
+    DOT      shift, and go to state 109
 
 
-State 90
+State 87
 
    21 Statement: LBRACE Statements RBRACE .
 
     $default  reduce using rule 21 (Statement)
 
 
-State 91
+State 88
+
+   19 Statements: Statement Statements .
+
+    $default  reduce using rule 19 (Statements)
+
+
+State 89
 
    24 Statement: PRINT LPAREN Expression . RPAREN SEMI
    36 Expression: Expression . AND Expression
@@ -1151,27 +1124,27 @@ State 91
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    RPAREN   shift, and go to state 113
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    AND      shift, and go to state 109
-    OR       shift, and go to state 110
-    DOT      shift, and go to state 111
+    RPAREN   shift, and go to state 111
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    AND      shift, and go to state 107
+    OR       shift, and go to state 108
+    DOT      shift, and go to state 109
 
 
-State 92
+State 90
 
-    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statements RBRACE RBRACE .
+    3 MainClass: CLASS Identifier LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE Statement RBRACE RBRACE .
 
     $default  reduce using rule 3 (MainClass)
 
 
-State 93
+State 91
 
    29 LeftExpression: LeftExpression LBRACKET Expression . RBRACKET
    36 Expression: Expression . AND Expression
@@ -1186,20 +1159,20 @@ State 93
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    RBRACKET  shift, and go to state 114
-    ADD       shift, and go to state 102
-    SUB       shift, and go to state 103
-    MUL       shift, and go to state 104
-    DIV       shift, and go to state 105
-    MOD       shift, and go to state 106
-    LESS      shift, and go to state 107
-    GREATER   shift, and go to state 108
-    AND       shift, and go to state 109
-    OR        shift, and go to state 110
-    DOT       shift, and go to state 111
+    RBRACKET  shift, and go to state 112
+    ADD       shift, and go to state 100
+    SUB       shift, and go to state 101
+    MUL       shift, and go to state 102
+    DIV       shift, and go to state 103
+    MOD       shift, and go to state 104
+    LESS      shift, and go to state 105
+    GREATER   shift, and go to state 106
+    AND       shift, and go to state 107
+    OR        shift, and go to state 108
+    DOT       shift, and go to state 109
 
 
-State 94
+State 92
 
    25 Statement: LeftExpression ASSIGN Expression . SEMI
    36 Expression: Expression . AND Expression
@@ -1214,51 +1187,102 @@ State 94
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    AND      shift, and go to state 109
-    OR       shift, and go to state 110
-    DOT      shift, and go to state 111
-    SEMI     shift, and go to state 115
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    AND      shift, and go to state 107
+    OR       shift, and go to state 108
+    DOT      shift, and go to state 109
+    SEMI     shift, and go to state 113
+
+
+State 93
+
+   13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements RETURN . Expression SEMI RBRACE
+
+    NUM     shift, and go to state 75
+    ID      shift, and go to state 5
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
+
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 114
+    Identifier          go to state 63
+
+
+State 94
+
+   50 Expression: NEW INT . LBRACKET Expression RBRACKET
+
+    LBRACKET  shift, and go to state 115
 
 
 State 95
 
-   13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements RETURN . Expression SEMI RBRACE
+   28 CallableExpression: NEW Identifier . LPAREN RPAREN
 
-    NUM     shift, and go to state 78
-    ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
-
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 116
-    Identifier          go to state 65
+    LPAREN  shift, and go to state 116
 
 
 State 96
 
-   50 Expression: NEW INT . LBRACKET Expression RBRACKET
+   36 Expression: Expression . AND Expression
+   37           | Expression . OR Expression
+   38           | Expression . LESS Expression
+   39           | Expression . GREATER Expression
+   40           | Expression . ADD Expression
+   41           | Expression . SUB Expression
+   42           | Expression . MUL Expression
+   43           | Expression . DIV Expression
+   44           | Expression . MOD Expression
+   45           | Expression . DOT LENGTH
+   46           | Expression . DOT Identifier LPAREN Expressions RPAREN
+   52           | LPAREN Expression . RPAREN
 
-    LBRACKET  shift, and go to state 117
+    RPAREN   shift, and go to state 117
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    AND      shift, and go to state 107
+    OR       shift, and go to state 108
+    DOT      shift, and go to state 109
 
 
 State 97
 
-   28 CallableExpression: NEW Identifier . LPAREN RPAREN
+   36 Expression: Expression . AND Expression
+   37           | Expression . OR Expression
+   38           | Expression . LESS Expression
+   39           | Expression . GREATER Expression
+   40           | Expression . ADD Expression
+   41           | Expression . SUB Expression
+   42           | Expression . MUL Expression
+   43           | Expression . DIV Expression
+   44           | Expression . MOD Expression
+   45           | Expression . DOT LENGTH
+   46           | Expression . DOT Identifier LPAREN Expressions RPAREN
+   53           | SUB Expression .
 
-    LPAREN  shift, and go to state 118
+    MUL  shift, and go to state 102
+    DIV  shift, and go to state 103
+    MOD  shift, and go to state 104
+    DOT  shift, and go to state 109
+
+    $default  reduce using rule 53 (Expression)
 
 
 State 98
@@ -1274,306 +1298,255 @@ State 98
    44           | Expression . MOD Expression
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
-   52           | LPAREN Expression . RPAREN
-
-    RPAREN   shift, and go to state 119
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    AND      shift, and go to state 109
-    OR       shift, and go to state 110
-    DOT      shift, and go to state 111
-
-
-State 99
-
-   36 Expression: Expression . AND Expression
-   37           | Expression . OR Expression
-   38           | Expression . LESS Expression
-   39           | Expression . GREATER Expression
-   40           | Expression . ADD Expression
-   41           | Expression . SUB Expression
-   42           | Expression . MUL Expression
-   43           | Expression . DIV Expression
-   44           | Expression . MOD Expression
-   45           | Expression . DOT LENGTH
-   46           | Expression . DOT Identifier LPAREN Expressions RPAREN
-   53           | SUB Expression .
-
-    MUL  shift, and go to state 104
-    DIV  shift, and go to state 105
-    MOD  shift, and go to state 106
-    DOT  shift, and go to state 111
-
-    $default  reduce using rule 53 (Expression)
-
-
-State 100
-
-   36 Expression: Expression . AND Expression
-   37           | Expression . OR Expression
-   38           | Expression . LESS Expression
-   39           | Expression . GREATER Expression
-   40           | Expression . ADD Expression
-   41           | Expression . SUB Expression
-   42           | Expression . MUL Expression
-   43           | Expression . DIV Expression
-   44           | Expression . MOD Expression
-   45           | Expression . DOT LENGTH
-   46           | Expression . DOT Identifier LPAREN Expressions RPAREN
    51           | NOT Expression .
 
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    DOT      shift, and go to state 111
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    DOT      shift, and go to state 109
 
     $default  reduce using rule 51 (Expression)
 
 
-State 101
+State 99
 
    22 Statement: IF LPAREN Expression RPAREN . Statement ELSE Statement
 
     ID      shift, and go to state 5
-    IF      shift, and go to state 58
-    WHILE   shift, and go to state 59
-    LBRACE  shift, and go to state 60
-    PRINT   shift, and go to state 61
+    IF      shift, and go to state 57
+    WHILE   shift, and go to state 58
+    LBRACE  shift, and go to state 59
+    PRINT   shift, and go to state 60
 
-    Statement       go to state 120
-    LeftExpression  go to state 64
-    Identifier      go to state 65
+    Statement       go to state 118
+    LeftExpression  go to state 62
+    Identifier      go to state 63
+
+
+State 100
+
+   40 Expression: Expression ADD . Expression
+
+    NUM     shift, and go to state 75
+    ID      shift, and go to state 5
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
+
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 119
+    Identifier          go to state 63
+
+
+State 101
+
+   41 Expression: Expression SUB . Expression
+
+    NUM     shift, and go to state 75
+    ID      shift, and go to state 5
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
+
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 120
+    Identifier          go to state 63
 
 
 State 102
 
-   40 Expression: Expression ADD . Expression
+   42 Expression: Expression MUL . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 121
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 103
 
-   41 Expression: Expression SUB . Expression
+   43 Expression: Expression DIV . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 122
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 104
 
-   42 Expression: Expression MUL . Expression
+   44 Expression: Expression MOD . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 123
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 105
 
-   43 Expression: Expression DIV . Expression
+   38 Expression: Expression LESS . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 124
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 106
 
-   44 Expression: Expression MOD . Expression
+   39 Expression: Expression GREATER . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 125
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 107
 
-   38 Expression: Expression LESS . Expression
+   36 Expression: Expression AND . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 126
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 108
 
-   39 Expression: Expression GREATER . Expression
+   37 Expression: Expression OR . Expression
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
     Expression          go to state 127
-    Identifier          go to state 65
+    Identifier          go to state 63
 
 
 State 109
-
-   36 Expression: Expression AND . Expression
-
-    NUM     shift, and go to state 78
-    ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
-
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 128
-    Identifier          go to state 65
-
-
-State 110
-
-   37 Expression: Expression OR . Expression
-
-    NUM     shift, and go to state 78
-    ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
-
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 129
-    Identifier          go to state 65
-
-
-State 111
 
    45 Expression: Expression DOT . LENGTH
    46           | Expression DOT . Identifier LPAREN Expressions RPAREN
 
     ID      shift, and go to state 5
-    LENGTH  shift, and go to state 130
+    LENGTH  shift, and go to state 128
 
-    Identifier  go to state 131
+    Identifier  go to state 129
 
 
-State 112
+State 110
 
    23 Statement: WHILE LPAREN Expression RPAREN . LBRACE Statements RBRACE
 
-    LBRACE  shift, and go to state 132
+    LBRACE  shift, and go to state 130
 
 
-State 113
+State 111
 
    24 Statement: PRINT LPAREN Expression RPAREN . SEMI
 
-    SEMI  shift, and go to state 133
+    SEMI  shift, and go to state 131
 
 
-State 114
+State 112
 
    29 LeftExpression: LeftExpression LBRACKET Expression RBRACKET .
 
     $default  reduce using rule 29 (LeftExpression)
 
 
-State 115
+State 113
 
    25 Statement: LeftExpression ASSIGN Expression SEMI .
 
     $default  reduce using rule 25 (Statement)
 
 
-State 116
+State 114
 
    13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements RETURN Expression . SEMI RBRACE
    36 Expression: Expression . AND Expression
@@ -1588,61 +1561,61 @@ State 116
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    AND      shift, and go to state 109
-    OR       shift, and go to state 110
-    DOT      shift, and go to state 111
-    SEMI     shift, and go to state 134
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    AND      shift, and go to state 107
+    OR       shift, and go to state 108
+    DOT      shift, and go to state 109
+    SEMI     shift, and go to state 132
 
 
-State 117
+State 115
 
    50 Expression: NEW INT LBRACKET . Expression RBRACKET
 
-    NUM     shift, and go to state 78
+    NUM     shift, and go to state 75
     ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
 
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 135
-    Identifier          go to state 65
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 133
+    Identifier          go to state 63
 
 
-State 118
+State 116
 
    28 CallableExpression: NEW Identifier LPAREN . RPAREN
 
-    RPAREN  shift, and go to state 136
+    RPAREN  shift, and go to state 134
 
 
-State 119
+State 117
 
    52 Expression: LPAREN Expression RPAREN .
 
     $default  reduce using rule 52 (Expression)
 
 
-State 120
+State 118
 
    22 Statement: IF LPAREN Expression RPAREN Statement . ELSE Statement
 
-    ELSE  shift, and go to state 137
+    ELSE  shift, and go to state 135
 
 
-State 121
+State 119
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1657,15 +1630,15 @@ State 121
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    MUL  shift, and go to state 104
-    DIV  shift, and go to state 105
-    MOD  shift, and go to state 106
-    DOT  shift, and go to state 111
+    MUL  shift, and go to state 102
+    DIV  shift, and go to state 103
+    MOD  shift, and go to state 104
+    DOT  shift, and go to state 109
 
     $default  reduce using rule 40 (Expression)
 
 
-State 122
+State 120
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1680,15 +1653,15 @@ State 122
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    MUL  shift, and go to state 104
-    DIV  shift, and go to state 105
-    MOD  shift, and go to state 106
-    DOT  shift, and go to state 111
+    MUL  shift, and go to state 102
+    DIV  shift, and go to state 103
+    MOD  shift, and go to state 104
+    DOT  shift, and go to state 109
 
     $default  reduce using rule 41 (Expression)
 
 
-State 123
+State 121
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1703,12 +1676,12 @@ State 123
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    DOT  shift, and go to state 111
+    DOT  shift, and go to state 109
 
     $default  reduce using rule 42 (Expression)
 
 
-State 124
+State 122
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1723,12 +1696,12 @@ State 124
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    DOT  shift, and go to state 111
+    DOT  shift, and go to state 109
 
     $default  reduce using rule 43 (Expression)
 
 
-State 125
+State 123
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1743,14 +1716,14 @@ State 125
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    MUL  shift, and go to state 104
-    DIV  shift, and go to state 105
-    DOT  shift, and go to state 111
+    MUL  shift, and go to state 102
+    DIV  shift, and go to state 103
+    DOT  shift, and go to state 109
 
     $default  reduce using rule 44 (Expression)
 
 
-State 126
+State 124
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1765,17 +1738,17 @@ State 126
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    ADD  shift, and go to state 102
-    SUB  shift, and go to state 103
-    MUL  shift, and go to state 104
-    DIV  shift, and go to state 105
-    MOD  shift, and go to state 106
-    DOT  shift, and go to state 111
+    ADD  shift, and go to state 100
+    SUB  shift, and go to state 101
+    MUL  shift, and go to state 102
+    DIV  shift, and go to state 103
+    MOD  shift, and go to state 104
+    DOT  shift, and go to state 109
 
     $default  reduce using rule 38 (Expression)
 
 
-State 127
+State 125
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1790,17 +1763,17 @@ State 127
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    ADD  shift, and go to state 102
-    SUB  shift, and go to state 103
-    MUL  shift, and go to state 104
-    DIV  shift, and go to state 105
-    MOD  shift, and go to state 106
-    DOT  shift, and go to state 111
+    ADD  shift, and go to state 100
+    SUB  shift, and go to state 101
+    MUL  shift, and go to state 102
+    DIV  shift, and go to state 103
+    MOD  shift, and go to state 104
+    DOT  shift, and go to state 109
 
     $default  reduce using rule 39 (Expression)
 
 
-State 128
+State 126
 
    36 Expression: Expression . AND Expression
    36           | Expression AND Expression .
@@ -1815,19 +1788,19 @@ State 128
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    DOT      shift, and go to state 111
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    DOT      shift, and go to state 109
 
     $default  reduce using rule 36 (Expression)
 
 
-State 129
+State 127
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1842,65 +1815,65 @@ State 129
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
 
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    DOT      shift, and go to state 111
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    DOT      shift, and go to state 109
 
     $default  reduce using rule 37 (Expression)
 
 
-State 130
+State 128
 
    45 Expression: Expression DOT LENGTH .
 
     $default  reduce using rule 45 (Expression)
 
 
-State 131
+State 129
 
    46 Expression: Expression DOT Identifier . LPAREN Expressions RPAREN
 
-    LPAREN  shift, and go to state 138
+    LPAREN  shift, and go to state 136
 
 
-State 132
+State 130
 
    23 Statement: WHILE LPAREN Expression RPAREN LBRACE . Statements RBRACE
 
     ID      shift, and go to state 5
-    IF      shift, and go to state 58
-    WHILE   shift, and go to state 59
-    LBRACE  shift, and go to state 60
-    PRINT   shift, and go to state 61
+    IF      shift, and go to state 57
+    WHILE   shift, and go to state 58
+    LBRACE  shift, and go to state 59
+    PRINT   shift, and go to state 60
 
     $default  reduce using rule 20 (Statements)
 
-    Statements      go to state 139
-    Statement       go to state 63
-    LeftExpression  go to state 64
-    Identifier      go to state 65
+    Statements      go to state 137
+    Statement       go to state 68
+    LeftExpression  go to state 62
+    Identifier      go to state 63
 
 
-State 133
+State 131
 
    24 Statement: PRINT LPAREN Expression RPAREN SEMI .
 
     $default  reduce using rule 24 (Statement)
 
 
-State 134
+State 132
 
    13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements RETURN Expression SEMI . RBRACE
 
-    RBRACE  shift, and go to state 140
+    RBRACE  shift, and go to state 138
 
 
-State 135
+State 133
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -1915,173 +1888,123 @@ State 135
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
    50           | NEW INT LBRACKET Expression . RBRACKET
 
-    RBRACKET  shift, and go to state 141
-    ADD       shift, and go to state 102
-    SUB       shift, and go to state 103
-    MUL       shift, and go to state 104
-    DIV       shift, and go to state 105
-    MOD       shift, and go to state 106
-    LESS      shift, and go to state 107
-    GREATER   shift, and go to state 108
-    AND       shift, and go to state 109
-    OR        shift, and go to state 110
-    DOT       shift, and go to state 111
+    RBRACKET  shift, and go to state 139
+    ADD       shift, and go to state 100
+    SUB       shift, and go to state 101
+    MUL       shift, and go to state 102
+    DIV       shift, and go to state 103
+    MOD       shift, and go to state 104
+    LESS      shift, and go to state 105
+    GREATER   shift, and go to state 106
+    AND       shift, and go to state 107
+    OR        shift, and go to state 108
+    DOT       shift, and go to state 109
 
 
-State 136
+State 134
 
    28 CallableExpression: NEW Identifier LPAREN RPAREN .
 
     $default  reduce using rule 28 (CallableExpression)
 
 
-State 137
+State 135
 
    22 Statement: IF LPAREN Expression RPAREN Statement ELSE . Statement
 
     ID      shift, and go to state 5
-    IF      shift, and go to state 58
-    WHILE   shift, and go to state 59
-    LBRACE  shift, and go to state 60
-    PRINT   shift, and go to state 61
+    IF      shift, and go to state 57
+    WHILE   shift, and go to state 58
+    LBRACE  shift, and go to state 59
+    PRINT   shift, and go to state 60
 
-    Statement       go to state 142
-    LeftExpression  go to state 64
-    Identifier      go to state 65
+    Statement       go to state 140
+    LeftExpression  go to state 62
+    Identifier      go to state 63
 
 
-State 138
+State 136
 
    46 Expression: Expression DOT Identifier LPAREN . Expressions RPAREN
 
-    NUM     shift, and go to state 78
-    ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
+    RPAREN    reduce using rule 56 (Expressions)
+    $default  reduce using rule 58 (RestExpressions)
 
-    $default  reduce using rule 56 (Expressions)
-
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 143
-    Expressions         go to state 144
-    Identifier          go to state 65
+    Expressions      go to state 141
+    RestExpressions  go to state 142
 
 
-State 139
+State 137
 
    23 Statement: WHILE LPAREN Expression RPAREN LBRACE Statements . RBRACE
 
-    RBRACE  shift, and go to state 145
+    RBRACE  shift, and go to state 143
 
 
-State 140
+State 138
 
    13 Method: PUBLIC Type Identifier LPAREN Arguments RPAREN LBRACE Variables Statements RETURN Expression SEMI RBRACE .
 
     $default  reduce using rule 13 (Method)
 
 
-State 141
+State 139
 
    50 Expression: NEW INT LBRACKET Expression RBRACKET .
 
     $default  reduce using rule 50 (Expression)
 
 
-State 142
+State 140
 
    22 Statement: IF LPAREN Expression RPAREN Statement ELSE Statement .
 
     $default  reduce using rule 22 (Statement)
 
 
-State 143
-
-   36 Expression: Expression . AND Expression
-   37           | Expression . OR Expression
-   38           | Expression . LESS Expression
-   39           | Expression . GREATER Expression
-   40           | Expression . ADD Expression
-   41           | Expression . SUB Expression
-   42           | Expression . MUL Expression
-   43           | Expression . DIV Expression
-   44           | Expression . MOD Expression
-   45           | Expression . DOT LENGTH
-   46           | Expression . DOT Identifier LPAREN Expressions RPAREN
-   55 Expressions: Expression . RestExpressions
-
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    AND      shift, and go to state 109
-    OR       shift, and go to state 110
-    COMMA    shift, and go to state 146
-    DOT      shift, and go to state 111
-
-    $default  reduce using rule 58 (RestExpressions)
-
-    RestExpressions  go to state 147
-
-
-State 144
+State 141
 
    46 Expression: Expression DOT Identifier LPAREN Expressions . RPAREN
 
-    RPAREN  shift, and go to state 148
+    RPAREN  shift, and go to state 144
 
 
-State 145
+State 142
+
+   55 Expressions: RestExpressions . Expression
+   57 RestExpressions: RestExpressions . Expression COMMA
+
+    NUM     shift, and go to state 75
+    ID      shift, and go to state 5
+    THIS    shift, and go to state 76
+    NEW     shift, and go to state 77
+    LPAREN  shift, and go to state 78
+    SUB     shift, and go to state 79
+    TRUE    shift, and go to state 80
+    FALSE   shift, and go to state 81
+    NOT     shift, and go to state 82
+
+    CallableExpression  go to state 83
+    LeftExpression      go to state 84
+    Expression          go to state 145
+    Identifier          go to state 63
+
+
+State 143
 
    23 Statement: WHILE LPAREN Expression RPAREN LBRACE Statements RBRACE .
 
     $default  reduce using rule 23 (Statement)
 
 
-State 146
-
-   57 RestExpressions: COMMA . Expression RestExpressions
-
-    NUM     shift, and go to state 78
-    ID      shift, and go to state 5
-    THIS    shift, and go to state 79
-    NEW     shift, and go to state 80
-    LPAREN  shift, and go to state 81
-    SUB     shift, and go to state 82
-    TRUE    shift, and go to state 83
-    FALSE   shift, and go to state 84
-    NOT     shift, and go to state 85
-
-    CallableExpression  go to state 86
-    LeftExpression      go to state 87
-    Expression          go to state 149
-    Identifier          go to state 65
-
-
-State 147
-
-   55 Expressions: Expression RestExpressions .
-
-    $default  reduce using rule 55 (Expressions)
-
-
-State 148
+State 144
 
    46 Expression: Expression DOT Identifier LPAREN Expressions RPAREN .
 
     $default  reduce using rule 46 (Expression)
 
 
-State 149
+State 145
 
    36 Expression: Expression . AND Expression
    37           | Expression . OR Expression
@@ -2094,27 +2017,26 @@ State 149
    44           | Expression . MOD Expression
    45           | Expression . DOT LENGTH
    46           | Expression . DOT Identifier LPAREN Expressions RPAREN
-   57 RestExpressions: COMMA Expression . RestExpressions
+   55 Expressions: RestExpressions Expression .
+   57 RestExpressions: RestExpressions Expression . COMMA
 
-    ADD      shift, and go to state 102
-    SUB      shift, and go to state 103
-    MUL      shift, and go to state 104
-    DIV      shift, and go to state 105
-    MOD      shift, and go to state 106
-    LESS     shift, and go to state 107
-    GREATER  shift, and go to state 108
-    AND      shift, and go to state 109
-    OR       shift, and go to state 110
+    ADD      shift, and go to state 100
+    SUB      shift, and go to state 101
+    MUL      shift, and go to state 102
+    DIV      shift, and go to state 103
+    MOD      shift, and go to state 104
+    LESS     shift, and go to state 105
+    GREATER  shift, and go to state 106
+    AND      shift, and go to state 107
+    OR       shift, and go to state 108
     COMMA    shift, and go to state 146
-    DOT      shift, and go to state 111
+    DOT      shift, and go to state 109
 
-    $default  reduce using rule 58 (RestExpressions)
-
-    RestExpressions  go to state 150
+    $default  reduce using rule 55 (Expressions)
 
 
-State 150
+State 146
 
-   57 RestExpressions: COMMA Expression RestExpressions .
+   57 RestExpressions: RestExpressions Expression COMMA .
 
     $default  reduce using rule 57 (RestExpressions)

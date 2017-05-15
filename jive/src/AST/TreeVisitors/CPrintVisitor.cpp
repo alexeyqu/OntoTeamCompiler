@@ -95,18 +95,13 @@ void CPrintVisitor::Visit( CCompoundArgument *entity ) {
     outputStream << entityId << ";\n";
     outputStream << entityId << "[label = \"CompoundArgumentNtt\"];\n";
 
-    if( entity->arg1 ) {
-    	if( entity->arg1->arg1 ) {
-			outputStream << entityId << "->";
-			entity->arg1->Accept(this);
-		} else {
-			outputStream << entityId << "->";
-			entity->arg1->arg2->Accept(this);
-		}
+	outputStream << entityId << ";\n";
+   	entity->arg1->Accept(this);
+	
+	if( entity->arg2 ) {
+		outputStream << entityId << "->";
+		entity->arg2->Accept( this );
 	}
-
-    outputStream << entityId << "->";
-    entity->arg2->Accept(this);
 }
 
 void CPrintVisitor::Visit( CMethod *entity ) {

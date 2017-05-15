@@ -9,6 +9,9 @@ public:
 	IStm* GetRight() const;
 	void Accept( IIRTreeVisitor *visitor );
 
+	CExpList* Kids();
+	IStm* Build( CExpList* kids );
+
 private:
 	IStm* left;
 	IStm* right;

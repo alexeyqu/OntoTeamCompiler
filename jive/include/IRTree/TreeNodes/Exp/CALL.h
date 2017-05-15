@@ -8,6 +8,10 @@ public:
 	IExp* GetFunc() const;
 	CExpList* GetArgs() const;
 	void Accept( IIRTreeVisitor *visitor );
+
+	CExpList* Kids();
+	IExp* Build( CExpList* kids );
+
 private:
 	IExp* func;
 	CExpList* args;

@@ -1,4 +1,4 @@
-%code requires {
+ %code requires {
 	#include <cstdio>
 	#include <cstring>
 	#include "CJiveEnvironment.h"
@@ -6,7 +6,7 @@
 	#define YYERROR_VERBOSE 1 
 }
 
-%code {
+%code {    
 	int yylex (void);
 
 	void yyerror(CJiveEnvironment **jiveEnv, const char *str) {
@@ -103,14 +103,14 @@ Goal: 	MainClass Classes { $$ = new CGoal( $1, $2 ); }
 
 MainClass:	CLASS Identifier LBRACE 
 				PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET Identifier RPAREN LBRACE 
-				Statements
+				Statement 
 				RBRACE 
 			RBRACE { 
-				int temp_line = yyloc.first_line; \
-				int temp_column = yyloc.first_column; \
-				$$ = new CMainClass( $2, $12, $15  ); \
-				$$->coordinates.first_line = temp_line; \
-				$$->coordinates.first_column = temp_column;
+				int temp_line = yyloc.first_line;
+				int temp_column = yyloc.first_column;
+				$$ = new CMainClass( $2, $12, $15 );
+				$$->coordinates.first_line = temp_line;
+				$$->coordinates.first_column = temp_column; 
 			}
 ;
 
@@ -203,7 +203,7 @@ Arguments:  Argument RestArguments {
 			%empty { $$ = nullptr; }
 ;
 
-RestArguments: COMMA Argument RestArguments {
+RestArguments:  COMMA Argument RestArguments {
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
 				$$ = new CCompoundArgument( $2, $3 );
@@ -516,7 +516,7 @@ Expression: Expression AND Expression {
 			}
 ;
 
-Expressions:	Expression RestExpressions { 
+Expressions:	RestExpressions Expression { 
 					int temp_line = yyloc.first_line;
 					int temp_column = yyloc.first_column;
 					$$ = new CCompoundExpression( $1, $2 );
@@ -527,10 +527,10 @@ Expressions:	Expression RestExpressions {
 				%empty { $$ = nullptr; }
 ;
 
-RestExpressions: COMMA Expression RestExpressions { 
+RestExpressions: RestExpressions Expression COMMA { 
 					int temp_line = yyloc.first_line;
 					int temp_column = yyloc.first_column;
-					$$ = new CCompoundExpression( $2, $3 );
+					$$ = new CCompoundExpression( $1, $2 );
 					$$->coordinates.first_line = temp_line;
 					$$->coordinates.first_column = temp_column; 
 				}

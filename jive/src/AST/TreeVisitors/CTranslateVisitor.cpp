@@ -41,10 +41,10 @@ void CTranslateVisitor::Visit( CArgument *entity ) {
 }
 
 void CTranslateVisitor::Visit( CCompoundArgument *entity ) {
-	if( entity->arg1 ) {
-    	entity->arg1->Accept( this );
+	entity->arg1->Accept( this );
+	if( entity->arg2 ) {
+    	entity->arg2->Accept( this );
 	}
-    entity->arg2->Accept( this );
 }
 
 void CTranslateVisitor::Visit( CMethod *entity ) {
@@ -241,7 +241,7 @@ void CTranslateVisitor::Visit( CPrintStatement *statement ) {
 
 	NAME* printName =  new NAME( 
 		new CLabel( CSymbol::GetSymbol( "System.out.println" ) ) );
-	CExpList* args = new CExpList( nullptr, printExp );
+	CExpList* args = new CExpList( printExp, nullptr );
 	IExp* printCall = new CALL( printName, args );
 	wrapper = new CExpConverter( printCall );
 }
@@ -325,9 +325,9 @@ void CTranslateVisitor::Visit( CNewObjectExpression *expression ) {
 	CClassSymbol* objClass = table->GetClassByName( expression->objTypeId->name );
 	NAME* newName = new NAME( new CLabel( CSymbol::GetSymbol( "new" ) ) );
 	CALL* newCall = new CALL( newName, 
-		new CExpList( nullptr, new BINOP(enums::BO_MUL,
+		new CExpList( new BINOP(enums::BO_MUL,
 			new CONST( objClass->fields.Size() ), 
-			new CONST( CFrame::GetWordSize() ) ) ) );
+			new CONST( CFrame::GetWordSize() ) ), nullptr ) );
 	TEMP* objTemp = new TEMP( curFrame->ThisPointer() );
 
 	MOVE* alloc = new MOVE( objTemp, newCall );
@@ -345,7 +345,7 @@ void CTranslateVisitor::Visit( CNewIntArrayExpression *expression ) {
 		new CONST( CFrame::GetWordSize() ) );
 
 	IExp* newName = new NAME( new CLabel( CSymbol::GetSymbol( "new" ) ) );
-	IExp* newCall = new CALL( newName, new CExpList( nullptr, memSizeExp ) );
+	IExp* newCall = new CALL( newName, new CExpList( memSizeExp, nullptr ) );
 	TEMP* arrTemp = new TEMP( new CTemp() );
 
 	SEQ* memset = new SEQ( new MOVE( arrTemp, newCall ), 
@@ -366,7 +366,7 @@ void CTranslateVisitor::Visit( CMethodCallExpression *expression ) {
 	if ( expression->arg ) {
 		expression->arg->Accept( this );
 	}
-	CExpList* args = new CExpList( expList, objExp );
+	CExpList* args = new CExpList( objExp, expList );
 
 	TEMP* returnTemp = new TEMP( new CTemp() );
 	wrapper = new CExpConverter( new ESEQ( 
@@ -403,12 +403,12 @@ void CTranslateVisitor::Visit( CArrayIndexExpression *expression ) {
 
 void CTranslateVisitor::Visit( CCompoundExpression *expression )
 {
-	expression->rightExpression->Accept( this );
+	expression->leftExpression->Accept( this );
 	IExp* exp = wrapper->ToExp();
 
-	if ( expression->leftExpression ) {
-		expression->leftExpression->Accept( this );
+	if ( expression->rightExpression ) {
+		expression->rightExpression->Accept( this );
 	}
 	
-	expList = new CExpList( expList, exp );
+	expList = new CExpList( exp, expList );
 }

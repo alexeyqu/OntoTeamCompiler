@@ -71,10 +71,10 @@ void CTableCreatorVisitor::Visit( CArgument *entity ) {
 }
 
 void CTableCreatorVisitor::Visit( CCompoundArgument *entity ) {
-    if( entity->arg1 ) {
-    	entity->arg1->Accept(this);
+    entity->arg1->Accept(this);
+	if( entity->arg2 ) {
+		entity->arg2->Accept( this );
 	}
-    entity->arg2->Accept(this);
 }
 
 void CTableCreatorVisitor::Visit( CMethod *entity ) {

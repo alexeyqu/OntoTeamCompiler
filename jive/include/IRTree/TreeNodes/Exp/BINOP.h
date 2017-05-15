@@ -13,6 +13,9 @@ public:
 	IExp* GetRight() const;
 	void Accept( IIRTreeVisitor *visitor );
 
+	CExpList* Kids();
+	IExp* Build( CExpList* kids );
+
 private:
 	enums::TBinop op;
 	IExp* left;

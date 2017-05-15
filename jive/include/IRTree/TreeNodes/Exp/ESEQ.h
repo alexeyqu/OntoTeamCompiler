@@ -10,6 +10,9 @@ public:
 	IExp* GetExp() const;
 	void Accept( IIRTreeVisitor *visitor );
 
+	CExpList* Kids();
+	IExp* Build( CExpList* kids );
+
 private:
 	IStm* stm;
 	IExp* exp;

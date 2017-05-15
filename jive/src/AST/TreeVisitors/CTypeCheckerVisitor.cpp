@@ -58,10 +58,10 @@ void CTypeCheckerVisitor::Visit( CArgument *entity ) {
 }
 
 void CTypeCheckerVisitor::Visit( CCompoundArgument *entity ) {   
-    if( entity->arg1 ) {
-        entity->arg1->Accept(this);
-    }
-    entity->arg2->Accept(this); 
+    entity->arg1->Accept(this);
+	if( entity->arg2 ) {
+		entity->arg2->Accept( this );
+	}
 }
 
 void CTypeCheckerVisitor::Visit( CMethod *entity ) {
@@ -464,12 +464,12 @@ void CTypeCheckerVisitor::Visit( CArrayIndexExpression *expression ) {
 void CTypeCheckerVisitor::Visit( CCompoundExpression *expression ) {
     if(expression->leftExpression) {
         expression->leftExpression->Accept(this);
+	expression->leftExpression->type->coordinates = 
+			expression->leftExpression->coordinates;
+        curCallArgumentsTypes.push_back( expression->leftExpression->type );
     }
 
     if(expression->rightExpression) {
         expression->rightExpression->Accept(this);
-        expression->rightExpression->type->coordinates = 
-			expression->rightExpression->coordinates;
-        curCallArgumentsTypes.push_back( expression->rightExpression->type );
     }
 }

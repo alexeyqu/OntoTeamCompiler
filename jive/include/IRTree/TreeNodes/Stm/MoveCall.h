@@ -1,17 +1,19 @@
+#pragma once
+
 #include "../IStm.h"
-#include "../IExp.h"
 #include "IRTree/IIRTreeVisitor.h"
 
-class EXP : public IStm
+class MoveCall : public IStm
 {
 public:
-	EXP( IExp* _exp )	: exp( _exp ) {};
-	IExp* GetExp() const;
+	MoveCall( TEMP* _dest, CALL* _src ) : dest( _dest ), src( _src ) {};
+
 	void Accept( IIRTreeVisitor *visitor );
 
 	CExpList* Kids();
 	IStm* Build( CExpList* kids );
 
 private:
-	IExp* exp;
+	TEMP* dest;
+	CALL* src;
 };

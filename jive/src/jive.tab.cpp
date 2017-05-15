@@ -450,7 +450,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  7
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   276
+#define YYLAST   273
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  49
@@ -459,7 +459,7 @@ union yyalloc
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  60
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  147
+#define YYNSTATES  151
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -552,12 +552,12 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -88
+#define YYPACT_NINF -97
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-88)))
+  (!!((Yystate) == (-97)))
 
-#define YYTABLE_NINF -58
+#define YYTABLE_NINF -37
 
 #define yytable_value_is_error(Yytable_value) \
   0
@@ -566,21 +566,22 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-      -2,    20,    28,   -88,   -88,   -88,     9,   -88,    26,    30,
-      20,   -88,    34,    13,    35,    20,   -88,    32,    39,    96,
-      43,   -88,   -88,    45,   -88,   -88,    -4,    20,   -88,    47,
-      96,    51,    96,   -88,   -88,    54,    53,    24,   -88,    20,
-     -88,    55,   -88,    61,    20,    76,    82,    84,    96,    92,
-      94,    75,    20,    38,   -88,   -88,   -88,    97,    98,    38,
-      99,   100,    38,   -11,   -88,    15,    93,    93,   101,    93,
-     102,   -88,    93,    93,   104,   128,   -88,   -88,    65,    93,
-      93,   -88,   -88,    93,   -88,   107,   105,   119,   -88,   133,
-     -88,   161,   189,    93,   117,   124,   147,    42,   233,    38,
-      93,    93,    93,    93,    93,    93,    93,    93,    93,    -3,
-     123,   113,   -88,   -88,   204,    93,   137,   -88,   145,    42,
-      42,   131,   131,    25,    79,    79,   233,   233,   -88,   149,
-      38,   -88,   150,   175,   -88,    38,   162,   159,   -88,   -88,
-     -88,   166,    93,   -88,   -88,   219,   -88
+      -8,     2,    11,   -97,   -97,   -97,    25,   -97,    48,    56,
+       2,   -97,    50,    -9,    71,     2,   -97,    64,    65,    90,
+      66,   -97,   -97,    73,   -97,   -97,    10,     2,   -97,    87,
+      90,    74,    90,   -97,   -97,    58,    80,    17,   -97,     2,
+     -97,    81,   -97,    85,     2,    90,    86,    89,    75,     2,
+      91,    92,    90,   -97,   -97,    13,   -97,    75,    97,   101,
+      13,   111,    88,    13,    36,   -97,    76,   -97,    83,    83,
+     112,    83,   122,   -97,    83,    83,   117,   146,   -97,   -97,
+      51,    83,    83,   -97,   -97,    83,   -97,   125,    95,   109,
+     -97,   123,   -97,   151,   179,    83,   135,   142,   137,   -10,
+     223,    13,    83,    83,    83,    83,    83,    83,    83,    83,
+      83,    -2,   141,   130,   -97,   -97,   194,    83,   152,   -97,
+     163,   -10,   -10,   145,   145,    20,   230,   230,   223,   223,
+     -97,   167,    13,   -97,   168,   165,   -97,    13,    83,   177,
+     -97,   -97,   -97,   209,   180,   -97,    83,   -97,   -97,   209,
+     -97
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -592,33 +593,34 @@ static const yytype_uint8 yydefact[] =
        0,     5,     0,     0,     0,     0,    10,     0,     0,    13,
        0,    10,    35,    32,    34,     9,     0,     0,    36,     0,
       13,     0,     0,     8,    12,     0,     0,     0,    33,     0,
-      11,     0,     7,     0,     0,    18,     0,     0,     0,     0,
-       0,    15,     0,    21,    10,    17,    19,     0,     0,    21,
-       0,     0,    21,     0,    31,    21,     0,     0,     0,     0,
-       0,    20,     0,     0,     0,    31,    48,    28,     0,     0,
-       0,    49,    50,     0,    55,    27,     0,     0,    22,     0,
-       4,     0,     0,     0,     0,     0,     0,    54,    52,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    30,    26,     0,     0,     0,    53,     0,    41,
-      42,    43,    44,    45,    39,    40,    37,    38,    46,     0,
-      21,    25,     0,     0,    29,     0,    59,     0,    14,    51,
-      23,     0,     0,    24,    47,    56,    58
+      11,     0,     7,     0,     0,    16,     0,     0,    18,     0,
+       0,     0,     0,    15,    19,    21,    10,    18,     0,     0,
+      21,     0,     0,    21,     0,    31,    21,    17,     0,     0,
+       0,     0,     0,    20,     0,     0,     0,    31,    48,    28,
+       0,     0,     0,    49,    50,     0,    55,    27,     0,     0,
+      22,     0,     4,     0,     0,     0,     0,     0,     0,    54,
+      52,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,    30,    26,     0,     0,     0,    53,
+       0,    41,    42,    43,    44,    45,    39,    40,    37,    38,
+      46,     0,    21,    25,     0,     0,    29,     0,    57,     0,
+      14,    51,    23,    59,     0,    24,     0,    56,    47,    59,
+      58
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-     -88,   -88,   -88,   -88,   -88,   -88,   -18,   -88,   168,   -88,
-     -88,   -88,   -88,   -57,   -87,   -88,   -49,   -21,   -13,   -88,
-     -88,    -1
+     -97,   -97,   -97,   -97,   -97,   -97,     0,   -97,   176,   -97,
+     -97,   150,   164,   -56,   -96,   -97,   -47,   -20,   -35,   -97,
+      68,    -1
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int16 yydefgoto[] =
 {
       -1,     2,     3,     4,     8,    11,    19,    25,    26,    34,
-      47,    48,    51,    61,    62,    84,    85,    27,    86,   141,
-     142,    64
+      47,    53,    48,    62,    63,    86,    87,    27,    88,   144,
+     147,    65
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -626,66 +628,66 @@ static const yytype_int16 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int16 yytable[] =
 {
-       6,     5,    68,    30,    63,    71,    32,     1,    74,    13,
-      63,    39,   118,    63,    18,    72,    63,    73,    28,     5,
-      22,    33,    23,    24,     5,    15,    35,    52,     7,    28,
-      57,    28,    58,     9,    32,    10,    65,    16,    43,    59,
-      12,    17,     5,    46,   128,    14,    20,    28,   140,    42,
-      63,    56,    36,    57,    87,    58,    89,   102,   103,    91,
-      92,    60,    59,    21,    75,    29,    96,    97,   109,     5,
-      98,    31,    94,   137,   102,   103,   104,    95,    38,    41,
-     114,    63,    44,    45,    60,   109,    63,   119,   120,   121,
-     122,   123,   124,   125,   126,   127,    76,     5,    40,   -16,
-       5,    22,   133,    23,    24,    49,    77,    50,   129,   100,
-     101,   102,   103,   104,    78,    79,    53,    55,    54,    66,
-      67,    69,   109,    93,    80,    70,    88,    90,    99,   145,
-      81,    82,   -36,    72,    83,   100,   101,   102,   103,   104,
-     105,   106,   110,   115,   107,   108,   116,   130,   109,   100,
-     101,   102,   103,   104,   105,   106,   111,   131,   107,   108,
-     134,   135,   109,   100,   101,   102,   103,   104,   105,   106,
-     117,   136,   107,   108,   109,   138,   109,   100,   101,   102,
-     103,   104,   105,   106,   143,   -57,   107,   108,   112,   144,
-     109,   100,   101,   102,   103,   104,   105,   106,    37,     0,
-     107,   108,   139,     0,   109,   100,   101,   102,   103,   104,
-     105,   106,     0,     0,   107,   108,     0,     0,   109,   100,
-     101,   102,   103,   104,   105,   106,     0,     0,   107,   108,
-       0,     0,   109,   113,   100,   101,   102,   103,   104,   105,
-     106,     0,     0,   107,   108,     0,     0,   109,   132,   100,
-     101,   102,   103,   104,   105,   106,     0,     0,   107,   108,
-       0,   146,   109,   100,   101,   102,   103,   104,   105,   106,
-       0,     0,     0,     0,     0,     0,   109
+       6,     1,     5,    15,    70,   120,     5,    73,    64,    13,
+      76,     7,    39,    64,    18,    16,    64,     5,    28,    64,
+      32,    30,   104,   105,   106,    49,    35,    32,    58,    28,
+      59,    28,    49,   111,    89,    33,    91,    60,    43,    93,
+      94,   142,    42,    46,    28,   130,    98,    99,    54,     9,
+     100,    28,   104,   105,    64,     5,    66,    10,    96,    61,
+     116,    14,    74,   111,    75,    77,    12,   121,   122,   123,
+     124,   125,   126,   127,   128,   129,   139,    17,    20,    97,
+       5,    22,   135,    23,    24,    64,    78,     5,    29,    21,
+      64,    58,    36,    59,     5,    22,    79,    23,    24,    31,
+      60,    38,    40,   143,    80,    81,    41,    45,    44,    50,
+     131,   149,    51,    72,    82,    55,    56,    52,   101,    68,
+      83,    84,    61,    69,    85,   102,   103,   104,   105,   106,
+     107,   108,   112,    71,   109,   110,    95,    90,   111,   102,
+     103,   104,   105,   106,   107,   108,   113,    92,   109,   110,
+     -36,    74,   111,   102,   103,   104,   105,   106,   107,   108,
+     119,   117,   109,   110,   118,   132,   111,   102,   103,   104,
+     105,   106,   107,   108,   133,   136,   109,   110,   114,   137,
+     111,   102,   103,   104,   105,   106,   107,   108,   111,   138,
+     109,   110,   141,   140,   111,   102,   103,   104,   105,   106,
+     107,   108,   145,   148,   109,   110,    37,    67,   111,   102,
+     103,   104,   105,   106,   107,   108,    57,   150,   109,   110,
+       0,     0,   111,   115,   102,   103,   104,   105,   106,   107,
+     108,     0,     0,   109,   110,     0,     0,   111,   134,   102,
+     103,   104,   105,   106,   107,   108,     0,     0,   109,   110,
+       0,   146,   111,   102,   103,   104,   105,   106,   107,   108,
+     102,   103,   104,   105,   106,     0,   111,     0,     0,     0,
+       0,     0,     0,   111
 };
 
 static const yytype_int16 yycheck[] =
 {
-       1,     4,    59,    21,    53,    62,    10,     9,    65,    10,
-      59,    32,    99,    62,    15,    26,    65,    28,    19,     4,
-       5,    25,     7,     8,     4,    12,    27,    48,     0,    30,
-      15,    32,    17,    24,    10,     9,    54,    24,    39,    24,
-      10,     6,     4,    44,    47,    11,    14,    48,   135,    25,
-      99,    52,     5,    15,    67,    17,    69,    32,    33,    72,
-      73,    46,    24,    24,    65,    22,    79,    80,    43,     4,
-      83,    26,     7,   130,    32,    33,    34,    78,    27,    26,
-      93,   130,    27,    22,    46,    43,   135,   100,   101,   102,
-     103,   104,   105,   106,   107,   108,     3,     4,    44,    23,
-       4,     5,   115,     7,     8,    23,    13,    23,   109,    30,
-      31,    32,    33,    34,    21,    22,    24,    42,    24,    22,
-      22,    22,    43,    19,    31,    25,    25,    25,    23,   142,
-      37,    38,     4,    26,    41,    30,    31,    32,    33,    34,
-      35,    36,    23,    26,    39,    40,    22,    24,    43,    30,
-      31,    32,    33,    34,    35,    36,    23,    44,    39,    40,
-      23,    16,    43,    30,    31,    32,    33,    34,    35,    36,
-      23,    22,    39,    40,    43,    25,    43,    30,    31,    32,
-      33,    34,    35,    36,    25,    23,    39,    40,    27,    23,
-      43,    30,    31,    32,    33,    34,    35,    36,    30,    -1,
-      39,    40,    27,    -1,    43,    30,    31,    32,    33,    34,
-      35,    36,    -1,    -1,    39,    40,    -1,    -1,    43,    30,
-      31,    32,    33,    34,    35,    36,    -1,    -1,    39,    40,
+       1,     9,     4,    12,    60,   101,     4,    63,    55,    10,
+      66,     0,    32,    60,    15,    24,    63,     4,    19,    66,
+      10,    21,    32,    33,    34,    45,    27,    10,    15,    30,
+      17,    32,    52,    43,    69,    25,    71,    24,    39,    74,
+      75,   137,    25,    44,    45,    47,    81,    82,    49,    24,
+      85,    52,    32,    33,   101,     4,    56,     9,     7,    46,
+      95,    11,    26,    43,    28,    66,    10,   102,   103,   104,
+     105,   106,   107,   108,   109,   110,   132,     6,    14,    80,
+       4,     5,   117,     7,     8,   132,     3,     4,    22,    24,
+     137,    15,     5,    17,     4,     5,    13,     7,     8,    26,
+      24,    27,    44,   138,    21,    22,    26,    22,    27,    23,
+     111,   146,    23,    25,    31,    24,    24,    42,    23,    22,
+      37,    38,    46,    22,    41,    30,    31,    32,    33,    34,
+      35,    36,    23,    22,    39,    40,    19,    25,    43,    30,
+      31,    32,    33,    34,    35,    36,    23,    25,    39,    40,
+       4,    26,    43,    30,    31,    32,    33,    34,    35,    36,
+      23,    26,    39,    40,    22,    24,    43,    30,    31,    32,
+      33,    34,    35,    36,    44,    23,    39,    40,    27,    16,
+      43,    30,    31,    32,    33,    34,    35,    36,    43,    22,
+      39,    40,    27,    25,    43,    30,    31,    32,    33,    34,
+      35,    36,    25,    23,    39,    40,    30,    57,    43,    30,
+      31,    32,    33,    34,    35,    36,    52,   149,    39,    40,
       -1,    -1,    43,    44,    30,    31,    32,    33,    34,    35,
       36,    -1,    -1,    39,    40,    -1,    -1,    43,    44,    30,
       31,    32,    33,    34,    35,    36,    -1,    -1,    39,    40,
       -1,    42,    43,    30,    31,    32,    33,    34,    35,    36,
-      -1,    -1,    -1,    -1,    -1,    -1,    43
+      30,    31,    32,    33,    34,    -1,    43,    -1,    -1,    -1,
+      -1,    -1,    -1,    43
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -696,17 +698,18 @@ static const yytype_uint8 yystos[] =
        9,    54,    10,    70,    11,    12,    24,     6,    70,    55,
       14,    24,     5,     7,     8,    56,    57,    66,    70,    22,
       55,    26,    10,    25,    58,    70,     5,    57,    27,    66,
-      44,    26,    25,    70,    27,    22,    70,    59,    60,    23,
-      23,    61,    66,    24,    24,    42,    70,    15,    17,    24,
-      46,    62,    63,    65,    70,    55,    22,    22,    62,    22,
-      25,    62,    26,    28,    62,    70,     3,    13,    21,    22,
-      31,    37,    38,    41,    64,    65,    67,    67,    25,    67,
-      25,    67,    67,    19,     7,    70,    67,    67,    67,    23,
-      30,    31,    32,    33,    34,    35,    36,    39,    40,    43,
-      23,    23,    27,    44,    67,    26,    22,    23,    63,    67,
-      67,    67,    67,    67,    67,    67,    67,    67,    47,    70,
-      24,    44,    44,    67,    23,    16,    22,    62,    25,    27,
-      63,    68,    69,    25,    23,    67,    42
+      44,    26,    25,    70,    27,    22,    70,    59,    61,    66,
+      23,    23,    42,    60,    70,    24,    24,    61,    15,    17,
+      24,    46,    62,    63,    65,    70,    55,    60,    22,    22,
+      62,    22,    25,    62,    26,    28,    62,    70,     3,    13,
+      21,    22,    31,    37,    38,    41,    64,    65,    67,    67,
+      25,    67,    25,    67,    67,    19,     7,    70,    67,    67,
+      67,    23,    30,    31,    32,    33,    34,    35,    36,    39,
+      40,    43,    23,    23,    27,    44,    67,    26,    22,    23,
+      63,    67,    67,    67,    67,    67,    67,    67,    67,    67,
+      47,    70,    24,    44,    44,    67,    23,    16,    22,    62,
+      25,    27,    63,    67,    68,    25,    42,    69,    23,    67,
+      69
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -1506,13 +1509,13 @@ yyreduce:
     { 
 	(*jiveEnv)->LoadProgram( new CProgram( (yyvsp[0].Goal) ) ); 
 	(yyval.JiveEnv) = *jiveEnv; }
-#line 1510 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1513 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 3:
 #line 101 "jive.y" /* yacc.c:1646  */
     { (yyval.Goal) = new CGoal( (yyvsp[-1].MainClass), (yyvsp[0].Classes) ); }
-#line 1516 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1519 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 4:
@@ -1524,7 +1527,7 @@ yyreduce:
 				(yyval.MainClass)->coordinates.first_line = temp_line; \
 				(yyval.MainClass)->coordinates.first_column = temp_column;
 			}
-#line 1528 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1531 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 5:
@@ -1536,13 +1539,13 @@ yyreduce:
 				(yyval.Classes)->coordinates.first_line = temp_line;
 				(yyval.Classes)->coordinates.first_column = temp_column; 
 			}
-#line 1540 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1543 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 125 "jive.y" /* yacc.c:1646  */
     { (yyval.Classes) = nullptr; }
-#line 1546 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1549 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 7:
@@ -1554,7 +1557,7 @@ yyreduce:
 				(yyval.Class)->coordinates.first_line = temp_line;
 				(yyval.Class)->coordinates.first_column = temp_column; 
 			}
-#line 1558 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1561 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 8:
@@ -1566,7 +1569,7 @@ yyreduce:
 			(yyval.Class)->coordinates.first_line = temp_line;
 			(yyval.Class)->coordinates.first_column = temp_column; 
 		}
-#line 1570 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1573 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 9:
@@ -1578,13 +1581,13 @@ yyreduce:
 				(yyval.Variables)->coordinates.first_line = temp_line;
 				(yyval.Variables)->coordinates.first_column = temp_column; 
 			}
-#line 1582 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1585 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 159 "jive.y" /* yacc.c:1646  */
     { (yyval.Variables) = nullptr; }
-#line 1588 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1591 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
@@ -1596,7 +1599,7 @@ yyreduce:
 				(yyval.Variable)->coordinates.first_line = temp_line;
 				(yyval.Variable)->coordinates.first_column = temp_column; 
 			}
-#line 1600 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1603 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 12:
@@ -1608,13 +1611,13 @@ yyreduce:
 				(yyval.Methods)->coordinates.first_line = temp_line;
 				(yyval.Methods)->coordinates.first_column = temp_column; 
 			}
-#line 1612 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1615 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 179 "jive.y" /* yacc.c:1646  */
     { (yyval.Methods) = nullptr; }
-#line 1618 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1621 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 14:
@@ -1626,7 +1629,7 @@ yyreduce:
 				(yyval.Method)->coordinates.first_line = temp_line;
 				(yyval.Method)->coordinates.first_column = temp_column; 
 			}
-#line 1630 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1633 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 15:
@@ -1634,17 +1637,17 @@ yyreduce:
     { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				(yyval.Arguments) = new CCompoundArgument( (yyvsp[-1].Arguments), (yyvsp[0].Argument) );
+				(yyval.Arguments) = new CCompoundArgument( (yyvsp[-1].Argument), (yyvsp[0].Arguments) );
 				(yyval.Arguments)->coordinates.first_line = temp_line;
 				(yyval.Arguments)->coordinates.first_column = temp_column; 
 			}
-#line 1642 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1645 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 16:
 #line 203 "jive.y" /* yacc.c:1646  */
     { (yyval.Arguments) = nullptr; }
-#line 1648 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1651 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 17:
@@ -1652,17 +1655,17 @@ yyreduce:
     {
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				(yyval.Arguments) = new CCompoundArgument( (yyvsp[-2].Arguments), (yyvsp[-1].Argument) );
+				(yyval.Arguments) = new CCompoundArgument( (yyvsp[-1].Argument), (yyvsp[0].Arguments) );
 				(yyval.Arguments)->coordinates.first_line = yylloc.first_line;
 				(yyval.Arguments)->coordinates.first_column = yylloc.first_column; 
 			}
-#line 1660 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1663 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 214 "jive.y" /* yacc.c:1646  */
     { (yyval.Arguments) = nullptr; }
-#line 1666 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1669 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 19:
@@ -1674,7 +1677,7 @@ yyreduce:
 				(yyval.Argument)->coordinates.first_line = temp_line;
 				(yyval.Argument)->coordinates.first_column = temp_column; 
 			}
-#line 1678 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1681 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 20:
@@ -1686,13 +1689,13 @@ yyreduce:
 				(yyval.Statements)->coordinates.first_line = temp_line;
 				(yyval.Statements)->coordinates.first_column = temp_column; 
 			}
-#line 1690 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1693 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 234 "jive.y" /* yacc.c:1646  */
     { (yyval.Statements) = nullptr; }
-#line 1696 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1699 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 22:
@@ -1704,7 +1707,7 @@ yyreduce:
 				(yyval.Statement)->coordinates.first_line = temp_line;
 				(yyval.Statement)->coordinates.first_column = temp_column; 
 			}
-#line 1708 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1711 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 23:
@@ -1716,7 +1719,7 @@ yyreduce:
 				(yyval.Statement)->coordinates.first_line = temp_line;
 				(yyval.Statement)->coordinates.first_column = temp_column; 
 			}
-#line 1720 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1723 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 24:
@@ -1728,7 +1731,7 @@ yyreduce:
 				(yyval.Statement)->coordinates.first_line = temp_line;
 				(yyval.Statement)->coordinates.first_column = temp_column; 
 			}
-#line 1732 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1735 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 25:
@@ -1740,7 +1743,7 @@ yyreduce:
 				(yyval.Statement)->coordinates.first_line = temp_line;
 				(yyval.Statement)->coordinates.first_column = temp_column; 
 			}
-#line 1744 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1747 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 26:
@@ -1752,7 +1755,7 @@ yyreduce:
 				(yyval.Statement)->coordinates.first_line = temp_line;
 				(yyval.Statement)->coordinates.first_column = temp_column; 
 			}
-#line 1756 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1759 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 27:
@@ -1764,7 +1767,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1768 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1771 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 28:
@@ -1776,7 +1779,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1780 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1783 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 29:
@@ -1788,7 +1791,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1792 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1795 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 30:
@@ -1800,7 +1803,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1804 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1807 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 31:
@@ -1812,7 +1815,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1816 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1819 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 32:
@@ -1824,7 +1827,7 @@ yyreduce:
 			(yyval.Type)->coordinates.first_line = temp_line;
 			(yyval.Type)->coordinates.first_column = temp_column; 
 		}
-#line 1828 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1831 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 33:
@@ -1836,7 +1839,7 @@ yyreduce:
 			(yyval.Type)->coordinates.first_line = temp_line;
 			(yyval.Type)->coordinates.first_column = temp_column; 
 		}
-#line 1840 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1843 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 34:
@@ -1848,7 +1851,7 @@ yyreduce:
 			(yyval.Type)->coordinates.first_line = temp_line;
 			(yyval.Type)->coordinates.first_column = temp_column; 
 		}
-#line 1852 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1855 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 35:
@@ -1860,7 +1863,7 @@ yyreduce:
 			(yyval.Type)->coordinates.first_line = temp_line;
 			(yyval.Type)->coordinates.first_column = temp_column; 
 		}
-#line 1864 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1867 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 36:
@@ -1872,7 +1875,7 @@ yyreduce:
 			(yyval.Type)->coordinates.first_line = temp_line;
 			(yyval.Type)->coordinates.first_column = yylloc.first_column; 
 		}
-#line 1876 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1879 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 37:
@@ -1884,7 +1887,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1888 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1891 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 38:
@@ -1896,7 +1899,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column;  
 			}
-#line 1900 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1903 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 39:
@@ -1908,7 +1911,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1912 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1915 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 40:
@@ -1920,7 +1923,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1924 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1927 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 41:
@@ -1932,7 +1935,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1936 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1939 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 42:
@@ -1944,7 +1947,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1948 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1951 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 43:
@@ -1956,7 +1959,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1960 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1963 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 44:
@@ -1968,7 +1971,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1972 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1975 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 45:
@@ -1980,7 +1983,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1984 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1987 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 46:
@@ -1992,7 +1995,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 1996 "jive.tab.cpp" /* yacc.c:1646  */
+#line 1999 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 47:
@@ -2004,7 +2007,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2008 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2011 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 48:
@@ -2016,7 +2019,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2020 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2023 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 49:
@@ -2028,7 +2031,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2032 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2035 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 50:
@@ -2040,7 +2043,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2044 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2047 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 51:
@@ -2052,7 +2055,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2056 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2059 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 52:
@@ -2064,7 +2067,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2068 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2071 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 53:
@@ -2076,7 +2079,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2080 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2083 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 54:
@@ -2088,7 +2091,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2092 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2095 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 55:
@@ -2100,7 +2103,7 @@ yyreduce:
 				(yyval.Expression)->coordinates.first_line = temp_line;
 				(yyval.Expression)->coordinates.first_column = temp_column; 
 			}
-#line 2104 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2107 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 56:
@@ -2108,17 +2111,17 @@ yyreduce:
     { 
 					int temp_line = yyloc.first_line;
 					int temp_column = yyloc.first_column;
-					(yyval.Expressions) = new CCompoundExpression( (yyvsp[-1].Expressions), (yyvsp[0].Expression) );
+					(yyval.Expressions) = new CCompoundExpression( (yyvsp[-1].Expression), (yyvsp[0].Expressions) );
 					(yyval.Expressions)->coordinates.first_line = temp_line;
 					(yyval.Expressions)->coordinates.first_column = temp_column; 
 				}
-#line 2116 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2119 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 57:
 #line 527 "jive.y" /* yacc.c:1646  */
     { (yyval.Expressions) = nullptr; }
-#line 2122 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2125 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 58:
@@ -2126,17 +2129,17 @@ yyreduce:
     { 
 					int temp_line = yyloc.first_line;
 					int temp_column = yyloc.first_column;
-					(yyval.Expressions) = new CCompoundExpression( (yyvsp[-2].Expressions), (yyvsp[-1].Expression) );
+					(yyval.Expressions) = new CCompoundExpression( (yyvsp[-1].Expression), (yyvsp[0].Expressions) );
 					(yyval.Expressions)->coordinates.first_line = temp_line;
 					(yyval.Expressions)->coordinates.first_column = temp_column; 
 				}
-#line 2134 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2137 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 59:
 #line 538 "jive.y" /* yacc.c:1646  */
     { (yyval.Expressions) = nullptr; }
-#line 2140 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2143 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 60:
@@ -2148,11 +2151,11 @@ yyreduce:
 				(yyval.Identifier)->coordinates.first_line = temp_line;
 				(yyval.Identifier)->coordinates.first_column = temp_column; 
 			}
-#line 2152 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2155 "jive.tab.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 2156 "jive.tab.cpp" /* yacc.c:1646  */
+#line 2159 "jive.tab.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

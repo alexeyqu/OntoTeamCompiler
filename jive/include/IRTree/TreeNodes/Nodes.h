@@ -15,4 +15,8 @@
 #include "Stm/LABEL.h"
 #include "Stm/MOVE.h"
 #include "Stm/SEQ.h"
+#include "Stm/MoveCall.h"
+#include "Stm/ExpCall.h"
 #include "Stm/CStmList.h"
+
+#include "CStmExpList.h"

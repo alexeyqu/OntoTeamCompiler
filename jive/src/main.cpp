@@ -7,7 +7,8 @@
 #include "AST/TreeVisitors/CTypeCheckerVisitor.h"
 #include "AST/TreeVisitors/CTranslateVisitor.h"
 #include "IRTree/TreeVisitors/CIRTreePrinter.h"
-#include "../include/CJiveEnvironment.h"
+#include "IRTree/CCanonizer.h"
+#include "CJiveEnvironment.h"
 #include "AST/CProgram.h"
 #include "jive.tab.h"
 
@@ -38,6 +39,12 @@ int main( int argc, char **argv ) {
 	CTranslateVisitor translateVisitor( table );
 	translateVisitor.Start(jiveEnv->program);
 	std::vector<CFragment> fragments = translateVisitor.Fragments;
+	std::map<CFragment*, CStmList*> canonizedFragments;
+	for ( auto& fragment : fragments ) {			
+		CCanonizer canonizer( fragment.rootStm, fragment.frame );
+		canonizer.Canonize();
+		canonizedFragments[&fragment] = canonizer.GetCanonizedStms();
+	}
 	CIRTreePrinter *irTreePrinter;
 	irTreePrinter = new CIRTreePrinter( "ir-tree.dot" );
 	irTreePrinter->OpenFile();

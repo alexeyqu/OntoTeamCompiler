@@ -2,11 +2,11 @@
 
 #include "IRTree/TreeNodes/Exp/CExpList.h"
 
-CExpList* CExpList::GetHead() const { 
+IExp* CExpList::GetHead() const { 
 	return head; 
 }
 	
-IExp* CExpList::GetTail() const { 
+CExpList* CExpList::GetTail() const { 
 	return tail; 
 }
 	

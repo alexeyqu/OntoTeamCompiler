@@ -19,6 +19,9 @@ public:
 	CLabel* GetIfFalse() const;
 	void Accept( IIRTreeVisitor *visitor );
 
+	CExpList* Kids();
+	IStm* Build( CExpList* kids );
+
 private:
 	enums::TCJump op;
 	IExp* left;
