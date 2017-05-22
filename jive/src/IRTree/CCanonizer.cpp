@@ -397,4 +397,3 @@ void CCanonizer::translateToStms() {
 	}
 	irTreePrinter->CloseFile();
 }
-

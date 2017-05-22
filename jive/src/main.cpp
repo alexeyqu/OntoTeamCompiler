@@ -8,6 +8,7 @@
 #include "AST/TreeVisitors/CTranslateVisitor.h"
 #include "IRTree/TreeVisitors/CIRTreePrinter.h"
 #include "IRTree/CCanonizer.h"
+#include "IRTree/CCodeGenerator.h"
 #include "CJiveEnvironment.h"
 #include "AST/CProgram.h"
 #include "jive.tab.h"
@@ -57,6 +58,26 @@ int main( int argc, char **argv ) {
 		irTreePrinter->WriteGraphToFile();
 	}
 	irTreePrinter->CloseFile();
+
+	std::map<CFragment*, std::list<IInstruction*> > instructionLists;
+	for ( auto fragment : canonizedFragments ) {
+		CCodeGenerator generator( fragment.second, fragment.first->frame );
+		generator.Generate();
+		instructionLists[ fragment.first ] = generator.GetInstrucions();
+	}
+
+	std::ofstream asmOutputFile( "code.txt" );
+	if ( asmOutputFile ) {
+		for ( auto fragment : instructionLists ) {
+			asmOutputFile << "[" << fragment.first->name << "]" << std::endl;
+			for ( auto command : fragment.second ) {
+				std::string commandString = command->Format(new CTempMap() );
+				asmOutputFile << commandString << std::endl;
+			}
+		}
+		asmOutputFile << std::endl;
+		asmOutputFile.close();
+	}
     
 	/*
     outstream.open( "symbolTable.txt", std::ios::out );

@@ -1,19 +1,19 @@
 #include "IRTree/Temp/CTempList.h"	
 
-CTempList::CTempList( const CTemp* one, const CTemp* two ) {
+CTempList::CTempList( CTemp* one, CTemp* two ) {
 	head = one;
 	tail = new CTempList( two );
 }
 	
-CTempList::CTempList( const CTemp* one, const CTemp* two, const CTemp* three ) {
+CTempList::CTempList( CTemp* one, CTemp* two, CTemp* three ) {
 	head = one;
 	tail = new CTempList( two, three );
 }
 
-const CTemp* CTempList::GetHead() const { 
+CTemp* CTempList::GetHead() const { 
 	return head; 
 }
 
-const CTempList* CTempList::GetTail() const { 
+CTempList* CTempList::GetTail() const { 
 	return tail; 
 }

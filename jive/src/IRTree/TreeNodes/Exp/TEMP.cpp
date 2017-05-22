@@ -1,7 +1,7 @@
 #include "IRTree/TreeNodes/Exp/TEMP.h"
 #include "IRTree/TreeNodes/Exp/CExpList.h"
 
-const CTemp* TEMP::GetTemp() const { 
+CTemp* TEMP::GetTemp() const { 
 	return temp; 
 }
 	

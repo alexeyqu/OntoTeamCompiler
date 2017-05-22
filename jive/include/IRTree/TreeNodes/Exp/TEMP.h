@@ -8,13 +8,13 @@
 class TEMP : public IExp
 {
 public:
-	TEMP( const CTemp* _temp ) : temp( _temp ) {};
-	const CTemp* GetTemp() const;
+	TEMP( CTemp* _temp ) : temp( _temp ) {};
+	CTemp* GetTemp() const;
 	void Accept( IIRTreeVisitor *visitor );
 
 	CExpList* Kids();
 	IExp* Build( CExpList* kids );
 
 private:
-	const CTemp* temp;
+	CTemp* temp;
 };

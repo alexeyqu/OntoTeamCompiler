@@ -1,0 +1,113 @@
+digraph IRTree {
+fragment1_0 -> fragment1_1
+fragment1_1 -> fragment1_2
+fragment1_1 -> fragment1_3
+fragment1_1 -> fragment1_4
+fragment1_1 -> fragment1_5
+fragment1_1 -> fragment1_6
+fragment1_0[ label = "fragment1" ]
+fragment1_1[ label = "CJUMP" ]
+fragment1_2[ label = "<" ]
+fragment1_3[ label = "TEMP TEMP$3" ]
+fragment1_4[ label = "CONST 1" ]
+fragment1_5[ label = "LABEL LABEL$6" ]
+fragment1_6[ label = "LABEL LABEL$7" ]
+fragment2_0 -> fragment2_1
+fragment2_0[ label = "fragment2" ]
+fragment2_1[ label = "LABEL LABEL$6" ]
+fragment3_0 -> fragment3_1
+fragment3_1 -> fragment3_2
+fragment3_2 -> fragment3_3
+fragment3_3 -> fragment3_4
+fragment3_3 -> fragment3_5
+fragment3_3 -> fragment3_6
+fragment3_1 -> fragment3_7
+fragment3_0[ label = "fragment3" ]
+fragment3_1[ label = "MOVE" ]
+fragment3_2[ label = "MEM" ]
+fragment3_3[ label = "BINOP" ]
+fragment3_4[ label = "PLUS" ]
+fragment3_5[ label = "TEMP FP" ]
+fragment3_6[ label = "CONST 0" ]
+fragment3_7[ label = "CONST 1" ]
+fragment4_0 -> fragment4_1
+fragment4_1 -> fragment4_2
+fragment4_1 -> fragment4_3
+fragment4_0[ label = "fragment4" ]
+fragment4_1[ label = "JUMP" ]
+fragment4_2[ label = "NAME LABEL$8" ]
+fragment4_3[ label = "LABEL LABEL$8" ]
+fragment5_0 -> fragment5_1
+fragment5_0[ label = "fragment5" ]
+fragment5_1[ label = "LABEL LABEL$7" ]
+fragment6_0 -> fragment6_1
+fragment6_1 -> fragment6_2
+fragment6_1 -> fragment6_3
+fragment6_3 -> fragment6_4
+fragment6_3 -> fragment6_5
+fragment6_3 -> fragment6_6
+fragment6_0[ label = "fragment6" ]
+fragment6_1[ label = "MOVE" ]
+fragment6_2[ label = "TEMP TEMP$6" ]
+fragment6_3[ label = "BINOP" ]
+fragment6_4[ label = "PLUS" ]
+fragment6_5[ label = "TEMP FP" ]
+fragment6_6[ label = "CONST 0" ]
+fragment7_0 -> fragment7_1
+fragment7_1 -> fragment7_2
+fragment7_1 -> fragment7_3
+fragment7_0[ label = "fragment7" ]
+fragment7_1[ label = "MOVE" ]
+fragment7_2[ label = "TEMP TEMP$5" ]
+fragment7_3[ label = "TEMP TEMP$3" ]
+fragment8_0 -> fragment8_1
+fragment8_1 -> fragment8_2
+fragment8_1 -> fragment8_3
+fragment8_3 -> fragment8_4
+fragment8_3 -> fragment8_5
+fragment8_3 -> fragment8_6
+fragment8_6 -> fragment8_7
+fragment8_6 -> fragment8_8
+fragment8_6 -> fragment8_9
+fragment8_0[ label = "fragment8" ]
+fragment8_1[ label = "MOVE" ]
+fragment8_2[ label = "TEMP TEMP$4" ]
+fragment8_3[ label = "CALL" ]
+fragment8_4[ label = "NAME Fac$ComputeFac" ]
+fragment8_5[ label = "TEMP TEMP$2" ]
+fragment8_6[ label = "BINOP" ]
+fragment8_7[ label = "MINUS" ]
+fragment8_8[ label = "TEMP TEMP$3" ]
+fragment8_9[ label = "CONST 1" ]
+fragment9_0 -> fragment9_1
+fragment9_1 -> fragment9_2
+fragment9_2 -> fragment9_3
+fragment9_1 -> fragment9_4
+fragment9_4 -> fragment9_5
+fragment9_4 -> fragment9_6
+fragment9_4 -> fragment9_7
+fragment9_0[ label = "fragment9" ]
+fragment9_1[ label = "MOVE" ]
+fragment9_2[ label = "MEM" ]
+fragment9_3[ label = "TEMP TEMP$6" ]
+fragment9_4[ label = "BINOP" ]
+fragment9_5[ label = "MUL" ]
+fragment9_6[ label = "TEMP TEMP$5" ]
+fragment9_7[ label = "TEMP TEMP$4" ]
+fragment10_0 -> fragment10_1
+fragment10_0[ label = "fragment10" ]
+fragment10_1[ label = "LABEL LABEL$8" ]
+fragment11_0 -> fragment11_1
+fragment11_1 -> fragment11_2
+fragment11_2 -> fragment11_3
+fragment11_3 -> fragment11_4
+fragment11_3 -> fragment11_5
+fragment11_3 -> fragment11_6
+fragment11_0[ label = "fragment11" ]
+fragment11_1[ label = "EXP" ]
+fragment11_2[ label = "MEM" ]
+fragment11_3[ label = "BINOP" ]
+fragment11_4[ label = "PLUS" ]
+fragment11_5[ label = "TEMP FP" ]
+fragment11_6[ label = "CONST 0" ]
+}
