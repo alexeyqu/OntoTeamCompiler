@@ -1,0 +1,44 @@
+Class LS:
+	Fields:
+		Field number : int[]
+		Field size : int
+	Methods:
+		Init : int
+			Args:
+				sz : int
+			Vars:
+				aux01 : int
+				aux02 : int
+				j : int
+				k : int
+		Print : int
+			Args:
+			Vars:
+				j : int
+		Search : int
+			Args:
+				num : int
+			Vars:
+				aux01 : int
+				aux02 : int
+				ifound : int
+				j : int
+				ls01 : boolean
+				nt : int
+		Start : int
+			Args:
+				sz : int
+			Vars:
+				aux01 : int
+				aux02 : int
+---
+
+Class LinearSearch:
+	Fields:
+	Methods:
+		main : void
+			Args:
+				a : String[]
+			Vars:
+---
+

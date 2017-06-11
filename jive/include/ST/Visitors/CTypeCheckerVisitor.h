@@ -7,11 +7,12 @@
 #include <map>
 #include <string>
 #include "CSymbols.h"
+#include "CSymbolTable.h"
 
 class CTypeCheckerVisitor : public IVisitor 
 {
 public:
-	CTypeCheckerVisitor( std::map<std::string, CClassSymbol *> &table );
+	CTypeCheckerVisitor( CSymbolTable *_symbolTable );
 	void Start( IVisitorTarget *vertex );
 	
 	void Visit( CProgram *program ); 
@@ -26,7 +27,7 @@ public:
 	void Visit( CCompoundMethod *entity ); 
 	void Visit( CCompoundClass *entity ); 
 	void Visit( CMainClass *entity ); 
-	void Visit( CClass *entity ); // Дописать циклические зависимости
+	void Visit( CClass *entity );
 	void Visit( CCompoundStatement *statement ); 
 	void Visit( CAssignStatement *statement ); 
 	void Visit( CPrintStatement *statement ); 
@@ -46,7 +47,7 @@ public:
 	void Visit( CCompoundExpression *expression );
 	
 private:
-	std::map<std::string, CClassSymbol *> table;
+	CSymbolTable *symbolTable;
 	std::string curClassName;
 	std::string curMethodName;
 	std::vector<IType *> curCallArgumentsTypes;

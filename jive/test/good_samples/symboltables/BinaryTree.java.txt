@@ -1,0 +1,135 @@
+Class BT:
+	Fields:
+	Methods:
+		Start : int
+			Args:
+			Vars:
+				ntb : boolean
+				nti : int
+				root : Tree
+---
+
+Class BinaryTree:
+	Fields:
+	Methods:
+		main : void
+			Args:
+				a : String[]
+			Vars:
+---
+
+Class Tree:
+	Fields:
+		Field has_left : boolean
+		Field has_right : boolean
+		Field key : int
+		Field left : Tree
+		Field my_null : Tree
+		Field right : Tree
+	Methods:
+		Compare : boolean
+			Args:
+				num1 : int
+				num2 : int
+			Vars:
+				ntb : boolean
+				nti : int
+		Delete : boolean
+			Args:
+				v_key : int
+			Vars:
+				cont : boolean
+				current_node : Tree
+				found : boolean
+				is_root : boolean
+				key_aux : int
+				ntb : boolean
+				parent_node : Tree
+		GetHas_Left : boolean
+			Args:
+			Vars:
+		GetHas_Right : boolean
+			Args:
+			Vars:
+		GetKey : int
+			Args:
+			Vars:
+		GetLeft : Tree
+			Args:
+			Vars:
+		GetRight : Tree
+			Args:
+			Vars:
+		Init : boolean
+			Args:
+				v_key : int
+			Vars:
+		Insert : boolean
+			Args:
+				v_key : int
+			Vars:
+				cont : boolean
+				current_node : Tree
+				key_aux : int
+				new_node : Tree
+				ntb : boolean
+		Print : boolean
+			Args:
+			Vars:
+				current_node : Tree
+				ntb : boolean
+		RecPrint : boolean
+			Args:
+				node : Tree
+			Vars:
+				ntb : boolean
+		Remove : boolean
+			Args:
+				c_node : Tree
+				p_node : Tree
+			Vars:
+				auxkey1 : int
+				auxkey2 : int
+				ntb : boolean
+		RemoveLeft : boolean
+			Args:
+				c_node : Tree
+				p_node : Tree
+			Vars:
+				ntb : boolean
+		RemoveRight : boolean
+			Args:
+				c_node : Tree
+				p_node : Tree
+			Vars:
+				ntb : boolean
+		Search : int
+			Args:
+				v_key : int
+			Vars:
+				cont : boolean
+				current_node : Tree
+				ifound : int
+				key_aux : int
+		SetHas_Left : boolean
+			Args:
+				val : boolean
+			Vars:
+		SetHas_Right : boolean
+			Args:
+				val : boolean
+			Vars:
+		SetKey : boolean
+			Args:
+				v_key : int
+			Vars:
+		SetLeft : boolean
+			Args:
+				ln : Tree
+			Vars:
+		SetRight : boolean
+			Args:
+				rn : Tree
+			Vars:
+---
+

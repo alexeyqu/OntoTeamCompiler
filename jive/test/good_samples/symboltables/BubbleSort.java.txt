@@ -1,0 +1,41 @@
+Class BBS:
+	Fields:
+		Field number : int[]
+		Field size : int
+	Methods:
+		Init : int
+			Args:
+				sz : int
+			Vars:
+		Print : int
+			Args:
+			Vars:
+				j : int
+		Sort : int
+			Args:
+			Vars:
+				aux02 : int
+				aux04 : int
+				aux05 : int
+				aux06 : int
+				aux07 : int
+				i : int
+				j : int
+				nt : int
+				t : int
+		Start : int
+			Args:
+				sz : int
+			Vars:
+				aux01 : int
+---
+
+Class BubbleSort:
+	Fields:
+	Methods:
+		main : void
+			Args:
+				a : String[]
+			Vars:
+---
+

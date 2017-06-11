@@ -1,4 +1,4 @@
 #!/bin/bash
 
-dot -Tps my_graph.dot -o my_graph.ps
-dot -Tpng my_graph.dot -o my_graph.png
+dot -Tps graph.dot -o graph.ps
+dot -Tpng graph.dot -o graph.png

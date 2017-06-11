@@ -6,9 +6,9 @@
 class CUserType : public IType
 {
 public:
-   	CUserType( std::string name );
+	CUserType( std::string name );
 
-   	void Accept( IVisitor *visitor ) override;
+	void Accept( IVisitor *visitor ) override;
 
 	std::string name;
 

@@ -1,0 +1,126 @@
+Class Element:
+	Fields:
+		Field Age : int
+		Field Married : boolean
+		Field Salary : int
+	Methods:
+		Compare : boolean
+			Args:
+				num1 : int
+				num2 : int
+			Vars:
+				aux02 : int
+				retval : boolean
+		Equal : boolean
+			Args:
+				other : Element
+			Vars:
+				aux01 : int
+				aux02 : int
+				nt : int
+				ret_val : boolean
+		GetAge : int
+			Args:
+			Vars:
+		GetMarried : boolean
+			Args:
+			Vars:
+		GetSalary : int
+			Args:
+			Vars:
+		Init : boolean
+			Args:
+				v_Age : int
+				v_Married : boolean
+				v_Salary : int
+			Vars:
+---
+
+Class LL:
+	Fields:
+	Methods:
+		Start : int
+			Args:
+			Vars:
+				aux01 : boolean
+				el01 : Element
+				el02 : Element
+				el03 : Element
+				head : List
+				last_elem : List
+---
+
+Class LinkedList:
+	Fields:
+	Methods:
+		main : void
+			Args:
+				a : String[]
+			Vars:
+---
+
+Class List:
+	Fields:
+		Field elem : Element
+		Field end : boolean
+		Field next : List
+	Methods:
+		Delete : List
+			Args:
+				e : Element
+			Vars:
+				aux01 : List
+				aux04 : int
+				aux05 : boolean
+				my_head : List
+				nt : int
+				prev : List
+				ret_val : boolean
+				var_elem : Element
+				var_end : boolean
+		GetElem : Element
+			Args:
+			Vars:
+		GetEnd : boolean
+			Args:
+			Vars:
+		GetNext : List
+			Args:
+			Vars:
+		Init : boolean
+			Args:
+			Vars:
+		InitNew : boolean
+			Args:
+				v_elem : Element
+				v_end : boolean
+				v_next : List
+			Vars:
+		Insert : List
+			Args:
+				new_elem : Element
+			Vars:
+				aux02 : List
+				aux03 : List
+				ret_val : boolean
+		Print : boolean
+			Args:
+			Vars:
+				aux01 : List
+				var_elem : Element
+				var_end : boolean
+		Search : int
+			Args:
+				e : Element
+			Vars:
+				aux01 : List
+				int_ret_val : int
+				nt : int
+				var_elem : Element
+				var_end : boolean
+		SetNext : boolean
+			Args:
+				v_next : List
+			Vars:
+---
+

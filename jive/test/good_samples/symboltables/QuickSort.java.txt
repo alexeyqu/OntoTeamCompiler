@@ -1,0 +1,42 @@
+Class QS:
+	Fields:
+		Field number : int[]
+		Field size : int
+	Methods:
+		Init : int
+			Args:
+				sz : int
+			Vars:
+		Print : int
+			Args:
+			Vars:
+				j : int
+		Sort : int
+			Args:
+				left : int
+				right : int
+			Vars:
+				aux03 : int
+				cont01 : boolean
+				cont02 : boolean
+				i : int
+				j : int
+				nt : int
+				t : int
+				v : int
+		Start : int
+			Args:
+				sz : int
+			Vars:
+				aux01 : int
+---
+
+Class QuickSort:
+	Fields:
+	Methods:
+		main : void
+			Args:
+				a : String[]
+			Vars:
+---
+

@@ -1,0 +1,19 @@
+Class Fac:
+	Fields:
+	Methods:
+		ComputeFac : int
+			Args:
+				num : int
+			Vars:
+				num_aux : int
+---
+
+Class Factorial:
+	Fields:
+	Methods:
+		main : void
+			Args:
+				a : String[]
+			Vars:
+---
+

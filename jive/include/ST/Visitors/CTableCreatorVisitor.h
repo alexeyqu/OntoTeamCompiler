@@ -7,12 +7,13 @@
 #include <map>
 #include <string>
 #include "CSymbols.h"
+#include "CSymbolTable.h"
 
 class CTableCreatorVisitor : public IVisitor 
 {
 public:
+	CTableCreatorVisitor( CSymbolTable *_symbolTable );
 	void Start( IVisitorTarget *vertex );
-	std::map<std::string, CClassSymbol *> &GetTable();
 	
 	void Visit( CProgram *program );
 	void Visit( CGoal *goal );
@@ -46,7 +47,7 @@ public:
 	void Visit( CCompoundExpression *expression );
 
 private:
-	std::map<std::string, CClassSymbol *> table;
+	CSymbolTable *symbolTable;
 	CClassSymbol *curClassSymbol;
 	CMethodSymbol *curMethodSymbol;
 };

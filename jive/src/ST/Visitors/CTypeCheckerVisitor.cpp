@@ -1,10 +1,6 @@
 #include "CTypeCheckerVisitor.h"
 
-#define OUT_COORDINATES( entity ) \
-	"[" << entity->coordinates.first_line << ", " << entity->coordinates.first_column << "] " 
-
-CTypeCheckerVisitor::CTypeCheckerVisitor( std::map<std::string, CClassSymbol*>& _table ) {
-	table = _table;
+CTypeCheckerVisitor::CTypeCheckerVisitor( CSymbolTable *_symbolTable ) : symbolTable( _symbolTable ) {
 }
 
 void CTypeCheckerVisitor::Start( IVisitorTarget *vertex ) {
@@ -34,7 +30,7 @@ void CTypeCheckerVisitor::Visit( CVariable *entity ) {
 	if( varType != "int" && 
 		varType != "boolean" && 
 		varType != "int[]" &&
-		table.find( varType ) == table.end() ) {
+		symbolTable->table.find( varType ) == symbolTable->table.end() ) {
 		std::cerr << OUT_COORDINATES( entity )
 			<< "Error: Unknown type of variable \"" << varName << "\": " << varType << ".\n";
 	}
@@ -52,7 +48,7 @@ void CTypeCheckerVisitor::Visit( CArgument *entity ) {
 	std::string argType = entity->type->ToString();
 
 	if( argType != "int" && argType != "boolean" && argType != "int[]" &&
-		table.find( argType ) == table.end() ) {
+		symbolTable->table.find( argType ) == symbolTable->table.end() ) {
 		std::cerr << OUT_COORDINATES( entity )
 			<< "Error: Unknown type of argument \"" << argName << "\": " << argType << ".\n";
 	}
@@ -82,7 +78,7 @@ void CTypeCheckerVisitor::Visit( CMethod *entity ) {
 	std::string retType = entity->returnType->ToString();
 
 	if( retType != "int" && retType != "boolean" && retType != "int[]" &&
-			table.find( retType ) == table.end() ) {
+			symbolTable->table.find( retType ) == symbolTable->table.end() ) {
 		std::cerr << OUT_COORDINATES( entity )
 			<< "Error: Return type of method \"" << curMethodName 
 			<< "\" is of unknown type \"" << retType  << "\".\n";
@@ -117,8 +113,8 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
 
 	if( entity->parentName ) {
 		std::string parentName = entity->parentName->name;
-		auto parentIt = table.find( parentName );
-		if( parentIt == table.end() ) {
+		auto parentIt = symbolTable->table.find( parentName );
+		if( parentIt == symbolTable->table.end() ) {
 			std::cerr << OUT_COORDINATES( entity )
 				<< "Error: unknown base class \"" 
 				<< curClassName << "\" for class \"" 
@@ -131,8 +127,8 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
 					<< curClassName << "\" detected.\n";
 				break;
 			}
-			auto parentIt = table.find( parentName );
-			if( parentIt == table.end() ) {
+			auto parentIt = symbolTable->table.find( parentName );
+			if( parentIt == symbolTable->table.end() ) {
 				break;
 			} else {
 				parentName = parentIt->second->parentName;
@@ -214,7 +210,7 @@ void CTypeCheckerVisitor::Visit( CWhileStatement *statement ) {
 
 void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
 	std::string name = expression->name;
-	auto classIt = table.find( curClassName );
+	auto classIt = symbolTable->table.find( curClassName );
 	auto fieldIt = classIt->second->fields.find( name );
 
 	if( fieldIt != classIt->second->fields.end() ) {
@@ -223,7 +219,7 @@ void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
 	}
 
 	if( classIt->second->parentName != "" ) {
-		auto parentClassIt = table.find( classIt->second->parentName );
+		auto parentClassIt = symbolTable->table.find( classIt->second->parentName );
 		auto parentClassFieldIt = parentClassIt->second->fields.find( name );
 
 		if( parentClassFieldIt != parentClassIt->second->fields.end() ) {
@@ -312,7 +308,7 @@ void CTypeCheckerVisitor::Visit( CThisExpression *expression ) {
 
 void CTypeCheckerVisitor::Visit( CNewObjectExpression *expression ) {
 	std::string className = expression->objTypeId->name;
-	if( table.find( className ) == table.end() ) {
+	if( symbolTable->table.find( className ) == symbolTable->table.end() ) {
 		std::cerr << "[" << expression->objTypeId->coordinates.first_line << ", " 
 			<< expression->objTypeId->coordinates.first_column << "] "
 			<< "Error: Unknown class \"" << className << "\"\n";
@@ -336,8 +332,8 @@ void CTypeCheckerVisitor::Visit( CNewIntArrayExpression *expression ) {
 void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
 	expression->base->Accept( this );
 	std::string baseName = expression->base->type->ToString();
-	auto classIt = table.find( baseName );
-	if( classIt == table.end() ) {
+	auto classIt = symbolTable->table.find( baseName );
+	if( classIt == symbolTable->table.end() ) {
 		std::cerr << OUT_COORDINATES( expression->base )
 			<< "Error: Unknown class \"" << baseName 
 			<< "\" method call.\n";
@@ -376,7 +372,7 @@ void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
 		} else {
 			if( !( curTypeName == "int" || curTypeName == "bool" || curTypeName == "int[]" ) ) {
 				while( curTypeName != "" || curTypeName != startTypeName ) {
-					curTypeName = table[curTypeName]->parentName;
+					curTypeName = symbolTable->table[curTypeName]->parentName;
 					if( mehodTypeName == curTypeName ) {
 						found = true;
 						break;

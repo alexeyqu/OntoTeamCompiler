@@ -5,9 +5,9 @@
 class CBuiltInType : public IType
 {
 public:
-   	CBuiltInType( enums::TType _type );
+	CBuiltInType( enums::TType _type );
 
-   	void Accept( IVisitor *visitor ) override;
+	void Accept( IVisitor *visitor ) override;
 
-   	std::string ToString() override;
+	std::string ToString() override;
 };
