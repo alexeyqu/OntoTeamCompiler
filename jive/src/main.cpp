@@ -17,12 +17,18 @@ int main( int argc, char **argv ) {
     else
         yyin = stdin;
 
+    std::string outstreamFilePath;
+    if ( argc > 1 )
+        outstreamFilePath = argv[1];
+    else
+        outstreamFilePath = "graph.dot";
+
     CJiveEnvironment *jiveEnv = new CJiveEnvironment();
 
     yyparse( &jiveEnv );
 
     std::ofstream outstream;
-    outstream.open( "graph.dot", std::ios::out );
+    outstream.open( outstreamFilePath, std::ios::out );
     CPrintVisitor printVisitor( outstream );
 	printVisitor.Start( jiveEnv->program, "my_graph" );
     outstream.close();
