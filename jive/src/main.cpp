@@ -3,22 +3,32 @@
 #include <memory>
 #include "AST/TreeVisitors/CPrintVisitor.h"
 #include "AST/CProgram.h"
+#include "CJiveEnvironment.h"
 #include "jive.tab.h"
 #include "jive.lex.h"
 
 int main( int argc, char **argv ) {
-    ++argv, --argc;  /* skip over program name */
-    if ( argc > 0 )
-        yyin = fopen( argv[0], "r" );
-    else
-        yyin = stdin;
+	++argv, --argc;  /* skip over program name */
+	if ( argc > 0 )
+		yyin = fopen( argv[0], "r" );
+	else
+		yyin = stdin;
 
-    CProgram *program;
+	std::string outstreamFilePath;
+	if ( argc > 1 )
+		outstreamFilePath = argv[1];
+	else
+		outstreamFilePath = "graph.dot";
 
-    yyparse(&program);
+	CJiveEnvironment *jiveEnv = new CJiveEnvironment();
 
-    CPrintVisitor printVisitor;
-	printVisitor.Start(program, "my_graph");
+	yyparse( &jiveEnv );
+
+	std::ofstream outstream;
+	outstream.open( outstreamFilePath, std::ios::out );
+	CPrintVisitor printVisitor( outstream );
+	printVisitor.Start( jiveEnv->program, "my_graph" );
+	outstream.close();
 
 	return 0;
 }

@@ -1,4 +1,4 @@
- #include "CCompoundMethod.h"
+#include "CCompoundMethod.h"
 
 CCompoundMethod::CCompoundMethod( 
 	CCompoundMethod *_method1, 

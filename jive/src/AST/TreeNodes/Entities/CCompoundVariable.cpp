@@ -1,4 +1,4 @@
- #include "CCompoundVariable.h"
+#include "CCompoundVariable.h"
 
 CCompoundVariable::CCompoundVariable( 
 	CCompoundVariable *_var1, 

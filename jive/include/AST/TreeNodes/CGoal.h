@@ -1,8 +1,8 @@
 #pragma once
 
+#include "IEntity.h"
 #include "IExpression.h"
 #include "IStatement.h"
-#include "IEntity.h"
 
 class CGoal : public IVisitorTarget 
 {

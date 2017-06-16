@@ -1,14 +1,14 @@
  #pragma once
 
 #include <cstdlib>
-#include "../IExpression.h"
+#include "IExpression.h"
 
 class CArrayLengthExpression : public IExpression
 {
 public:
-    CArrayLengthExpression( IExpression *_exp );
+	CArrayLengthExpression( IExpression *_exp );
 
-    void Accept( IVisitor *visitor ) override;
+	void Accept( IVisitor *visitor ) override;
 
-    IExpression *exp;
+	IExpression *exp;
 };

@@ -1,27 +1,31 @@
+
 #pragma once
 
 #include <iostream>
 #include <cassert>
-#include "../CProgram.h"
+#include <fstream>
+#include "CProgram.h"
 
 class CPrintVisitor : public IVisitor 
 {
 public:
+	CPrintVisitor( std::ofstream &_outputStream ) : outputStream( _outputStream ) {};
+
 	void Start( IVisitorTarget *vertex, std::string graphname );
 	
 	void Visit( CProgram *program );
    	void Visit( CGoal *goal );
-	void Visit( CType *entity );
-	void Visit( CArray *entity );
+	void Visit( CBuiltInType *type );
+	void Visit( CUserType *type );
 	void Visit( CVariable *entity );
 	void Visit( CCompoundVariable *entity );
-    void Visit( CArgument *entity );
-    void Visit( CCompoundArgument *entity );
-    void Visit( CMethod *entity );
-    void Visit( CCompoundMethod *entity );
-    void Visit( CCompoundClass *entity );
-    void Visit( CMainClass *entity );
-    void Visit( CClass *entity );
+	void Visit( CArgument *entity );
+	void Visit( CCompoundArgument *entity );
+	void Visit( CMethod *entity );
+	void Visit( CCompoundMethod *entity );
+	void Visit( CCompoundClass *entity );
+	void Visit( CMainClass *entity );
+	void Visit( CClass *entity );
 	void Visit( CCompoundStatement *statement );
 	void Visit( CAssignStatement *statement );
 	void Visit( CPrintStatement *statement );
@@ -32,13 +36,15 @@ public:
 	void Visit( CNumberExpression *expression );   	
 	void Visit( CBinaryBooleanExpression *expression );
    	void Visit( CBooleanExpression *expression );
-   	void Visit( CThisExpression *expression );    
-    void Visit( CNewObjectExpression *expression );
-    void Visit( CNewIntArrayExpression *expression );
-    void Visit( CMethodCallExpression *expression );
-    void Visit( CArrayLengthExpression *expression );
-    void Visit( CArrayIndexExpression *expression );
+   	void Visit( CThisExpression *expression );
+	void Visit( CNewObjectExpression *expression );
+	void Visit( CNewIntArrayExpression *expression );
+	void Visit( CMethodCallExpression *expression );
+	void Visit( CArrayLengthExpression *expression );
+	void Visit( CArrayIndexExpression *expression );
+	void Visit( CCompoundExpression *expression );
 	
 private:
 	std::size_t generateId( void *entity );
+	std::ofstream &outputStream;
 };

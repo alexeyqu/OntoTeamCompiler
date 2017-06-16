@@ -1,15 +1,16 @@
 #pragma once
 
-#include "../IEntity.h"
-#include "../IExpression.h"
+#include "IType.h"
+#include "IEntity.h"
+#include "CIdExpression.h"
 
 class CVariable : public IEntity
 {
 public:
-   	CVariable( IEntity *_type, CIdExpression *_id );
+   	CVariable( IType *_type, CIdExpression *_id );
 
    	void Accept( IVisitor *visitor ) override;
 
-	IEntity *type;
+	IType *type;
 	CIdExpression *id;
 };

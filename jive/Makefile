@@ -22,12 +22,14 @@ OBJECTS = $(BUILD_PATH)/jive.tab.o $(BUILD_PATH)/jive.yy.o $(SOURCES:$(SRC_PATH)
 # Set the dependency files that will be used to add header dependencies
 DEPS = $(OBJECTS:.o=.d)
 
-CC = g++-4.8
+# CC = g++-4.8
+CC = g++
 
 # flags #
 CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD
 INCLUDES = -I $(AUTO_PATH) -I include -I include/AST \
-	-I include/AST/TreeNodes -I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities \
+	-I include/AST/TreeNodes \
+	-I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities -I include/AST/TreeNodes/Types \
 	-I include/AST/TreeVisitors -I /usr/local/include
 LIBS = -lasan -lfl
 

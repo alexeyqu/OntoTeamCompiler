@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../IVisitorTarget.h"
+#include "IVisitorTarget.h"
 
 class IEntity : public IVisitorTarget 
 {

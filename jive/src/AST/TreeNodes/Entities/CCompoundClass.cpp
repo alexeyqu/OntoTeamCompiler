@@ -1,4 +1,4 @@
- #include "CCompoundClass.h"
+#include "CCompoundClass.h"
 
 CCompoundClass::CCompoundClass( 
     CCompoundClass *_class1, 

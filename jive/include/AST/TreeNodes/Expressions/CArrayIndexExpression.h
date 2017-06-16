@@ -1,15 +1,15 @@
  #pragma once
 
 #include <cstdlib>
-#include "../IExpression.h"
+#include "IExpression.h"
 
 class CArrayIndexExpression : public IExpression
 {
 public:
-    CArrayIndexExpression( IExpression *_id, IExpression *_index );
+	CArrayIndexExpression( IExpression *_id, IExpression *_index );
 
-    void Accept( IVisitor *visitor ) override;
+	void Accept( IVisitor *visitor ) override;
 
-    IExpression *id;
-    IExpression *index;
+	IExpression *id;
+	IExpression *index;
 };

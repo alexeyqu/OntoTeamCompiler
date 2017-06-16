@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdlib>
-#include "../IExpression.h"
+#include "IExpression.h"
 
 class CBooleanExpression : public IExpression
 {

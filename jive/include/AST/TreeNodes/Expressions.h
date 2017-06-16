@@ -12,3 +12,4 @@
 #include "Expressions/CMethodCallExpression.h"
 #include "Expressions/CArrayLengthExpression.h"
 #include "Expressions/CArrayIndexExpression.h"
+#include "Expressions/CCompoundExpression.h"

@@ -1,19 +1,19 @@
  #pragma once
 
-#include "../IEntity.h"
-#include "../IStatement.h"
-#include "../IExpression.h"
+#include "IEntity.h"
+#include "IExpression.h"
+#include "IStatement.h"
 
 class CMainClass : public IEntity
 {
 public:
-    CMainClass( CIdExpression *_name, 
-        CIdExpression *_cmdArgs,
-        IStatement *_statement );
+	CMainClass( CIdExpression *_name, 
+		CIdExpression *_cmdArgs,
+		IStatement *_statement );
 
-    void Accept( IVisitor *visitor ) override;
+	void Accept( IVisitor *visitor ) override;
 
-    CIdExpression *name;
-    CIdExpression *cmdArgs;
-    IStatement *statement;
+	CIdExpression *name;
+	CIdExpression *cmdArgs;
+	IStatement *statement;
 };

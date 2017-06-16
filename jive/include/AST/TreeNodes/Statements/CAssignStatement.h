@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../IStatement.h"
-#include "../IExpression.h"
+#include "IStatement.h"
+#include "IExpression.h"
 
 class CAssignStatement : public IStatement
 {

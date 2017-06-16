@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../IEntity.h"
+#include "IEntity.h"
 
 class CCompoundArgument : public IEntity
 {

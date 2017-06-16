@@ -1,6 +1,6 @@
 #include "CMethod.h"
 
-CMethod::CMethod( CType *_returnType, CIdExpression *_id, 
+CMethod::CMethod( IType *_returnType, CIdExpression *_id, 
    		CCompoundArgument *_arguments,
    		CCompoundVariable *_variables,
 		CCompoundStatement *_statements,
