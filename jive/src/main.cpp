@@ -30,5 +30,11 @@ int main( int argc, char **argv ) {
 	printVisitor.Start( jiveEnv->program, "my_graph" );
 	outstream.close();
 
+	outstream.open( "table.txt", std::ios::out ); // TODO print results in good way
+	for( const auto &elem: jiveEnv->symbolTable->get() ) {
+		outstream << &elem << '\t' << elem.get() << "\n";
+	}
+	outstream.close();
+
 	return 0;
 }

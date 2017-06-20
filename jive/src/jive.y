@@ -2,6 +2,7 @@
 	#include <cstdio>
 	#include <cstring>
 	#include "CJiveEnvironment.h"
+	#include "CSymbol.h"
 
 	#define YYERROR_VERBOSE 1 
 }
@@ -541,7 +542,11 @@ RestExpressions: RestExpressions Expression COMMA {
 Identifier: ID { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CIdExpression( $1 );
+
+				CSymbol *newSymbol = new CSymbol( static_cast<std::string>( $1 ) );
+				(*jiveEnv)->symbolTable->insert( *newSymbol );
+				$$ = new CIdExpression( newSymbol );
+				
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}

@@ -31,7 +31,7 @@ void CPrintVisitor::Visit( CBuiltInType *type ) {
 
     outputStream << typeId << ";\n";
     
-    outputStream << typeId << "[label = \"" << type->ToString() << "\" ];\n";
+    outputStream << typeId << "[label = \"" << "Type" /*type->ToString()*/ << "\" ];\n";
 }
 
 void CPrintVisitor::Visit( CUserType *type ) {
@@ -322,7 +322,7 @@ void CPrintVisitor::Visit( CIdExpression *expression ) {
 
     long nameId = generateId(&expression->name);
     outputStream << exprId << "->" << nameId << ";\n";
-    outputStream << nameId << "[label = \"" << expression->name << "\"];\n";
+    outputStream << nameId << "[label = \"" << expression->getName() << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CBinaryExpression *expression ) {

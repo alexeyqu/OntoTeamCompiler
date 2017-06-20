@@ -2,13 +2,16 @@
 
 #include <string>
 #include "IExpression.h"
+#include "CSymbol.h"
 
 class CIdExpression : public IExpression
 {
 public:
-   	CIdExpression( const char *_name );
+   	CIdExpression( CSymbol *_name );
 
    	void Accept( IVisitor *visitor ) override;
 
-   	std::string name;
+	flyweight<std::string> getName() const;
+
+   	CSymbol *name;
 };

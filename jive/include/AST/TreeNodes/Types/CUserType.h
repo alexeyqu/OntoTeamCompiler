@@ -2,15 +2,16 @@
 
 #include <string>
 #include "IType.h"
+#include "CSymbol.h"
 
 class CUserType : public IType
 {
 public:
-   	CUserType( std::string name );
+   	CUserType( CSymbol *name );
 
    	void Accept( IVisitor *visitor ) override;
 
-	std::string name;
+	CSymbol *name;
 
-	std::string ToString() override;
+	// CSymbol *ToString() override;
 }; 

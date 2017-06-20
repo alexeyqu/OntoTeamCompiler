@@ -10,5 +10,5 @@ public:
 
    	void Accept( IVisitor *visitor ) override;
 
-   	std::string ToString() override;
+   	// CSymbol *getSymbol() override;
 };

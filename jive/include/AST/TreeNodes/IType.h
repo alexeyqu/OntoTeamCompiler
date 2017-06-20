@@ -10,5 +10,5 @@ protected:
 public:
 	enums::TType type;
 
-	virtual std::string ToString() = 0;	
+	// virtual getSymbol() = 0;	
 };
