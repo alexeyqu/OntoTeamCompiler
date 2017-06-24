@@ -6,6 +6,9 @@
 #include <fstream>
 #include "CProgram.h"
 
+namespace AST 
+{
+
 class CPrintVisitor : public IVisitor 
 {
 public:
@@ -48,3 +51,5 @@ private:
 	std::size_t generateId( void *entity );
 	std::ofstream &outputStream;
 };
+
+}

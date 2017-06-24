@@ -1,5 +1,8 @@
 #include "CMethod.h"
 
+namespace AST 
+{
+
 CMethod::CMethod( IType *_returnType, CIdExpression *_id, 
    		CCompoundArgument *_arguments,
    		CCompoundVariable *_variables,
@@ -12,4 +15,6 @@ CMethod::CMethod( IType *_returnType, CIdExpression *_id,
 
 void CMethod::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
+}
+
 }

@@ -1,5 +1,8 @@
 #include "CPrintVisitor.h"
 
+namespace AST 
+{
+
 void CPrintVisitor::Start( IVisitorTarget *vertex, std::string graphname ) {
     outputStream << "digraph " << graphname << " {\n";
 
@@ -517,4 +520,6 @@ std::size_t  CPrintVisitor::generateId( void *entity )
     }
 
     return reinterpret_cast<long>( entity ); // FIXIT move to std::hash
+}
+
 }

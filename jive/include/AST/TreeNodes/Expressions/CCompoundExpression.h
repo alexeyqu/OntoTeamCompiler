@@ -2,6 +2,9 @@
 
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CCompoundExpression : public IExpression
 {
 public:
@@ -12,3 +15,5 @@ public:
 	IExpression *leftExpression;
 	IExpression *rightExpression;
 };
+
+}

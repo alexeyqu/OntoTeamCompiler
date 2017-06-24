@@ -1,5 +1,8 @@
 #include "CClass.h"
 
+namespace AST 
+{
+
 CClass::CClass( CIdExpression *_name, 
    		CIdExpression *_parentName,
    		CCompoundVariable *_fields,
@@ -11,3 +14,4 @@ void CClass::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
 }
  
+}

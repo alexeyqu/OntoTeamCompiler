@@ -2,6 +2,9 @@
 #include <unordered_set>
 #include "CSymbol.h"
 
+namespace AST 
+{
+
 class CSymbolTable
 {
 public:
@@ -12,3 +15,5 @@ public:
 private:
     std::unordered_set<CSymbol> table;
 };
+
+}

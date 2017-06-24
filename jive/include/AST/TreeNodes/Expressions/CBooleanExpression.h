@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CBooleanExpression : public IExpression
 {
 public:
@@ -12,3 +15,5 @@ public:
 
    	bool value;
 };
+
+}

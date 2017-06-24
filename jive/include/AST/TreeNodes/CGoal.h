@@ -4,6 +4,9 @@
 #include "IExpression.h"
 #include "IStatement.h"
 
+namespace AST 
+{
+
 class CGoal : public IVisitorTarget 
 {
 public:
@@ -14,3 +17,5 @@ public:
 	IVisitorTarget *tmp1;
 	IVisitorTarget *tmp2;
 };
+
+}

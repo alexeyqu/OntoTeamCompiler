@@ -4,6 +4,9 @@
 #include "IExpression.h"
 #include "CSymbol.h"
 
+namespace AST 
+{
+
 class CIdExpression : public IExpression
 {
 public:
@@ -15,3 +18,5 @@ public:
 
    	CSymbol *name;
 };
+
+}

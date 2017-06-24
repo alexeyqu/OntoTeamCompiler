@@ -1,5 +1,8 @@
 #include "CMainClass.h"
 
+namespace AST 
+{
+
 CMainClass::CMainClass( CIdExpression *_name, 
         CIdExpression *_cmdArgs,
         IStatement *_statement ) : \
@@ -8,5 +11,7 @@ CMainClass::CMainClass( CIdExpression *_name,
 
 void CMainClass::Accept( IVisitor *visitor ) {
     visitor->Visit( this );
+}
+
 }
  

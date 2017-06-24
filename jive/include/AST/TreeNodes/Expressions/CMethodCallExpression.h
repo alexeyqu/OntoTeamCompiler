@@ -2,6 +2,9 @@
 
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CMethodCallExpression : public IExpression
 {
 public:
@@ -13,3 +16,5 @@ public:
 	CIdExpression *methodId;
 	IExpression *arg;
 };
+
+}

@@ -1,5 +1,8 @@
 #include "CCompoundArgument.h"
 
+namespace AST 
+{
+
 CCompoundArgument::CCompoundArgument( 
 	CCompoundArgument *_arg1, 
 	CArgument *_arg2 ) : \
@@ -7,4 +10,6 @@ CCompoundArgument::CCompoundArgument(
 
 void CCompoundArgument::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
+}
+
 }

@@ -1,5 +1,8 @@
 #include "CBuiltInType.h"
 
+namespace AST 
+{
+
 CBuiltInType::CBuiltInType( jive::TType _type ) : \
 	IType( _type ) {}
 
@@ -26,4 +29,6 @@ CSymbol CBuiltInType::getSymbol() {
 		default:
 			return CSymbol( "ErrorType" );
 	}
+}
+
 }

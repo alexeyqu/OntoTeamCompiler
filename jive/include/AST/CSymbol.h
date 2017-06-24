@@ -2,6 +2,9 @@
 #include <boost/flyweight.hpp>
 #include <string>
 
+namespace AST 
+{
+
 using namespace boost::flyweights;
 
 class CSymbol
@@ -16,13 +19,15 @@ private:
     flyweight<std::string> symbol;
 };
 
+}
+
 namespace std {
     template <>
-    struct hash<CSymbol>
+    struct hash<AST::CSymbol>
     {
         std::hash<std::string> hash_fn;
 
-        std::size_t operator()( const CSymbol &symbol ) const
+        std::size_t operator()( const AST::CSymbol &symbol ) const
         {
             return hash_fn( symbol.get() );
         }

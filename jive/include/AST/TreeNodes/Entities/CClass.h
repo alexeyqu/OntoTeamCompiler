@@ -4,6 +4,9 @@
 #include "IExpression.h"
 #include "IStatement.h"
 
+namespace AST 
+{
+
 class CClass : public IEntity
 {
 public:
@@ -19,3 +22,5 @@ public:
    	CCompoundVariable *fields;
 	CCompoundMethod *methods;
 };
+
+}

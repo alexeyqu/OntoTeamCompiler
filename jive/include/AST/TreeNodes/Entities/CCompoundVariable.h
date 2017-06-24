@@ -2,6 +2,9 @@
 
 #include "IEntity.h"
 
+namespace AST 
+{
+
 class CCompoundVariable : public IEntity
 {
 public:
@@ -13,3 +16,4 @@ public:
 	CVariable *var2;
 };
  
+}

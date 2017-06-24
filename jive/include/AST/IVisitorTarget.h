@@ -4,6 +4,9 @@
 #include "IVisitor.h"
 #include "Coordinates.h"
 
+namespace AST
+{
+
 class IVisitorTarget
 {
 public:
@@ -11,5 +14,7 @@ public:
 
    	virtual void Accept( IVisitor *visitor ) = 0;
 
-   	Coordinates coordinates;
+   	jive::Coordinates coordinates;
 };
+
+}

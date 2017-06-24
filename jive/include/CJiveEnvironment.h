@@ -3,6 +3,12 @@
 #include "CProgram.h"
 #include "CSymbolTable.h"
 
+namespace jive 
+{
+
+using AST::CProgram;
+using AST::CSymbolTable;
+
 class CJiveEnvironment
 {
 public:
@@ -13,3 +19,5 @@ public:
 	CProgram *program;
 	CSymbolTable *symbolTable;
 };
+
+}

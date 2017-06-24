@@ -2,6 +2,9 @@
 
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CBinaryBooleanExpression : public IExpression
 {
 public:
@@ -13,3 +16,5 @@ public:
 	IExpression *rightOperand;
 	jive::TBooleanOperation operation;
 };
+
+}

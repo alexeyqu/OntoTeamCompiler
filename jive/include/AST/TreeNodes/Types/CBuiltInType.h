@@ -4,6 +4,9 @@
 #include "IType.h"
 #include "CSymbol.h"
 
+namespace AST 
+{
+
 class CBuiltInType : public IType
 {
 public:
@@ -15,3 +18,5 @@ public:
 
 	CSymbol getSymbol(); // TODO make static symbols
 };
+
+}

@@ -6,7 +6,8 @@
 #include "AST/TreeNodes/Statements.h"
 #include "AST/TreeNodes/Expressions.h"
 
-class CJiveEnvironment;
+namespace AST 
+{
 
 class CProgram : public IVisitorTarget 
 {
@@ -17,3 +18,5 @@ public:
 
 	IVisitorTarget *rootVertex;
 };
+
+}

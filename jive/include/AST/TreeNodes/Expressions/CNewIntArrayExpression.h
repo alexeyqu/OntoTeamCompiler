@@ -2,6 +2,9 @@
 
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CNewIntArrayExpression : public IExpression
 {
 public:
@@ -11,3 +14,5 @@ public:
 
 	IExpression *arrSize;
 };
+
+}

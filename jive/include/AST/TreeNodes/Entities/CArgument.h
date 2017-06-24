@@ -3,6 +3,9 @@
 #include "IType.h"
 #include "IEntity.h"
 
+namespace AST 
+{
+
 class CArgument : public IEntity
 {
 public:
@@ -13,3 +16,5 @@ public:
 	IType *type;
 	CIdExpression *id;
 };
+
+}

@@ -1,5 +1,8 @@
 #include "CCompoundVariable.h"
 
+namespace AST 
+{
+
 CCompoundVariable::CCompoundVariable( 
 	CCompoundVariable *_var1, 
 	CVariable *_var2 ) : \
@@ -7,4 +10,6 @@ CCompoundVariable::CCompoundVariable(
 
 void CCompoundVariable::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
+}
+
 }

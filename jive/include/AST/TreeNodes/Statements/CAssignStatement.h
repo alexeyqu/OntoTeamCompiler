@@ -3,6 +3,9 @@
 #include "IStatement.h"
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CAssignStatement : public IStatement
 {
 public:
@@ -13,3 +16,5 @@ public:
 	IExpression *leftOperand;
 	IExpression *rightOperand;
 };
+
+}

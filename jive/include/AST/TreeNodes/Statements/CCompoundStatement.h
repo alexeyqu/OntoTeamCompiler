@@ -2,6 +2,9 @@
 
 #include "IStatement.h"
 
+namespace AST 
+{
+
 class CCompoundStatement : public IStatement
 {
 public:
@@ -12,3 +15,5 @@ public:
 	IStatement *leftStatement;
 	IStatement *rightStatement;
 };
+
+}

@@ -1,5 +1,8 @@
 #include "CCompoundClass.h"
 
+namespace AST 
+{
+
 CCompoundClass::CCompoundClass( 
     CCompoundClass *_class1, 
     CClass *_class2 ) : \
@@ -7,4 +10,6 @@ CCompoundClass::CCompoundClass(
 
 void CCompoundClass::Accept( IVisitor *visitor ) {
     visitor->Visit( this );
+}
+
 }

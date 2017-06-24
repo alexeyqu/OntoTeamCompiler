@@ -3,6 +3,9 @@
 #include "IStatement.h"
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CIfStatement : public IStatement
 {
 public:
@@ -14,3 +17,5 @@ public:
 	IStatement *thenStatement;
 	IStatement *elseStatement;
 };
+
+}

@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CNumberExpression : public IExpression
 {
 public:
@@ -12,3 +15,5 @@ public:
 
    	int number;
 };
+
+}

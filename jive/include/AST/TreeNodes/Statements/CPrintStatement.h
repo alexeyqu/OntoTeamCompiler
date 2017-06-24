@@ -3,6 +3,9 @@
 #include "IStatement.h"
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CPrintStatement : public IStatement
 {
 public:
@@ -12,3 +15,5 @@ public:
 
 	IExpression *operand;
 };
+
+}

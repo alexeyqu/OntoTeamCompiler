@@ -1,5 +1,8 @@
 #include "CCompoundMethod.h"
 
+namespace AST 
+{
+
 CCompoundMethod::CCompoundMethod( 
 	CCompoundMethod *_method1, 
 	CMethod *_method2 ) : \
@@ -7,4 +10,6 @@ CCompoundMethod::CCompoundMethod(
 
 void CCompoundMethod::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
+}
+
 }

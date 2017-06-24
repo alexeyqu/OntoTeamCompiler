@@ -3,6 +3,9 @@
 #include <string>
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CThisExpression : public IExpression
 {
 public:
@@ -12,3 +15,5 @@ public:
 
    	std::size_t address;
 };
+
+}

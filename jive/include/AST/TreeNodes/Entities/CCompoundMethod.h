@@ -2,6 +2,9 @@
 
 #include "IEntity.h"
 
+namespace AST 
+{
+
 class CCompoundMethod : public IEntity
 {
 public:
@@ -13,3 +16,4 @@ public:
 	CMethod *method2;
 };
 
+}

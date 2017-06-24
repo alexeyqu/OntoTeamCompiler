@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CArrayIndexExpression : public IExpression
 {
 public:
@@ -13,3 +16,5 @@ public:
 	IExpression *id;
 	IExpression *index;
 };
+
+}

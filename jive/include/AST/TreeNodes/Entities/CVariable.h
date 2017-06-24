@@ -4,6 +4,9 @@
 #include "IEntity.h"
 #include "CIdExpression.h"
 
+namespace AST 
+{
+
 class CVariable : public IEntity
 {
 public:
@@ -14,3 +17,5 @@ public:
 	IType *type;
 	CIdExpression *id;
 };
+
+}

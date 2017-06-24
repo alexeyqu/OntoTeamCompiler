@@ -4,6 +4,9 @@
 	#include "CJiveEnvironment.h"
 	#include "CSymbol.h"
 
+	using namespace AST;
+	using jive::CJiveEnvironment;
+
 	#define YYERROR_VERBOSE 1 
 }
 

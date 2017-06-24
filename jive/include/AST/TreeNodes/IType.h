@@ -4,6 +4,9 @@
 #include "IVisitorTarget.h"
 #include "CSymbol.h"
 
+namespace AST 
+{
+
 class IType : public IVisitorTarget 
 {
 protected:
@@ -13,3 +16,5 @@ public:
 
 	virtual CSymbol getSymbol() = 0;	
 };
+
+}

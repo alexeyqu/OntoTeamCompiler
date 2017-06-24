@@ -4,6 +4,9 @@
 #include "IEntity.h"
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CMethod : public IEntity
 {
 public:
@@ -22,3 +25,5 @@ public:
 	CCompoundStatement *statements;
 	IExpression *returnExpression;
 };
+
+}

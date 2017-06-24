@@ -3,6 +3,9 @@
 
 #include "jive.h"
 
+namespace AST
+{
+
 class CProgram;
 class CGoal;
 class CBuiltInType;
@@ -68,3 +71,5 @@ public:
 	virtual void Visit( CArrayIndexExpression *expression ) = 0;
 	virtual void Visit( CCompoundExpression *expression ) = 0;
 };
+
+}

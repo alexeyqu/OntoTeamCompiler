@@ -4,6 +4,9 @@
 #include "IType.h"
 #include "CSymbol.h"
 
+namespace AST 
+{
+
 class CUserType : public IType
 {
 public:
@@ -14,4 +17,6 @@ public:
 	CSymbol *name;
 
 	CSymbol getSymbol();
-}; 
+};
+ 
+}

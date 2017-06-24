@@ -2,6 +2,9 @@
 
 #include "IEntity.h"
 
+namespace AST 
+{
+
 class CCompoundClass : public IEntity
 {
 public:
@@ -13,3 +16,4 @@ public:
 	CClass *class2;
 };
 
+}

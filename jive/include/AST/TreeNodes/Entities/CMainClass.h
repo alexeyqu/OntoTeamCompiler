@@ -4,6 +4,9 @@
 #include "IExpression.h"
 #include "IStatement.h"
 
+namespace AST 
+{
+
 class CMainClass : public IEntity
 {
 public:
@@ -17,3 +20,5 @@ public:
 	CIdExpression *cmdArgs;
 	IStatement *statement;
 };
+
+}

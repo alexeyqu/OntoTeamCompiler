@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include "IExpression.h"
 
+namespace AST 
+{
+
 class CArrayLengthExpression : public IExpression
 {
 public:
@@ -12,3 +15,5 @@ public:
 
 	IExpression *exp;
 };
+
+}

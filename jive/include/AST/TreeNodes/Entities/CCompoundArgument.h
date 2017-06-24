@@ -2,6 +2,9 @@
 
 #include "IEntity.h"
 
+namespace AST 
+{
+
 class CCompoundArgument : public IEntity
 {
 public:
@@ -12,3 +15,5 @@ public:
 	CCompoundArgument *arg1;
 	CArgument *arg2;
 };
+
+}

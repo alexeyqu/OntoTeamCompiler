@@ -1,8 +1,8 @@
-0xb4d001d4	num
+0xb4d00214	num
 0xb4d002b4	ComputeFac
 0xb4d003d4	new
 0xb4d00494	true
-0xb4d00174	num_aux
+0xb4d001d4	num_aux
 0xb4d004d4	return
 0xb4d00514	while
 0xb4d006d4	static
