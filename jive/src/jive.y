@@ -547,7 +547,7 @@ Identifier: ID {
 				int temp_column = yyloc.first_column;
 
 				CSymbol *newSymbol = new CSymbol( static_cast<std::string>( $1 ) );
-				(*jiveEnv)->symbolTable->insert( *newSymbol );
+				(*jiveEnv)->symbolTable->insert( newSymbol );
 				$$ = new CIdExpression( newSymbol );
 				
 				$$->coordinates.first_line = temp_line;

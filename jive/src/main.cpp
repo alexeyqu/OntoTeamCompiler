@@ -2,6 +2,7 @@
 #include <sstream>
 #include <memory>
 #include "AST/TreeVisitors/CPrintVisitor.h"
+#include "AST/TreeVisitors/CTypeCheckerVisitor.h"
 #include "AST/CProgram.h"
 #include "CJiveEnvironment.h"
 #include "jive.tab.h"
@@ -32,9 +33,12 @@ int main( int argc, char **argv ) {
 
 	outstream.open( outstreamFolder + "ST.txt", std::ios::out ); // TODO print results in good way
 	for( const auto &elem: jiveEnv->symbolTable->get() ) {
-		outstream << &elem << '\t' << elem.get() << "\n";
+		outstream << elem << '\t' << elem->get() << "\n";
 	}
 	outstream.close();
+
+	CTypeCheckerVisitor typeCheckerVisitor;
+    typeCheckerVisitor.Start( jiveEnv->program );
 
 	return 0;
 }
