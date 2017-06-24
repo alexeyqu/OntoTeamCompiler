@@ -6,9 +6,9 @@
 class IType : public IVisitorTarget 
 {
 protected:
-	IType( enums::TType _type ) : type( _type ) {}
+	IType( jive::TType _type ) : type( _type ) {}
 public:
-	enums::TType type;
+	jive::TType type;
 
 	// virtual getSymbol() = 0;	
 };

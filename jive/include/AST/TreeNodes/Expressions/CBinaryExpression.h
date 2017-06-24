@@ -5,11 +5,11 @@
 class CBinaryExpression : public IExpression
 {
 public:
-	CBinaryExpression( IExpression *_leftOperand, enums::TArithmeticOperation _operation, IExpression *_rightOperand );
+	CBinaryExpression( IExpression *_leftOperand, jive::TArithmeticOperation _operation, IExpression *_rightOperand );
 
 	void Accept( IVisitor *visitor ) override;
 
 	IExpression *leftOperand;
 	IExpression *rightOperand;
-	enums::TArithmeticOperation operation;
+	jive::TArithmeticOperation operation;
 };

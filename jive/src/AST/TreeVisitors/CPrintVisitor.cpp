@@ -17,7 +17,7 @@ void CPrintVisitor::Visit( CGoal *goal )
     long goalId = generateId(goal);
 
     outputStream << goalId << ";\n";
-    outputStream << goalId << "[label = \"Goal\"];\n";
+    outputStream << goalId << "[label = \"Goal\", shape = \"doublecircle\"];\n";
 
     outputStream << goalId << "->";
     goal->tmp1->Accept(this);
@@ -31,21 +31,21 @@ void CPrintVisitor::Visit( CBuiltInType *type ) {
 
     outputStream << typeId << ";\n";
     
-    outputStream << typeId << "[label = \"" << "Type" /*type->ToString()*/ << "\" ];\n";
+    outputStream << typeId << "[label = \"" << "Type" /*type->ToString()*/ << "\", shape = \"diamond\" ];\n";
 }
 
 void CPrintVisitor::Visit( CUserType *type ) {
     long typeId = generateId(type);
 
     outputStream << typeId << ";\n";
-    outputStream << typeId << "[label = \"" << type->name << "\" ];\n";
+    outputStream << typeId << "[label = \"" << type->name << "\", shape = \"diamond\" ];\n";
 }
 
 void CPrintVisitor::Visit( CVariable *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"VarDeclNtt\"];\n";
+    outputStream << entityId << "[label = \"VarDeclNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
     entity->type->Accept(this);
@@ -58,7 +58,7 @@ void CPrintVisitor::Visit( CCompoundVariable *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"CompoundVariableNtt\"];\n";
+    outputStream << entityId << "[label = \"CompoundVariableNtt\", shape = \"hexagon\"];\n";
 
     if( entity->var1 ) {
         if( entity->var1->var1 ) {
@@ -78,7 +78,7 @@ void CPrintVisitor::Visit( CArgument *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"ArgumentNtt\"];\n";
+    outputStream << entityId << "[label = \"ArgumentNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
     entity->type->Accept(this);
@@ -91,7 +91,7 @@ void CPrintVisitor::Visit( CCompoundArgument *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"CompoundArgumentNtt\"];\n";
+    outputStream << entityId << "[label = \"CompoundArgumentNtt\", shape = \"hexagon\"];\n";
 
     if( entity->arg1 ) {
     	if( entity->arg1->arg1 ) {
@@ -111,7 +111,7 @@ void CPrintVisitor::Visit( CMethod *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"MethodNtt\"];\n";
+    outputStream << entityId << "[label = \"MethodNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
     entity->returnType->Accept(this);
@@ -157,7 +157,7 @@ void CPrintVisitor::Visit( CCompoundMethod *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"CompoundMethodNtt\"];\n";
+    outputStream << entityId << "[label = \"CompoundMethodNtt\", shape = \"hexagon\"];\n";
 
     if( entity->method1 ) {
         if( entity->method1->method1 ) {
@@ -177,7 +177,7 @@ void CPrintVisitor::Visit( CMainClass *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"MainClassNtt\"];\n";
+    outputStream << entityId << "[label = \"MainClassNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
     entity->name->Accept(this);
@@ -193,7 +193,7 @@ void CPrintVisitor::Visit( CClass *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"ClassNtt\"];\n";
+    outputStream << entityId << "[label = \"ClassNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
     entity->name->Accept(this);
@@ -228,7 +228,7 @@ void CPrintVisitor::Visit( CCompoundClass *entity ) {
     long entityId = generateId(entity);
 
     outputStream << entityId << ";\n";
-    outputStream << entityId << "[label = \"CompoundClassNtt\"];\n";
+    outputStream << entityId << "[label = \"CompoundClassNtt\", shape = \"hexagon\"];\n";
 
     if( entity->class1 ) {
         if( entity->class1->class1 ) {
@@ -249,7 +249,7 @@ void CPrintVisitor::Visit( CCompoundStatement *statement ) {
     long stmId = generateId(statement);
 
     outputStream << stmId << ";\n";
-    outputStream << stmId << "[label = \"CompoundStm\"];\n";
+    outputStream << stmId << "[label = \"CompoundStm\", shape = \"polygon\"];\n";
 
     if(statement->leftStatement) {
         outputStream << stmId << "->";
@@ -266,7 +266,7 @@ void CPrintVisitor::Visit( CAssignStatement *statement ) {
     long stmId = generateId(statement);
 
     outputStream << stmId << ";\n";
-    outputStream << stmId << "[label = \"AssignStm\"];\n";
+    outputStream << stmId << "[label = \"AssignStm\", shape = \"ellipse\"];\n";
 
     outputStream << stmId << "->";
     statement->leftOperand->Accept(this);
@@ -279,7 +279,7 @@ void CPrintVisitor::Visit( CPrintStatement *statement ) {
     long stmId = generateId(statement);
 
     outputStream << stmId << ";\n";
-    outputStream << stmId << "[label = \"PrintStm\"];\n";
+    outputStream << stmId << "[label = \"PrintStm\", shape = \"ellipse\"];\n";
 
     outputStream << stmId << "->";
     statement->operand->Accept(this);
@@ -289,7 +289,7 @@ void CPrintVisitor::Visit( CIfStatement *statement ) {
     long stmId = generateId(statement);
 
     outputStream << stmId << ";\n";
-    outputStream << stmId << "[label = \"IfStm\"];\n";
+    outputStream << stmId << "[label = \"IfStm\", shape = \"ellipse\"];\n";
 
     outputStream << stmId << "->";
     statement->expression->Accept(this);
@@ -305,7 +305,7 @@ void CPrintVisitor::Visit( CWhileStatement *statement ) {
     long stmId = generateId(statement);
 
     outputStream << stmId << ";\n";
-    outputStream << stmId << "[label = \"WhileStm\"];\n";
+    outputStream << stmId << "[label = \"WhileStm\", shape = \"ellipse\"];\n";
 
     outputStream << stmId << "->";
     statement->expression->Accept(this);
@@ -318,7 +318,7 @@ void CPrintVisitor::Visit( CIdExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << "\n";
-    outputStream << exprId << "[label = \"IdExp\"];\n";
+    outputStream << exprId << "[label = \"IdExp\", shape = \"circle\"];\n";
 
     long nameId = generateId(&expression->name);
     outputStream << exprId << "->" << nameId << ";\n";
@@ -329,7 +329,7 @@ void CPrintVisitor::Visit( CBinaryExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << ";\n";
-    outputStream << exprId << "[label = \"BinExp\"];\n";
+    outputStream << exprId << "[label = \"BinExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
     expression->leftOperand->Accept(this);
@@ -337,22 +337,22 @@ void CPrintVisitor::Visit( CBinaryExpression *expression ) {
     outputStream << exprId << "->";
     long operationId = generateId(&expression->operation);
     switch(expression->operation) {
-        case enums::TArithmeticOperation::ADD:
+        case jive::TArithmeticOperation::ADD:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"+\" ];\n";
             break;
 
-        case enums::TArithmeticOperation::SUB:
+        case jive::TArithmeticOperation::SUB:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"-\" ];\n";
             break;
 
-        case enums::TArithmeticOperation::MUL:
+        case jive::TArithmeticOperation::MUL:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"*\" ];\n";
             break;
 
-        case enums::TArithmeticOperation::DIV:
+        case jive::TArithmeticOperation::DIV:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"/\" ];\n";
             break;        
@@ -366,7 +366,7 @@ void CPrintVisitor::Visit( CNumberExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << "\n";
-    outputStream << exprId << "[label = \"NumExp\"];\n";
+    outputStream << exprId << "[label = \"NumExp\", shape = \"circle\"];\n";
 
     long numberId = generateId(&expression->number);
     outputStream << exprId << "->" << numberId << ";\n";
@@ -377,7 +377,7 @@ void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << ";\n";
-    outputStream << exprId << "[label = \"BinBoolExp\"];\n";
+    outputStream << exprId << "[label = \"BinBoolExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
     expression->leftOperand->Accept(this);
@@ -385,21 +385,21 @@ void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
     outputStream << exprId << "->";
     long operationId = generateId(&expression->operation);
     switch(expression->operation) {
-        case enums::TBooleanOperation::AND:
+        case jive::TBooleanOperation::AND:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"AND\" ];\n";
             break;
 
-        case enums::TBooleanOperation::OR:
+        case jive::TBooleanOperation::OR:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"OR\" ];\n";
             break;
-        case enums::TBooleanOperation::LESS:
+        case jive::TBooleanOperation::LESS:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"<\" ];\n";
             break;
 
-        case enums::TBooleanOperation::GREATER:
+        case jive::TBooleanOperation::GREATER:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \">\" ];\n";
             break;
@@ -413,7 +413,7 @@ void CPrintVisitor::Visit( CBooleanExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << "\n";
-    outputStream << exprId << "[label = \"BoolExp\"];\n";
+    outputStream << exprId << "[label = \"BoolExp\", shape = \"circle\"];\n";
 
     long valueId = generateId(&expression->value);
     outputStream << exprId << "->" << valueId << ";\n";
@@ -424,7 +424,7 @@ void CPrintVisitor::Visit( CThisExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << "\n";
-    outputStream << exprId << "[label = \"ThisExp\"];\n";
+    outputStream << exprId << "[label = \"ThisExp\", shape = \"circle\"];\n";
 
     long addressId = generateId(&expression->address);
     outputStream << exprId << "->" << addressId << ";\n";
@@ -435,7 +435,7 @@ void CPrintVisitor::Visit( CNewObjectExpression *expression ) {
     long newObjId = generateId(expression);
 
     outputStream << newObjId << "\n";
-    outputStream << newObjId << "[label = \"NewObjExp\"];\n";
+    outputStream << newObjId << "[label = \"NewObjExp\", shape = \"circle\"];\n";
 
     outputStream << newObjId << "->";
     expression->objTypeId->Accept(this);
@@ -445,7 +445,7 @@ void CPrintVisitor::Visit( CNewIntArrayExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << "\n";
-    outputStream << exprId << "[label = \"NewIntArrayExp\"];\n";
+    outputStream << exprId << "[label = \"NewIntArrayExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
     expression->arrSize->Accept(this);
@@ -455,7 +455,7 @@ void CPrintVisitor::Visit( CMethodCallExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << "\n";
-    outputStream << exprId << "[label = \"MethodCallExp\"];\n";
+    outputStream << exprId << "[label = \"MethodCallExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
     expression->base->Accept(this);
@@ -473,7 +473,7 @@ void CPrintVisitor::Visit( CArrayLengthExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << "\n";
-    outputStream << exprId << "[label = \"ArrayLengthExp\"];\n";
+    outputStream << exprId << "[label = \"ArrayLengthExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
     expression->exp->Accept(this);
@@ -483,7 +483,7 @@ void CPrintVisitor::Visit( CArrayIndexExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << "\n";
-    outputStream << exprId << "[label = \"ArrayIndexExp\"];\n";
+    outputStream << exprId << "[label = \"ArrayIndexExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
     expression->id->Accept(this);
@@ -496,7 +496,7 @@ void CPrintVisitor::Visit( CCompoundExpression *expression ) {
     long exprId = generateId(expression);
 
     outputStream << exprId << ";\n";
-    outputStream << exprId << "[label = \"CompoundExp\"];\n";
+    outputStream << exprId << "[label = \"CompoundExp\", shape = \"circle\"];\n";
 
     if(expression->leftExpression) {
         outputStream << exprId << "->";

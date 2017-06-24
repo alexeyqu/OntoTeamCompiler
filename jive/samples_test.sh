@@ -1,18 +1,20 @@
 #!/bin/bash
 
-FOLDER=test/good_samples
+FOLDER=test
 # FOLDER=test/synterrors
 
 cd $FOLDER
 
-mkdir -p ./parsetrees
-mkdir -p ./parsetrees/dot
-mkdir -p ./symboltables
+mkdir -p ./good_results
+
+cd ./good_samples
 
 for f in *.java
 do
     echo $f
-    ../../jive $f ./parsetrees/dot/$f.dot ./symboltables/$f.txt
-    dot -Tps ./parsetrees/dot/$f.dot -o ./parsetrees/$f.ps
-    dot -Tpng ./parsetrees/dot/$f.dot -o ./parsetrees/$f.png
+    mkdir -p ../good_results/$f
+    cp $f ../good_results/$f/code.java
+    ../../jive $f ../good_results/$f/
+    dot -Tps ../good_results/$f/AST.dot -o ../good_results/$f/AST.ps
+    dot -Tpng ../good_results/$f/AST.dot -o ../good_results/$f/AST.png
 done

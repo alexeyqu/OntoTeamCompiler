@@ -326,7 +326,7 @@ LeftExpression: LeftExpression LBRACKET Expression RBRACKET {
 Type:	INT { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CBuiltInType( enums::INTEGER );
+			$$ = new CBuiltInType( jive::INTEGER );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -334,7 +334,7 @@ Type:	INT {
 		INT LBRACKET RBRACKET { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CBuiltInType( enums::INTEGERARRAY );
+			$$ = new CBuiltInType( jive::INTEGERARRAY );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -342,7 +342,7 @@ Type:	INT {
 		BOOL { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CBuiltInType( enums::BOOLEAN );
+			$$ = new CBuiltInType( jive::BOOLEAN );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -350,7 +350,7 @@ Type:	INT {
 		STRING { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CBuiltInType( enums::STRING );
+			$$ = new CBuiltInType( jive::STRING );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -367,7 +367,7 @@ Type:	INT {
 Expression: Expression AND Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryBooleanExpression( $1, enums::AND, $3 );
+				$$ = new CBinaryBooleanExpression( $1, jive::AND, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -375,7 +375,7 @@ Expression: Expression AND Expression {
 			Expression OR Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryBooleanExpression( $1, enums::OR, $3 );
+				$$ = new CBinaryBooleanExpression( $1, jive::OR, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column;  
 			}
@@ -383,7 +383,7 @@ Expression: Expression AND Expression {
 			Expression LESS Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryBooleanExpression( $1, enums::LESS, $3 );
+				$$ = new CBinaryBooleanExpression( $1, jive::LESS, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -391,7 +391,7 @@ Expression: Expression AND Expression {
 			Expression GREATER Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryBooleanExpression( $1, enums::GREATER, $3 );
+				$$ = new CBinaryBooleanExpression( $1, jive::GREATER, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -399,7 +399,7 @@ Expression: Expression AND Expression {
 			Expression ADD Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryExpression( $1, enums::ADD, $3 );
+				$$ = new CBinaryExpression( $1, jive::ADD, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -407,7 +407,7 @@ Expression: Expression AND Expression {
 			Expression SUB Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryExpression( $1, enums::SUB, $3 );
+				$$ = new CBinaryExpression( $1, jive::SUB, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -415,7 +415,7 @@ Expression: Expression AND Expression {
 			Expression MUL Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryExpression( $1, enums::MUL, $3 );
+				$$ = new CBinaryExpression( $1, jive::MUL, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -423,7 +423,7 @@ Expression: Expression AND Expression {
 			Expression DIV Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryExpression( $1, enums::DIV, $3 );
+				$$ = new CBinaryExpression( $1, jive::DIV, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -431,7 +431,7 @@ Expression: Expression AND Expression {
 			Expression MOD Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryExpression( $1, enums::MOD, $3 );
+				$$ = new CBinaryExpression( $1, jive::MOD, $3 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
@@ -503,7 +503,7 @@ Expression: Expression AND Expression {
 			SUB Expression { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CBinaryExpression ($2, enums::MUL, new CNumberExpression ( "-1" ) );
+				$$ = new CBinaryExpression ($2, jive::MUL, new CNumberExpression ( "-1" ) );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			} // FIXIT

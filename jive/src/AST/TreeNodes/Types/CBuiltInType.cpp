@@ -1,6 +1,6 @@
 #include "CBuiltInType.h"
 
-CBuiltInType::CBuiltInType( enums::TType _type ) : \
+CBuiltInType::CBuiltInType( jive::TType _type ) : \
 	IType( _type ) {}
 
 void CBuiltInType::Accept( IVisitor *visitor ) {
@@ -9,19 +9,19 @@ void CBuiltInType::Accept( IVisitor *visitor ) {
 
 // std::string CBuiltInType::ToString() {
 // 	switch( type ) {
-// 		case enums::INTEGER :
+// 		case jive::INTEGER :
 // 			return "int";
-// 		case enums::INTEGERARRAY :
+// 		case jive::INTEGERARRAY :
 // 			return "int[]";
-// 		case enums::BOOLEAN :
+// 		case jive::BOOLEAN :
 // 			return "boolean";
-// 		case enums::STRING :
+// 		case jive::STRING :
 // 			return "String";
-// 		case enums::STRINGARRAY :
+// 		case jive::STRINGARRAY :
 // 			return "String[]";
-// 		case enums::UNKNOWNTYPE :
+// 		case jive::UNKNOWNTYPE :
 // 			return "UnknownType";
-// 		case enums::VOID :
+// 		case jive::VOID :
 // 			return "void";
 // 		default:
 // 			return "ErrorType";

@@ -9,28 +9,28 @@
 
 int main( int argc, char **argv ) {
 	++argv, --argc;  /* skip over program name */
-	if ( argc > 0 )
+	if ( argc > 0 ) /* get code */
 		yyin = fopen( argv[0], "r" );
 	else
 		yyin = stdin;
 
-	std::string outstreamFilePath;
-	if ( argc > 1 )
-		outstreamFilePath = argv[1];
+	std::string outstreamFolder;
+	if ( argc > 1 ) /* output folder */
+		outstreamFolder = argv[1];
 	else
-		outstreamFilePath = "graph.dot";
+		outstreamFolder = ".";
 
 	CJiveEnvironment *jiveEnv = new CJiveEnvironment();
 
 	yyparse( &jiveEnv );
 
 	std::ofstream outstream;
-	outstream.open( outstreamFilePath, std::ios::out );
+	outstream.open( outstreamFolder + "AST.dot", std::ios::out );
 	CPrintVisitor printVisitor( outstream );
 	printVisitor.Start( jiveEnv->program, "my_graph" );
 	outstream.close();
 
-	outstream.open( "table.txt", std::ios::out ); // TODO print results in good way
+	outstream.open( outstreamFolder + "ST.txt", std::ios::out ); // TODO print results in good way
 	for( const auto &elem: jiveEnv->symbolTable->get() ) {
 		outstream << &elem << '\t' << elem.get() << "\n";
 	}

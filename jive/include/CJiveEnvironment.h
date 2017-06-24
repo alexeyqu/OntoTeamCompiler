@@ -6,7 +6,7 @@
 class CJiveEnvironment
 {
 public:
-	CJiveEnvironment() : symbolTable( new CSymbolTable() ){}
+	CJiveEnvironment();
 
 	void LoadProgram( CProgram *_program ) { program = _program; }
 
