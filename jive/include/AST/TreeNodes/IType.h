@@ -7,6 +7,8 @@
 namespace AST 
 {
 
+using ST::CSymbol;
+
 class IType : public IVisitorTarget 
 {
 protected:

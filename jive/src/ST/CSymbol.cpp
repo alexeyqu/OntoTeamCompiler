@@ -1,6 +1,6 @@
 #include "CSymbol.h"
 
-namespace AST 
+namespace ST 
 {
 
 CSymbol::CSymbol( std::string _token ) : symbol( _token ) {}

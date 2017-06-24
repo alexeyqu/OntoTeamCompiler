@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <boost/flyweight.hpp>
 #include "IExpression.h"
 #include "CSymbol.h"
 
@@ -14,7 +15,7 @@ public:
 
    	void Accept( IVisitor *visitor ) override;
 
-	flyweight<std::string> getName() const;
+	boost::flyweight<std::string> getName() const;
 
    	CSymbol *name;
 };

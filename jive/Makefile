@@ -32,7 +32,9 @@ INCLUDES = -I $(AUTO_PATH) -I include \
 	-I include/AST \
 	-I include/AST/TreeNodes \
 	-I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities -I include/AST/TreeNodes/Types \
-	-I include/AST/TreeVisitors -I /usr/local/include
+	-I include/AST/TreeVisitors \
+	-I include/ST \
+	-I /usr/local/include
 LIBS = -lasan -lfl -pthread
 
 .PHONY: default_target

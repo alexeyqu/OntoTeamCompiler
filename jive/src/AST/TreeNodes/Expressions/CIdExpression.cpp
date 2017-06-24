@@ -10,7 +10,7 @@ void CIdExpression::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
 }
 
-flyweight<std::string> CIdExpression::getName() const {
+boost::flyweight<std::string> CIdExpression::getName() const {
 	return name->get();
 }
 

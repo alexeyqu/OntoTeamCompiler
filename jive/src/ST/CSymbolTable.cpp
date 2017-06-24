@@ -1,6 +1,6 @@
 #include "CSymbolTable.h"
 
-namespace AST 
+namespace ST 
 {
 
 void CSymbolTable::insert( std::string name ) {

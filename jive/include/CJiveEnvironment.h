@@ -7,7 +7,7 @@ namespace jive
 {
 
 using AST::CProgram;
-using AST::CSymbolTable;
+using ST::CSymbolTable;
 
 class CJiveEnvironment
 {

@@ -2,7 +2,7 @@
 #include <unordered_set>
 #include "CSymbol.h"
 
-namespace AST 
+namespace ST 
 {
 
 class CSymbolTable
