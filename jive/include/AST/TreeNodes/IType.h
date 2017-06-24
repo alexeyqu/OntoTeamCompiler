@@ -2,6 +2,7 @@
 
 #include <string>
 #include "IVisitorTarget.h"
+#include "CSymbol.h"
 
 class IType : public IVisitorTarget 
 {
@@ -10,5 +11,5 @@ protected:
 public:
 	jive::TType type;
 
-	// virtual getSymbol() = 0;	
+	virtual CSymbol getSymbol() = 0;	
 };

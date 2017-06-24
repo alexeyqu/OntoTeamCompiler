@@ -7,4 +7,6 @@ void CUserType::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
 }
 
-// TODO bring flyweight<std::string> here
+CSymbol CUserType::getSymbol() {
+	return *name;
+}

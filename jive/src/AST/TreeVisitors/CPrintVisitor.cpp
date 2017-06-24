@@ -31,14 +31,14 @@ void CPrintVisitor::Visit( CBuiltInType *type ) {
 
     outputStream << typeId << ";\n";
     
-    outputStream << typeId << "[label = \"" << "Type" /*type->ToString()*/ << "\", shape = \"diamond\" ];\n";
+    outputStream << typeId << "[label = \"" << type->getSymbol().get() << "\", shape = \"diamond\" ];\n";
 }
 
 void CPrintVisitor::Visit( CUserType *type ) {
     long typeId = generateId(type);
 
     outputStream << typeId << ";\n";
-    outputStream << typeId << "[label = \"" << type->name << "\", shape = \"diamond\" ];\n";
+    outputStream << typeId << "[label = \"" << type->getSymbol().get() << "\", shape = \"diamond\" ];\n";
 }
 
 void CPrintVisitor::Visit( CVariable *entity ) {

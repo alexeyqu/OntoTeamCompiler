@@ -7,24 +7,23 @@ void CBuiltInType::Accept( IVisitor *visitor ) {
 	visitor->Visit( this );
 }
 
-// std::string CBuiltInType::ToString() {
-// 	switch( type ) {
-// 		case jive::INTEGER :
-// 			return "int";
-// 		case jive::INTEGERARRAY :
-// 			return "int[]";
-// 		case jive::BOOLEAN :
-// 			return "boolean";
-// 		case jive::STRING :
-// 			return "String";
-// 		case jive::STRINGARRAY :
-// 			return "String[]";
-// 		case jive::UNKNOWNTYPE :
-// 			return "UnknownType";
-// 		case jive::VOID :
-// 			return "void";
-// 		default:
-// 			return "ErrorType";
-// 	}
-
-// }
+CSymbol CBuiltInType::getSymbol() {
+	switch( type ) {
+		case jive::INTEGER :
+			return CSymbol( "int" );
+		case jive::INTEGERARRAY :
+			return CSymbol( "int[]" );
+		case jive::BOOLEAN :
+			return CSymbol( "boolean" );
+		case jive::STRING :
+			return CSymbol( "String" );
+		case jive::STRINGARRAY :
+			return CSymbol( "String[]" );
+		case jive::UNKNOWNTYPE :
+			return CSymbol( "UnknownType" );
+		case jive::VOID :
+			return CSymbol( "void" );
+		default:
+			return CSymbol( "ErrorType" );
+	}
+}

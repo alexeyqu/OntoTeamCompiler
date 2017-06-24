@@ -13,5 +13,5 @@ public:
 
 	CSymbol *name;
 
-	// CSymbol *ToString() override;
+	CSymbol getSymbol();
 }; 

@@ -2,6 +2,7 @@
 #pragma once
 
 #include "IType.h"
+#include "CSymbol.h"
 
 class CBuiltInType : public IType
 {
@@ -10,5 +11,7 @@ public:
 
    	void Accept( IVisitor *visitor ) override;
 
-   	// CSymbol *getSymbol() override;
+	CSymbol *name;
+
+	CSymbol getSymbol(); // TODO make static symbols
 };
