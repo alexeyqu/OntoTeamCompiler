@@ -28,7 +28,7 @@ CC = g++
 # flags #
 CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD
 INCLUDES = -I $(AUTO_PATH) -I include \
-	-I include/Misc \
+	-I include/Shared \
 	-I include/AST \
 	-I include/AST/TreeNodes \
 	-I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities -I include/AST/TreeNodes/Types \
