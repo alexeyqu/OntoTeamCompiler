@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <unordered_set>
 #include "CMethodSymbol.h"
 #include "CVariableSymbol.h"
 #include "ISymbol.h"
@@ -11,11 +11,11 @@ namespace ST
 class CClassSymbol : public ISymbol
 {
 public:
-    CClassSymbol( CTypeSymbol *_type, CSymbol *_name, CClassSymbol *_baseClass ) : ISymbol( _type,  _name ), \
+    CClassSymbol( CSymbol *_name, CTypeSymbol *_type, CClassSymbol *_baseClass  ) : ISymbol( _name, _type ), \
 		fields(), methods(), baseClass( _baseClass ) {}
 
-	std::vector<CVariableSymbol *> fields;
-	std::vector<CMethodSymbol *> methods;
+	std::unordered_set<CVariableSymbol *> fields;
+	std::unordered_set<CMethodSymbol *> methods;
 	CClassSymbol *baseClass;
 };
 

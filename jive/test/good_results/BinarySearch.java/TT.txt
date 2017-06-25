@@ -1,0 +1,12 @@
+Class	BS
+Class	BinarySearch
+String	builtin
+int[]	builtin
+Identifier	builtin
+boolean	builtin
+int	builtin
+Class	builtin
+String[]	builtin
+UnknownType	builtin
+UserType	builtin
+void	builtin

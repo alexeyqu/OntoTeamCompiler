@@ -22,8 +22,14 @@ CSymbol CBuiltInType::getSymbol() {
 			return CSymbol( "String" );
 		case jive::STRINGARRAY :
 			return CSymbol( "String[]" );
+		case jive::CLASS :
+			return CSymbol( "Class" );
+		case jive::IDENTIFIER :
+			return CSymbol( "Identifier" );
 		case jive::UNKNOWNTYPE :
 			return CSymbol( "UnknownType" );
+		case jive::USERTYPE :
+			return CSymbol( "UserType" );
 		case jive::VOID :
 			return CSymbol( "void" );
 		default:

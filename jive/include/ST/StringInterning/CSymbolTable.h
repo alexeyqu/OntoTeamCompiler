@@ -8,12 +8,12 @@ namespace ST
 class CSymbolTable
 {
 public:
-    void insert( CSymbol *symbol ) { table.insert( symbol ); }
+    void insert( CSymbol symbol ) { table.insert( symbol ); }
     void insert( std::string name );
-    std::unordered_set<CSymbol *> &get() { return table; }
+    std::unordered_set<CSymbol> &get() { return table; }
 
 private:
-    std::unordered_set<CSymbol *> table;
+    std::unordered_set<CSymbol> table;
 };
 
 }

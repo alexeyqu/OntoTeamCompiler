@@ -3,8 +3,17 @@
 
 #include "jive.h"
 
+namespace jive
+{
+
+class CJiveEnvironment;
+
+}
+
 namespace AST
 {
+
+using jive::CJiveEnvironment;
 
 class CProgram;
 class CGoal;
@@ -40,6 +49,8 @@ class CCompoundExpression;
 class IVisitor
 {
 public:
+	IVisitor( CJiveEnvironment *_jiveEnv ) : jiveEnv( _jiveEnv ) {}
+
    	virtual void Visit( CProgram *program ) = 0;
    	virtual void Visit( CGoal *goal ) = 0;
    	virtual void Visit( CBuiltInType *type ) = 0;
@@ -70,6 +81,9 @@ public:
 	virtual void Visit( CArrayLengthExpression *expression ) = 0;
 	virtual void Visit( CArrayIndexExpression *expression ) = 0;
 	virtual void Visit( CCompoundExpression *expression ) = 0;
+
+protected:
+	CJiveEnvironment *jiveEnv;
 };
 
 }

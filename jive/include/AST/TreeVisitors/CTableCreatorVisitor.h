@@ -2,22 +2,25 @@
 
 #include <iostream>
 #include <cassert>
+#include <unordered_set>
 #include "CProgram.h"
 #include "CSymbolTableScope.h"
-#include "CClassSymbol.h"
-#include "CMethodSymbol.h"
+#include "Symbols.h"
 
 namespace AST 
 {
 
-using ST::CSymbolTableScope;
 using ST::CClassSymbol;
+using ST::CVariableSymbol;
 using ST::CMethodSymbol;
+using ST::CTypeSymbol;
 
 class CTableCreatorVisitor : public IVisitor 
 {
 public:
+	CTableCreatorVisitor( CJiveEnvironment *_jiveEnv ) : IVisitor( _jiveEnv ) {};
 	void Start( IVisitorTarget *vertex );
+	std::unordered_set<CClassSymbol *> &getClassTable() { return classTable; }
 	
 	void Visit( CProgram *program );
    	void Visit( CGoal *goal );
@@ -51,9 +54,9 @@ public:
 	void Visit( CCompoundExpression *expression );
 
 private:
-	std::vector<CSymbolTableScope *> scopes;
-	CClassSymbol *currentClass;
-	CMethodSymbol *currentMethod;
+	std::unordered_set<CClassSymbol *> classTable;	
+	CClassSymbol* curClassSymbol;
+	CMethodSymbol* curMethodSymbol;
 };
 
 }

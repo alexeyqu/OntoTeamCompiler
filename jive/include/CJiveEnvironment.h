@@ -5,11 +5,13 @@
 #include "CTypeSymbol.h"
 #include "CTypeTable.h"
 #include "CSymbol.h"
+#include "Types.h"
 
 namespace jive 
 {
 
 using AST::CProgram;
+using AST::CBuiltInType;
 using ST::CSymbol;
 using ST::CSymbolTable;
 using ST::CTypeSymbol;

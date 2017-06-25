@@ -34,7 +34,7 @@ INCLUDES = -I $(AUTO_PATH) -I include \
 	-I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities -I include/AST/TreeNodes/Types \
 	-I include/AST/TreeVisitors \
 	-I include/ST \
-	-I include/ST/StringInterning \
+	-I include/ST/StringInterning -I include/ST/Symbols \
 	-I /usr/local/include
 LIBS = -lasan -lfl -pthread
 

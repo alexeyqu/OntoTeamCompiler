@@ -2,17 +2,22 @@
 
 #include <iostream>
 #include <cassert>
+#include <unordered_set>
 #include "CProgram.h"
 #include "CSymbolTableScope.h"
+#include "Symbols.h"
 
 namespace AST 
 {
 
 using ST::CSymbolTableScope;
+using ST::CClassSymbol;
+using ST::CMethodSymbol;
 
 class CTypeCheckerVisitor : public IVisitor 
 {
 public:
+	CTypeCheckerVisitor( CJiveEnvironment *_jiveEnv, std::unordered_set<CClassSymbol *> &_classTable ) : IVisitor( _jiveEnv ), classTable( _classTable ) {}
 	void Start( IVisitorTarget *vertex );
 	
 	void Visit( CProgram *program );
@@ -47,7 +52,10 @@ public:
 	void Visit( CCompoundExpression *expression );
 
 private:
-	std::vector<CSymbolTableScope *> scopes;
+	std::unordered_set<CClassSymbol *> classTable;
+	CClassSymbol* curClassSymbol;
+	CMethodSymbol* curMethodSymbol;
+	// TODO ArgTypes?
 };
 
 }
