@@ -3,8 +3,8 @@
 namespace AST 
 {
 
-CGoal::CGoal( IVisitorTarget *_tmp1, IVisitorTarget *_tmp2 ) : \
-	tmp1( _tmp1 ), tmp2( _tmp2 ) {}
+CGoal::CGoal( IVisitorTarget *_left, IVisitorTarget *_right ) : \
+	left( _left ), right( _right ) {}
  
 void CGoal::Accept( IVisitor *visitor ) {
 	visitor->Visit(this);

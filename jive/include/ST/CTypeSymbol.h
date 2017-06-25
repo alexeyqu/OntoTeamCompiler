@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ISymbol.h"
 #include "CSymbol.h"
 
 namespace ST
@@ -8,11 +9,11 @@ namespace ST
 class CTypeSymbol : public ISymbol
 {
 public:
-    CTypeSymbol( CSymbol *_name ) : name( _name ), type( this ), size( 0 ) {}
+    CTypeSymbol( CSymbol *_name ) : ISymbol( this, _name ), size( 0 ) {}
     CSymbol *get() const { return name; }
 
 private:
-	std::size size;
+	std::size_t size;
 };
 
 }

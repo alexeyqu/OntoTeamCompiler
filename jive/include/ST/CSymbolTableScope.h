@@ -1,6 +1,7 @@
 #pragma once
-#include <unordered_set>
+#include <unordered_map>
 #include "CSymbol.h"
+#include "ISymbol.h"
 
 namespace ST 
 {
@@ -8,11 +9,14 @@ namespace ST
 class CSymbolTableScope
 {
 public:
-    void insert( CSymbol *symbol ) { scope.insert( symbol ); }
-    std::unordered_set<CSymbol *> &get() { return scope; }
+    CSymbolTableScope() : scope() {}
+
+    void insert( ISymbol *symbol ) { scope.insert( std::pair<CSymbol *, ISymbol *>( symbol->name, symbol ) ); }
+    void clear() { scope.clear(); }
+    std::unordered_map<CSymbol *, ISymbol *> &get() { return scope; }
 
 private:
-    std::unordered_set<CSymbol *> scope;
+    std::unordered_map<CSymbol *, ISymbol *> scope;
 };
 
 }

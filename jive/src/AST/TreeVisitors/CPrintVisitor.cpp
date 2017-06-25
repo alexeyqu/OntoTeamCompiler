@@ -23,10 +23,10 @@ void CPrintVisitor::Visit( CGoal *goal )
     outputStream << goalId << "[label = \"Goal\", shape = \"doublecircle\"];\n";
 
     outputStream << goalId << "->";
-    goal->tmp1->Accept(this);
+    goal->left->Accept(this);
 
     outputStream << goalId << "->";
-    goal->tmp2->Accept(this);
+    goal->right->Accept(this);
 }
 
 void CPrintVisitor::Visit( CBuiltInType *type ) {

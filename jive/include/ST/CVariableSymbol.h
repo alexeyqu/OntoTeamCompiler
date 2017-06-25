@@ -8,7 +8,7 @@ namespace ST
 class CVariableSymbol : public ISymbol
 {
 public:
-    CVariableSymbol( CTypeSymbol *_type, CSymbol *_name ) : type( _type ), name( _name ) {}
+    CVariableSymbol( CTypeSymbol *_type, CSymbol *_name ) : ISymbol( _type, _name ) {}
 };
 
 }

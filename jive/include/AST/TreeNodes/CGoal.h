@@ -10,12 +10,12 @@ namespace AST
 class CGoal : public IVisitorTarget 
 {
 public:
-	CGoal ( IVisitorTarget *_tmp1, IVisitorTarget *_tmp2 );
+	CGoal ( IVisitorTarget *_left, IVisitorTarget *_right );
 	
 	void Accept( IVisitor *visitor ) override;
 
-	IVisitorTarget *tmp1;
-	IVisitorTarget *tmp2;
+	IVisitorTarget *left;
+	IVisitorTarget *right;
 };
 
 }

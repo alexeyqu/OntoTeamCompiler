@@ -1,10 +1,11 @@
 #pragma once
 
-#include "CTypeSymbol.h"
 #include "CSymbol.h"
 
 namespace ST
 {
+
+class CTypeSymbol;
 
 class ISymbol
 {

@@ -131,9 +131,9 @@ digraph my_graph {
 -1261436096[label = "IdExp", shape = "circle"];
 -1261436096->-1261436080;
 -1261436080[label = "Sort"];
--1261436576->-1259339696;
--1259339696[label = "PrintStm", shape = "ellipse"];
--1259339696->-1261435952
+-1261436576->-1259335760;
+-1259335760[label = "PrintStm", shape = "ellipse"];
+-1259335760->-1261435952
 -1261435952[label = "NumExp", shape = "circle"];
 -1261435952->-1261435936;
 -1261435936[label = "99999"];
@@ -631,9 +631,9 @@ digraph my_graph {
 -1261425584[label = "NumExp", shape = "circle"];
 -1261425584->-1261425568;
 -1261425568[label = "1"];
--1261425776->-1259333648;
--1259333648[label = "PrintStm", shape = "ellipse"];
--1259333648->-1261425440
+-1261425776->-1259335280;
+-1259335280[label = "PrintStm", shape = "ellipse"];
+-1259335280->-1261425440
 -1261425440[label = "ArrayIndexExp", shape = "circle"];
 -1261425440->-1261425344
 -1261425344[label = "IdExp", shape = "circle"];

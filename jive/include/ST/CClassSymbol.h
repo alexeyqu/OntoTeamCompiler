@@ -11,7 +11,7 @@ namespace ST
 class CClassSymbol : public ISymbol
 {
 public:
-    CClassSymbol( CTypeSymbol *_type, CSymbol *_name, CClassSymbol *_baseClass ) : type( _type ), name( _name ), \
+    CClassSymbol( CTypeSymbol *_type, CSymbol *_name, CClassSymbol *_baseClass ) : ISymbol( _type,  _name ), \
 		fields(), methods(), baseClass( _baseClass ) {}
 
 	std::vector<CVariableSymbol *> fields;
