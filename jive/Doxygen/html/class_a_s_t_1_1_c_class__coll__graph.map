@@ -1,0 +1,17 @@
+<map id="AST::CClass" name="AST::CClass">
+<area shape="rect" id="node2" href="$class_a_s_t_1_1_i_entity.html" title="AST::IEntity" alt="" coords="981,487,1076,513"/>
+<area shape="rect" id="node5" href="$class_a_s_t_1_1_c_compound_method.html" title="AST::CCompoundMethod" alt="" coords="1932,487,2104,513"/>
+<area shape="rect" id="node6" href="$class_a_s_t_1_1_c_method.html" title="AST::CMethod" alt="" coords="1720,271,1829,297"/>
+<area shape="rect" id="node9" href="$class_a_s_t_1_1_c_compound_variable.html" title="AST::CCompoundVariable" alt="" coords="1419,444,1595,471"/>
+<area shape="rect" id="node10" href="$class_a_s_t_1_1_c_variable.html" title="AST::CVariable" alt="" coords="1219,379,1333,405"/>
+<area shape="rect" id="node13" href="$class_a_s_t_1_1_c_compound_argument.html" title="AST::CCompoundArgument" alt="" coords="1415,329,1600,356"/>
+<area shape="rect" id="node14" href="$class_a_s_t_1_1_c_argument.html" title="AST::CArgument" alt="" coords="1215,311,1337,337"/>
+<area shape="rect" id="node3" href="$class_a_s_t_1_1_i_visitor_target.html" title="AST::IVisitorTarget" alt="" coords="245,212,380,239"/>
+<area shape="rect" id="node7" href="$class_a_s_t_1_1_i_expression.html" title="AST::IExpression" alt="" coords="715,191,840,217"/>
+<area shape="rect" id="node8" href="$class_a_s_t_1_1_i_type.html" title="AST::IType" alt="" coords="445,241,534,268"/>
+<area shape="rect" id="node16" href="$class_a_s_t_1_1_i_statement.html" title="AST::IStatement" alt="" coords="429,43,549,69"/>
+<area shape="rect" id="node4" href="$classjive_1_1_coordinates.html" title="jive::Coordinates" alt="" coords="5,212,125,239"/>
+<area shape="rect" id="node11" href="$class_a_s_t_1_1_c_id_expression.html" title="AST::CIdExpression" alt="" coords="957,235,1100,261"/>
+<area shape="rect" id="node12" href="$class_s_t_1_1_c_symbol.html" title="ST::CSymbol" alt="" coords="727,241,828,268"/>
+<area shape="rect" id="node15" href="$class_a_s_t_1_1_c_compound_statement.html" title="AST::CCompoundStatement" alt="" coords="683,15,872,41"/>
+</map>

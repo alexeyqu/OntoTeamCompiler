@@ -1,0 +1,12 @@
+<map id="AST::IEntity" name="AST::IEntity">
+<area shape="rect" id="node3" href="$class_a_s_t_1_1_c_argument.html" title="AST::CArgument" alt="" coords="362,5,485,32"/>
+<area shape="rect" id="node4" href="$class_a_s_t_1_1_c_class.html" title="AST::CClass" alt="" coords="373,56,473,83"/>
+<area shape="rect" id="node5" href="$class_a_s_t_1_1_c_compound_argument.html" title="AST::CCompoundArgument" alt="" coords="331,107,516,133"/>
+<area shape="rect" id="node6" href="$class_a_s_t_1_1_c_compound_class.html" title="AST::CCompoundClass" alt="" coords="342,157,505,184"/>
+<area shape="rect" id="node7" href="$class_a_s_t_1_1_c_compound_method.html" title="AST::CCompoundMethod" alt="" coords="337,208,509,235"/>
+<area shape="rect" id="node8" href="$class_a_s_t_1_1_c_compound_variable.html" title="AST::CCompoundVariable" alt="" coords="335,259,511,285"/>
+<area shape="rect" id="node9" href="$class_a_s_t_1_1_c_main_class.html" title="AST::CMainClass" alt="" coords="359,309,487,336"/>
+<area shape="rect" id="node10" href="$class_a_s_t_1_1_c_method.html" title="AST::CMethod" alt="" coords="369,360,478,387"/>
+<area shape="rect" id="node11" href="$class_a_s_t_1_1_c_variable.html" title="AST::CVariable" alt="" coords="367,411,480,437"/>
+<area shape="rect" id="node2" href="$class_a_s_t_1_1_i_visitor_target.html" title="AST::IVisitorTarget" alt="" coords="5,208,140,235"/>
+</map>

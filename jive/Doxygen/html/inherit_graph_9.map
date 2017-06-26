@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_s_t_1_1_i_symbol.html" title="ST::ISymbol" alt="" coords="5,81,100,108"/>
+<area shape="rect" id="node2" href="$class_s_t_1_1_c_class_symbol.html" title="ST::CClassSymbol" alt="" coords="155,5,289,32"/>
+<area shape="rect" id="node3" href="$class_s_t_1_1_c_method_symbol.html" title="ST::CMethodSymbol" alt="" coords="150,56,294,83"/>
+<area shape="rect" id="node4" href="$class_s_t_1_1_c_type_symbol.html" title="ST::CTypeSymbol" alt="" coords="157,107,287,133"/>
+<area shape="rect" id="node5" href="$class_s_t_1_1_c_variable_symbol.html" title="ST::CVariableSymbol" alt="" coords="148,157,296,184"/>
+</map>
