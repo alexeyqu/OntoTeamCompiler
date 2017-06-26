@@ -41,7 +41,7 @@
 	CCompoundExpression* Expressions;
 	CIdExpression *Identifier;
 
-	IType* Type;
+	CType* Type;
 	IEntity *Entity;
 	IStatement *Statement;
 	IExpression *Expression;
@@ -329,7 +329,7 @@ LeftExpression: LeftExpression LBRACKET Expression RBRACKET {
 Type:	INT { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CBuiltInType( jive::INTEGER );
+			$$ = new CType( jive::INTEGER, new CSymbol( "int" ) );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -337,7 +337,7 @@ Type:	INT {
 		INT LBRACKET RBRACKET { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CBuiltInType( jive::INTEGERARRAY );
+			$$ = new CType( jive::INTEGERARRAY, new CSymbol( "int[]" ) );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -345,7 +345,7 @@ Type:	INT {
 		BOOL { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CBuiltInType( jive::BOOLEAN );
+			$$ = new CType( jive::BOOLEAN, new CSymbol( "boolean" ) );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -353,7 +353,7 @@ Type:	INT {
 		STRING { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CBuiltInType( jive::STRING );
+			$$ = new CType( jive::STRING, new CSymbol( "String" ) );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -361,7 +361,7 @@ Type:	INT {
 		Identifier { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CUserType( $1->name );
+			$$ = new CType( jive::CLASS, $1->name );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = yylloc.first_column; 
 		}
@@ -547,7 +547,7 @@ Identifier: ID {
 				int temp_column = yyloc.first_column;
 
 				CSymbol *newSymbol = new CSymbol( static_cast<std::string>( $1 ) );
-				(*jiveEnv)->symbolTable->insert( newSymbol );
+				(*jiveEnv)->symbolTable->insert( *newSymbol );
 				$$ = new CIdExpression( newSymbol );
 				
 				$$->coordinates.first_line = temp_line;

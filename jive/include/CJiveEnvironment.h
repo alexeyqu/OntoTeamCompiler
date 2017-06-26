@@ -11,11 +11,10 @@ namespace jive
 {
 
 using AST::CProgram;
-using AST::CBuiltInType;
+using AST::CType;
 using ST::CSymbol;
 using ST::CSymbolTable;
 using ST::CTypeSymbol;
-using ST::CTypeTable;
 
 class CJiveEnvironment
 {
@@ -26,7 +25,7 @@ public:
 
 	CProgram *program;
 	CSymbolTable *symbolTable;
-	CTypeTable *typeTable;
+	ST::CTypeTable *typeTable;
 };
 
 }

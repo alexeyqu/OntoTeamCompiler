@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IType.h"
+#include "CType.h"
 #include "IEntity.h"
 #include "IExpression.h"
 
@@ -10,7 +10,7 @@ namespace AST
 class CMethod : public IEntity
 {
 public:
-   	CMethod( IType *_returnType, CIdExpression *_id, 
+   	CMethod( CType *_returnType, CIdExpression *_id, 
    		CCompoundArgument *_arguments,
    		CCompoundVariable *_variables,
 		CCompoundStatement *_statements,
@@ -18,7 +18,7 @@ public:
 
    	void Accept( IVisitor *visitor ) override;
 
-	IType *returnType;
+	CType *returnType;
 	CIdExpression *id;
 	CCompoundArgument *arguments;
 	CCompoundVariable *variables;

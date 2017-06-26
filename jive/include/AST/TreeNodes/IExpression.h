@@ -8,7 +8,7 @@ namespace AST
 
 class IExpression : public IVisitorTarget {
 public:
-	IType *type;
+	CType *type;
 };
 
 }

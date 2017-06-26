@@ -24,8 +24,7 @@ public:
 	
 	void Visit( CProgram *program );
    	void Visit( CGoal *goal );
-	void Visit( CBuiltInType *type );
-	void Visit( CUserType *type );
+	void Visit( CType *type );
 	void Visit( CVariable *entity );
 	void Visit( CCompoundVariable *entity );
 	void Visit( CArgument *entity );

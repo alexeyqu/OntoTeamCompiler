@@ -17,8 +17,7 @@ using jive::CJiveEnvironment;
 
 class CProgram;
 class CGoal;
-class CBuiltInType;
-class CUserType;
+class CType;
 class CVariable;
 class CCompoundVariable;
 class CArgument;
@@ -53,8 +52,7 @@ public:
 
    	virtual void Visit( CProgram *program ) = 0;
    	virtual void Visit( CGoal *goal ) = 0;
-   	virtual void Visit( CBuiltInType *type ) = 0;
-	virtual void Visit( CUserType *type ) = 0;
+   	virtual void Visit( CType *type ) = 0;
    	virtual void Visit( CVariable *entity ) = 0;
 	virtual void Visit( CCompoundVariable *entity ) = 0;
 	virtual void Visit( CArgument *entity ) = 0;

@@ -20,16 +20,3 @@ private:
 };
 
 }
-
-namespace std {
-    template <>
-    struct hash<ST::CSymbol>
-    {
-        std::hash<std::string> hash_fn;
-
-        std::size_t operator()( const ST::CSymbol &symbol ) const
-        {
-            return hash_fn( symbol.get() );
-        }
-    };
-}
