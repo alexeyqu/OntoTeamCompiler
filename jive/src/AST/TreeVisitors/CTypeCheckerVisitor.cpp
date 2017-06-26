@@ -18,10 +18,7 @@ void CTypeCheckerVisitor::Visit( CGoal *goal )
     goal->right->Accept(this);
 }
 
-void CTypeCheckerVisitor::Visit( CBuiltInType *type ) {
-}
-
-void CTypeCheckerVisitor::Visit( CUserType *type ) {
+void CTypeCheckerVisitor::Visit( CType *type ) {
 }
 
 void CTypeCheckerVisitor::Visit( CVariable *entity ) {

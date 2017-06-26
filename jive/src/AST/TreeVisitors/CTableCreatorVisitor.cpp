@@ -19,10 +19,7 @@ void CTableCreatorVisitor::Visit( CGoal *goal ) {
     goal->right->Accept(this);
 }
 
-void CTableCreatorVisitor::Visit( CBuiltInType *type ) {
-}
-
-void CTableCreatorVisitor::Visit( CUserType *type ) {
+void CTableCreatorVisitor::Visit( CType *type ) {
 }
 
 void CTableCreatorVisitor::Visit( CVariable *entity ) {
@@ -107,27 +104,24 @@ void CTableCreatorVisitor::Visit( CCompoundMethod *entity ) {
 
 void CTableCreatorVisitor::Visit( CMainClass *entity ) {
     CTypeSymbol *mainClassTypeSymbol = new CTypeSymbol( entity->name->name );
-    IType *astType = new CBuiltInType( jive::CLASS );
-    assert( mainClassTypeSymbol );
-    assert( astType );
-    jiveEnv->typeTable->insert( astType, mainClassTypeSymbol );
+    jiveEnv->typeTable->insert( new CType( jive::CLASS, entity->name->name ), mainClassTypeSymbol );
 
     CClassSymbol* classSymbol = new CClassSymbol( entity->name->name, mainClassTypeSymbol, nullptr );
     classTable.insert( classSymbol );
 
     curClassSymbol = classSymbol;
 
-    CMethodSymbol* methodSymbol = new CMethodSymbol( new CSymbol( "main" ), jiveEnv->typeTable->lookup( new CBuiltInType( jive::VOID ) ) );
+    CMethodSymbol* methodSymbol = new CMethodSymbol( new CSymbol( "main" ), jiveEnv->typeTable->lookup( new CType( jive::VOID, new CSymbol( "void" ) ) ) );
     classSymbol->methods.insert( methodSymbol );
     curMethodSymbol = methodSymbol;
 
-    CVariableSymbol* varSymbol = new CVariableSymbol( entity->cmdArgs->name, jiveEnv->typeTable->lookup( new CBuiltInType( jive::STRINGARRAY ) ) );
+    CVariableSymbol* varSymbol = new CVariableSymbol( entity->cmdArgs->name, jiveEnv->typeTable->lookup( new CType( jive::STRINGARRAY, new CSymbol( "String[]" ) ) ) );
     methodSymbol->arguments.insert( varSymbol );
 }
 
 void CTableCreatorVisitor::Visit( CClass *entity ) {
     CTypeSymbol *classTypeSymbol = new CTypeSymbol( entity->name->name );
-    jiveEnv->typeTable->insert( new CBuiltInType( jive::CLASS ), classTypeSymbol );
+    jiveEnv->typeTable->insert( new CType( jive::CLASS, entity->name->name ), classTypeSymbol );
 
     CClassSymbol* classSymbol = new CClassSymbol( entity->name->name, classTypeSymbol, nullptr );
     if( classTable.find( classSymbol ) != classTable.end() ) {

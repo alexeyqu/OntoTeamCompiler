@@ -29,19 +29,11 @@ void CPrintVisitor::Visit( CGoal *goal )
     goal->right->Accept(this);
 }
 
-void CPrintVisitor::Visit( CBuiltInType *type ) {
+void CPrintVisitor::Visit( CType *type ) {
     long typeId = generateId(type);
 
     outputStream << typeId << ";\n";
-    
-    outputStream << typeId << "[label = \"" << type->getSymbol().get() << "\", shape = \"diamond\" ];\n";
-}
-
-void CPrintVisitor::Visit( CUserType *type ) {
-    long typeId = generateId(type);
-
-    outputStream << typeId << ";\n";
-    outputStream << typeId << "[label = \"" << type->getSymbol().get() << "\", shape = \"diamond\" ];\n";
+    outputStream << typeId << "[label = \"" << type->getSymbol()->get() << "\", shape = \"diamond\" ];\n";
 }
 
 void CPrintVisitor::Visit( CVariable *entity ) {

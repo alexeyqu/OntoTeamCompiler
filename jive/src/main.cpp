@@ -38,7 +38,7 @@ int main( int argc, char **argv ) {
 
 	outstream.open( outstreamFolder + "ST.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->symbolTable->get() ) {
-		outstream << elem << '\t' << elem->get() << "\n";
+		outstream << &elem << '\t' << elem.get() << "\n";
 	}
 	outstream.close();
 
@@ -48,7 +48,7 @@ int main( int argc, char **argv ) {
 
 	outstream.open( outstreamFolder + "TT.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->typeTable->get() ) {
-		outstream << elem.first->getSymbol().get() << '\t' << elem.second->get()->get() << "\n";
+		outstream << elem.first.getSymbol()->get() << '\t' << elem.second.get()->get() << "\n";
 	}
 	outstream.close();
 
