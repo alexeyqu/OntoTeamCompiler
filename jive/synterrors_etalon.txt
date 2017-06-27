@@ -1,0 +1,58 @@
+TC_11a.java
+[77, 9] Error: Unknown identifier "bugaga"
+[77, 9] Error: Type of return expression doesn't match method "Sort" return type.
+Expected: "int". Found: "UnknownType".
+TC_12b.java
+[97, 19] Error: Incorrect type of array size.
+Expected: "int". Found "boolean".
+TC_13a.java
+[3, 21] Error: Unknown class "int[]" method call.
+[3, 21] Error: Incorrect type of expression in Print statement.
+Expected: "int". Found "UnknownType"
+TC_13b.java
+[3, 30] Error: Method "Go" in class "QS" doesn't exist.
+[3, 21] Error: Incorrect type of expression in Print statement.
+Expected: "int". Found "UnknownType"
+TC_13c.java
+[3, 30] Error: Method "Start" of class "QS" expected to take 1 arguments but takes 2 arguments
+TC_1a.java
+[21, 7] Error: cyclic inheritance for class "Visitor" detected.
+[25, 7] Error: cyclic inheritance for class "MyVisitor" detected.
+TC_2a.java
+[3, 25] Error: Unknown class "Fac2"
+[3, 21] Error: Unknown class "Fac2" method call.
+[3, 21] Error: Incorrect type of expression in Print statement.
+Expected: "int". Found "UnknownType"
+TC_3a.java
+[27, 13] Error: Redeclaration of method "visit"
+[24, 22] Error: Unknown type of argument "n": Tree.
+TC_3b.java
+[24, 9] Error: Return type of method "visit" is of unknown type "TV2".
+TC_4a.java
+[24, 31] Error: Redeclaration of argument "n"
+TC_4b.java
+[24, 22] Error: Unknown type of argument "n": Tree.
+[24, 30] Error: Unknown type of argument "a": Tree2.
+TC_5a.java
+[41, 6] Error: Incorrect type of expression in If statement.
+Expected: "boolean". Found "int"
+TC_6a.java
+[3, 21] Error: Incorrect type of expression in Print statement.
+Expected: "int". Found "QS"
+TC_7b.java
+[23, 2] Error: Incorrect types of assign statement expressions.
+Expected: "int" and "int". Found "int" and "boolean".
+TC_7c.java
+[42, 17] Error: Incorrect type of array index.
+Expected: "int". Found "boolean".
+TC_8a.java
+[43, 10] Error: Incorrect types of binary operation.
+Expected: "int" and "int". Found "boolean" and "int".
+TC_9a.java
+Error: {40, 10} syntax error, unexpected ASSIGN, expecting ID
+TC_9a_2.java
+Error: {40, 2} syntax error, unexpected THIS, expecting RETURN
+TC_bonus1.java
+[41, 2] Error: The name of variable "QS" and its type are the same.
+[41, 2] Error: Incorrect types of assign statement expressions.
+Expected: "QS" and "QS". Found "QS" and "int".
