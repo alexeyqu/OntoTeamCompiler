@@ -19,11 +19,11 @@ Method Sort with return Type int
 	Vars:
 		Var aux03 of Type int
 		Var cont02 of Type boolean
-		Var t of Type int
 		Var cont01 of Type boolean
+		Var t of Type int
 		Var v of Type int
-		Var j of Type int
 		Var i of Type int
+		Var j of Type int
 		Var nt of Type int
 Method Start with return Type int
 	Args:

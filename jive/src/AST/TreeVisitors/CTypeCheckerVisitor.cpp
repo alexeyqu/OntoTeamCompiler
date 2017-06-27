@@ -7,6 +7,9 @@ namespace AST
 using jive::TType;
 using jive::CJiveEnvironment;
 
+#define OUT_COORDINATES( entity ) \
+	"[" << entity->coordinates.first_line << ", " << entity->coordinates.first_column << "] " 
+
 void CTypeCheckerVisitor::Start( IVisitorTarget *vertex ) {
     vertex->Accept( this );
 }
@@ -29,8 +32,7 @@ void CTypeCheckerVisitor::Visit( CVariable *entity ) {
     CType *varType = entity->type;
     if( jiveEnv->typeTable->lookup( varType ) == nullptr ) 
     {
-        outputStream << "[" << entity->coordinates.first_line << ", " 
-        << entity->coordinates.first_column << "] " 
+        outputStream << OUT_COORDINATES( entity )
         << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << varType->getSymbol()->get() << ".\n";
     }
 }
@@ -46,8 +48,7 @@ void CTypeCheckerVisitor::Visit( CArgument *entity ) {
     CType *argType = entity->type;
     if( jiveEnv->typeTable->lookup( argType ) == nullptr ) 
     {
-        outputStream << "[" << entity->coordinates.first_line << ", " 
-        << entity->coordinates.first_column << "] " 
+        outputStream << OUT_COORDINATES( entity )
         << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << argType->getSymbol()->get() << ".\n";
     }
 }
@@ -60,8 +61,9 @@ void CTypeCheckerVisitor::Visit( CCompoundArgument *entity ) {
 }
 
 void CTypeCheckerVisitor::Visit( CMethod *entity ) {
-    entity->returnType->Accept(this);
-    entity->id->Accept(this);
+ //   curMethodSymbol = curClassSymbol->lookupMethod( entity );
+	// assert( curMethodSymbol );
+
     if( entity->arguments ) {
     	entity->arguments->Accept(this);
 	}
@@ -75,6 +77,23 @@ void CTypeCheckerVisitor::Visit( CMethod *entity ) {
     }
 
     entity->returnExpression->Accept(this);
+
+	CType *retExpType = entity->returnExpression->type;
+
+	if( jiveEnv->typeTable->lookup( retExpType ) ) {
+		std::cerr << OUT_COORDINATES( entity )
+			<< "Error: Return type of method \"" << "FIXIT" /*curMethodName */
+			<< "\" is of unknown type \"" << entity->returnType->getSymbol()->get()  << "\".\n";
+		// curMethodName = "";
+		return;
+	}
+	if( retExpType != entity->returnType ) {
+		std::cerr << OUT_COORDINATES( entity ) 
+			<< "Error: Type of return expression doesn't match "
+			<< "method \"" <<  "FIXIT" /*curMethodName */ << "\" return type.\n"
+			<< "Expected: \"" << entity->returnType->getSymbol()->get()  << "\". Found: \"" << retExpType->getSymbol()->get()  << "\".\n";
+	}
+	// curMethodName = "";
 }
 
 void CTypeCheckerVisitor::Visit( CCompoundMethod *entity ) {

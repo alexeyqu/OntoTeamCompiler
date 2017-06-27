@@ -1,0 +1,19 @@
+Class Fac:
+Fields:
+Methods:
+Method ComputeFac with return Type int
+	Args:
+		Arg num of Type int
+	Vars:
+		Var num_aux of Type int
+---
+
+Class Factorial:
+Fields:
+Methods:
+Method main with return Type void
+	Args:
+		Arg a of Type String[]
+	Vars:
+---
+

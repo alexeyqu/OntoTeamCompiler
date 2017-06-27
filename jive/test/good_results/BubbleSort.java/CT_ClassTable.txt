@@ -15,12 +15,12 @@ Method Sort with return Type int
 	Args:
 	Vars:
 		Var t of Type int
-		Var j of Type int
-		Var aux07 of Type int
-		Var aux05 of Type int
 		Var aux06 of Type int
+		Var aux05 of Type int
+		Var aux07 of Type int
 		Var nt of Type int
 		Var aux02 of Type int
+		Var j of Type int
 		Var i of Type int
 		Var aux04 of Type int
 Method Start with return Type int

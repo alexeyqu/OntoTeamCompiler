@@ -1,14 +1,14 @@
 Class List:
 Fields:
-	Field next of Type List
 	Field end of Type boolean
+	Field next of Type List
 	Field elem of Type Element
 Methods:
 Method Print with return Type boolean
 	Args:
 	Vars:
-		Var var_end of Type boolean
 		Var var_elem of Type Element
+		Var var_end of Type boolean
 		Var aux01 of Type List
 Method GetNext with return Type List
 	Args:
@@ -25,8 +25,8 @@ Method Search with return Type int
 	Vars:
 		Var nt of Type int
 		Var int_ret_val of Type int
-		Var var_elem of Type Element
 		Var aux01 of Type List
+		Var var_elem of Type Element
 		Var var_end of Type boolean
 Method Delete with return Type List
 	Args:
@@ -35,27 +35,27 @@ Method Delete with return Type List
 		Var nt of Type int
 		Var aux04 of Type int
 		Var var_elem of Type Element
-		Var prev of Type List
 		Var var_end of Type boolean
+		Var prev of Type List
 		Var my_head of Type List
-		Var aux05 of Type boolean
 		Var ret_val of Type boolean
+		Var aux05 of Type boolean
 		Var aux01 of Type List
 Method Init with return Type boolean
 	Args:
 	Vars:
 Method InitNew with return Type boolean
 	Args:
-		Arg v_next of Type List
 		Arg v_end of Type boolean
+		Arg v_next of Type List
 		Arg v_elem of Type Element
 	Vars:
 Method Insert with return Type List
 	Args:
 		Arg new_elem of Type Element
 	Vars:
-		Var aux03 of Type List
 		Var aux02 of Type List
+		Var aux03 of Type List
 		Var ret_val of Type boolean
 Method SetNext with return Type boolean
 	Args:
@@ -65,8 +65,8 @@ Method SetNext with return Type boolean
 
 Class Element:
 Fields:
-	Field Salary of Type int
 	Field Married of Type boolean
+	Field Salary of Type int
 	Field Age of Type int
 Methods:
 Method Compare with return Type boolean
@@ -81,13 +81,13 @@ Method Equal with return Type boolean
 		Arg other of Type Element
 	Vars:
 		Var nt of Type int
-		Var aux01 of Type int
 		Var aux02 of Type int
+		Var aux01 of Type int
 		Var ret_val of Type boolean
 Method Init with return Type boolean
 	Args:
-		Arg v_Salary of Type int
 		Arg v_Married of Type boolean
+		Arg v_Salary of Type int
 		Arg v_Age of Type int
 	Vars:
 Method GetAge with return Type int
@@ -107,11 +107,11 @@ Methods:
 Method Start with return Type int
 	Args:
 	Vars:
-		Var el02 of Type Element
 		Var el03 of Type Element
+		Var el02 of Type Element
 		Var head of Type List
-		Var aux01 of Type boolean
 		Var last_elem of Type List
+		Var aux01 of Type boolean
 		Var el01 of Type Element
 ---
 

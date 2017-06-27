@@ -8,18 +8,18 @@ Method Init with return Type int
 		Arg sz of Type int
 	Vars:
 		Var aux02 of Type int
-		Var k of Type int
 		Var aux01 of Type int
+		Var k of Type int
 		Var j of Type int
 Method Search with return Type int
 	Args:
 		Arg num of Type int
 	Vars:
-		Var aux02 of Type int
 		Var nt of Type int
+		Var aux02 of Type int
 		Var j of Type int
-		Var ifound of Type int
 		Var ls01 of Type boolean
+		Var ifound of Type int
 		Var aux01 of Type int
 Method Print with return Type int
 	Args:
