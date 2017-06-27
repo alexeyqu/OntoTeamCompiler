@@ -26,10 +26,10 @@
 	#define YY_USER_ACTION adjust();
 %}
 
-DIGIT	   [0-9]
-LETTER	  [a-zA-Z_]
-ID		  {LETTER}({DIGIT}|{LETTER})*
-INTEGER	 [1-9]{DIGIT}*|0
+DIGIT	   	[0-9]
+LETTER	  	[a-zA-Z_]
+ID		  	{LETTER}({DIGIT}|{LETTER})*
+INTEGER	 	[1-9]{DIGIT}*|0
 
 %option noyywrap
 

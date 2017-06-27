@@ -79,8 +79,11 @@ int main( int argc, char **argv ) {
 	}
 	outstream.close();
 
-	CTypeCheckerVisitor typeCheckerVisitor( jiveEnv, classTable );
+	outstream.open( outstreamFolder + "CE_CompilerErrors.txt", std::ios::out );
+	CTypeCheckerVisitor typeCheckerVisitor( jiveEnv, classTable, outstream );
     typeCheckerVisitor.Start( jiveEnv->program );
+	outstream.close();
+
 
 	return 0;
 }

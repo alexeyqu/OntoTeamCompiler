@@ -110,10 +110,10 @@ MainClass:	CLASS Identifier LBRACE
 				Statements
 				RBRACE 
 			RBRACE { 
-				int temp_line = yyloc.first_line; \
-				int temp_column = yyloc.first_column; \
-				$$ = new CMainClass( $2, $12, $15  ); \
-				$$->coordinates.first_line = temp_line; \
+				int temp_line = yyloc.first_line; 
+				int temp_column = yyloc.first_column; 
+				$$ = new CMainClass( $2, $12, $15  ); 
+				$$->coordinates.first_line = temp_line; 
 				$$->coordinates.first_column = temp_column;
 			}
 ;

@@ -29,7 +29,7 @@ void CTypeCheckerVisitor::Visit( CVariable *entity ) {
     CType *varType = entity->type;
     if( jiveEnv->typeTable->lookup( varType ) == nullptr ) 
     {
-        std::cerr << "[" << entity->coordinates.first_line << ", " 
+        outputStream << "[" << entity->coordinates.first_line << ", " 
         << entity->coordinates.first_column << "] " 
         << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << varType->getSymbol()->get() << ".\n";
     }
@@ -46,7 +46,7 @@ void CTypeCheckerVisitor::Visit( CArgument *entity ) {
     CType *argType = entity->type;
     if( jiveEnv->typeTable->lookup( argType ) == nullptr ) 
     {
-        std::cerr << "[" << entity->coordinates.first_line << ", " 
+        outputStream << "[" << entity->coordinates.first_line << ", " 
         << entity->coordinates.first_column << "] " 
         << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << argType->getSymbol()->get() << ".\n";
     }
