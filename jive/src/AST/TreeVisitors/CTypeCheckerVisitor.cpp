@@ -1,7 +1,11 @@
 #include "CTypeCheckerVisitor.h"
+#include "CJiveEnvironment.h"
 
 namespace AST 
 {
+
+using jive::TType;
+using jive::CJiveEnvironment;
 
 void CTypeCheckerVisitor::Start( IVisitorTarget *vertex ) {
     vertex->Accept( this );
@@ -22,8 +26,13 @@ void CTypeCheckerVisitor::Visit( CType *type ) {
 }
 
 void CTypeCheckerVisitor::Visit( CVariable *entity ) {
-    entity->type->Accept( this );
-    entity->id->Accept( this );
+    CType *varType = entity->type;
+    if( jiveEnv->typeTable->lookup( varType ) == nullptr ) 
+    {
+        std::cerr << "[" << entity->coordinates.first_line << ", " 
+        << entity->coordinates.first_column << "] " 
+        << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << varType->getSymbol()->get() << ".\n";
+    }
 }
 
 void CTypeCheckerVisitor::Visit( CCompoundVariable *entity ) {
@@ -34,8 +43,13 @@ void CTypeCheckerVisitor::Visit( CCompoundVariable *entity ) {
 }
 
 void CTypeCheckerVisitor::Visit( CArgument *entity ) {
-    entity->type->Accept(this);
-    entity->id->Accept(this);
+    CType *argType = entity->type;
+    if( jiveEnv->typeTable->lookup( argType ) == nullptr ) 
+    {
+        std::cerr << "[" << entity->coordinates.first_line << ", " 
+        << entity->coordinates.first_column << "] " 
+        << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << argType->getSymbol()->get() << ".\n";
+    }
 }
 
 void CTypeCheckerVisitor::Visit( CCompoundArgument *entity ) {

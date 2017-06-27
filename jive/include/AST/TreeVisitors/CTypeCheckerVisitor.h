@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <vector>
 #include <unordered_set>
 #include "CProgram.h"
 #include "CSymbolTableScope.h"
@@ -10,9 +11,11 @@
 namespace AST 
 {
 
-using ST::CSymbolTableScope;
+// using ST::CSymbolTableScope;
 using ST::CClassSymbol;
 using ST::CMethodSymbol;
+using ST::CVariableSymbol;
+using ST::CTypeSymbol;
 
 class CTypeCheckerVisitor : public IVisitor 
 {
@@ -54,7 +57,7 @@ private:
 	std::unordered_set<CClassSymbol *> classTable;
 	CClassSymbol* curClassSymbol;
 	CMethodSymbol* curMethodSymbol;
-	// TODO ArgTypes?
+	std::vector<CTypeSymbol *> curMethodArgTypes;
 };
 
 }
