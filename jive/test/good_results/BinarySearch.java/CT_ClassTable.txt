@@ -20,7 +20,7 @@ Method Start with return Type int
 		Arg sz of Type int
 	Vars:
 		Var aux02 of Type int
-		Var aux01 of Type intD
+		Var aux01 of Type int
 Method Search with return Type boolean
 	Args:
 		Arg num of Type int

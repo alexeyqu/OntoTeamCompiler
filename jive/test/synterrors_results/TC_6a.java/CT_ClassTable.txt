@@ -1,0 +1,42 @@
+Class QS:
+Fields:
+	Field size of Type int
+	Field number of Type int[]
+Methods:
+Method Init with return Type int
+	Args:
+		Arg sz of Type int
+	Vars:
+Method Print with return Type int
+	Args:
+	Vars:
+		Var j of Type int
+Method Sort with return Type int
+	Args:
+		Arg right of Type int
+		Arg left of Type int
+	Vars:
+		Var aux03 of Type int
+		Var cont02 of Type boolean
+		Var t of Type int
+		Var cont01 of Type boolean
+		Var v of Type int
+		Var j of Type int
+		Var i of Type int
+		Var nt of Type int
+Method Start with return Type QS
+	Args:
+		Arg sz of Type int
+	Vars:
+		Var aux01 of Type int
+---
+
+Class QuickSort:
+Fields:
+Methods:
+Method main with return Type void
+	Args:
+		Arg a of Type String[]
+	Vars:
+---
+

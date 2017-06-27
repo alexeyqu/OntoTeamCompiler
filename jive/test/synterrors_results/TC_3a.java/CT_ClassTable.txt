@@ -1,0 +1,30 @@
+Class Visitor:
+Fields:
+Methods:
+Method visit with return Type int
+	Args:
+		Arg v of Type TV
+	Vars:
+Method visit with return Type int
+	Args:
+		Arg n of Type Tree
+	Vars:
+---
+
+Class TV:
+Fields:
+Methods:
+Method Start with return Type int
+	Args:
+	Vars:
+---
+
+Class TreeVisitor:
+Fields:
+Methods:
+Method main with return Type void
+	Args:
+		Arg a of Type String[]
+	Vars:
+---
+
