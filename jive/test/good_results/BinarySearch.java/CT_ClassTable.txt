@@ -1,0 +1,59 @@
+Class BS:
+Fields:
+	Field size of Type int
+	Field number of Type int[]
+Methods:
+Method Init with return Type int
+	Args:
+		Arg sz of Type int
+	Vars:
+		Var aux01 of Type int
+		Var k of Type int
+		Var aux02 of Type int
+		Var j of Type int
+Method Print with return Type int
+	Args:
+	Vars:
+		Var j of Type int
+Method Start with return Type int
+	Args:
+		Arg sz of Type int
+	Vars:
+		Var aux02 of Type int
+		Var aux01 of Type int
+Method Search with return Type boolean
+	Args:
+		Arg num of Type int
+	Vars:
+		Var nt of Type int
+		Var medium of Type int
+		Var aux01 of Type int
+		Var bs01 of Type boolean
+		Var left of Type int
+		Var right of Type int
+		Var var_cont of Type boolean
+Method Div with return Type int
+	Args:
+		Arg num of Type int
+	Vars:
+		Var count02 of Type int
+		Var aux03 of Type int
+		Var count01 of Type int
+Method Compare with return Type boolean
+	Args:
+		Arg num2 of Type int
+		Arg num1 of Type int
+	Vars:
+		Var aux02 of Type int
+		Var retval of Type boolean
+---
+
+Class BinarySearch:
+Fields:
+Methods:
+Method main with return Type void
+	Args:
+		Arg a of Type String[]
+	Vars:
+---
+

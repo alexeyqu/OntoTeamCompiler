@@ -1,0 +1,10 @@
+List	List
+Element	Element
+LinkedList	LinkedList
+void	void
+String[]	String[]
+LL	LL
+int	int
+boolean	boolean
+int[]	int[]
+String	String

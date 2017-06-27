@@ -23,7 +23,12 @@ void CTableCreatorVisitor::Visit( CType *type ) {
 }
 
 void CTableCreatorVisitor::Visit( CVariable *entity ) {
-    CVariableSymbol* varSymbol = new CVariableSymbol( entity->id->name, jiveEnv->typeTable->lookup( entity->type ) );
+    CTypeSymbol *varTypeSymbol = jiveEnv->typeTable->lookup( entity->type );
+    if( varTypeSymbol == nullptr ) {
+        varTypeSymbol = new CTypeSymbol( entity->type->getSymbol() );
+    }
+
+    CVariableSymbol* varSymbol = new CVariableSymbol( entity->id->name, varTypeSymbol );
     if( curMethodSymbol == nullptr ) {
         if( curClassSymbol->fields.find( varSymbol ) != curClassSymbol->fields.end() ) {
             std::cerr << "Error: Redefinition of the field \"" << varSymbol->name << "\"\n";
@@ -54,13 +59,18 @@ void CTableCreatorVisitor::Visit( CCompoundVariable *entity ) {
 }
 
 void CTableCreatorVisitor::Visit( CArgument *entity ) {
-    CVariableSymbol* varSymbol = new CVariableSymbol( entity->id->name, jiveEnv->typeTable->lookup( entity->type ) );
-    if( curMethodSymbol->arguments.find( varSymbol ) != curMethodSymbol->arguments.end() ) {
-            std::cerr << "Error: Redeclaration of variable \"" << varSymbol->name << "\"\n";
-            delete varSymbol;
+    CTypeSymbol *argTypeSymbol = jiveEnv->typeTable->lookup( entity->type );
+    if( argTypeSymbol == nullptr ) {
+        argTypeSymbol = new CTypeSymbol( entity->type->getSymbol() );
+    }
+
+    CVariableSymbol* argSymbol = new CVariableSymbol( entity->id->name, argTypeSymbol );
+    if( curMethodSymbol->arguments.find( argSymbol ) != curMethodSymbol->arguments.end() ) {
+            std::cerr << "Error: Redeclaration of variable \"" << argSymbol->name << "\"\n";
+            delete argSymbol;
             return;
         }
-    curMethodSymbol->arguments.insert( varSymbol );
+    curMethodSymbol->arguments.insert( argSymbol );
 }
 
 void CTableCreatorVisitor::Visit( CCompoundArgument *entity ) {
@@ -70,8 +80,13 @@ void CTableCreatorVisitor::Visit( CCompoundArgument *entity ) {
     entity->arg2->Accept(this);
 }
 
-void CTableCreatorVisitor::Visit( CMethod *entity ) {
-    CMethodSymbol* methodSymbol = new CMethodSymbol( entity->id->name, jiveEnv->typeTable->lookup( entity->returnType ) );
+void CTableCreatorVisitor::Visit( CMethod *entity ) {    
+    CTypeSymbol *methodTypeSymbol = jiveEnv->typeTable->lookup( entity->returnType );
+    if( methodTypeSymbol == nullptr ) {
+        methodTypeSymbol = new CTypeSymbol( entity->returnType->getSymbol() );
+    }
+
+    CMethodSymbol* methodSymbol = new CMethodSymbol( entity->id->name, methodTypeSymbol );
     if( curClassSymbol->methods.find( methodSymbol ) != curClassSymbol->methods.end() ) {
         std::cerr << "Error: Redeclaration of variable \"" << methodSymbol->name << "\"\n";
             delete methodSymbol;
@@ -111,7 +126,7 @@ void CTableCreatorVisitor::Visit( CMainClass *entity ) {
 
     curClassSymbol = classSymbol;
 
-    CMethodSymbol* methodSymbol = new CMethodSymbol( new CSymbol( "main" ), jiveEnv->typeTable->lookup( new CType( jive::VOID, new CSymbol( "void" ) ) ) );
+    CMethodSymbol* methodSymbol = new CMethodSymbol( new CSymbol( "main" ), jiveEnv->typeTable->lookup( new CType( jive::VOID, new CSymbol( "void" ) ) ) ); //FIXIT
     classSymbol->methods.insert( methodSymbol );
     curMethodSymbol = methodSymbol;
 

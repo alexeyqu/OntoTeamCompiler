@@ -1,0 +1,41 @@
+Class BBS:
+Fields:
+	Field size of Type int
+	Field number of Type int[]
+Methods:
+Method Init with return Type int
+	Args:
+		Arg sz of Type int
+	Vars:
+Method Print with return Type int
+	Args:
+	Vars:
+		Var j of Type int
+Method Sort with return Type int
+	Args:
+	Vars:
+		Var t of Type int
+		Var j of Type int
+		Var aux07 of Type int
+		Var aux05 of Type int
+		Var aux06 of Type int
+		Var nt of Type int
+		Var aux02 of Type int
+		Var i of Type int
+		Var aux04 of Type int
+Method Start with return Type int
+	Args:
+		Arg sz of Type int
+	Vars:
+		Var aux01 of Type int
+---
+
+Class BubbleSort:
+Fields:
+Methods:
+Method main with return Type void
+	Args:
+		Arg a of Type String[]
+	Vars:
+---
+

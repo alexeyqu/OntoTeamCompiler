@@ -24,6 +24,7 @@ class CSymbolTable
 public:
     void insert( CSymbol symbol ) { table.insert( symbol ); }
     void insert( std::string name );
+    // CSymbol *lookup( std::string name ) { CSymbol tmp( name ); return( table.find(  ) != table.end() ) ? &table.at( *type ) : nullptr ; }
     std::unordered_set<CSymbol> &get() { return table; }
 
 private:

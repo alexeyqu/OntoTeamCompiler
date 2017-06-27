@@ -28,6 +28,7 @@ using AST::CType;
 class CTypeTable
 {
 public:
+    CTypeTable();
     void insert( CType *type, CTypeSymbol *symbol ) { table.insert( std::make_pair( *type, *symbol ) ); }
     CTypeSymbol *lookup( CType *type ) { return( table.find( *type ) != table.end() ) ? &table.at( *type ) : nullptr ; }
     std::unordered_map<CType, CTypeSymbol> &get() { return table; }

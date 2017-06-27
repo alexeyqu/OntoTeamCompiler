@@ -15,6 +15,6 @@ do
     mkdir -p ../good_results/$f
     cp $f ../good_results/$f/code.java
     ../../jive $f ../good_results/$f/
-    dot -Tps ../good_results/$f/AST.dot -o ../good_results/$f/AST.ps
-    dot -Tpng ../good_results/$f/AST.dot -o ../good_results/$f/AST.png
+    dot -Tps ../good_results/$f/AST_AbstractSyntaxTree.dot -o ../good_results/$f/AST_AbstractSyntaxTree.ps
+    dot -Tpng ../good_results/$f/AST_AbstractSyntaxTree.dot -o ../good_results/$f/AST_AbstractSyntaxTree.png
 done

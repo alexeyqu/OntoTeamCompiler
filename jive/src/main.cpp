@@ -31,12 +31,12 @@ int main( int argc, char **argv ) {
 	yyparse( &jiveEnv );
 
 	std::ofstream outstream;
-	outstream.open( outstreamFolder + "AST.dot", std::ios::out );
+	outstream.open( outstreamFolder + "AST_AbstractSyntaxTree.dot", std::ios::out );
 	CPrintVisitor printVisitor( jiveEnv, outstream );
 	printVisitor.Start( jiveEnv->program, "my_graph" );
 	outstream.close();
 
-	outstream.open( outstreamFolder + "ST.txt", std::ios::out );
+	outstream.open( outstreamFolder + "ST_SymbolTable.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->symbolTable->get() ) {
 		outstream << &elem << '\t' << elem.get() << "\n";
 	}
@@ -46,36 +46,38 @@ int main( int argc, char **argv ) {
     tableCreatorVisitor.Start( jiveEnv->program );
 	std::unordered_set<CClassSymbol *> classTable = tableCreatorVisitor.getClassTable();
 
-	outstream.open( outstreamFolder + "TT.txt", std::ios::out );
+	outstream.open( outstreamFolder + "TT_TypeTable.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->typeTable->get() ) {
 		outstream << elem.first.getSymbol()->get() << '\t' << elem.second.get()->get() << "\n";
 	}
 	outstream.close();
 
+	outstream.open( outstreamFolder + "CT_ClassTable.txt", std::ios::out );
 	for( auto classSymbol : classTable ) {
-		std::cout << "Class " << classSymbol->name->get() << ":\n";
+		outstream << "Class " << classSymbol->name->get() << ":\n";
 
-		std::cout << "Fields:\n";
+		outstream << "Fields:\n";
 		for( auto varSymbol : classSymbol->fields ) {
-			std::cout << "\tField " << varSymbol->name->get() << " of Type " << varSymbol->type << "\n";
+			outstream << "\tField " << varSymbol->name->get() << " of Type " << varSymbol->type->get()->get() << "\n";
 		}
 
-		std::cout << "Methods:\n";
+		outstream << "Methods:\n";
 		for( auto methodSymbol : classSymbol->methods ) {
-			std::cout << "Method " << methodSymbol->name->get() << " with return Type " << methodSymbol->type << "\n";
+			outstream << "Method " << methodSymbol->name->get() << " with return Type " << methodSymbol->type->get()->get() << "\n";
 
-			std::cout << "\tArgs:\n";
+			outstream << "\tArgs:\n";
 			for( auto argSymbol : methodSymbol->arguments ) {
-				std::cout << "\t\tArg " << argSymbol->name->get() << " of Type " << argSymbol->type << "\n";
+				outstream << "\t\tArg " << argSymbol->name->get() << " of Type " << argSymbol->type->get()->get() << "\n";
 			}
 			
-			std::cout << "\tVars:\n";
+			outstream << "\tVars:\n";
 			for( auto varSymbol : methodSymbol->variables ) {
-				std::cout << "\t\tVar " << varSymbol->name->get() << " of Type " << varSymbol->type << "\n";
+				outstream << "\t\tVar " << varSymbol->name->get() << " of Type " << varSymbol->type->get()->get() << "\n";
 			}
 		}
-		std::cout << "---\n\n";
+		outstream << "---\n\n";
 	}
+	outstream.close();
 
 	CTypeCheckerVisitor typeCheckerVisitor( jiveEnv, classTable );
     typeCheckerVisitor.Start( jiveEnv->program );
