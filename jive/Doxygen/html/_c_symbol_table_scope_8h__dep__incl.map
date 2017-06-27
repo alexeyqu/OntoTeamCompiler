@@ -1,7 +1,0 @@
-<map id="include/ST/CSymbolTableScope.h" name="include/ST/CSymbolTableScope.h">
-<area shape="rect" id="node2" href="$_c_table_creator_visitor_8h.html" title="include/AST/TreeVisitors\l/CTableCreatorVisitor.h" alt="" coords="74,80,241,121"/>
-<area shape="rect" id="node5" href="$_c_type_checker_visitor_8h.html" title="include/AST/TreeVisitors\l/CTypeCheckerVisitor.h" alt="" coords="265,80,431,121"/>
-<area shape="rect" id="node3" href="$_c_table_creator_visitor_8cpp.html" title="src/AST/TreeVisitors\l/CTableCreatorVisitor.cpp" alt="" coords="5,169,179,211"/>
-<area shape="rect" id="node4" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="203,177,301,203"/>
-<area shape="rect" id="node6" href="$_c_type_checker_visitor_8cpp.html" title="src/AST/TreeVisitors\l/CTypeCheckerVisitor.cpp" alt="" coords="325,169,501,211"/>
-</map>

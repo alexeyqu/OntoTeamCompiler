@@ -1,6 +1,0 @@
-<map id="AST::CBinaryBooleanExpression" name="AST::CBinaryBooleanExpression">
-<area shape="rect" id="node2" href="$class_a_s_t_1_1_i_expression.html" title="AST::IExpression" alt="" coords="50,260,175,287"/>
-<area shape="rect" id="node3" href="$class_a_s_t_1_1_i_visitor_target.html" title="AST::IVisitorTarget" alt="" coords="31,95,165,121"/>
-<area shape="rect" id="node5" href="$class_a_s_t_1_1_i_type.html" title="AST::IType" alt="" coords="120,171,209,197"/>
-<area shape="rect" id="node4" href="$classjive_1_1_coordinates.html" title="jive::Coordinates" alt="" coords="38,5,158,32"/>
-</map>

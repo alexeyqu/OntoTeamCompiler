@@ -1,7 +1,0 @@
-<map id="AST::CAssignStatement" name="AST::CAssignStatement">
-<area shape="rect" id="node2" href="$class_a_s_t_1_1_i_statement.html" title="AST::IStatement" alt="" coords="5,221,125,248"/>
-<area shape="rect" id="node3" href="$class_a_s_t_1_1_i_visitor_target.html" title="AST::IVisitorTarget" alt="" coords="78,95,213,121"/>
-<area shape="rect" id="node5" href="$class_a_s_t_1_1_i_expression.html" title="AST::IExpression" alt="" coords="103,272,228,299"/>
-<area shape="rect" id="node6" href="$class_a_s_t_1_1_i_type.html" title="AST::IType" alt="" coords="183,171,273,197"/>
-<area shape="rect" id="node4" href="$classjive_1_1_coordinates.html" title="jive::Coordinates" alt="" coords="85,5,205,32"/>
-</map>

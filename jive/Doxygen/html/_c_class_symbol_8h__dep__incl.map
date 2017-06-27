@@ -1,8 +1,0 @@
-<map id="include/ST/Symbols/CClassSymbol.h" name="include/ST/Symbols/CClassSymbol.h">
-<area shape="rect" id="node2" href="$_symbols_8h.html" title="include/ST/Symbols.h" alt="" coords="100,95,251,121"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="5,266,103,293"/>
-<area shape="rect" id="node3" href="$_c_table_creator_visitor_8h.html" title="include/AST/TreeVisitors\l/CTableCreatorVisitor.h" alt="" coords="92,169,259,211"/>
-<area shape="rect" id="node6" href="$_c_type_checker_visitor_8h.html" title="include/AST/TreeVisitors\l/CTypeCheckerVisitor.h" alt="" coords="283,169,449,211"/>
-<area shape="rect" id="node4" href="$_c_table_creator_visitor_8cpp.html" title="src/AST/TreeVisitors\l/CTableCreatorVisitor.cpp" alt="" coords="127,259,301,300"/>
-<area shape="rect" id="node7" href="$_c_type_checker_visitor_8cpp.html" title="src/AST/TreeVisitors\l/CTypeCheckerVisitor.cpp" alt="" coords="325,259,501,300"/>
-</map>

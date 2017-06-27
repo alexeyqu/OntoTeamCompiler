@@ -1,8 +1,0 @@
-<map id="include/ST/Symbols.h" name="include/ST/Symbols.h">
-<area shape="rect" id="node2" href="$_i_symbol_8h.html" title="ISymbol.h" alt="" coords="181,304,262,331"/>
-<area shape="rect" id="node8" href="$_c_class_symbol_8h.html" title="Symbols/CClassSymbol.h" alt="" coords="60,80,236,107"/>
-<area shape="rect" id="node10" href="$_c_method_symbol_8h.html" title="CMethodSymbol.h" alt="" coords="106,155,236,181"/>
-<area shape="rect" id="node11" href="$_c_variable_symbol_8h.html" title="CVariableSymbol.h" alt="" coords="208,229,342,256"/>
-<area shape="rect" id="node3" href="$_c_symbol_8h.html" title="CSymbol.h" alt="" coords="120,379,206,405"/>
-<area shape="rect" id="node6" href="$_coordinates_8h.html" title="Coordinates.h" alt="" coords="234,379,337,405"/>
-</map>

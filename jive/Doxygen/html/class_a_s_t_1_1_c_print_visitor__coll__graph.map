@@ -1,9 +1,0 @@
-<map id="AST::CPrintVisitor" name="AST::CPrintVisitor">
-<area shape="rect" id="node2" href="$class_a_s_t_1_1_i_visitor.html" title="AST::IVisitor" alt="" coords="167,363,264,389"/>
-<area shape="rect" id="node3" href="$classjive_1_1_c_jive_environment.html" title="jive::CJiveEnvironment" alt="" coords="137,273,294,300"/>
-<area shape="rect" id="node4" href="$class_s_t_1_1_c_type_table.html" title="ST::CTypeTable" alt="" coords="5,184,124,211"/>
-<area shape="rect" id="node5" href="$class_s_t_1_1_c_symbol_table.html" title="ST::CSymbolTable" alt="" coords="149,184,282,211"/>
-<area shape="rect" id="node6" href="$class_a_s_t_1_1_c_program.html" title="AST::CProgram" alt="" coords="306,184,421,211"/>
-<area shape="rect" id="node7" href="$class_a_s_t_1_1_i_visitor_target.html" title="AST::IVisitorTarget" alt="" coords="295,95,429,121"/>
-<area shape="rect" id="node8" href="$classjive_1_1_coordinates.html" title="jive::Coordinates" alt="" coords="302,5,422,32"/>
-</map>

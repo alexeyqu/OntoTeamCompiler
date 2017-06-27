@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_a_s_t_1_1_i_visitor.html" title="AST::IVisitor" alt="" coords="5,56,103,83"/>
-<area shape="rect" id="node2" href="$class_a_s_t_1_1_c_print_visitor.html" title="AST::CPrintVisitor" alt="" coords="176,5,307,32"/>
-<area shape="rect" id="node3" href="$class_a_s_t_1_1_c_table_creator_visitor.html" title="AST::CTableCreatorVisitor" alt="" coords="152,56,331,83"/>
-<area shape="rect" id="node4" href="$class_a_s_t_1_1_c_type_checker_visitor.html" title="AST::CTypeCheckerVisitor" alt="" coords="151,107,332,133"/>
-</map>
