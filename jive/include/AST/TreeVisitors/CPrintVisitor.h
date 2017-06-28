@@ -1,9 +1,8 @@
 
 #pragma once
 
-#include <iostream>
 #include <cassert>
-#include <fstream>
+#include "IVisitor.h"
 #include "CProgram.h"
 
 namespace AST 
@@ -12,7 +11,7 @@ namespace AST
 class CPrintVisitor : public IVisitor 
 {
 public:
-	CPrintVisitor( CJiveEnvironment *_jiveEnv, std::ofstream &_outputStream ) : \
+	CPrintVisitor( CJiveEnvironment *_jiveEnv, std::ostream &_outputStream ) : \
 		IVisitor( _jiveEnv, _outputStream ) {}
 
 	void Start( IVisitorTarget *vertex, std::string graphname );

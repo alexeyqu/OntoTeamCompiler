@@ -1,4 +1,4 @@
-Class BS : public 0
+Class BS
 Fields:
 	Field size of Type int
 	Field number of Type int[]
@@ -48,7 +48,7 @@ Method Compare with return Type boolean
 		Var retval of Type boolean
 ---
 
-Class BinarySearch : public 0
+Class BinarySearch
 Fields:
 Methods:
 Method main with return Type void

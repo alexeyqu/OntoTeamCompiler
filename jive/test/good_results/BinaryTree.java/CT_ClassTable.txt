@@ -1,4 +1,4 @@
-Class Tree : public 0
+Class Tree
 Fields:
 	Field my_null of Type Tree
 	Field has_right of Type boolean
@@ -113,7 +113,7 @@ Method SetHas_Left with return Type boolean
 	Vars:
 ---
 
-Class BT : public 0
+Class BT
 Fields:
 Methods:
 Method Start with return Type int
@@ -124,7 +124,7 @@ Method Start with return Type int
 		Var root of Type Tree
 ---
 
-Class BinaryTree : public 0
+Class BinaryTree
 Fields:
 Methods:
 Method main with return Type void

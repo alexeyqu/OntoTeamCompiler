@@ -1,4 +1,4 @@
-Class LL : public 0
+Class LL
 Fields:
 Methods:
 Method Start with return Type int
@@ -12,7 +12,7 @@ Method Start with return Type int
 		Var el01 of Type Element
 ---
 
-Class Element : public 0
+Class Element
 Fields:
 	Field Married of Type boolean
 	Field Salary of Type int
@@ -50,7 +50,7 @@ Method GetMarried with return Type boolean
 	Vars:
 ---
 
-Class List : public 0
+Class List
 Fields:
 	Field end of Type boolean
 	Field next of Type List
@@ -115,7 +115,7 @@ Method SetNext with return Type boolean
 	Vars:
 ---
 
-Class LinkedList : public 0
+Class LinkedList
 Fields:
 Methods:
 Method main with return Type void

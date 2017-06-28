@@ -1,4 +1,4 @@
-Class LS : public 0
+Class LS
 Fields:
 	Field size of Type int
 	Field number of Type int[]
@@ -33,7 +33,7 @@ Method Start with return Type int
 		Var aux01 of Type int
 ---
 
-Class LinearSearch : public 0
+Class LinearSearch
 Fields:
 Methods:
 Method main with return Type void

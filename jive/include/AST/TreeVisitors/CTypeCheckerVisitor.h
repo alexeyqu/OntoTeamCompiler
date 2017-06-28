@@ -4,6 +4,7 @@
 #include <cassert>
 #include <vector>
 #include <unordered_set>
+#include "IVisitor.h"
 #include "CProgram.h"
 #include "CSymbolTableScope.h"
 #include "Symbols.h"
@@ -20,7 +21,7 @@ using ST::CTypeSymbol;
 class CTypeCheckerVisitor : public IVisitor 
 {
 public:
-	CTypeCheckerVisitor( CJiveEnvironment *_jiveEnv, std::ofstream &_outputStream ) : \
+	CTypeCheckerVisitor( CJiveEnvironment *_jiveEnv, std::ostream &_outputStream ) : \
 		IVisitor( _jiveEnv, _outputStream ) {}
 	void Start( IVisitorTarget *vertex );
 	

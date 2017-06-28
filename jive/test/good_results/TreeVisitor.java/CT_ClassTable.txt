@@ -1,4 +1,4 @@
-Class MyVisitor : public 0xb4100e20
+Class MyVisitor : public Visitor
 Fields:
 Methods:
 Method visit with return Type int
@@ -8,7 +8,7 @@ Method visit with return Type int
 		Var nti of Type int
 ---
 
-Class TreeVisitor : public 0
+Class TreeVisitor
 Fields:
 Methods:
 Method main with return Type void
@@ -17,7 +17,7 @@ Method main with return Type void
 	Vars:
 ---
 
-Class TV : public 0
+Class TV
 Fields:
 Methods:
 Method Start with return Type int
@@ -29,7 +29,7 @@ Method Start with return Type int
 		Var root of Type Tree
 ---
 
-Class Tree : public 0
+Class Tree
 Fields:
 	Field my_null of Type Tree
 	Field has_right of Type boolean
@@ -149,7 +149,7 @@ Method SetHas_Left with return Type boolean
 	Vars:
 ---
 
-Class Visitor : public 0
+Class Visitor
 Fields:
 	Field r of Type Tree
 	Field l of Type Tree

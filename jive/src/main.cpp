@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include <memory>
 #include <unordered_set>
 #include "AST/TreeVisitors/CPrintVisitor.h"
@@ -10,6 +11,12 @@
 #include "ST/Symbols/CClassSymbol.h"
 #include "jive.tab.h"
 #include "jive.lex.h"
+
+#ifdef _DEBUG
+	#define TCH_STREAM std::cerr
+#else
+	#define TCH_STREAM outfstream
+#endif
 
 using ST::CClassSymbol;
 
@@ -30,64 +37,67 @@ int main( int argc, char **argv ) {
 
 	yyparse( &jiveEnv );
 
-	std::ofstream outstream;
-	outstream.open( outstreamFolder + "AST_AbstractSyntaxTree.dot", std::ios::out );
-	CPrintVisitor printVisitor( jiveEnv, outstream );
+	std::ofstream outfstream;
+	std::ostream* outstream = &outfstream;
+
+	outfstream.open( outstreamFolder + "AST_AbstractSyntaxTree.dot", std::ios::out );
+	CPrintVisitor printVisitor( jiveEnv, *outstream );
 	printVisitor.Start( jiveEnv->program, "my_graph" );
-	outstream.close();
+	outfstream.close();
 
-	outstream.open( outstreamFolder + "ST_SymbolTable.txt", std::ios::out );
+	outfstream.open( outstreamFolder + "ST_SymbolTable.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->symbolTable->get() ) {
-		outstream << &elem << '\t' << elem.get() << "\n";
+		*outstream << &elem << '\t' << elem.get() << "\n";
 	}
-	outstream.close();
+	outfstream.close();
 
-	CTableCreatorVisitor tableCreatorVisitor( jiveEnv, outstream );
+	CTableCreatorVisitor tableCreatorVisitor( jiveEnv, *outstream );
     tableCreatorVisitor.Start( jiveEnv->program );
 	
-	outstream.open( outstreamFolder + "TT_TypeTable.txt", std::ios::out );
+	outfstream.open( outstreamFolder + "TT_TypeTable.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->typeTable->get() ) {
-		outstream << elem.first.getSymbol()->get() << '\t' << elem.second.get()->get() << "\n";
+		*outstream << elem.first.getSymbol()->get() << '\t' << elem.second.get()->get() << "\n";
 	}
-	outstream.close();
+	outfstream.close();
 
-	outstream.open( outstreamFolder + "CT_ClassTable.txt", std::ios::out );
+	outfstream.open( outstreamFolder + "CT_ClassTable.txt", std::ios::out );
 	for( auto classTuple : jiveEnv->classTable->get() ) {
 		auto classSymbol = classTuple.second;
-		outstream << "Class " << classSymbol->name->get();
+		*outstream << "Class " << classSymbol->name->get();
 		if( classSymbol->baseClass != nullptr ){
-			outstream << " : public " << classSymbol->baseClass->name->get() << "\n";
+			*outstream << " : public " << classSymbol->baseClass->name->get() << "\n";
 		} else {
-			outstream << "\n";
+			*outstream << "\n";
 		}
 
-		outstream << "Fields:\n";
+		*outstream << "Fields:\n";
 		for( auto varSymbol : classSymbol->fields ) {
-			outstream << "\tField " << varSymbol->name->get() << " of Type " << varSymbol->type->get()->get() << "\n";
+			*outstream << "\tField " << varSymbol->name->get() << " of Type " << varSymbol->type->get()->get() << "\n";
 		}
 
-		outstream << "Methods:\n";
+		*outstream << "Methods:\n";
 		for( auto methodSymbol : classSymbol->methods ) {
-			outstream << "Method " << methodSymbol->name->get() << " with return Type " << methodSymbol->type->get()->get() << "\n";
+			*outstream << "Method " << methodSymbol->name->get() << " with return Type " << methodSymbol->type->get()->get() << "\n";
 
-			outstream << "\tArgs:\n";
+			*outstream << "\tArgs:\n";
 			for( auto argSymbol : methodSymbol->arguments ) {
-				outstream << "\t\tArg " << argSymbol->name->get() << " of Type " << argSymbol->type->get()->get() << "\n";
+				*outstream << "\t\tArg " << argSymbol->name->get() << " of Type " << argSymbol->type->get()->get() << "\n";
 			}
 			
-			outstream << "\tVars:\n";
+			*outstream << "\tVars:\n";
 			for( auto varSymbol : methodSymbol->variables ) {
-				outstream << "\t\tVar " << varSymbol->name->get() << " of Type " << varSymbol->type->get()->get() << "\n";
+				*outstream << "\t\tVar " << varSymbol->name->get() << " of Type " << varSymbol->type->get()->get() << "\n";
 			}
 		}
-		outstream << "---\n\n";
+		*outstream << "---\n\n";
 	}
-	outstream.close();
+	outfstream.close();
 
-	outstream.open( outstreamFolder + "CE_CompilerErrors.txt", std::ios::out );
-	CTypeCheckerVisitor typeCheckerVisitor( jiveEnv, outstream );
+	outfstream.open( outstreamFolder + "CE_CompilerErrors.txt", std::ios::out );
+	outstream = &TCH_STREAM;
+	CTypeCheckerVisitor typeCheckerVisitor( jiveEnv, *outstream );
     typeCheckerVisitor.Start( jiveEnv->program );
-	outstream.close();
+	outfstream.close();
 
 	return 0;
 }

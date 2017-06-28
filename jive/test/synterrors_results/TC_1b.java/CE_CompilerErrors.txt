@@ -1,1 +1,0 @@
-[20, 23] Error: unknown base class "UnknownClass" for class "Visitor"

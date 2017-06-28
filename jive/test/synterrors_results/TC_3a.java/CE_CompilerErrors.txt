@@ -1,1 +1,0 @@
-[24, 22] Error: Unknown type of variable "n": Tree.

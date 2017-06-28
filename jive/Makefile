@@ -26,7 +26,7 @@ DEPS = $(OBJECTS:.o=.d)
 CC = g++
 
 # flags #
-CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD
+CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD -D=_DEBUG
 INCLUDES = -I $(AUTO_PATH) -I include \
 	-I include/Shared \
 	-I include/AST \

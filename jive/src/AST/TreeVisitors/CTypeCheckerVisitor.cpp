@@ -32,7 +32,7 @@ void CTypeCheckerVisitor::Visit( CVariable *entity ) {
     CType *varType = entity->type;
     if( jiveEnv->typeTable->lookup( varType ) == nullptr ) 
     {
-        std::cerr << OUT_COORDINATES( entity )
+        outputStream << OUT_COORDINATES( entity )
         << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << varType->getSymbol()->get() << ".\n";
     }
 }
@@ -48,7 +48,7 @@ void CTypeCheckerVisitor::Visit( CArgument *entity ) {
     CType *argType = entity->type;
     if( jiveEnv->typeTable->lookup( argType ) == nullptr ) 
     {
-        std::cerr << OUT_COORDINATES( entity )
+        outputStream << OUT_COORDINATES( entity )
         << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << argType->getSymbol()->get() << ".\n";
     }
 }
@@ -81,14 +81,14 @@ void CTypeCheckerVisitor::Visit( CMethod *entity ) {
 	// CType *retExpType = entity->returnExpression->type;
 
 	// if( jiveEnv->typeTable->lookup( retExpType ) ) {
-	// 	std::cerr << OUT_COORDINATES( entity )
+	// 	outputStream << OUT_COORDINATES( entity )
 	// 		<< "Error: Return type of method \"" << "FIXIT" /*curMethodName */
 	// 		<< "\" is of unknown type \"" << entity->returnType->getSymbol()->get()  << "\".\n";
 	// 	// curMethodName = "";
 	// 	return;
 	// }
 	// if( retExpType != entity->returnType ) {
-	// 	std::cerr << OUT_COORDINATES( entity ) 
+	// 	outputStream << OUT_COORDINATES( entity ) 
 	// 		<< "Error: Type of return expression doesn't match "
 	// 		<< "method \"" <<  "FIXIT" /*curMethodName */ << "\" return type.\n"
 	// 		<< "Expected: \"" << entity->returnType->getSymbol()->get()  << "\". Found: \"" << retExpType->getSymbol()->get()  << "\".\n";
@@ -117,7 +117,7 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
     
     if( entity->parentName ) {
         if( jiveEnv->classTable->lookup( entity->parentName->name ) == nullptr ) {
-            std::cerr << OUT_COORDINATES( entity->parentName )
+            outputStream << OUT_COORDINATES( entity->parentName )
                 << "Error: unknown base class \"" 
                 << entity->parentName->getName() << "\" for class \"" 
                 << entity->name->getName() << "\"\n";
@@ -127,7 +127,7 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
 
         while( parentClassSymbol ) {
             if( curClassSymbol == parentClassSymbol ) {
-                std::cerr << OUT_COORDINATES( entity->parentName )
+                outputStream << OUT_COORDINATES( entity->parentName )
                     << "Error: cyclic inheritance for class \"" 
                     << entity->name->getName() << "\" detected.\n";
                 break;
