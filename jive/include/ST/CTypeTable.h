@@ -15,7 +15,7 @@ namespace std
 
         std::size_t operator()( const AST::CType &type ) const
         {
-            return hash_fn( type.getSymbol()->get() );
+            return hash_fn( type.getString() );
         }
     };
 }

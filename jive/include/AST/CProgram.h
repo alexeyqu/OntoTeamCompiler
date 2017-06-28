@@ -12,10 +12,13 @@ namespace AST
 class CProgram : public IVisitorTarget 
 {
 public:
-	CProgram( IVisitorTarget *_rootVertex );
+	CProgram( IVisitorTarget *_rootVertex ) : rootVertex( _rootVertex ) {}
 
-	void Accept( IVisitor *visitor ) override;
+	void Accept( IVisitor *visitor ) override { visitor->Visit(this); }
 
+	IVisitorTarget *getRoot() const { return rootVertex; }
+
+private:
 	IVisitorTarget *rootVertex;
 };
 

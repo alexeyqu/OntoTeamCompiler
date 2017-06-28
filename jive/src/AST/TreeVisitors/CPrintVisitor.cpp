@@ -12,7 +12,7 @@ void CPrintVisitor::Start( IVisitorTarget *vertex, std::string graphname ) {
 }
 
 void CPrintVisitor::Visit( CProgram *program ) {
-    program->rootVertex->Accept(this);
+    program->getRoot()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CGoal *goal )
@@ -23,17 +23,17 @@ void CPrintVisitor::Visit( CGoal *goal )
     outputStream << goalId << "[label = \"Goal\", shape = \"doublecircle\"];\n";
 
     outputStream << goalId << "->";
-    goal->left->Accept(this);
+    goal->getLeft()->Accept(this);
 
     outputStream << goalId << "->";
-    goal->right->Accept(this);
+    goal->getRight()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CType *type ) {
     long typeId = generateId(type);
 
     outputStream << typeId << ";\n";
-    outputStream << typeId << "[label = \"" << type->getSymbol()->get() << "\", shape = \"diamond\" ];\n";
+    outputStream << typeId << "[label = \"" << type->getSymbol()->getString() << "\", shape = \"diamond\" ];\n";
 }
 
 void CPrintVisitor::Visit( CVariable *entity ) {
@@ -43,10 +43,10 @@ void CPrintVisitor::Visit( CVariable *entity ) {
     outputStream << entityId << "[label = \"VarDeclNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
-    entity->type->Accept(this);
+    entity->getType()->Accept(this);
 
     outputStream << entityId << "->";
-    entity->id->Accept(this);
+    entity->getId()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundVariable *entity ) {
@@ -55,18 +55,18 @@ void CPrintVisitor::Visit( CCompoundVariable *entity ) {
     outputStream << entityId << ";\n";
     outputStream << entityId << "[label = \"CompoundVariableNtt\", shape = \"hexagon\"];\n";
 
-    if( entity->var1 ) {
-        if( entity->var1->var1 ) {
+    if( entity->getNextVariable() ) {
+        if( entity->getNextVariable()->getNextVariable() ) {
             outputStream << entityId << "->";
-            entity->var1->Accept(this);
+            entity->getNextVariable()->Accept(this);
         } else {
             outputStream << entityId << "->";
-            entity->var1->var2->Accept(this);
+            entity->getNextVariable()->getVariable()->Accept(this);
         }
     }
 
     outputStream << entityId << "->";
-    entity->var2->Accept(this);
+    entity->getVariable()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CArgument *entity ) {
@@ -76,10 +76,10 @@ void CPrintVisitor::Visit( CArgument *entity ) {
     outputStream << entityId << "[label = \"ArgumentNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
-    entity->type->Accept(this);
+    entity->getType()->Accept(this);
 
     outputStream << entityId << "->";
-    entity->id->Accept(this);
+    entity->getId()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundArgument *entity ) {
@@ -88,18 +88,18 @@ void CPrintVisitor::Visit( CCompoundArgument *entity ) {
     outputStream << entityId << ";\n";
     outputStream << entityId << "[label = \"CompoundArgumentNtt\", shape = \"hexagon\"];\n";
 
-    if( entity->arg1 ) {
-    	if( entity->arg1->arg1 ) {
+    if( entity->getNextArgument() ) {
+    	if( entity->getNextArgument()->getNextArgument() ) {
 			outputStream << entityId << "->";
-			entity->arg1->Accept(this);
+			entity->getNextArgument()->Accept(this);
 		} else {
 			outputStream << entityId << "->";
-			entity->arg1->arg2->Accept(this);
+			entity->getNextArgument()->getArgument()->Accept(this);
 		}
 	}
 
     outputStream << entityId << "->";
-    entity->arg2->Accept(this);
+    entity->getArgument()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CMethod *entity ) {
@@ -109,43 +109,43 @@ void CPrintVisitor::Visit( CMethod *entity ) {
     outputStream << entityId << "[label = \"MethodNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
-    entity->returnType->Accept(this);
+    entity->getReturnType()->Accept(this);
 
     outputStream << entityId << "->";
-    entity->id->Accept(this);
+    entity->getId()->Accept(this);
 
-    if( entity->arguments ) {
-    	if( entity->arguments->arg1 ) {
+    if( entity->getArguments() ) {
+    	if( entity->getArguments()->getNextArgument() ) {
 			outputStream << entityId << "->";
-			entity->arguments->Accept(this);
+			entity->getArguments()->Accept(this);
 		} else {
 			outputStream << entityId << "->";
-			entity->arguments->arg2->Accept(this);
+			entity->getArguments()->getArgument()->Accept(this);
 		}
 	}
 
-    if( entity->variables ) {
-        if( entity->variables->var1 ) {
+    if( entity->getVariables() ) {
+        if( entity->getVariables()->getNextVariable() ) {
             outputStream << entityId << "->";
-            entity->variables->Accept(this);
+            entity->getVariables()->Accept(this);
         } else {
             outputStream << entityId << "->";
-            entity->variables->var2->Accept(this);
+            entity->getVariables()->getVariable()->Accept(this);
         }
     }
 
-    if( entity->statements ) {
-        if( entity->statements->leftStatement ) {
+    if( entity->getStatements() ) {
+        if( entity->getStatements()->getLeftStatement() ) {
             outputStream << entityId << "->";
-            entity->statements->Accept(this);
+            entity->getStatements()->Accept(this);
         } else {
             outputStream << entityId << "->";
-            entity->statements->rightStatement->Accept(this);
+            entity->getStatements()->getRightStatement()->Accept(this);
         }
     }
 
     outputStream << entityId << "->";
-    entity->returnExpression->Accept(this);
+    entity->getReturnExpression()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundMethod *entity ) {
@@ -154,18 +154,18 @@ void CPrintVisitor::Visit( CCompoundMethod *entity ) {
     outputStream << entityId << ";\n";
     outputStream << entityId << "[label = \"CompoundMethodNtt\", shape = \"hexagon\"];\n";
 
-    if( entity->method1 ) {
-        if( entity->method1->method1 ) {
+    if( entity->getNextMethod() ) {
+        if( entity->getNextMethod()->getNextMethod() ) {
             outputStream << entityId << "->";
-            entity->method1->Accept(this);
+            entity->getNextMethod()->Accept(this);
         } else {
             outputStream << entityId << "->";
-            entity->method1->method2->Accept(this);
+            entity->getNextMethod()->getMethod()->Accept(this);
         }
     }
 
     outputStream << entityId << "->";
-    entity->method2->Accept(this);
+    entity->getMethod()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CMainClass *entity ) {
@@ -175,10 +175,10 @@ void CPrintVisitor::Visit( CMainClass *entity ) {
     outputStream << entityId << "[label = \"MainClassNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
-    entity->name->Accept(this);
+    entity->getId()->Accept(this);
 
 	outputStream << entityId << "->";
-	entity->methods->method2->Accept(this);
+	entity->getMethods()->getMethod()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CClass *entity ) {
@@ -188,30 +188,30 @@ void CPrintVisitor::Visit( CClass *entity ) {
     outputStream << entityId << "[label = \"ClassNtt\", shape = \"box\"];\n";
 
     outputStream << entityId << "->";
-    entity->name->Accept(this);
+    entity->getId()->Accept(this);
 
-    if( entity->parentName ) {
+    if( entity->getParentId() ) {
         outputStream << entityId << "->";
-        entity->parentName->Accept(this);
+        entity->getParentId()->Accept(this);
     }
 
-    if( entity->fields ) {
-        if( entity->fields->var1 ) {
+    if( entity->getFields() ) {
+        if( entity->getFields()->getNextVariable() ) {
             outputStream << entityId << "->";
-            entity->fields->Accept(this);
+            entity->getFields()->Accept(this);
         } else {
             outputStream << entityId << "->";
-            entity->fields->var2->Accept(this);
+            entity->getFields()->getVariable()->Accept(this);
         }
     }
 
-    if( entity->methods ) {
-        if( entity->methods->method1 ) {
+    if( entity->getMethods() ) {
+        if( entity->getMethods()->getNextMethod() ) {
             outputStream << entityId << "->";
-            entity->methods->Accept(this);
+            entity->getMethods()->Accept(this);
         } else {
             outputStream << entityId << "->";
-            entity->methods->method2->Accept(this);
+            entity->getMethods()->getMethod()->Accept(this);
         }
     }
 }
@@ -222,18 +222,18 @@ void CPrintVisitor::Visit( CCompoundClass *entity ) {
     outputStream << entityId << ";\n";
     outputStream << entityId << "[label = \"CompoundClassNtt\", shape = \"hexagon\"];\n";
 
-    if( entity->class1 ) {
-        if( entity->class1->class1 ) {
+    if( entity->getNextClass() ) {
+        if( entity->getNextClass()->getNextClass() ) {
             outputStream << entityId << "->";
-            entity->class1->Accept(this);
+            entity->getNextClass()->Accept(this);
         } else {
             outputStream << entityId << "->";
-            entity->class1->class2->Accept(this);
+            entity->getNextClass()->getClass()->Accept(this);
         }
     }
 
     outputStream << entityId << "->";
-    entity->class2->Accept(this);
+    entity->getClass()->Accept(this);
 }
 
 
@@ -243,14 +243,14 @@ void CPrintVisitor::Visit( CCompoundStatement *statement ) {
     outputStream << stmId << ";\n";
     outputStream << stmId << "[label = \"CompoundStm\", shape = \"polygon\"];\n";
 
-    if(statement->leftStatement) {
+    if(statement->getLeftStatement()) {
         outputStream << stmId << "->";
-        statement->leftStatement->Accept(this);
+        statement->getLeftStatement()->Accept(this);
     }
 
-    if(statement->rightStatement) {
+    if(statement->getRightStatement()) {
         outputStream << stmId << "->";
-        statement->rightStatement->Accept(this);
+        statement->getRightStatement()->Accept(this);
     }
 }
 
@@ -261,10 +261,10 @@ void CPrintVisitor::Visit( CAssignStatement *statement ) {
     outputStream << stmId << "[label = \"AssignStm\", shape = \"ellipse\"];\n";
 
     outputStream << stmId << "->";
-    statement->leftOperand->Accept(this);
+    statement->getLValue()->Accept(this);
 
     outputStream << stmId << "->";
-    statement->rightOperand->Accept(this);
+    statement->getRValue()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CPrintStatement *statement ) {
@@ -274,7 +274,7 @@ void CPrintVisitor::Visit( CPrintStatement *statement ) {
     outputStream << stmId << "[label = \"PrintStm\", shape = \"ellipse\"];\n";
 
     outputStream << stmId << "->";
-    statement->operand->Accept(this);
+    statement->getExpression()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CIfStatement *statement ) {
@@ -284,13 +284,13 @@ void CPrintVisitor::Visit( CIfStatement *statement ) {
     outputStream << stmId << "[label = \"IfStm\", shape = \"ellipse\"];\n";
 
     outputStream << stmId << "->";
-    statement->expression->Accept(this);
+    statement->getExpression()->Accept(this);
 
     outputStream << stmId << "->";
-    statement->thenStatement->Accept(this);
+    statement->getThenStatement()->Accept(this);
 
     outputStream << stmId << "->";
-    statement->elseStatement->Accept(this);
+    statement->getElseStatement()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CWhileStatement *statement ) {
@@ -300,10 +300,10 @@ void CPrintVisitor::Visit( CWhileStatement *statement ) {
     outputStream << stmId << "[label = \"WhileStm\", shape = \"ellipse\"];\n";
 
     outputStream << stmId << "->";
-    statement->expression->Accept(this);
+    statement->getExpression()->Accept(this);
 
     outputStream << stmId << "->";
-    statement->loopStatement->Accept(this);
+    statement->getStatement()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CIdExpression *expression ) {
@@ -312,9 +312,9 @@ void CPrintVisitor::Visit( CIdExpression *expression ) {
     outputStream << exprId << "\n";
     outputStream << exprId << "[label = \"IdExp\", shape = \"circle\"];\n";
 
-    long nameId = generateId(&expression->name);
+    long nameId = generateId(expression->getSymbol());
     outputStream << exprId << "->" << nameId << ";\n";
-    outputStream << nameId << "[label = \"" << expression->getName() << "\"];\n";
+    outputStream << nameId << "[label = \"" << expression->getString() << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CBinaryExpression *expression ) {
@@ -324,11 +324,11 @@ void CPrintVisitor::Visit( CBinaryExpression *expression ) {
     outputStream << exprId << "[label = \"BinExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
-    expression->leftOperand->Accept(this);
+    expression->getLeftOperand()->Accept(this);
 
     outputStream << exprId << "->";
-    long operationId = generateId(&expression->operation);
-    switch(expression->operation) {
+    long operationId = generateId(expression) + 1;
+    switch(expression->getOperator()) {
         case jive::TArithmeticOperation::ADD:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"+\" ];\n";
@@ -351,7 +351,7 @@ void CPrintVisitor::Visit( CBinaryExpression *expression ) {
     }
 
     outputStream << exprId << "->";
-    expression->rightOperand->Accept(this);
+    expression->getRightOperand()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CNumberExpression *expression ) {
@@ -360,9 +360,9 @@ void CPrintVisitor::Visit( CNumberExpression *expression ) {
     outputStream << exprId << "\n";
     outputStream << exprId << "[label = \"NumExp\", shape = \"circle\"];\n";
 
-    long numberId = generateId(&expression->number);
+    long numberId = generateId(expression) + 1;
     outputStream << exprId << "->" << numberId << ";\n";
-    outputStream << numberId << "[label = \"" << expression->number << "\"];\n";
+    outputStream << numberId << "[label = \"" << expression->getValue() << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
@@ -372,11 +372,11 @@ void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
     outputStream << exprId << "[label = \"BinBoolExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
-    expression->leftOperand->Accept(this);
+    expression->getLeftOperand()->Accept(this);
 
     outputStream << exprId << "->";
-    long operationId = generateId(&expression->operation);
-    switch(expression->operation) {
+    long operationId = generateId(expression) + 1;
+    switch(expression->getOperator()) {
         case jive::TBooleanOperation::AND:
             outputStream << operationId << ";\n";
             outputStream << operationId << "[label = \"AND\" ];\n";
@@ -398,7 +398,7 @@ void CPrintVisitor::Visit( CBinaryBooleanExpression *expression ) {
     }
 
     outputStream << exprId << "->";
-    expression->rightOperand->Accept(this);
+    expression->getRightOperand()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CBooleanExpression *expression ) {
@@ -407,9 +407,9 @@ void CPrintVisitor::Visit( CBooleanExpression *expression ) {
     outputStream << exprId << "\n";
     outputStream << exprId << "[label = \"BoolExp\", shape = \"circle\"];\n";
 
-    long valueId = generateId(&expression->value);
+    long valueId = generateId(expression) + 1;
     outputStream << exprId << "->" << valueId << ";\n";
-    outputStream << valueId << "[label = \"" << expression->value << "\"];\n";
+    outputStream << valueId << "[label = \"" << expression->getValue() << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CThisExpression *expression ) {
@@ -418,9 +418,9 @@ void CPrintVisitor::Visit( CThisExpression *expression ) {
     outputStream << exprId << "\n";
     outputStream << exprId << "[label = \"ThisExp\", shape = \"circle\"];\n";
 
-    long addressId = generateId(&expression->address);
+    long addressId = generateId(expression) + 1;
     outputStream << exprId << "->" << addressId << ";\n";
-    outputStream << addressId << "[label = \"" << expression->address << "\"];\n";
+    outputStream << addressId << "[label = \"" << expression->getThisAddress() << "\"];\n";
 }
 
 void CPrintVisitor::Visit( CNewObjectExpression *expression ) {
@@ -430,7 +430,7 @@ void CPrintVisitor::Visit( CNewObjectExpression *expression ) {
     outputStream << newObjId << "[label = \"NewObjExp\", shape = \"circle\"];\n";
 
     outputStream << newObjId << "->";
-    expression->objTypeId->Accept(this);
+    expression->getClassId()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CNewIntArrayExpression *expression ) {
@@ -440,7 +440,7 @@ void CPrintVisitor::Visit( CNewIntArrayExpression *expression ) {
     outputStream << exprId << "[label = \"NewIntArrayExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
-    expression->arrSize->Accept(this);
+    expression->getArrSize()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CMethodCallExpression *expression ) {
@@ -450,14 +450,14 @@ void CPrintVisitor::Visit( CMethodCallExpression *expression ) {
     outputStream << exprId << "[label = \"MethodCallExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
-    expression->base->Accept(this);
+    expression->getBaseExpression()->Accept(this);
 
     outputStream << exprId << "->";
-    expression->methodId->Accept(this);
+    expression->getMethodId()->Accept(this);
 
-    if(expression->arg) {
+    if(expression->getArguments()) {
         outputStream << exprId << "->";
-        expression->arg->Accept(this);        
+        expression->getArguments()->Accept(this);        
     }
 }
 
@@ -468,7 +468,7 @@ void CPrintVisitor::Visit( CArrayLengthExpression *expression ) {
     outputStream << exprId << "[label = \"ArrayLengthExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
-    expression->exp->Accept(this);
+    expression->getValue()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CArrayIndexExpression *expression ) {
@@ -478,10 +478,10 @@ void CPrintVisitor::Visit( CArrayIndexExpression *expression ) {
     outputStream << exprId << "[label = \"ArrayIndexExp\", shape = \"circle\"];\n";
 
     outputStream << exprId << "->";
-    expression->id->Accept(this);
+    expression->getArrayId()->Accept(this);
 
     outputStream << exprId << "->";
-    expression->index->Accept(this);
+    expression->getArrayIndex()->Accept(this);
 }
 
 void CPrintVisitor::Visit( CCompoundExpression *expression ) {
@@ -490,14 +490,14 @@ void CPrintVisitor::Visit( CCompoundExpression *expression ) {
     outputStream << exprId << ";\n";
     outputStream << exprId << "[label = \"CompoundExp\", shape = \"circle\"];\n";
 
-    if(expression->leftExpression) {
+    if(expression->getLeftExpression()) {
         outputStream << exprId << "->";
-        expression->leftExpression->Accept(this);
+        expression->getLeftExpression()->Accept(this);
     }
 
-    if(expression->rightExpression) {
+    if(expression->getRightExpression()) {
         outputStream << exprId << "->";
-        expression->rightExpression->Accept(this);
+        expression->getRightExpression()->Accept(this);
     }
 }
 

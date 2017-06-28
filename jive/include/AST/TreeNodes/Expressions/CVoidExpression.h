@@ -8,9 +8,9 @@ namespace AST
 class CVoidExpression : public IExpression
 {
 public:
-   	CVoidExpression();
+   	CVoidExpression() : IExpression() {}
 
-   	void Accept( IVisitor *visitor ) override;
+   	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }
 };
 
 }

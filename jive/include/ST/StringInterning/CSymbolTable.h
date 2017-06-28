@@ -11,7 +11,7 @@ namespace std
 
         std::size_t operator()( const ST::CSymbol &symbol ) const
         {
-            return hash_fn( symbol.get() );
+            return hash_fn( symbol.getString() );
         }
     };
 }
@@ -23,8 +23,7 @@ class CSymbolTable
 {
 public:
     void insert( CSymbol symbol ) { table.insert( symbol ); }
-    void insert( std::string name );
-    // CSymbol *lookup( std::string name ) { CSymbol tmp( name ); return( table.find(  ) != table.end() ) ? &table.at( *type ) : nullptr ; }
+    void insert( std::string name ) { table.insert( CSymbol( name ) ); }
     std::unordered_set<CSymbol> &get() { return table; }
 
 private:

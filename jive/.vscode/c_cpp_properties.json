@@ -1,0 +1,82 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceRoot}",
+                "/usr/include",
+                "/usr/local/include"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/home/aq/workspace/OntoTeamCompiler/jive",
+                "/usr/include",
+                "/usr/local/include",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/AST",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeNodes",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeNodes/Entities",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeNodes/Expressions",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeNodes/Statements",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeVisitors",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/Shared",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/ST",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/ST/StringInterning",
+                "/home/aq/workspace/OntoTeamCompiler/jive/include/ST/Symbols"
+            ],
+            "defines": [],
+            "browse": {
+                "path": [
+                    "/home/aq/workspace/OntoTeamCompiler/jive",
+                    "/usr/include",
+                    "/usr/local/include",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/AST",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeNodes",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeNodes/Entities",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeNodes/Expressions",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeNodes/Statements",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/AST/TreeVisitors",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/Shared",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/ST",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/ST/StringInterning",
+                    "/home/aq/workspace/OntoTeamCompiler/jive/include/ST/Symbols"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "intelliSenseMode": "clang-x64"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceRoot}",
+                "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ]
+}

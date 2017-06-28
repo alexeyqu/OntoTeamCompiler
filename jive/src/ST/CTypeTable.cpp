@@ -24,7 +24,7 @@ CTypeTable::CTypeTable() {
 
 void CTypeTable::dump() {
     for( const auto &elem: table ) {
-		std::cout << elem.first.getSymbol()->get() << '\t' << elem.second.get()->get() << "\n";
+		std::cout << elem.first.getString() << '\t' << elem.second.getString() << "\n";
 	}
 }
 

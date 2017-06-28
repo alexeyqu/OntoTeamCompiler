@@ -8,6 +8,9 @@ namespace AST
 
 class IExpression : public IVisitorTarget {
 public:
+	CType *getType() const { return type; }
+
+private:
 	CType *type;
 };
 

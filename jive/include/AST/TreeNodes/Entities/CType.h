@@ -17,9 +17,12 @@ public:
 	CType( TType _type, CSymbol *_name ) : type( _type ), name( _name ) {}
 
 	CSymbol *getSymbol() const { return name; }	
-	TType getType() const { return type; }	
+	boost::flyweight<std::string> &getString() const { return name->getString(); }
+	TType getPrimitiveType() const { return type; }	
 
-	void Accept( IVisitor *visitor ) override;
+	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }
+
+	friend inline bool operator==(const CType& lhs, const CType& rhs);
 
 private:	
 	TType type;
@@ -27,17 +30,15 @@ private:
 };
 
 inline bool operator==(const CType& lhs, const CType& rhs) {
-	TType type1 = lhs.getType(), type2 = rhs.getType();
-
-	if( type1 != type2 ) {
+	if( lhs.type != rhs.type ) {
 		return false;
 	}
 
-	if( type1 != TType::CLASS ) {
+	if( lhs.type != TType::CLASS ) {
 		return true;
 	}
 
-	return( lhs.getSymbol()->get() == rhs.getSymbol()->get() );
+	return( lhs.getString() == rhs.getString() );
 }
 
 // class CTypeTable
@@ -49,5 +50,14 @@ inline bool operator==(const CType& lhs, const CType& rhs) {
 
 // 	std::unordered_map<CSymbol, TType> types;
 // } typeTable;
+
+// CTypeTable::CTypeTable() {
+// 	insert( CSymbol( "int" ), INTEGER );
+//     insert( CSymbol( "int[]" ), INTEGERARRAY );
+//     insert( CSymbol( "boolean" ), BOOLEAN );
+//     insert( CSymbol( "String" ), STRING );
+//     insert( CSymbol( "String[]" ), STRINGARRAY );
+//     insert( CSymbol( "void" ), VOID );
+// }
 
 }

@@ -54,6 +54,8 @@ public:
 	IVisitor( CJiveEnvironment *_jiveEnv, std::ostream &_outputStream ) : \
 		jiveEnv( _jiveEnv ), outputStream( _outputStream ) {}
 
+	CJiveEnvironment *getJiveEnv() const { return jiveEnv; }
+
    	virtual void Visit( CProgram *program ) = 0;
    	virtual void Visit( CGoal *goal ) = 0;
    	virtual void Visit( CType *type ) = 0;

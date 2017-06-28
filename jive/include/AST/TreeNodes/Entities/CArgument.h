@@ -10,9 +10,9 @@ namespace AST
 class CArgument : public CVariable
 {
 public:
-   	CArgument( CType *_type, CIdExpression *_id );
+   	CArgument( CType *_type, CIdExpression *_id ) : CVariable( _type, _id ) {}
 
-   	void Accept( IVisitor *visitor ) override;
+   	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }
 };
 
 }

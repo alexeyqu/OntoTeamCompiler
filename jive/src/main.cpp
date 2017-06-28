@@ -47,7 +47,7 @@ int main( int argc, char **argv ) {
 
 	outfstream.open( outstreamFolder + "ST_SymbolTable.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->symbolTable->get() ) {
-		*outstream << &elem << '\t' << elem.get() << "\n";
+		*outstream << &elem << '\t' << elem.getString() << "\n";
 	}
 	outfstream.close();
 
@@ -56,37 +56,37 @@ int main( int argc, char **argv ) {
 	
 	outfstream.open( outstreamFolder + "TT_TypeTable.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->typeTable->get() ) {
-		*outstream << elem.first.getSymbol()->get() << '\t' << elem.second.get()->get() << "\n";
+		*outstream << elem.first.getString() << '\t' << elem.second.getString() << "\n";
 	}
 	outfstream.close();
 
 	outfstream.open( outstreamFolder + "CT_ClassTable.txt", std::ios::out );
 	for( auto classTuple : jiveEnv->classTable->get() ) {
 		auto classSymbol = classTuple.second;
-		*outstream << "Class " << classSymbol->name->get();
-		if( classSymbol->baseClass != nullptr ){
-			*outstream << " : public " << classSymbol->baseClass->name->get() << "\n";
+		*outstream << "Class " << classSymbol->getString();
+		if( classSymbol->getBaseClass() != nullptr ){
+			*outstream << " : public " << classSymbol->getBaseClass()->getString() << "\n";
 		} else {
 			*outstream << "\n";
 		}
 
 		*outstream << "Fields:\n";
-		for( auto varSymbol : classSymbol->fields ) {
-			*outstream << "\tField " << varSymbol->name->get() << " of Type " << varSymbol->type->get()->get() << "\n";
+		for( auto varSymbol : classSymbol->getFields() ) {
+			*outstream << "\tField " << varSymbol->getString() << " of Type " << varSymbol->getTypeSymbol()->getString() << "\n";
 		}
 
 		*outstream << "Methods:\n";
-		for( auto methodSymbol : classSymbol->methods ) {
-			*outstream << "Method " << methodSymbol->name->get() << " with return Type " << methodSymbol->type->get()->get() << "\n";
+		for( auto methodSymbol : classSymbol->getMethods() ) {
+			*outstream << "Method " << methodSymbol->getString() << " with return Type " << methodSymbol->getTypeSymbol()->getString() << "\n";
 
 			*outstream << "\tArgs:\n";
-			for( auto argSymbol : methodSymbol->arguments ) {
-				*outstream << "\t\tArg " << argSymbol->name->get() << " of Type " << argSymbol->type->get()->get() << "\n";
+			for( auto argSymbol : methodSymbol->getArguments() ) {
+				*outstream << "\t\tArg " << argSymbol->getString() << " of Type " << argSymbol->getTypeSymbol()->getString() << "\n";
 			}
 			
 			*outstream << "\tVars:\n";
-			for( auto varSymbol : methodSymbol->variables ) {
-				*outstream << "\t\tVar " << varSymbol->name->get() << " of Type " << varSymbol->type->get()->get() << "\n";
+			for( auto varSymbol : methodSymbol->getVariables() ) {
+				*outstream << "\t\tVar " << varSymbol->getString() << " of Type " << varSymbol->getTypeSymbol()->getString() << "\n";
 			}
 		}
 		*outstream << "---\n\n";

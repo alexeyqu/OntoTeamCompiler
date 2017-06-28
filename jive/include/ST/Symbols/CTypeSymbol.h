@@ -10,7 +10,7 @@ class CTypeSymbol : public ISymbol
 {
 public:
     CTypeSymbol( CSymbol *_name ) : ISymbol( _name, this ), size( 0 ) {}
-    CSymbol *get() const { return name; }
+	std::size_t getSize() const { return size; }
 
 private:
 	std::size_t size;

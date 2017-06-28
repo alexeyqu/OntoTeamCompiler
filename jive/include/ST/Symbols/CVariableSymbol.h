@@ -12,7 +12,10 @@ class CVariableSymbol : public ISymbol
 {
 public:
     CVariableSymbol( CSymbol *_name, CTypeSymbol *_type, IVisitorTarget *_vertexAST ) : ISymbol( _name, _type ), vertexAST( _vertexAST ) {}
+	
+	IVisitorTarget *getVertexAST() const { return vertexAST; }
 
+private:
 	IVisitorTarget *vertexAST;
 };
 

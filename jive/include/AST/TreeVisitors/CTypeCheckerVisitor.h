@@ -6,13 +6,11 @@
 #include <unordered_set>
 #include "IVisitor.h"
 #include "CProgram.h"
-#include "CSymbolTableScope.h"
 #include "Symbols.h"
 
 namespace AST 
 {
 
-// using ST::CSymbolTableScope;
 using ST::CClassSymbol;
 using ST::CMethodSymbol;
 using ST::CVariableSymbol;

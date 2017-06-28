@@ -11,13 +11,15 @@ namespace AST
 class CIdExpression : public IExpression
 {
 public:
-   	CIdExpression( CSymbol *_name );
+   	CIdExpression( CSymbol *_symbol ) : symbol( _symbol ) {}
 
-   	void Accept( IVisitor *visitor ) override;
+   	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }
 
-	boost::flyweight<std::string> getName() const;
+	CSymbol *getSymbol() const { return symbol; }
+	boost::flyweight<std::string> &getString() const { return symbol->getString(); } 
 
-   	CSymbol *name;
+private:
+   	CSymbol *symbol;
 };
 
 }

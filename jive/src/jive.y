@@ -361,7 +361,7 @@ Type:	INT {
 		Identifier { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CType( jive::CLASS, $1->name );
+			$$ = new CType( jive::CLASS, $1->getSymbol() );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = yylloc.first_column; 
 		}
