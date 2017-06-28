@@ -32,7 +32,7 @@ void CTypeCheckerVisitor::Visit( CVariable *entity ) {
     CType *varType = entity->type;
     if( jiveEnv->typeTable->lookup( varType ) == nullptr ) 
     {
-        outputStream << OUT_COORDINATES( entity )
+        std::cerr << OUT_COORDINATES( entity )
         << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << varType->getSymbol()->get() << ".\n";
     }
 }
@@ -48,7 +48,7 @@ void CTypeCheckerVisitor::Visit( CArgument *entity ) {
     CType *argType = entity->type;
     if( jiveEnv->typeTable->lookup( argType ) == nullptr ) 
     {
-        outputStream << OUT_COORDINATES( entity )
+        std::cerr << OUT_COORDINATES( entity )
         << "Error: Unknown type of variable \"" << entity->id->name->get() << "\": " << argType->getSymbol()->get() << ".\n";
     }
 }
@@ -117,7 +117,7 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
     
     if( entity->parentName ) {
         if( jiveEnv->classTable->lookup( entity->parentName->name ) == nullptr ) {
-            outputStream << OUT_COORDINATES( entity->parentName )
+            std::cerr << OUT_COORDINATES( entity->parentName )
                 << "Error: unknown base class \"" 
                 << entity->parentName->getName() << "\" for class \"" 
                 << entity->name->getName() << "\"\n";
@@ -127,7 +127,7 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
 
         while( parentClassSymbol ) {
             if( curClassSymbol == parentClassSymbol ) {
-                outputStream << OUT_COORDINATES( entity->parentName )
+                std::cerr << OUT_COORDINATES( entity->parentName )
                     << "Error: cyclic inheritance for class \"" 
                     << entity->name->getName() << "\" detected.\n";
                 break;

@@ -18,7 +18,8 @@ using ST::CTypeSymbol;
 class CTableCreatorVisitor : public IVisitor 
 {
 public:
-	CTableCreatorVisitor( CJiveEnvironment *_jiveEnv ) : IVisitor( _jiveEnv ) {};
+	CTableCreatorVisitor( CJiveEnvironment *_jiveEnv, std::ofstream &_outputStream ) : \
+		IVisitor( _jiveEnv, _outputStream ) {}
 	void Start( IVisitorTarget *vertex );
 
 	void Visit( CProgram *program );

@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
-#include <fstream>
 #include <unordered_set>
 #include "CProgram.h"
 #include "CSymbolTableScope.h"
@@ -22,7 +21,7 @@ class CTypeCheckerVisitor : public IVisitor
 {
 public:
 	CTypeCheckerVisitor( CJiveEnvironment *_jiveEnv, std::ofstream &_outputStream ) : \
-		IVisitor( _jiveEnv ), outputStream( _outputStream ) {}
+		IVisitor( _jiveEnv, _outputStream ) {}
 	void Start( IVisitorTarget *vertex );
 	
 	void Visit( CProgram *program );
@@ -60,8 +59,6 @@ private:
 	CClassSymbol* curClassSymbol;
 	CMethodSymbol* curMethodSymbol;
 	std::vector<CTypeSymbol *> curMethodArgTypes;
-
-	std::ofstream &outputStream;
 };
 
 }

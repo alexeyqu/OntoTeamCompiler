@@ -42,7 +42,7 @@ int main( int argc, char **argv ) {
 	}
 	outstream.close();
 
-	CTableCreatorVisitor tableCreatorVisitor( jiveEnv );
+	CTableCreatorVisitor tableCreatorVisitor( jiveEnv, outstream );
     tableCreatorVisitor.Start( jiveEnv->program );
 	
 	outstream.open( outstreamFolder + "TT_TypeTable.txt", std::ios::out );

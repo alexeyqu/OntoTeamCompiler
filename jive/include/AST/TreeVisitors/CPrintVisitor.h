@@ -12,7 +12,8 @@ namespace AST
 class CPrintVisitor : public IVisitor 
 {
 public:
-	CPrintVisitor( CJiveEnvironment *_jiveEnv, std::ofstream &_outputStream ) : IVisitor( _jiveEnv ), outputStream( _outputStream ) {};
+	CPrintVisitor( CJiveEnvironment *_jiveEnv, std::ofstream &_outputStream ) : \
+		IVisitor( _jiveEnv, _outputStream ) {}
 
 	void Start( IVisitorTarget *vertex, std::string graphname );
 	
@@ -49,7 +50,6 @@ public:
 	
 private:
 	std::size_t generateId( void *entity );
-	std::ofstream &outputStream;
 };
 
 }

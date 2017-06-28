@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <fstream>
 #include "jive.h"
 
 namespace jive
@@ -49,7 +50,8 @@ class CVoidExpression;
 class IVisitor
 {
 public:
-	IVisitor( CJiveEnvironment *_jiveEnv ) : jiveEnv( _jiveEnv ) {}
+	IVisitor( CJiveEnvironment *_jiveEnv, std::ofstream &_outputStream ) : \
+		jiveEnv( _jiveEnv ), outputStream( _outputStream ) {}
 
    	virtual void Visit( CProgram *program ) = 0;
    	virtual void Visit( CGoal *goal ) = 0;
@@ -84,6 +86,7 @@ public:
 
 protected:
 	CJiveEnvironment *jiveEnv;
+	std::ofstream &outputStream;
 };
 
 }
