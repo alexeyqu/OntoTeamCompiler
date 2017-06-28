@@ -177,11 +177,8 @@ void CPrintVisitor::Visit( CMainClass *entity ) {
     outputStream << entityId << "->";
     entity->name->Accept(this);
 
-    outputStream << entityId << "->";
-    entity->cmdArgs->Accept(this);
-
-    outputStream << entityId << "->";
-    entity->statement->Accept(this);
+	outputStream << entityId << "->";
+	entity->methods->method2->Accept(this);
 }
 
 void CPrintVisitor::Visit( CClass *entity ) {
@@ -502,6 +499,9 @@ void CPrintVisitor::Visit( CCompoundExpression *expression ) {
         outputStream << exprId << "->";
         expression->rightExpression->Accept(this);
     }
+}
+
+void CPrintVisitor::Visit( CVoidExpression *expression ) {
 }
 
 std::size_t  CPrintVisitor::generateId( void *entity )

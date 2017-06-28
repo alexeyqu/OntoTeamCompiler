@@ -112,7 +112,7 @@ void CTableCreatorVisitor::Visit( CMethod *entity ) {
 
 void CTableCreatorVisitor::Visit( CCompoundMethod *entity ) {
     if( entity->method1 ) {
-            entity->method1->Accept(this);
+		entity->method1->Accept(this);
     }
     entity->method2->Accept(this);
 }
@@ -126,12 +126,7 @@ void CTableCreatorVisitor::Visit( CMainClass *entity ) {
 
     curClassSymbol = classSymbol;
 
-    CMethodSymbol* methodSymbol = new CMethodSymbol( new CSymbol( "main" ), jiveEnv->typeTable->lookup( new CType( jive::VOID, new CSymbol( "void" ) ) ), entity); //FIXIT
-    classSymbol->methods.insert( methodSymbol );
-    curMethodSymbol = methodSymbol;
-
-    CVariableSymbol* varSymbol = new CVariableSymbol( entity->cmdArgs->name, jiveEnv->typeTable->lookup( new CType( jive::STRINGARRAY, new CSymbol( "String[]" ) ) ), entity);
-    methodSymbol->arguments.insert( varSymbol );
+	entity->methods->method2->Accept(this);
 }
 
 void CTableCreatorVisitor::Visit( CClass *entity ) {
@@ -153,11 +148,11 @@ void CTableCreatorVisitor::Visit( CClass *entity ) {
     }
 
     if( entity->fields ) {
-            entity->fields->Accept(this);
+		entity->fields->Accept(this);
     }
 
     if( entity->methods ) {
-            entity->methods->Accept(this);
+		entity->methods->Accept(this);
     }
 }
 
@@ -219,6 +214,9 @@ void CTableCreatorVisitor::Visit( CArrayIndexExpression *expression ) {
 }
 
 void CTableCreatorVisitor::Visit( CCompoundExpression *expression ) {
+}
+
+void CTableCreatorVisitor::Visit( CVoidExpression *expression ) {
 } 
 
 }

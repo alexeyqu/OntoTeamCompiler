@@ -13,3 +13,4 @@
 #include "Expressions/CArrayLengthExpression.h"
 #include "Expressions/CArrayIndexExpression.h"
 #include "Expressions/CCompoundExpression.h"
+#include "Expressions/CVoidExpression.h"

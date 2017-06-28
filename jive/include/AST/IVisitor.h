@@ -44,6 +44,7 @@ class CMethodCallExpression;
 class CArrayLengthExpression;
 class CArrayIndexExpression;
 class CCompoundExpression;
+class CVoidExpression;
 
 class IVisitor
 {
@@ -79,6 +80,7 @@ public:
 	virtual void Visit( CArrayLengthExpression *expression ) = 0;
 	virtual void Visit( CArrayIndexExpression *expression ) = 0;
 	virtual void Visit( CCompoundExpression *expression ) = 0;
+	virtual void Visit( CVoidExpression *expression ) = 0;
 
 protected:
 	CJiveEnvironment *jiveEnv;

@@ -98,15 +98,14 @@ void CTypeCheckerVisitor::Visit( CMethod *entity ) {
 
 void CTypeCheckerVisitor::Visit( CCompoundMethod *entity ) {
     if( entity->method1 ) {
-            entity->method1->Accept(this);
+		entity->method1->Accept(this);
     }
     entity->method2->Accept(this);
 }
 
 void CTypeCheckerVisitor::Visit( CMainClass *entity ) {
     entity->name->Accept(this);
-    entity->cmdArgs->Accept(this);
-    entity->statement->Accept(this);
+    entity->methods->method2->Accept(this);
 }
 
 void CTypeCheckerVisitor::Visit( CClass *entity ) {
@@ -117,11 +116,11 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
     }
 
     if( entity->fields ) {
-            entity->fields->Accept(this);
+		entity->fields->Accept(this);
     }
 
     if( entity->methods ) {
-            entity->methods->Accept(this);
+		entity->methods->Accept(this);
     }
 }
 
@@ -222,6 +221,9 @@ void CTypeCheckerVisitor::Visit( CCompoundExpression *expression ) {
     if(expression->rightExpression) {
         expression->rightExpression->Accept(this);
     }
+}
+
+void CTypeCheckerVisitor::Visit( CVoidExpression *expression ) {
 }
 
 }

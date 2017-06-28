@@ -51,7 +51,8 @@ public:
 	void Visit( CArrayLengthExpression *expression );
 	void Visit( CArrayIndexExpression *expression );
 	void Visit( CCompoundExpression *expression );
-
+	void Visit( CVoidExpression *expression );
+	
 private:
 	std::unordered_set<CClassSymbol *> classTable;	
 	CClassSymbol* curClassSymbol;

@@ -45,6 +45,7 @@ public:
 	void Visit( CArrayLengthExpression *expression );
 	void Visit( CArrayIndexExpression *expression );
 	void Visit( CCompoundExpression *expression );
+	void Visit( CVoidExpression *expression );
 	
 private:
 	std::size_t generateId( void *entity );
