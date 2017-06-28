@@ -85,9 +85,9 @@ Method Delete with return Type boolean
 	Args:
 		Arg v_key of Type int
 	Vars:
-		Var key_aux of Type int
 		Var is_root of Type boolean
 		Var ntb of Type boolean
+		Var key_aux of Type int
 		Var current_node of Type Tree
 		Var parent_node of Type Tree
 		Var cont of Type boolean

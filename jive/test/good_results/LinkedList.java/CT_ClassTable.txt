@@ -33,11 +33,11 @@ Method Delete with return Type List
 		Arg e of Type Element
 	Vars:
 		Var nt of Type int
-		Var aux04 of Type int
-		Var var_elem of Type Element
 		Var var_end of Type boolean
 		Var prev of Type List
+		Var var_elem of Type Element
 		Var my_head of Type List
+		Var aux04 of Type int
 		Var ret_val of Type boolean
 		Var aux05 of Type boolean
 		Var aux01 of Type List

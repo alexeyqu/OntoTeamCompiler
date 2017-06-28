@@ -7,8 +7,8 @@ Method Init with return Type int
 	Args:
 		Arg sz of Type int
 	Vars:
-		Var aux02 of Type int
 		Var aux01 of Type int
+		Var aux02 of Type int
 		Var k of Type int
 		Var j of Type int
 Method Search with return Type int

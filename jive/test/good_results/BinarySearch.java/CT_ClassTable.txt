@@ -36,8 +36,8 @@ Method Div with return Type int
 	Args:
 		Arg num of Type int
 	Vars:
-		Var aux03 of Type int
 		Var count02 of Type int
+		Var aux03 of Type int
 		Var count01 of Type int
 Method Compare with return Type boolean
 	Args:

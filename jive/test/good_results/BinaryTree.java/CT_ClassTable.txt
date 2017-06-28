@@ -49,12 +49,12 @@ Method Delete with return Type boolean
 	Args:
 		Arg v_key of Type int
 	Vars:
+		Var ntb of Type boolean
 		Var key_aux of Type int
 		Var is_root of Type boolean
-		Var ntb of Type boolean
 		Var current_node of Type Tree
-		Var cont of Type boolean
 		Var parent_node of Type Tree
+		Var cont of Type boolean
 		Var found of Type boolean
 Method Insert with return Type boolean
 	Args:
@@ -62,8 +62,8 @@ Method Insert with return Type boolean
 	Vars:
 		Var current_node of Type Tree
 		Var new_node of Type Tree
-		Var ntb of Type boolean
 		Var cont of Type boolean
+		Var ntb of Type boolean
 		Var key_aux of Type int
 Method Compare with return Type boolean
 	Args:
