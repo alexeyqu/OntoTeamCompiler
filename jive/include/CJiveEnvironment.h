@@ -4,6 +4,7 @@
 #include "CSymbolTable.h"
 #include "CTypeSymbol.h"
 #include "CTypeTable.h"
+#include "CClassTable.h"
 #include "CSymbol.h"
 #include "Types.h"
 
@@ -15,6 +16,8 @@ using AST::CType;
 using ST::CSymbol;
 using ST::CSymbolTable;
 using ST::CTypeSymbol;
+using ST::CTypeTable;
+using ST::CClassTable;
 
 class CJiveEnvironment
 {
@@ -25,7 +28,8 @@ public:
 
 	CProgram *program;
 	CSymbolTable *symbolTable;
-	ST::CTypeTable *typeTable;
+	CTypeTable *typeTable;
+	CClassTable *classTable;
 };
 
 }

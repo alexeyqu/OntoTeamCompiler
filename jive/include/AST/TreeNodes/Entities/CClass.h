@@ -3,6 +3,7 @@
 #include "IEntity.h"
 #include "IExpression.h"
 #include "IStatement.h"
+#include "CIdExpression.h"
 
 namespace AST 
 {
@@ -22,5 +23,9 @@ public:
    	CCompoundVariable *fields;
 	CCompoundMethod *methods;
 };
+
+inline bool operator==(const CClass& lhs, const CClass& rhs) {
+	return ( lhs.name->getName() == rhs.name->getName() );
+}
 
 }

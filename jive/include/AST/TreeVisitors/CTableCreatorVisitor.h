@@ -20,8 +20,7 @@ class CTableCreatorVisitor : public IVisitor
 public:
 	CTableCreatorVisitor( CJiveEnvironment *_jiveEnv ) : IVisitor( _jiveEnv ) {};
 	void Start( IVisitorTarget *vertex );
-	std::unordered_set<CClassSymbol *> &getClassTable() { return classTable; }
-	
+
 	void Visit( CProgram *program );
    	void Visit( CGoal *goal );
 	void Visit( CType *type );
@@ -54,7 +53,6 @@ public:
 	void Visit( CVoidExpression *expression );
 	
 private:
-	std::unordered_set<CClassSymbol *> classTable;	
 	CClassSymbol* curClassSymbol;
 	CMethodSymbol* curMethodSymbol;
 };

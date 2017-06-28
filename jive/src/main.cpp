@@ -44,8 +44,7 @@ int main( int argc, char **argv ) {
 
 	CTableCreatorVisitor tableCreatorVisitor( jiveEnv );
     tableCreatorVisitor.Start( jiveEnv->program );
-	std::unordered_set<CClassSymbol *> classTable = tableCreatorVisitor.getClassTable();
-
+	
 	outstream.open( outstreamFolder + "TT_TypeTable.txt", std::ios::out );
 	for( const auto &elem: jiveEnv->typeTable->get() ) {
 		outstream << elem.first.getSymbol()->get() << '\t' << elem.second.get()->get() << "\n";
@@ -53,8 +52,9 @@ int main( int argc, char **argv ) {
 	outstream.close();
 
 	outstream.open( outstreamFolder + "CT_ClassTable.txt", std::ios::out );
-	for( auto classSymbol : classTable ) {
-		outstream << "Class " << classSymbol->name->get() << ":\n";
+	for( auto classTuple : jiveEnv->classTable->get() ) {
+		auto classSymbol = classTuple.second;
+		outstream << "Class " << classSymbol->name->get() << " : public " << classSymbol->baseClass << "\n";
 
 		outstream << "Fields:\n";
 		for( auto varSymbol : classSymbol->fields ) {

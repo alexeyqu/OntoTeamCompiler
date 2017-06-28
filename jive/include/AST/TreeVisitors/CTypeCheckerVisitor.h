@@ -21,8 +21,8 @@ using ST::CTypeSymbol;
 class CTypeCheckerVisitor : public IVisitor 
 {
 public:
-	CTypeCheckerVisitor( CJiveEnvironment *_jiveEnv, std::unordered_set<CClassSymbol *> &_classTable, std::ofstream &_outputStream ) : \
-		IVisitor( _jiveEnv ), classTable( _classTable ), outputStream( _outputStream ) {}
+	CTypeCheckerVisitor( CJiveEnvironment *_jiveEnv, std::ofstream &_outputStream ) : \
+		IVisitor( _jiveEnv ), outputStream( _outputStream ) {}
 	void Start( IVisitorTarget *vertex );
 	
 	void Visit( CProgram *program );
@@ -57,7 +57,6 @@ public:
 	void Visit( CVoidExpression *expression );
 	
 private:
-	std::unordered_set<CClassSymbol *> classTable;
 	CClassSymbol* curClassSymbol;
 	CMethodSymbol* curMethodSymbol;
 	std::vector<CTypeSymbol *> curMethodArgTypes;
