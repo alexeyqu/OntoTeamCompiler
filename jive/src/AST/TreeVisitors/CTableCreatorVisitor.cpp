@@ -122,7 +122,7 @@ void CTableCreatorVisitor::Visit( CMainClass *entity ) {
     jiveEnv->typeTable->insert( new CType( jive::CLASS, entity->name->name ), mainClassTypeSymbol );
 
     CClassSymbol* classSymbol = new CClassSymbol( entity->name->name, mainClassTypeSymbol, nullptr, entity );
-    classTable.insert( classSymbol );
+    jiveEnv->classTable->insert( entity, classSymbol );
 
     curClassSymbol = classSymbol;
 
@@ -134,17 +134,20 @@ void CTableCreatorVisitor::Visit( CClass *entity ) {
     jiveEnv->typeTable->insert( new CType( jive::CLASS, entity->name->name ), classTypeSymbol );
 
     CClassSymbol* classSymbol = new CClassSymbol( entity->name->name, classTypeSymbol, nullptr, entity );
-    if( classTable.find( classSymbol ) != classTable.end() ) {
+    if( jiveEnv->classTable->lookup( entity ) != nullptr ) {
         std::cerr << "Error: Redefinition of class \"" << classSymbol->name << "\"\n";
             delete classSymbol;
             return;
     }
-    classTable.insert( classSymbol );
+    jiveEnv->classTable->insert( entity, classSymbol );
     curClassSymbol = classSymbol;
     curMethodSymbol = nullptr;
 
     if( entity->parentName ) {
-        //classSymbol->baseClass = classTable.find( entity->parentName ); TODO think about mapping the base Classes
+        classSymbol->baseClass = jiveEnv->classTable->lookup( entity->parentName->name );
+        if( classSymbol->baseClass == nullptr ) {
+            classSymbol->baseClass = new CClassSymbol( entity->parentName->name, new CTypeSymbol( entity->parentName->name ), nullptr, nullptr );
+        }
     }
 
     if( entity->fields ) {
