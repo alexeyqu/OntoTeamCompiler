@@ -78,21 +78,21 @@ void CTypeCheckerVisitor::Visit( CMethod *entity ) {
 
     entity->returnExpression->Accept(this);
 
-	CType *retExpType = entity->returnExpression->type;
+	// CType *retExpType = entity->returnExpression->type;
 
-	if( jiveEnv->typeTable->lookup( retExpType ) ) {
-		std::cerr << OUT_COORDINATES( entity )
-			<< "Error: Return type of method \"" << "FIXIT" /*curMethodName */
-			<< "\" is of unknown type \"" << entity->returnType->getSymbol()->get()  << "\".\n";
-		// curMethodName = "";
-		return;
-	}
-	if( retExpType != entity->returnType ) {
-		std::cerr << OUT_COORDINATES( entity ) 
-			<< "Error: Type of return expression doesn't match "
-			<< "method \"" <<  "FIXIT" /*curMethodName */ << "\" return type.\n"
-			<< "Expected: \"" << entity->returnType->getSymbol()->get()  << "\". Found: \"" << retExpType->getSymbol()->get()  << "\".\n";
-	}
+	// if( jiveEnv->typeTable->lookup( retExpType ) ) {
+	// 	std::cerr << OUT_COORDINATES( entity )
+	// 		<< "Error: Return type of method \"" << "FIXIT" /*curMethodName */
+	// 		<< "\" is of unknown type \"" << entity->returnType->getSymbol()->get()  << "\".\n";
+	// 	// curMethodName = "";
+	// 	return;
+	// }
+	// if( retExpType != entity->returnType ) {
+	// 	std::cerr << OUT_COORDINATES( entity ) 
+	// 		<< "Error: Type of return expression doesn't match "
+	// 		<< "method \"" <<  "FIXIT" /*curMethodName */ << "\" return type.\n"
+	// 		<< "Expected: \"" << entity->returnType->getSymbol()->get()  << "\". Found: \"" << retExpType->getSymbol()->get()  << "\".\n";
+	// }
 	// curMethodName = "";
 }
 
@@ -104,15 +104,37 @@ void CTypeCheckerVisitor::Visit( CCompoundMethod *entity ) {
 }
 
 void CTypeCheckerVisitor::Visit( CMainClass *entity ) {
-    entity->name->Accept(this);
+    curClassSymbol = jiveEnv->classTable->lookup( entity );
+    assert( curClassSymbol != nullptr );
+
     entity->methods->method2->Accept(this);
+
+    curMethodSymbol = nullptr;
 }
 
 void CTypeCheckerVisitor::Visit( CClass *entity ) {
-    entity->name->Accept(this);
-
+    curClassSymbol = jiveEnv->classTable->lookup( entity );
+    
     if( entity->parentName ) {
-        entity->parentName->Accept(this);
+        if( jiveEnv->classTable->lookup( entity->parentName->name ) == nullptr ) {
+            outputStream << OUT_COORDINATES( entity->parentName )
+                << "Error: unknown base class \"" 
+                << entity->parentName->getName() << "\" for class \"" 
+                << entity->name->getName() << "\"\n";
+        }
+
+        CClassSymbol *parentClassSymbol = jiveEnv->classTable->lookup( entity->parentName->name );
+
+        while( parentClassSymbol ) {
+            if( curClassSymbol == parentClassSymbol ) {
+                outputStream << OUT_COORDINATES( entity->parentName )
+                    << "Error: cyclic inheritance for class \"" 
+                    << entity->name->getName() << "\" detected.\n";
+                break;
+            }
+
+            parentClassSymbol = parentClassSymbol->baseClass;
+        }
     }
 
     if( entity->fields ) {

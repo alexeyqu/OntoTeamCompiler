@@ -54,7 +54,12 @@ int main( int argc, char **argv ) {
 	outstream.open( outstreamFolder + "CT_ClassTable.txt", std::ios::out );
 	for( auto classTuple : jiveEnv->classTable->get() ) {
 		auto classSymbol = classTuple.second;
-		outstream << "Class " << classSymbol->name->get() << " : public " << classSymbol->baseClass << "\n";
+		outstream << "Class " << classSymbol->name->get();
+		if( classSymbol->baseClass != nullptr ){
+			outstream << " : public " << classSymbol->baseClass->name->get() << "\n";
+		} else {
+			outstream << "\n";
+		}
 
 		outstream << "Fields:\n";
 		for( auto varSymbol : classSymbol->fields ) {
@@ -79,10 +84,10 @@ int main( int argc, char **argv ) {
 	}
 	outstream.close();
 
-	// outstream.open( outstreamFolder + "CE_CompilerErrors.txt", std::ios::out );
-	// CTypeCheckerVisitor typeCheckerVisitor( jiveEnv, classTable, outstream );
-    // typeCheckerVisitor.Start( jiveEnv->program );
-	// outstream.close();
+	outstream.open( outstreamFolder + "CE_CompilerErrors.txt", std::ios::out );
+	CTypeCheckerVisitor typeCheckerVisitor( jiveEnv, outstream );
+    typeCheckerVisitor.Start( jiveEnv->program );
+	outstream.close();
 
 	return 0;
 }

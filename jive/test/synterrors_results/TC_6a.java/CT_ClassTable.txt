@@ -1,4 +1,4 @@
-Class QS:
+Class QS
 Fields:
 	Field size of Type int
 	Field number of Type int[]
@@ -31,7 +31,7 @@ Method Start with return Type QS
 		Var aux01 of Type int
 ---
 
-Class QuickSort:
+Class QuickSort
 Fields:
 Methods:
 Method main with return Type void

@@ -1,4 +1,4 @@
-Class BBS:
+Class BBS : public 0
 Fields:
 	Field size of Type int
 	Field number of Type int[]
@@ -30,7 +30,7 @@ Method Start with return Type int
 		Var aux01 of Type int
 ---
 
-Class BubbleSort:
+Class BubbleSort : public 0
 Fields:
 Methods:
 Method main with return Type void

@@ -70,7 +70,7 @@ digraph my_graph {
 -1261435280->-1261435232
 -1261435232[label = "IdExp", shape = "circle"];
 -1261435232->-1261435216;
--1261435216[label = "MyVisitor"];
+-1261435216[label = "UnknownClass"];
 -1261435520->-1261435472;
 -1261435472[label = "ClassNtt", shape = "box"];
 -1261435472->-1261435376

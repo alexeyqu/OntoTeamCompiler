@@ -1,4 +1,4 @@
-Class Visitor:
+Class Visitor
 Fields:
 Methods:
 Method visit with return Type TV2
@@ -6,7 +6,7 @@ Method visit with return Type TV2
 	Vars:
 ---
 
-Class TV:
+Class TV
 Fields:
 Methods:
 Method Start with return Type int
@@ -14,7 +14,7 @@ Method Start with return Type int
 	Vars:
 ---
 
-Class TreeVisitor:
+Class TreeVisitor
 Fields:
 Methods:
 Method main with return Type void

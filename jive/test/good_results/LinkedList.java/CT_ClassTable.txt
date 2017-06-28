@@ -1,4 +1,56 @@
-Class List:
+Class LL : public 0
+Fields:
+Methods:
+Method Start with return Type int
+	Args:
+	Vars:
+		Var el03 of Type Element
+		Var el02 of Type Element
+		Var head of Type List
+		Var last_elem of Type List
+		Var aux01 of Type boolean
+		Var el01 of Type Element
+---
+
+Class Element : public 0
+Fields:
+	Field Married of Type boolean
+	Field Salary of Type int
+	Field Age of Type int
+Methods:
+Method Compare with return Type boolean
+	Args:
+		Arg num2 of Type int
+		Arg num1 of Type int
+	Vars:
+		Var aux02 of Type int
+		Var retval of Type boolean
+Method Equal with return Type boolean
+	Args:
+		Arg other of Type Element
+	Vars:
+		Var nt of Type int
+		Var aux02 of Type int
+		Var aux01 of Type int
+		Var ret_val of Type boolean
+Method Init with return Type boolean
+	Args:
+		Arg v_Married of Type boolean
+		Arg v_Salary of Type int
+		Arg v_Age of Type int
+	Vars:
+Method GetAge with return Type int
+	Args:
+	Vars:
+Method GetSalary with return Type int
+	Args:
+	Vars:
+Method GetMarried with return Type boolean
+	Args:
+	Vars:
+---
+
+Class List : public 0
 Fields:
 	Field end of Type boolean
 	Field next of Type List
@@ -63,59 +115,7 @@ Method SetNext with return Type boolean
 	Vars:
 ---
 
-Class Element:
-Fields:
-	Field Married of Type boolean
-	Field Salary of Type int
-	Field Age of Type int
-Methods:
-Method Compare with return Type boolean
-	Args:
-		Arg num2 of Type int
-		Arg num1 of Type int
-	Vars:
-		Var aux02 of Type int
-		Var retval of Type boolean
-Method Equal with return Type boolean
-	Args:
-		Arg other of Type Element
-	Vars:
-		Var nt of Type int
-		Var aux02 of Type int
-		Var aux01 of Type int
-		Var ret_val of Type boolean
-Method Init with return Type boolean
-	Args:
-		Arg v_Married of Type boolean
-		Arg v_Salary of Type int
-		Arg v_Age of Type int
-	Vars:
-Method GetAge with return Type int
-	Args:
-	Vars:
-Method GetSalary with return Type int
-	Args:
-	Vars:
-Method GetMarried with return Type boolean
-	Args:
-	Vars:
----
-
-Class LL:
-Fields:
-Methods:
-Method Start with return Type int
-	Args:
-	Vars:
-		Var el03 of Type Element
-		Var el02 of Type Element
-		Var head of Type List
-		Var last_elem of Type List
-		Var aux01 of Type boolean
-		Var el01 of Type Element
----
-
-Class LinkedList:
+Class LinkedList : public 0
 Fields:
 Methods:
 Method main with return Type void

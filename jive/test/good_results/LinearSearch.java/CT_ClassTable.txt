@@ -1,4 +1,4 @@
-Class LS:
+Class LS : public 0
 Fields:
 	Field size of Type int
 	Field number of Type int[]
@@ -7,9 +7,9 @@ Method Init with return Type int
 	Args:
 		Arg sz of Type int
 	Vars:
-		Var aux01 of Type int
 		Var aux02 of Type int
 		Var k of Type int
+		Var aux01 of Type int
 		Var j of Type int
 Method Search with return Type int
 	Args:
@@ -33,7 +33,7 @@ Method Start with return Type int
 		Var aux01 of Type int
 ---
 
-Class LinearSearch:
+Class LinearSearch : public 0
 Fields:
 Methods:
 Method main with return Type void

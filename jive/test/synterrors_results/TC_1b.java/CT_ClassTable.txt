@@ -1,18 +1,18 @@
+Class MyVisitor : public Visitor
+Fields:
+Methods:
+---
+
+Class Visitor : public UnknownClass
+Fields:
+Methods:
+---
+
 Class TV
 Fields:
 Methods:
 Method Start with return Type int
 	Args:
-	Vars:
----
-
-Class Visitor
-Fields:
-Methods:
-Method visit with return Type int
-	Args:
-		Arg n of Type TV
-		Arg n of Type TV
 	Vars:
 ---
 

@@ -1,9 +1,14 @@
-Class Visitor:
+Class MyVisitor : public Visitor
 Fields:
 Methods:
 ---
 
-Class TV:
+Class Visitor : public MyVisitor
+Fields:
+Methods:
+---
+
+Class TV
 Fields:
 Methods:
 Method Start with return Type int
@@ -11,12 +16,7 @@ Method Start with return Type int
 	Vars:
 ---
 
-Class MyVisitor:
-Fields:
-Methods:
----
-
-Class TreeVisitor:
+Class TreeVisitor
 Fields:
 Methods:
 Method main with return Type void

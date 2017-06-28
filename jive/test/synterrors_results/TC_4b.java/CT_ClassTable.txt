@@ -1,4 +1,12 @@
-Class Visitor:
+Class TV
+Fields:
+Methods:
+Method Start with return Type int
+	Args:
+	Vars:
+---
+
+Class Visitor
 Fields:
 Methods:
 Method visit with return Type int
@@ -8,15 +16,7 @@ Method visit with return Type int
 	Vars:
 ---
 
-Class TV:
-Fields:
-Methods:
-Method Start with return Type int
-	Args:
-	Vars:
----
-
-Class TreeVisitor:
+Class TreeVisitor
 Fields:
 Methods:
 Method main with return Type void

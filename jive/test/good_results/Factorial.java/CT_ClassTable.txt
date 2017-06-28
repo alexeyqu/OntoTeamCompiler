@@ -1,4 +1,4 @@
-Class Fac:
+Class Fac : public 0
 Fields:
 Methods:
 Method ComputeFac with return Type int
@@ -8,7 +8,7 @@ Method ComputeFac with return Type int
 		Var num_aux of Type int
 ---
 
-Class Factorial:
+Class Factorial : public 0
 Fields:
 Methods:
 Method main with return Type void
