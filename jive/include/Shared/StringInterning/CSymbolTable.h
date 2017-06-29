@@ -27,6 +27,11 @@ class CSymbolTable
 {
 public:
     void insert( CSymbol symbol ) { CSymbol *symbolOwner = new CSymbol( symbol.getString() ); table.insert( std::make_pair( *symbolOwner, CType( TType::UNKNOWNTYPE, symbolOwner ) ) ); }
+    void insert( CSymbol symbol, CType type ) { 
+		CSymbol *symbolOwner = new CSymbol( symbol.getString() ); 
+		CType *typeOwner = new CType( type.getPrimitiveType(), type.getSymbol() );
+		table.insert( std::make_pair( *symbolOwner, *typeOwner ) ); 
+	}
     void insert( std::string name ) { CSymbol *symbol = new CSymbol( name ); table.insert( std::make_pair( *symbol, CType( TType::UNKNOWNTYPE, symbol ) ) ); }
     std::unordered_map<CSymbol, CType> &get() { return table; }
 	void dump( std::ostream &outStream );

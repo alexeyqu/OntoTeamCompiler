@@ -13,6 +13,16 @@ CClassSymbol *CClassMap::lookup( CSymbol *name ) {
     return nullptr;
 }
 
+// CClass *CClassMap::lookup( CSymbol *name ) {
+//     for( auto classTuple : table ) {
+//         if( classTuple.first->getString() == name->getString() ) {
+//             return classTuple.first;
+//         }
+//     }
+
+//     return nullptr;
+// }
+
 void CClassMap::dump( std::ostream &outStream ) {
 	for( auto classTuple : table ) {
 		auto classSymbol = classTuple.second;

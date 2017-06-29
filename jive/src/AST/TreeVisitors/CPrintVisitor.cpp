@@ -144,8 +144,10 @@ void CPrintVisitor::Visit( CMethod *entity ) {
         }
     }
 
-    outputStream << entityId << "->";
-    entity->getReturnExpression()->Accept(this);
+    if( entity->getReturnExpression() ) {
+		outputStream << entityId << "->";
+    	entity->getReturnExpression()->Accept(this);
+	}
 }
 
 void CPrintVisitor::Visit( CCompoundMethod *entity ) {
@@ -502,6 +504,10 @@ void CPrintVisitor::Visit( CCompoundExpression *expression ) {
 }
 
 void CPrintVisitor::Visit( CVoidExpression *expression ) {
+	long exprId = generateId(expression);
+
+    outputStream << exprId << "\n";
+    outputStream << exprId << "[label = \"VoidExp\", shape = \"circle\"];\n";
 }
 
 std::size_t  CPrintVisitor::generateId( void *entity )
