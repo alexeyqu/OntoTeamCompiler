@@ -8,13 +8,16 @@ Method visit with return Type int
 		Var nti of Type int
 ---
 
-Class TreeVisitor
+Class Visitor
 Fields:
+	Field r of Type Tree
+	Field l of Type Tree
 Methods:
-Method main with return Type void
+Method visit with return Type int
 	Args:
-		Arg a of Type String[]
+		Arg n of Type Tree
 	Vars:
+		Var nti of Type int
 ---
 
 Class TV
@@ -24,18 +27,27 @@ Method Start with return Type int
 	Args:
 	Vars:
 		Var nti of Type int
-		Var ntb of Type boolean
 		Var v of Type MyVisitor
+		Var ntb of Type boolean
 		Var root of Type Tree
+---
+
+Class TreeVisitor
+Fields:
+Methods:
+Method main with return Type void
+	Args:
+		Arg a of Type String[]
+	Vars:
 ---
 
 Class Tree
 Fields:
-	Field my_null of Type Tree
 	Field has_right of Type boolean
+	Field my_null of Type Tree
 	Field left of Type Tree
-	Field right of Type Tree
 	Field key of Type int
+	Field right of Type Tree
 	Field has_left of Type boolean
 Methods:
 Method accept with return Type int
@@ -58,53 +70,53 @@ Method Search with return Type int
 		Arg v_key of Type int
 	Vars:
 		Var key_aux of Type int
-		Var cont of Type boolean
 		Var ifound of Type int
+		Var cont of Type boolean
 		Var current_node of Type Tree
 Method RemoveLeft with return Type boolean
 	Args:
-		Arg c_node of Type Tree
 		Arg p_node of Type Tree
+		Arg c_node of Type Tree
 	Vars:
 		Var ntb of Type boolean
 Method RemoveRight with return Type boolean
 	Args:
-		Arg c_node of Type Tree
 		Arg p_node of Type Tree
+		Arg c_node of Type Tree
 	Vars:
 		Var ntb of Type boolean
 Method Remove with return Type boolean
 	Args:
-		Arg c_node of Type Tree
 		Arg p_node of Type Tree
+		Arg c_node of Type Tree
 	Vars:
-		Var auxkey2 of Type int
 		Var auxkey1 of Type int
+		Var auxkey2 of Type int
 		Var ntb of Type boolean
 Method Delete with return Type boolean
 	Args:
 		Arg v_key of Type int
 	Vars:
-		Var is_root of Type boolean
-		Var ntb of Type boolean
 		Var key_aux of Type int
+		Var ntb of Type boolean
+		Var is_root of Type boolean
 		Var current_node of Type Tree
-		Var parent_node of Type Tree
 		Var cont of Type boolean
+		Var parent_node of Type Tree
 		Var found of Type boolean
 Method Insert with return Type boolean
 	Args:
 		Arg v_key of Type int
 	Vars:
 		Var key_aux of Type int
-		Var new_node of Type Tree
 		Var ntb of Type boolean
 		Var current_node of Type Tree
+		Var new_node of Type Tree
 		Var cont of Type boolean
 Method Compare with return Type boolean
 	Args:
-		Arg num2 of Type int
 		Arg num1 of Type int
+		Arg num2 of Type int
 	Vars:
 		Var nti of Type int
 		Var ntb of Type boolean
@@ -147,17 +159,5 @@ Method SetHas_Left with return Type boolean
 	Args:
 		Arg val of Type boolean
 	Vars:
----
-
-Class Visitor
-Fields:
-	Field r of Type Tree
-	Field l of Type Tree
-Methods:
-Method visit with return Type int
-	Args:
-		Arg n of Type Tree
-	Vars:
-		Var nti of Type int
 ---
 

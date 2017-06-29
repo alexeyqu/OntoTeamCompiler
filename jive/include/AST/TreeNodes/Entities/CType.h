@@ -15,6 +15,7 @@ class CType : public IVisitorTarget
 {
 public:
 	CType( TType _type, CSymbol *_name ) : type( _type ), name( _name ) {}
+	CType( const CType &other ) : type( other.getPrimitiveType() ), name( other.getSymbol() ) {}
 
 	CSymbol *getSymbol() const { return name; }	
 	boost::flyweight<std::string> &getString() const { return name->getString(); }

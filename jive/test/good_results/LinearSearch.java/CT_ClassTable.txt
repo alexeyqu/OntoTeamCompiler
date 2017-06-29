@@ -15,11 +15,11 @@ Method Search with return Type int
 	Args:
 		Arg num of Type int
 	Vars:
-		Var nt of Type int
 		Var aux02 of Type int
+		Var nt of Type int
 		Var j of Type int
-		Var ls01 of Type boolean
 		Var ifound of Type int
+		Var ls01 of Type boolean
 		Var aux01 of Type int
 Method Print with return Type int
 	Args:

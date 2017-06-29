@@ -57,7 +57,7 @@ public:
 private:
 	CClassSymbol* curClassSymbol;
 	CMethodSymbol* curMethodSymbol;
-	std::vector<CTypeSymbol *> curMethodArgTypes;
+	std::vector<CType *> curCallArgTypes;
 };
 
 }

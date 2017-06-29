@@ -1,66 +1,53 @@
-0xb4e04794	node
-0xb4e03854	RecPrint
-0xb4e03d54	ifound
-0xb4e02994	RemoveLeft
-0xb4e02a94	auxkey1
-0xb4e02314	found
-0xb4e02b34	c_node
-0xb4e019d4	current_node
-0xb4e01a94	cont
-0xb4e01df4	num2
-0xb4e02d74	Remove
-0xb4e01e54	num1
-0xb4e02a34	auxkey2
-0xb4e00134	Init
-0xb4e001f4	nti
-0xb4e002b4	root
-0xb4e004b4	a
-0xb4e002f4	Tree
-0xb4e00434	Start
-0xb4e02b94	p_node
-0xb4e01a34	key_aux
-0xb4e01eb4	Compare
-0xb4e00614	if
-0xb4e01374	GetLeft
-0xb4e01094	SetHas_Left
-0xb4e004f4	BinaryTree
-0xb4e00574	this
-0xb4e01114	GetHas_Left
-0xb4e006b4	public
-0xb4e028b4	RemoveRight
-0xb4e00674	static
-0xb4e00014	Insert
-0xb4e00594	false
-0xb4e00554	new
-0xb4e00834	has_left
-0xb4e013f4	GetRight
-0xb4e00654	void
-0xb4e00694	private
-0xb4e023b4	parent_node
-0xb4e005b4	true
-0xb4e00254	ntb
-0xb4e00a94	Delete
-0xb4e00634	extends
-0xb4e000b4	Print
-0xb4e006f4	class
-0xb4e00cb4	Search
-0xb4e01f94	SetHas_Right
-0xb4e022b4	is_root
-0xb4e01b34	new_node
-0xb4e008f4	right
-0xb4e00954	left
-0xb4e00894	key
-0xb4e005f4	while
-0xb4e015f4	SetRight
-0xb4e017d4	has_right
-0xb4e01774	my_null
-0xb4e016d4	v_key
-0xb4e01594	rn
-0xb4e014f4	SetLeft
-0xb4e012f4	GetKey
-0xb4e00474	BT
-0xb4e01494	ln
-0xb4e005d4	return
-0xb4e01274	SetKey
-0xb4e01194	GetHas_Right
-0xb4e01034	val
+0xb4d16ed4	node	node
+0xb4d17354	RecPrint	RecPrint
+0xb4d14d44	ifound	ifound
+0xb4d0f7f4	RemoveLeft	RemoveLeft
+0xb4d0e474	auxkey1	auxkey1
+0xb4d05f24	rn	rn
+0xb4d052f4	has_left	has_left
+0xb4d056e4	GetRight	GetRight
+0xb4d03c14	key	key
+0xb4d04874	SetRight	SetRight
+0xb4d0f284	RemoveRight	RemoveRight
+0xb4d01034	Insert	Insert
+0xb4d03374	Delete	Delete
+0xb4d002b4	ntb	ntb
+0xb4d02744	Search	Search
+0xb4d012d4	Print	Print
+0xb4d076f4	SetHas_Right	SetHas_Right
+0xb4d008e4	Start	Start
+0xb4d054d4	GetLeft	GetLeft
+0xb4d062e4	SetHas_Left	SetHas_Left
+0xb4d00494	Tree	Tree
+0xb4d00b24	BinaryTree	BinaryTree
+0xb4d0fb54	auxkey2	auxkey2
+0xb4d015d4	Init	Init
+0xb4d00194	nti	nti
+0xb4d0bcb4	found	found
+0xb4d051d4	has_right	has_right
+0xb4d00a94	a	a
+0xb4d003d4	root	root
+0xb4d04e44	v_key	v_key
+0xb4d05024	my_null	my_null
+0xb4d05bf4	SetLeft	SetLeft
+0xb4d06b54	GetKey	GetKey
+0xb4d05aa4	ln	ln
+0xb4d009d4	BT	BT
+0xb4d069d4	SetKey	SetKey
+0xb4d065e4	GetHas_Right	GetHas_Right
+0xb4d06464	GetHas_Left	GetHas_Left
+0xb4d06224	val	val
+0xb4d07124	num2	num2
+0xb4d03d34	right	right
+0xb4d03ee4	left	left
+0xb4d0bb94	is_root	is_root
+0xb4d08fb4	new_node	new_node
+0xb4d08d74	cont	cont
+0xb4d0e6b4	c_node	c_node
+0xb4d08aa4	current_node	current_node
+0xb4d0bef4	parent_node	parent_node
+0xb4d07244	num1	num1
+0xb4d0e054	Remove	Remove
+0xb4d08c54	key_aux	key_aux
+0xb4d07304	Compare	Compare
+0xb4d0e864	p_node	p_node

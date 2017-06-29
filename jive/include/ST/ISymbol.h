@@ -2,13 +2,12 @@
 
 #include "CSymbol.h"
 #include "Coordinates.h"
+#include "CTypeSymbol.h"
 
 namespace ST
 {
 
 using jive::Coordinates;
-
-class CTypeSymbol;
 
 class ISymbol
 {
@@ -19,10 +18,17 @@ public:
 	boost::flyweight<std::string> &getString() const { return name->getString(); }
 	CTypeSymbol *getTypeSymbol() const { return type; }
 
+	friend inline bool operator==(const ISymbol& lhs, const ISymbol& rhs);
+
 private:
     CTypeSymbol *type;
 	CSymbol *name;
     // Coordinates coordinates;
 };
+
+
+inline bool operator==(const ISymbol& lhs, const ISymbol& rhs) {
+	return( lhs.getString() == rhs.getString() );
+}
 
 }

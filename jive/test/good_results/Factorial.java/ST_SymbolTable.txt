@@ -1,19 +1,6 @@
-0xb4d002d4	num
-0xb4d00434	ComputeFac
-0xb4d00554	new
-0xb4d00674	static
-0xb4d004f4	Factorial
-0xb4d006b4	public
-0xb4d00474	Fac
-0xb4d004b4	a
-0xb4d006f4	class
-0xb4d00594	false
-0xb4d00654	void
-0xb4d00694	private
-0xb4d00614	if
-0xb4d005b4	true
-0xb4d00574	this
-0xb4d00634	extends
-0xb4d00274	num_aux
-0xb4d005d4	return
-0xb4d005f4	while
+0xb4f00254	num_aux	num_aux
+0xb4f00af4	Factorial	Factorial
+0xb4f00374	num	num
+0xb4f00a64	a	a
+0xb4f009a4	Fac	Fac
+0xb4f008b4	ComputeFac	ComputeFac

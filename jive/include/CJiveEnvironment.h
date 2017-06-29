@@ -3,8 +3,8 @@
 #include "CProgram.h"
 #include "CSymbolTable.h"
 #include "CTypeSymbol.h"
-#include "CTypeTable.h"
-#include "CClassTable.h"
+#include "CTypeMap.h"
+#include "CClassMap.h"
 #include "CSymbol.h"
 #include "Types.h"
 
@@ -16,8 +16,8 @@ using AST::CType;
 using ST::CSymbol;
 using ST::CSymbolTable;
 using ST::CTypeSymbol;
-using ST::CTypeTable;
-using ST::CClassTable;
+using ST::CTypeMap;
+using ST::CClassMap;
 
 class CJiveEnvironment
 {
@@ -28,8 +28,8 @@ public:
 
 	CProgram *program;
 	CSymbolTable *symbolTable;
-	CTypeTable *typeTable;
-	CClassTable *classTable;
+	CTypeMap *typeMap;
+	CClassMap *classMap;
 };
 
 }

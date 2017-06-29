@@ -1,69 +1,56 @@
-0xb4f02994	el02
-0xb4f029f4	el01
-0xb4f02a94	last_elem
-0xb4f02af4	head
-0xb4f025d4	GetEnd
-0xb4f01814	GetNext
-0xb4f01ad4	aux04
-0xb4f01b34	var_elem
-0xb4f02eb4	Print
-0xb4f01bf4	prev
-0xb4f02554	GetElem
-0xb4f01c94	aux05
-0xb4f01d34	my_head
-0xb4f01d94	e
-0xb4f01df4	Delete
-0xb4f01094	aux03
-0xb4f001d4	Init
-0xb4f005b4	true
-0xb4f004f4	LinkedList
-0xb4f01374	v_elem
-0xb4f00234	Married
-0xb4f00294	Salary
-0xb4f00cf4	aux01
-0xb4f00474	LL
-0xb4f01494	end
-0xb4f00554	new
-0xb4f01134	new_elem
-0xb4f005f4	while
-0xb4f00354	Element
-0xb4f006b4	public
-0xb4f00e14	Equal
-0xb4f02494	Search
-0xb4f006f4	class
-0xb4f00f14	GetSalary
-0xb4f01b94	var_end
-0xb4f00594	false
-0xb4f00654	void
-0xb4f00694	private
-0xb4f002f4	Age
-0xb4f02934	el03
-0xb4f00574	this
-0xb4f00174	v_Age
-0xb4f017f4	num2
-0xb4f014f4	next
-0xb4f00634	extends
-0xb4f004b4	a
-0xb4f000b4	v_Married
-0xb4f00614	if
-0xb4f00b74	Compare
-0xb4f01194	Insert
-0xb4f00674	static
-0xb4f00f94	GetAge
-0xb4f01ed4	SetNext
-0xb4f00434	Start
-0xb4f00114	v_Salary
-0xb4f015b4	List
-0xb4f00e94	GetMarried
-0xb4f023f4	int_ret_val
-0xb4f013d4	InitNew
-0xb4f00db4	other
-0xb4f005d4	return
-0xb4f00c94	aux02
-0xb4f00c34	nt
-0xb4f00d54	ret_val
-0xb4f00854	num1
-0xb4f01794	retval
-0xb4f01554	elem
-0xb4f01314	v_next
-0xb4f012b4	v_end
+0xb4d0e624	el03	el03
+0xb4d0e7d4	el02	el02
+0xb4d0e984	el01	el01
+0xb4d0ec54	last_elem	last_elem
+0xb4d0ee04	head	head
+0xb4d0aff4	Search	Search
+0xb4d0a1e4	GetEnd	GetEnd
+0xb4d01994	Compare	Compare
+0xb4d01f64	aux02	aux02
+0xb4d002e4	Married	Married
+0xb4d055c4	new_elem	new_elem
+0xb4d022c4	other	other
+0xb4d00d94	GetMarried	GetMarried
+0xb4d0ad84	int_ret_val	int_ret_val
+0xb4d049f4	InitNew	InitNew
+0xb4d01e44	nt	nt
+0xb4d00c14	Equal	Equal
+0xb4d016c4	v_Married	v_Married
+0xb4d00a94	a	a
+0xb4d00b24	LinkedList	LinkedList
+0xb4d048a4	v_elem	v_elem
+0xb4d070c4	e	e
+0xb4d00104	v_Age	v_Age
+0xb4d06af4	aux03	aux03
+0xb4d02084	aux01	aux01
+0xb4d00404	Salary	Salary
+0xb4d00f14	GetSalary	GetSalary
+0xb4d005e4	Element	Element
+0xb4d00524	Age	Age
+0xb4d06f14	my_head	my_head
+0xb4d09a34	GetNext	GetNext
+0xb4d009d4	LL	LL
+0xb4d04db4	end	end
+0xb4d001c4	Init	Init
+0xb4d021a4	ret_val	ret_val
+0xb4d03224	num1	num1
+0xb4d07ea4	var_elem	var_elem
+0xb4d04ed4	next	next
+0xb4d03104	num2	num2
+0xb4d047e4	retval	retval
+0xb4d05084	elem	elem
+0xb4d05ef4	v_next	v_next
+0xb4d05dd4	v_end	v_end
+0xb4d09fa4	GetElem	GetElem
+0xb4d06cd4	aux05	aux05
+0xb4d01094	GetAge	GetAge
+0xb4d05714	Insert	Insert
+0xb4d051d4	List	List
+0xb4d017e4	v_Salary	v_Salary
+0xb4d008e4	Start	Start
+0xb4d07724	SetNext	SetNext
+0xb4d07214	Delete	Delete
+0xb4d0d4b4	Print	Print
+0xb4d08174	prev	prev
+0xb4d08054	var_end	var_end
+0xb4d07d84	aux04	aux04

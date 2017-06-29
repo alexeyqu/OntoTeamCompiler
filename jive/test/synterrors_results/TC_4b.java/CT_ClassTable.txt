@@ -1,18 +1,18 @@
-Class TV
-Fields:
-Methods:
-Method Start with return Type int
-	Args:
-	Vars:
----
-
 Class Visitor
 Fields:
 Methods:
 Method visit with return Type int
 	Args:
-		Arg a of Type Tree2
 		Arg n of Type Tree
+		Arg a of Type Tree2
+	Vars:
+---
+
+Class TV
+Fields:
+Methods:
+Method Start with return Type int
+	Args:
 	Vars:
 ---
 

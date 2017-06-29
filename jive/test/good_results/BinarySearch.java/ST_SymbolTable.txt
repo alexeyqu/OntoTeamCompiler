@@ -1,42 +1,29 @@
-0xb4e010b4	retval
-0xb4e01174	num1
-0xb4e016d4	Compare
-0xb4e00ad4	medium
-0xb4e00a34	nt
-0xb4e00b94	left
-0xb4e00c54	bs01
-0xb4e00854	Div
-0xb4e00cb4	num
-0xb4e000f4	Init
-0xb4e00634	extends
-0xb4e01374	aux03
-0xb4e01434	count01
-0xb4e00574	this
-0xb4e005b4	true
-0xb4e013d4	count02
-0xb4e00654	void
-0xb4e00594	false
-0xb4e005d4	return
-0xb4e006f4	class
-0xb4e004b4	a
-0xb4e01c34	k
-0xb4e00bf4	right
-0xb4e006b4	public
-0xb4e01e74	j
-0xb4e01114	num2
-0xb4e00674	static
-0xb4e005f4	while
-0xb4e004f4	BinarySearch
-0xb4e00554	new
-0xb4e001b4	aux01
-0xb4e00474	BS
-0xb4e00614	if
-0xb4e00434	Start
-0xb4e00034	Search
-0xb4e00074	Print
-0xb4e00314	number
-0xb4e00694	private
-0xb4e002b4	size
-0xb4e00b34	var_cont
-0xb4e00214	sz
-0xb4e00154	aux02
+0xb4d06fa4	retval	retval
+0xb4d07904	j	j
+0xb4d070c4	num2	num2
+0xb4d071e4	num1	num1
+0xb4d068e4	count02	count02
+0xb4d01544	Init	Init
+0xb4d03944	var_cont	var_cont
+0xb4d00164	sz	sz
+0xb4d01724	aux02	aux02
+0xb4d03824	medium	medium
+0xb4d00344	size	size
+0xb4d00b24	BinarySearch	BinarySearch
+0xb4d00044	aux01	aux01
+0xb4d009d4	BS	BS
+0xb4d00a94	a	a
+0xb4d008e4	Start	Start
+0xb4d00464	number	number
+0xb4d010c4	Search	Search
+0xb4d01244	Print	Print
+0xb4d024a4	bs01	bs01
+0xb4d067c4	aux03	aux03
+0xb4d06a04	count01	count01
+0xb4d084a4	k	k
+0xb4d03b84	right	right
+0xb4d035e4	nt	nt
+0xb4d03a64	left	left
+0xb4d025c4	num	num
+0xb4d040f4	Div	Div
+0xb4d04e74	Compare	Compare

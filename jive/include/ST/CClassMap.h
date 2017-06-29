@@ -3,7 +3,7 @@
 #include <unordered_set>
 #include <utility>
 #include <iostream>
-#include "CClassSymbol.h"
+#include "CClassSymbol.h"	
 #include "CClass.h"
 
 // namespace std 
@@ -25,15 +25,16 @@ namespace ST
 
 using AST::CClass;
 
-class CClassTable
+class CClassMap
 {
 public:
-    CClassTable() {}
+    CClassMap() {}
     void insert( CClass *_class, CClassSymbol *_symbol ) { table.insert( std::make_pair( _class, _symbol ) ); }
     CClassSymbol *lookup( CClass *_class ) { return( table.find( _class ) != table.end() ) ? table.at( _class ) : nullptr ; }
     CClassSymbol *lookup( CSymbol *name );
     std::unordered_map<CClass *, CClassSymbol *> &get() { return table; }
-    // void dump();
+
+    void dump( std::ostream &outStream );
 
 private:
     std::unordered_map<CClass *, CClassSymbol *> table;

@@ -29,12 +29,13 @@ CC = g++
 CFLAGS = --std=c++11 -O -g -fsanitize=address -fno-omit-frame-pointer -MD -D=_DEBUG
 INCLUDES = -I $(AUTO_PATH) -I include \
 	-I include/Shared \
+	-I include/Shared/StringInterning \
 	-I include/AST \
 	-I include/AST/TreeNodes \
 	-I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities -I include/AST/TreeNodes/Types \
 	-I include/AST/TreeVisitors \
 	-I include/ST \
-	-I include/ST/StringInterning -I include/ST/Symbols \
+	-I include/ST/Symbols \
 	-I /usr/local/include
 LIBS = -lasan -lfl -pthread
 

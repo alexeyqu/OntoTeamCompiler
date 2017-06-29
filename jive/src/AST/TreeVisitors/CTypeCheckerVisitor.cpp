@@ -30,7 +30,7 @@ void CTypeCheckerVisitor::Visit( CType *type ) {
 
 void CTypeCheckerVisitor::Visit( CVariable *entity ) {
     CType *varType = entity->getType();
-    if( jiveEnv->typeTable->lookup( varType ) == nullptr ) 
+    if( jiveEnv->typeMap->lookup( varType ) == nullptr ) 
     {
         outputStream << OUT_COORDINATES( entity )
         << "Error: Unknown type of variable \"" << entity->getString() << "\": " << varType->getString() << ".\n";
@@ -46,7 +46,7 @@ void CTypeCheckerVisitor::Visit( CCompoundVariable *entity ) {
 
 void CTypeCheckerVisitor::Visit( CArgument *entity ) {
     CType *argType = entity->getType();
-    if( jiveEnv->typeTable->lookup( argType ) == nullptr ) 
+    if( jiveEnv->typeMap->lookup( argType ) == nullptr ) 
     {
         outputStream << OUT_COORDINATES( entity )
         << "Error: Unknown type of variable \"" << entity->getString() << "\": " << argType->getString() << ".\n";
@@ -104,7 +104,7 @@ void CTypeCheckerVisitor::Visit( CCompoundMethod *entity ) {
 }
 
 void CTypeCheckerVisitor::Visit( CMainClass *entity ) {
-    curClassSymbol = jiveEnv->classTable->lookup( entity );
+    curClassSymbol = jiveEnv->classMap->lookup( entity );
     assert( curClassSymbol != nullptr );
 
     entity->getMethods()->getMethod()->Accept( this );
@@ -113,17 +113,17 @@ void CTypeCheckerVisitor::Visit( CMainClass *entity ) {
 }
 
 void CTypeCheckerVisitor::Visit( CClass *entity ) {
-    curClassSymbol = jiveEnv->classTable->lookup( entity );
+    curClassSymbol = jiveEnv->classMap->lookup( entity );
     
     if( entity->getParentId() ) {
-        if( jiveEnv->classTable->lookup( entity->getParentSymbol() ) == nullptr ) {
+        if( jiveEnv->classMap->lookup( entity->getParentSymbol() ) == nullptr ) {
             outputStream << OUT_COORDINATES( entity->getParentId() )
                 << "Error: unknown base class \"" 
                 << entity->getParentString() << "\" for class \"" 
                 << entity->getString() << "\"\n";
         }
 
-        CClassSymbol *parentClassSymbol = jiveEnv->classTable->lookup( entity->getParentSymbol() );
+        CClassSymbol *parentClassSymbol = jiveEnv->classMap->lookup( entity->getParentSymbol() );
 
         while( parentClassSymbol ) {
             if( curClassSymbol == parentClassSymbol ) {
@@ -165,74 +165,257 @@ void CTypeCheckerVisitor::Visit( CCompoundStatement *statement ) {
 
 void CTypeCheckerVisitor::Visit( CAssignStatement *statement ) {
     statement->getLValue()->Accept( this );
+	CType *lType = statement->getLValue()->getType();
     statement->getRValue()->Accept( this );
+	CType *rType = statement->getRValue()->getType();
+
+	if( !( *lType == *rType ) ) {
+		std::cerr << OUT_COORDINATES( statement )
+			<< " CAssignStatement " << lType->getString() << " and " << lType->getString() << "\n";
+	}
 }
 
 void CTypeCheckerVisitor::Visit( CPrintStatement *statement ) {
     statement->getExpression()->Accept( this );
+	CType *expressionType = statement->getExpression()->getType();
+
+	if( expressionType->getPrimitiveType() != TType::INTEGER ) {
+		std::cerr << OUT_COORDINATES( statement )
+			<< " CPrintStatement " << expressionType->getString() << "\n";
+	}
 }
 
 void CTypeCheckerVisitor::Visit( CIfStatement *statement ) {
     statement->getExpression()->Accept( this );
+	CType *expressionType = statement->getExpression()->getType();
+
+	if( expressionType->getPrimitiveType() != TType::BOOLEAN ) {
+		std::cerr << OUT_COORDINATES( statement )
+			<< " CIfStatement " << expressionType->getString() << "\n";
+	}
+
     statement->getThenStatement()->Accept( this );
     statement->getElseStatement()->Accept( this );
 }
 
 void CTypeCheckerVisitor::Visit( CWhileStatement *statement ) {
     statement->getExpression()->Accept( this );
-    statement->getStatement()->Accept( this );
+	CType *expressionType = statement->getExpression()->getType();
+
+	if( expressionType->getPrimitiveType() != TType::BOOLEAN ) {
+		std::cerr << OUT_COORDINATES( statement )
+			<< " CWhileStatement " << expressionType->getString() << "\n";
+	}
+
+	statement->getStatement()->Accept( this );
 }
 
 void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
+	CSymbol *symbol = expression->getSymbol();
 
+	if( curClassSymbol->lookupField( symbol ) ) {
+		expression->setType( jiveEnv->typeMap->lookup( curClassSymbol->lookupField( symbol )->getTypeSymbol() ) );
+		return;
+	}
+
+	if( curClassSymbol->getBaseClass() ) {
+		if( curClassSymbol->getBaseClass()->lookupField( symbol ) ) {
+			expression->setType( jiveEnv->typeMap->lookup( curClassSymbol->getBaseClass()->lookupField( symbol )->getTypeSymbol() ) );
+			return;
+		}
+	}
+
+	if( curMethodSymbol == nullptr ) {
+		std::cerr << OUT_COORDINATES( expression )
+			<< " CIdExpression::lookupField " << symbol->getString() << "\n";
+
+		expression->setType( new CType( TType::UNKNOWNTYPE, symbol ) );
+		return;
+	}
+
+	if( curMethodSymbol->lookupArgument( symbol ) == nullptr ) {
+		if( curMethodSymbol->lookupVariable( symbol ) == nullptr ) {
+			std::cerr << OUT_COORDINATES( expression ) 
+				<< " CIdExpression::lookupVariable " << symbol->getString() << " in method " << curMethodSymbol->getString() << "\n";
+			expression->setType( new CType( TType::UNKNOWNTYPE, symbol ) );
+			return;
+		}
+
+		expression->setType( jiveEnv->typeMap->lookup( curMethodSymbol->lookupVariable( symbol )->getTypeSymbol() ) );
+	} else {
+		expression->setType( jiveEnv->typeMap->lookup( curMethodSymbol->lookupArgument( symbol )->getTypeSymbol() ) );
+	}
+
+	if( symbol->getString() == expression->getType()->getString() ) {
+		std::cerr << OUT_COORDINATES( expression ) 
+			<< " CIdExpression type and name collision in " << symbol->getString() << " in method " << curMethodSymbol->getString() << "\n";
+	}
 }
 
 void CTypeCheckerVisitor::Visit( CBinaryExpression *expression ) {
     expression->getLeftOperand()->Accept( this );
+	CType *leftType = expression->getLeftOperand()->getType();
     expression->getRightOperand()->Accept( this );
+	CType *rightType = expression->getRightOperand()->getType();
+	
+	if( leftType->getPrimitiveType() != TType::INTEGER || 
+		rightType->getPrimitiveType() != TType::INTEGER ) 
+	{
+		std::cerr << OUT_COORDINATES( expression )
+			<< " CBinaryExpression " << leftType->getString() << " and " << rightType->getString() << "\n";
+	}
+	
+	expression->setType( leftType );
 }
 
 void CTypeCheckerVisitor::Visit( CNumberExpression *expression ) {
-
+	expression->setType( new CType( TType::INTEGER, new CSymbol( "int" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CBinaryBooleanExpression *expression ) {
     expression->getLeftOperand()->Accept( this );
+	CType *leftType = expression->getLeftOperand()->getType();
     expression->getRightOperand()->Accept( this );
+	CType *rightType = expression->getRightOperand()->getType();
+	jive::TBooleanOperation operation = expression->getOperator();
+	
+	if( operation == jive::TBooleanOperation::LESS ||
+		operation == jive::TBooleanOperation::GREATER )
+	{
+		if( leftType->getPrimitiveType() != TType::INTEGER || 
+			rightType->getPrimitiveType() != TType::INTEGER ) 
+		{
+			std::cerr << OUT_COORDINATES( expression ) << " </> "
+				<< " CBinaryExpression " << leftType->getString() << " and " << rightType->getString() << "\n";
+		}
+	} else {
+		if( leftType->getPrimitiveType() != TType::BOOLEAN || 
+			rightType->getPrimitiveType() != TType::BOOLEAN ) 
+		{
+			std::cerr << OUT_COORDINATES( expression )
+				<< " CBinaryExpression " << leftType->getString() << " and " << rightType->getString() << "\n";
+		}
+	}
+	
+	expression->setType( new CType( TType::BOOLEAN, new CSymbol( "boolean" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CBooleanExpression *expression ) {
- 
+	expression->setType( new CType( TType::BOOLEAN, new CSymbol( "boolean" ) ) );
  }
 
 void CTypeCheckerVisitor::Visit( CThisExpression *expression ) {
-
+	expression->setType( jiveEnv->typeMap->lookup( curClassSymbol->getTypeSymbol() ) );
 }
 
 void CTypeCheckerVisitor::Visit( CNewObjectExpression *expression ) {
-    expression->getClassId()->Accept( this );
+    CSymbol *objTypeSymbol = expression->getClassId()->getSymbol();
+	if( jiveEnv->classMap->lookup( objTypeSymbol ) == nullptr ) {
+		std::cerr << OUT_COORDINATES( expression->getClassId() )
+			<< " CNewObjectExpression::getClassId() " << objTypeSymbol->getString() << "\n";
+
+		expression->setType( new CType( TType::UNKNOWNTYPE, objTypeSymbol ) );
+		return;
+	}
+
+	expression->setType( new CType( jiveEnv->symbolTable->lookupType( objTypeSymbol ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CNewIntArrayExpression *expression ) {
+	expression->getArrSize()->Accept( this );
+	CType *arrSizeType = expression->getArrSize()->getType();
 
+	if( arrSizeType->getPrimitiveType() != TType::INTEGER ) {
+		std::cerr << OUT_COORDINATES( expression->getArrSize() )
+			<< " CNewIntArrayExpression " << arrSizeType->getString() << "\n";
+	}
+
+	expression->setType( new CType( TType::INTEGERARRAY, new CSymbol( "int[]" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
     expression->getBaseExpression()->Accept( this );
-    expression->getMethodId()->Accept( this );
+	CType *baseType = expression->getBaseExpression()->getType();
+	if( jiveEnv->classMap->lookup( baseType->getSymbol() ) == nullptr ) {
+		std::cerr << OUT_COORDINATES( expression->getBaseExpression() )
+			<< " CMethodCallExpression::getBaseExpression() " << baseType->getString() << "\n";
 
-    if(expression->getArguments()) {
+		expression->setType( new CType( TType::UNKNOWNTYPE, baseType->getSymbol() ) );
+		return;
+	}
+
+	CMethodSymbol *methodSymbol = curClassSymbol->lookupMethod( expression->getMethodId()->getSymbol() );
+	if( methodSymbol == nullptr ) {
+		std::cerr << OUT_COORDINATES( expression->getMethodId() )
+			<< " CMethodCallExpression::getMethodId() " << expression->getMethodId()->getSymbol() << "\n";
+
+		expression->setType( new CType( TType::UNKNOWNTYPE, expression->getMethodId()->getSymbol() ) );
+		return;
+	}
+
+	curCallArgTypes.clear();
+    if( expression->getArguments() ) {
         expression->getArguments()->Accept( this );        
     }
+
+	if( curCallArgTypes.size() != methodSymbol->getArgumentsCount() ) {
+		std::cerr << OUT_COORDINATES( expression->getMethodId() )
+			<< " CMethodCallExpression::getArgumentsCount() " << methodSymbol->getArgumentsCount() 
+			<< " Found: " << curCallArgTypes.size() << "\n";
+
+		expression->setType( jiveEnv->typeMap->lookup( methodSymbol->getTypeSymbol() ) );
+		return;
+	}
+
+	for( int i = 0; i < curCallArgTypes.size(); i++ ) {
+		bool match = true;
+
+		// CTypeSymbol *callArgType = jiveEnv->typeMap->lookup( curCallArgTypes[i] );
+		// CTypeSymbol *protoType = methodSymbol->getArguments()[i]->getTypeSymbol();
+		
+		// if( *callArgType == *protoType ) {
+		// 	match = true;
+		// } else {
+		// 	// FIXIT perform upcast of callArgType
+		// }
+
+		// if( !match ) {
+		// 	std::cerr << OUT_COORDINATES( curCallArgTypes[i] )
+		// 		<< " CMethodCallExpression::getArguments() " << ( i + 1 )
+		// 		<< " Expected: " << protoType->getString() << " Found: " << callArgType->getString() << "\n";
+		// }
+	}
+	
+	expression->setType( jiveEnv->typeMap->lookup( methodSymbol->getTypeSymbol() ) );
 }
 
 void CTypeCheckerVisitor::Visit( CArrayLengthExpression *expression ) {
     expression->getValue()->Accept( this );
+	CType *arrLengthType = expression->getValue()->getType();
+	if( arrLengthType->getPrimitiveType() != TType::INTEGER ) {
+		std::cerr << OUT_COORDINATES( expression->getValue() )
+			<< " CArrayLengthExpression " << arrLengthType->getString() << "\n";
+	}
+
+	expression->setType( new CType( TType::INTEGER, new CSymbol( "int" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CArrayIndexExpression *expression ) {
     expression->getArrayId()->Accept( this );
+	CType *arrayNodeType = expression->getArrayId()->getType();
+	if( arrayNodeType->getPrimitiveType() != TType::INTEGERARRAY ) {
+		std::cerr << OUT_COORDINATES( expression->getArrayId() )
+			<< " CArrayIndexExpression::getArrayId() " << arrayNodeType->getString() << "\n";
+	}
+
     expression->getArrayIndex()->Accept( this );
+	CType *arrayIndexType = expression->getArrayIndex()->getType();
+	if( arrayIndexType->getPrimitiveType() != TType::INTEGER ) {
+		std::cerr << OUT_COORDINATES( expression->getArrayIndex() )
+			<< " CArrayIndexExpression::getArrayIndex() " << arrayIndexType->getString() << "\n";
+	}
+
+	expression->setType( new CType( TType::INTEGER, new CSymbol( "int" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CCompoundExpression *expression ) {
@@ -242,6 +425,8 @@ void CTypeCheckerVisitor::Visit( CCompoundExpression *expression ) {
 
     if(expression->getRightExpression()) {
         expression->getRightExpression()->Accept( this );
+		expression->getRightExpression()->getType()->coordinates = expression->getRightExpression()->coordinates;
+		curCallArgTypes.push_back( expression->getRightExpression()->getType() );
     }
 }
 

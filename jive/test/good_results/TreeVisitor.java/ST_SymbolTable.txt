@@ -1,74 +1,61 @@
-0xb4f04174	r
-0xb4f040d4	n
-0xb4f04254	visit
-0xb4f04354	Visitor
-0xb4f04634	node
-0xb4f046f4	RecPrint
-0xb4f03bf4	ifound
-0xb4f041d4	l
-0xb4f02834	RemoveLeft
-0xb4f02934	auxkey1
-0xb4f021b4	found
-0xb4f018d4	cont
-0xb4f029d4	c_node
-0xb4f01934	current_node
-0xb4f01c94	num2
-0xb4f02c14	Remove
-0xb4f01cf4	num1
-0xb4f01e34	SetHas_Right
-0xb4f01f34	SetHas_Left
-0xb4f01ed4	val
-0xb4f001b4	MyVisitor
-0xb4f002b4	root
-0xb4f004b4	a
-0xb4f002f4	Tree
-0xb4f004f4	TreeVisitor
-0xb4f02a34	p_node
-0xb4f01874	key_aux
-0xb4f01d54	Compare
-0xb4f00614	if
-0xb4f01214	GetLeft
-0xb4f01fb4	GetHas_Left
-0xb4f006b4	public
-0xb4f03754	RemoveRight
-0xb4f00674	static
-0xb4f00f94	Insert
-0xb4f00594	false
-0xb4f00554	new
-0xb4f016d4	has_left
-0xb4f01294	GetRight
-0xb4f00654	void
-0xb4f00694	private
-0xb4f02254	parent_node
-0xb4f005b4	true
-0xb4f00434	Start
-0xb4f00174	v
-0xb4f00474	TV
-0xb4f001f4	nti
-0xb4f028d4	auxkey2
-0xb4f000b4	Init
-0xb4f00254	ntb
-0xb4f00934	Delete
-0xb4f00574	this
-0xb4f00634	extends
-0xb4f00034	Print
-0xb4f006f4	class
-0xb4f00b54	Search
-0xb4f00bf4	accept
-0xb4f02114	is_root
-0xb4f019d4	new_node
-0xb4f01794	right
-0xb4f017f4	left
-0xb4f01734	key
-0xb4f005f4	while
-0xb4f01494	SetRight
-0xb4f01674	has_right
-0xb4f01614	my_null
-0xb4f01574	v_key
-0xb4f01434	rn
-0xb4f01394	SetLeft
-0xb4f01194	GetKey
-0xb4f01334	ln
-0xb4f005d4	return
-0xb4f01114	SetKey
-0xb4f01034	GetHas_Right
+0xb4d19274	r	r
+0xb4d19004	n	n
+0xb4d180a4	visit	visit
+0xb4d184f4	Visitor	Visitor
+0xb4d168a4	node	node
+0xb4d16d24	RecPrint	RecPrint
+0xb4d14684	ifound	ifound
+0xb4d19424	l	l
+0xb4d0f1c4	RemoveLeft	RemoveLeft
+0xb4d0f644	auxkey1	auxkey1
+0xb4d04cc4	has_left	has_left
+0xb4d068b4	GetRight	GetRight
+0xb4d04de4	key	key
+0xb4d05a44	SetRight	SetRight
+0xb4d10454	RemoveRight	RemoveRight
+0xb4d00e84	Insert	Insert
+0xb4d04604	Delete	Delete
+0xb4d002b4	ntb	ntb
+0xb4d024d4	accept	accept
+0xb4d0f524	auxkey2	auxkey2
+0xb4d01424	Init	Init
+0xb4d0b684	found	found
+0xb4d04ba4	has_right	has_right
+0xb4d00a94	a	a
+0xb4d003d4	root	root
+0xb4d039d4	Search	Search
+0xb4d01124	Print	Print
+0xb4d070c4	SetHas_Right	SetHas_Right
+0xb4d066a4	GetLeft	GetLeft
+0xb4d074b4	SetHas_Left	SetHas_Left
+0xb4d00194	nti	nti
+0xb4d009d4	TV	TV
+0xb4d00494	Tree	Tree
+0xb4d00b24	TreeVisitor	TreeVisitor
+0xb4d049f4	my_null	my_null
+0xb4d008e4	Start	Start
+0xb4d017e4	v	v
+0xb4d04814	v_key	v_key
+0xb4d058f4	rn	rn
+0xb4d0da24	Remove	Remove
+0xb4d06c14	num1	num1
+0xb4d055c4	SetLeft	SetLeft
+0xb4d06524	GetKey	GetKey
+0xb4d05474	ln	ln
+0xb4d063a4	SetKey	SetKey
+0xb4d077b4	GetHas_Right	GetHas_Right
+0xb4d07634	GetHas_Left	GetHas_Left
+0xb4d000a4	MyVisitor	MyVisitor
+0xb4d073f4	val	val
+0xb4d0fa34	p_node	p_node
+0xb4d08474	key_aux	key_aux
+0xb4d06cd4	Compare	Compare
+0xb4d082f4	num2	num2
+0xb4d04f04	right	right
+0xb4d050b4	left	left
+0xb4d0b444	is_root	is_root
+0xb4d08984	new_node	new_node
+0xb4d0f884	c_node	c_node
+0xb4d086b4	current_node	current_node
+0xb4d08594	cont	cont
+0xb4d0b8c4	parent_node	parent_node
