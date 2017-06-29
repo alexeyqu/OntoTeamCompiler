@@ -13,9 +13,9 @@
 #include "jive.lex.h"
 
 #ifdef _DEBUG
-	#define TCH_STREAM std::cerr
+	#define ERR_STREAM std::cerr
 #else
-	#define TCH_STREAM outfstream
+	#define ERR_STREAM outfstream
 #endif
 
 using ST::CClassSymbol;
@@ -53,18 +53,15 @@ int main( int argc, char **argv ) {
     tableCreatorVisitor.Start( jiveEnv->program );
 
 	outfstream.open( outstreamFolder + "CE_CompilerErrors.txt", std::ios::out );
-	outstream = &TCH_STREAM;
 	CTypeCheckerVisitor typeCheckerVisitor( jiveEnv, *outstream );
     typeCheckerVisitor.Start( jiveEnv->program );
 	outfstream.close();
 
 	outfstream.open( outstreamFolder + "TT_TypeTable.txt", std::ios::out );
-	outstream = &outfstream;
 	jiveEnv->typeMap->dump( *outstream );
 	outfstream.close();
 
 	outfstream.open( outstreamFolder + "CT_ClassTable.txt", std::ios::out );
-	outstream = &outfstream;	
 	jiveEnv->classMap->dump( *outstream );
 	outfstream.close();
 
