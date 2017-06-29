@@ -39,9 +39,10 @@ INCLUDES = -I $(AUTO_PATH) -I include \
 	-I include/IRT \
 	-I include/IRT/Stack \
 	-I include/IRT/Temp \
+	-I include/IRT/Access \
 	-I include/IRT/TreeNodes \
-	-I include/IRT/TreeNodes/Exp \
-	-I include/IRT/TreeNodes/Stm \
+	-I include/IRT/TreeNodes/Exps \
+	-I include/IRT/TreeNodes/Stms \
 	-I /usr/local/include
 LIBS = -lasan -lfl -pthread
 
