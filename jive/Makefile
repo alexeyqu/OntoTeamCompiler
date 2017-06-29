@@ -32,10 +32,16 @@ INCLUDES = -I $(AUTO_PATH) -I include \
 	-I include/Shared/StringInterning \
 	-I include/AST \
 	-I include/AST/TreeNodes \
-	-I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities -I include/AST/TreeNodes/Types \
+	-I include/AST/TreeNodes/Expressions -I include/AST/TreeNodes/Statements -I include/AST/TreeNodes/Entities \
 	-I include/AST/TreeVisitors \
 	-I include/ST \
 	-I include/ST/Symbols \
+	-I include/IRT \
+	-I include/IRT/Stack \
+	-I include/IRT/Temp \
+	-I include/IRT/TreeNodes \
+	-I include/IRT/TreeNodes/Exp \
+	-I include/IRT/TreeNodes/Stm \
 	-I /usr/local/include
 LIBS = -lasan -lfl -pthread
 
