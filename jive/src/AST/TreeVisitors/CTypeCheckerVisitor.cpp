@@ -49,7 +49,7 @@ void CTypeCheckerVisitor::Visit( CArgument *entity ) {
     if( jiveEnv->typeMap->lookup( argType ) == nullptr ) 
     {
         outputStream << OUT_COORDINATES( entity )
-        << "Error: Unknown type of variable " << entity->getString() << ": " << argType->getString() << ".\n";
+        << "Error: Unknown type of argument " << entity->getString() << ": " << argType->getString() << ".\n";
     }
 }
 
@@ -78,18 +78,19 @@ void CTypeCheckerVisitor::Visit( CMethod *entity ) {
     entity->getReturnExpression()->Accept( this );
 
 	CType *returnExpressionType = entity->getReturnExpression()->getType();
-
-	if( jiveEnv->typeMap->lookup( returnExpressionType ) == nullptr ) {
+	if( jiveEnv->typeMap->lookup( entity->getReturnType() ) == nullptr ) {
 		outputStream << OUT_COORDINATES( entity )
-			<< " CMethod::return type of " << curMethodSymbol->getString()
-			<< " is of unknown type " << returnExpressionType->getString()  << ".\n";
+			<< "Error: Return type of method \"" << curMethodSymbol->getString() 
+			<< "\" is of unknown type \"" << entity->getReturnType()->getString() << "\".\n";
+
 		curMethodSymbol = nullptr;
 		return;
 	}
 	if( !( *returnExpressionType == *entity->getReturnType() ) ) {
 		outputStream << OUT_COORDINATES( entity ) 
-			<< " CMethod::return type of " << curMethodSymbol->getString()
-			<< " Expected: " << entity->getReturnType()->getString()  << ". Found: " << returnExpressionType->getString()  << ".\n";
+			<< "Error: Type of return expression doesn't match "
+			<< "method \"" << curMethodSymbol->getString() << "\" return type.\n"
+			<< "Expected: \"" << entity->getReturnType()->getString()  << "\". Found: \"" << returnExpressionType->getString()  << "\".\n";
 	}
 
 	curMethodSymbol = nullptr;
@@ -117,9 +118,9 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
     if( entity->getParentId() ) {
         if( jiveEnv->classMap->lookup( entity->getParentSymbol() ) == nullptr ) {
             outputStream << OUT_COORDINATES( entity->getParentId() )
-                << " CClass::getParentSymbol() " 
-                << entity->getParentString() << " is unknown for " 
-                << entity->getString() << "\n";
+				<< "Error: unknown base class \"" 
+				<< entity->getParentString() << "\" for class \"" 
+				<< entity->getString() << "\"\n";
         }
 
         CClassSymbol *parentClassSymbol = jiveEnv->classMap->lookup( entity->getParentSymbol() );
@@ -127,8 +128,8 @@ void CTypeCheckerVisitor::Visit( CClass *entity ) {
         while( parentClassSymbol ) {
             if( curClassSymbol == parentClassSymbol ) {
                 outputStream << OUT_COORDINATES( entity->getParentId() )
-                    << " CClass::cyclic inheritance in " 
-                    << entity->getString() << "\n";
+					<< "Error: cyclic inheritance for class \"" 
+					<< entity->getString()  << "\" detected.\n";
                 break;
             }
 
@@ -170,7 +171,8 @@ void CTypeCheckerVisitor::Visit( CAssignStatement *statement ) {
 
 	if( !( *lType == *rType ) ) {
 		outputStream << OUT_COORDINATES( statement )
-			<< " CAssignStatement " << lType->getString() << " and " << lType->getString() << "\n";
+			<< "Error: Incorrect types of assign statement expressions.\n"
+			<< "Lvalue: \"" << lType->getString() << "\", RValue: \"" << lType->getString() <<"\".\n";
 	}
 }
 
@@ -180,7 +182,8 @@ void CTypeCheckerVisitor::Visit( CPrintStatement *statement ) {
 
 	if( expressionType->getPrimitiveType() != TType::INTEGER ) {
 		outputStream << OUT_COORDINATES( statement )
-			<< " CPrintStatement " << expressionType->getString() << "\n";
+			<< "Error: Incorrect type of expression in Print statement.\n"
+			<< "Expected: \"int\". Found \"" << expressionType->getString() << "\"\n";
 	}
 }
 
@@ -190,7 +193,8 @@ void CTypeCheckerVisitor::Visit( CIfStatement *statement ) {
 
 	if( expressionType->getPrimitiveType() != TType::BOOLEAN ) {
 		outputStream << OUT_COORDINATES( statement )
-			<< " CIfStatement " << "\t" << expressionType->getString() << "\n";
+			<< "Error: Incorrect type of expression in If statement.\n"
+			<< "Expected: \"boolean\". Found \"" << expressionType->getString() << "\".\n";
 	}
 
     statement->getThenStatement()->Accept( this );
@@ -203,7 +207,8 @@ void CTypeCheckerVisitor::Visit( CWhileStatement *statement ) {
 
 	if( expressionType->getPrimitiveType() != TType::BOOLEAN ) {
 		outputStream << OUT_COORDINATES( statement )
-			<< " CWhileStatement " << expressionType->getString() << "\n";
+			<< "Error: Incorrect type of expression in While statement.\n"
+			<< "Expected: \"boolean\". Found \"" << expressionType->getString() << "\"\n";
 	}
 
 	statement->getStatement()->Accept( this );
@@ -226,7 +231,7 @@ void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
 
 	if( curMethodSymbol == nullptr ) {
 		outputStream << OUT_COORDINATES( expression )
-			<< " CIdExpression::lookupField " << symbol->getString() << "\n";
+			<< "Error: Unknown identifier \"" << symbol->getString() << "\"\n";
 
 		expression->setType( new CType( TType::UNKNOWNTYPE, symbol ) );
 		return;
@@ -235,7 +240,7 @@ void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
 	if( curMethodSymbol->lookupArgument( symbol ) == nullptr ) {
 		if( curMethodSymbol->lookupVariable( symbol ) == nullptr ) {
 			outputStream << OUT_COORDINATES( expression ) 
-				<< " CIdExpression::lookupVariable " << symbol->getString() << " in method " << curMethodSymbol->getString() << "\n";
+				<< "Error: Unknown identifier \"" << symbol->getString() << "\"\n";
 			expression->setType( new CType( TType::UNKNOWNTYPE, symbol ) );
 			return;
 		}
@@ -247,7 +252,7 @@ void CTypeCheckerVisitor::Visit( CIdExpression *expression ) {
 
 	if( symbol->getString() == expression->getType()->getString() ) {
 		outputStream << OUT_COORDINATES( expression ) 
-			<< " CIdExpression type and name collision in " << symbol->getString() << " in method " << curMethodSymbol->getString() << "\n";
+			<< "Error: The name of variable \"" << symbol->getString()  << "\" and its type are the same.\n";
 	}
 }
 
@@ -261,7 +266,9 @@ void CTypeCheckerVisitor::Visit( CBinaryExpression *expression ) {
 		rightType->getPrimitiveType() != TType::INTEGER ) 
 	{
 		outputStream << OUT_COORDINATES( expression )
-			<< " CBinaryExpression " << leftType->getString() << " and " << rightType->getString() << "\n";
+			<< "Error: Incorrect types of binary operation.\n"
+			<< "Expected: \"int\" and \"int\". "
+			<<"Found \"" << leftType->getString()  << "\" and \"" << rightType->getString() <<"\".\n";
 	}
 	
 	expression->setType( leftType );
@@ -285,14 +292,18 @@ void CTypeCheckerVisitor::Visit( CBinaryBooleanExpression *expression ) {
 			rightType->getPrimitiveType() != TType::INTEGER ) 
 		{
 			outputStream << OUT_COORDINATES( expression ) << " </> "
-				<< " CBinaryExpression " << leftType->getString() << " and " << rightType->getString() << "\n";
+				<< "Error: Incorrect types of binary operation.\n"
+				<< "Expected: \"int\" and \"int\". "
+				<<"Found \"" << leftType->getString() << "\" and \"" << rightType->getString() <<"\".\n";
 		}
 	} else {
 		if( leftType->getPrimitiveType() != TType::BOOLEAN || 
 			rightType->getPrimitiveType() != TType::BOOLEAN ) 
 		{
 			outputStream << OUT_COORDINATES( expression )
-				<< " CBinaryExpression " << leftType->getString() << " and " << rightType->getString() << "\n";
+				<< "Error: Incorrect types of binary operation.\n"
+				<< "Expected: \"boolean\" and \"boolean\". "
+				<<"Found \"" << leftType->getString() << "\" and \"" << rightType->getString() <<"\".\n";
 		}
 	}
 	
@@ -311,15 +322,11 @@ void CTypeCheckerVisitor::Visit( CNewObjectExpression *expression ) {
     CSymbol *objTypeSymbol = expression->getClassId()->getSymbol();
 	if( jiveEnv->classMap->lookup( objTypeSymbol ) == nullptr ) {
 		outputStream << OUT_COORDINATES( expression->getClassId() )
-			<< " CNewObjectExpression::getClassId() " << objTypeSymbol->getString() << "\n";
+			<< "Error: Unknown class \"" << objTypeSymbol->getString() << "\"\n";
 
 		expression->setType( new CType( TType::UNKNOWNTYPE, objTypeSymbol ) );
 		return;
 	}
-
-	// std::cerr << OUT_COORDINATES( expression->getClassId() ) <<
-	// 	" CNewObjectExpression::getClassId() " << jiveEnv->typeMap->lookup( jiveEnv->classMap->lookup( objTypeSymbol )->getTypeSymbol() )->getString() 
-	// 	<< "\n" << objTypeSymbol->getString() << "\n\n";
 
 	expression->setType( jiveEnv->typeMap->lookup( jiveEnv->classMap->lookup( objTypeSymbol )->getTypeSymbol() ) );
 }
@@ -330,7 +337,9 @@ void CTypeCheckerVisitor::Visit( CNewIntArrayExpression *expression ) {
 
 	if( arrSizeType->getPrimitiveType() != TType::INTEGER ) {
 		outputStream << OUT_COORDINATES( expression->getArrSize() )
-			<< " CNewIntArrayExpression " << arrSizeType->getString() << "\n";
+			<< "Error: Incorrect type of array size.\n"
+			<< "Expected: \"int\". "
+			<<"Found \"" << arrSizeType->getString() << "\".\n";
 	}
 
 	expression->setType( new CType( TType::INTEGERARRAY, new CSymbol( "int[]" ) ) );
@@ -341,7 +350,8 @@ void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
 	CType *baseType = expression->getBaseExpression()->getType();
 	if( jiveEnv->classMap->lookup( baseType->getSymbol() ) == nullptr ) {
 		outputStream << OUT_COORDINATES( expression->getBaseExpression() )
-			<< " CMethodCallExpression::getBaseExpression() " << baseType->getString() << "\n";
+			<< "Error: Unknown class \"" << baseType->getString() 
+			<< "\" method call.\n";
 
 		expression->setType( new CType( TType::UNKNOWNTYPE, baseType->getSymbol() ) );
 		return;
@@ -349,13 +359,11 @@ void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
 
 	CClassSymbol *baseClassSymbol = jiveEnv->classMap->lookup( baseType->getSymbol() );
 
-	// std::cerr << baseClassSymbol->getString() << '\n';
-	// std::cerr << expression->getMethodId()->getString() << '\n';
 	CMethodSymbol *methodSymbol = baseClassSymbol->lookupMethod( expression->getMethodId()->getSymbol() );
-	// std::cerr << methodSymbol->getString() << '\n';
 	if( methodSymbol == nullptr ) {
 		outputStream << OUT_COORDINATES( expression->getMethodId() )
-			<< " CMethodCallExpression::getMethodId() " << expression->getMethodId()->getString() << "\n";
+			<< "Error: Method \"" << expression->getMethodId()->getString() << "\" in class \""
+			<< baseType->getString()  << "\" doesn't exist.\n";
 
 		expression->setType( new CType( TType::UNKNOWNTYPE, expression->getMethodId()->getSymbol() ) );
 		return;
@@ -368,8 +376,9 @@ void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
 
 	if( curCallArgTypes.size() != methodSymbol->getArgumentsCount() ) {
 		outputStream << OUT_COORDINATES( expression->getMethodId() )
-			<< " CMethodCallExpression::getArgumentsCount() " << methodSymbol->getArgumentsCount() 
-			<< " Found: " << curCallArgTypes.size() << "\n";
+			<< "Error: Method \"" << expression->getMethodId()->getString() << "\" of class \"" 
+			<< baseType->getString() << "\" expected to take " << methodSymbol->getArgumentsCount() 
+			<< " arguments but takes " << curCallArgTypes.size() << " arguments\n";
 
 		expression->setType( jiveEnv->typeMap->lookup( methodSymbol->getTypeSymbol() ) );
 		return;
@@ -391,11 +400,15 @@ void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
 		// 	outputStream << OUT_COORDINATES( curCallArgTypes[i] )
 		// 		<< " CMethodCallExpression::getArguments() " << ( i + 1 )
 		// 		<< " Expected: " << protoType->getString() << " Found: " << callArgType->getString() << "\n";
+				// 	<< "Error: " << i + 1 << "th argument's type of method \"" 
+				// << methodName << "\" call of class \"" 
+				// << baseName << "\" doesn't match to method argument type.\n"
+				// << "Expected: \"" << mehodArgumentsTypes[i]->ToString() 
+				// << "\". Found \"" << curCallArgumentsTypes[i]->ToString() << "\".\n";
 		// }
 	}
 	
 	expression->setType( jiveEnv->typeMap->lookup( methodSymbol->getTypeSymbol() ) );
-	// std::cerr << expression->getType()->getString() << "\n\n";
 }
 
 void CTypeCheckerVisitor::Visit( CArrayLengthExpression *expression ) {
@@ -403,7 +416,9 @@ void CTypeCheckerVisitor::Visit( CArrayLengthExpression *expression ) {
 	CType *arrLengthType = expression->getValue()->getType();
 	if( arrLengthType->getPrimitiveType() != TType::INTEGERARRAY ) {
 		outputStream << OUT_COORDINATES( expression->getValue() )
-			<< " CArrayLengthExpression " << arrLengthType->getString() << "\n";
+			<< "Error: Incorrect type of array.\n"
+			<< "Expected: \"int[]\". "
+			<< "Found \"" << arrLengthType->getString() << "\".\n";
 	}
 
 	expression->setType( new CType( TType::INTEGER, new CSymbol( "int" ) ) );
@@ -414,14 +429,18 @@ void CTypeCheckerVisitor::Visit( CArrayIndexExpression *expression ) {
 	CType *arrayNodeType = expression->getArrayId()->getType();
 	if( arrayNodeType->getPrimitiveType() != TType::INTEGERARRAY ) {
 		outputStream << OUT_COORDINATES( expression->getArrayId() )
-			<< " CArrayIndexExpression::getArrayId() " << arrayNodeType->getString() << "\n";
+			<< "Error: Incorrect type of array.\n"
+			<< "Expected: \"int[]\". "
+			<< "Found \"" << arrayNodeType->getString() << "\".\n";
 	}
 
     expression->getArrayIndex()->Accept( this );
 	CType *arrayIndexType = expression->getArrayIndex()->getType();
 	if( arrayIndexType->getPrimitiveType() != TType::INTEGER ) {
 		outputStream << OUT_COORDINATES( expression->getArrayIndex() )
-			<< " CArrayIndexExpression::getArrayIndex() " << arrayIndexType->getString() << "\n";
+			<< "Error: Incorrect type of array index.\n"
+			<< "Expected: \"int\". "
+			<< "Found \"" << arrayIndexType->getString() << "\".\n";
 	}
 
 	expression->setType( new CType( TType::INTEGER, new CSymbol( "int" ) ) );

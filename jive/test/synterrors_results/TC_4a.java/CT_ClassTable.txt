@@ -4,7 +4,6 @@ Methods:
 Method visit with return Type int
 	Args:
 		Arg n of Type TV
-		Arg n of Type TV
 	Vars:
 ---
 

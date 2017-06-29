@@ -37,7 +37,7 @@ void CTableCreatorVisitor::Visit( CVariable *entity ) {
         }
         curClassSymbol->insertField( varSymbol );
     } else {
-        if( curMethodSymbol->lookupArgument( varSymbol ) != nullptr ) {
+        if( curMethodSymbol->lookupArgument( varSymbol->getSymbol() ) != nullptr ) {
             std::cerr << "Error: Redeclaration of argument \"" << varSymbol->getString() << "\"\n";
             delete varSymbol;
             return;
@@ -65,11 +65,11 @@ void CTableCreatorVisitor::Visit( CArgument *entity ) {
     }
 
     CVariableSymbol* argSymbol = new CVariableSymbol( entity->getSymbol(), argTypeSymbol, entity );
-    if( curMethodSymbol->lookupArgument( argSymbol ) != nullptr ) {
-            std::cerr << "Error: Redeclaration of variable \"" << argSymbol->getString() << "\"\n";
-            delete argSymbol;
-            return;
-        }
+    if( curMethodSymbol->lookupArgument( argSymbol->getSymbol() ) != nullptr ) {
+		std::cerr << "Error: Redeclaration of argument \"" << argSymbol->getString() << "\"\n";
+		delete argSymbol;
+		return;
+	}
     curMethodSymbol->insertArgument( argSymbol );
 }
 

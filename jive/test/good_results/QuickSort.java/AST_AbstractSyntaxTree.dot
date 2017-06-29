@@ -45,7 +45,9 @@ digraph my_graph {
 -1259337696[label = "NumExp", shape = "circle"];
 -1259337696->-1259337695;
 -1259337695[label = "10"];
--1250948912->-1259300016->-1259299968;
+-1250948912->-1261435920
+-1261435920[label = "VoidExp", shape = "circle"];
+-1259300016->-1259299968;
 -1259299968[label = "CompoundClassNtt", shape = "hexagon"];
 -1259299968->-1259299920;
 -1259299920[label = "ClassNtt", shape = "box"];
