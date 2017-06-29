@@ -23,7 +23,7 @@ namespace ST
 using jive::TType;
 using AST::CType;
 
-class CSymbolTable
+class CSymbolTable // TODO move to CSymbolStorage
 {
 public:
     void insert( CSymbol symbol ) { CSymbol *symbolOwner = new CSymbol( symbol.getString() ); table.insert( std::make_pair( *symbolOwner, CType( TType::UNKNOWNTYPE, symbolOwner ) ) ); }
