@@ -241,7 +241,7 @@ Statements: Statement Statements {
 Statement:  LBRACE Statements RBRACE { 
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
-				$$ = new CCompoundStatement( $2, nullptr );
+				$$ = new CCompoundStatement( nullptr, $2 );
 				$$->coordinates.first_line = temp_line;
 				$$->coordinates.first_column = temp_column; 
 			}
