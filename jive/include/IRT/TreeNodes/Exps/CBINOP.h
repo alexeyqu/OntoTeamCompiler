@@ -19,7 +19,7 @@ public:
 private:
     TBINOP binop;
     IExp *left;
-    IExt *right;
+    IExp *right;
 };
 
 }

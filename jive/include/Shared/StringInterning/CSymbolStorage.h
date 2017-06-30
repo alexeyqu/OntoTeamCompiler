@@ -22,12 +22,12 @@ public:
 
 	tableIt getEnd() const { return table.end(); }
 
-	Object GetObject( CSymbol *symbol ) const {
+	Object getObject( CSymbol *symbol ) const {
 		auto result = table.find( symbol );
 		return result != table.end() ? result->second : NULL;
 	}
 
-	int Size() const { return table.size(); }
+	int size() const { return table.size(); }
 
 private:
 	std::unordered_map<CSymbol *, Object> table;

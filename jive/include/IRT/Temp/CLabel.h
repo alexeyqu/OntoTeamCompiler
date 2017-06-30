@@ -21,9 +21,12 @@ public:
 private:
     flyweight<std::string> name;
 
-    static int counter = 0;
-    static const std::string tempPrefix = "LABEL#";
+    static int counter;
+    static const std::string tempPrefix;
 };
+
+int CLabel::counter = 0;
+const std::string CLabel::tempPrefix = "LABEL#";
 
 }
 
