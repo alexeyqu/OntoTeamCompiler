@@ -1,0 +1,2 @@
+[41, 2] Error: Incorrect type of expression in If statement.
+Expected: "boolean". Found "int".

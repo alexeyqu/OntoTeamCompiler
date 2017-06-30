@@ -1,6 +1,6 @@
-0xb4f00254	num_aux	num_aux
-0xb4f00af4	Factorial	Factorial
-0xb4f00374	num	num
-0xb4f00a64	a	a
-0xb4f009a4	Fac	Fac
-0xb4f008b4	ComputeFac	ComputeFac
+0xb4f00224	num_aux	num_aux
+0xb4f00ac4	Factorial	Factorial
+0xb4f00344	num	num
+0xb4f00a34	a	a
+0xb4f00974	Fac	Fac
+0xb4f00884	ComputeFac	ComputeFac

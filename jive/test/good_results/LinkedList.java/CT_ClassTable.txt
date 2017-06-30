@@ -24,9 +24,9 @@ Method Search with return Type int
 		Arg e of Type Element
 	Vars:
 		Var nt of Type int
-		Var int_ret_val of Type int
-		Var var_elem of Type Element
 		Var aux01 of Type List
+		Var var_elem of Type Element
+		Var int_ret_val of Type int
 		Var var_end of Type boolean
 Method Delete with return Type List
 	Args:
@@ -81,8 +81,8 @@ Method Equal with return Type boolean
 		Arg other of Type Element
 	Vars:
 		Var nt of Type int
-		Var aux02 of Type int
 		Var aux01 of Type int
+		Var aux02 of Type int
 		Var ret_val of Type boolean
 Method Init with return Type boolean
 	Args:

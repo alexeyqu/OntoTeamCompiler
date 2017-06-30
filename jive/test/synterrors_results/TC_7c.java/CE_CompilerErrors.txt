@@ -1,0 +1,2 @@
+[42, 17] Error: Incorrect type of array index.
+Expected: "int". Found "boolean".

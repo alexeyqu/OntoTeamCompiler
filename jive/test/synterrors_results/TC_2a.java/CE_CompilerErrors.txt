@@ -1,0 +1,4 @@
+[3, 25] Error: Unknown class "Fac2"
+[3, 21] Error: Unknown class "Fac2" method call.
+[3, 2] Error: Incorrect type of expression in Print statement.
+Expected: "int". Found "Fac2"

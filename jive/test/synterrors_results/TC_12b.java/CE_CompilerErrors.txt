@@ -1,0 +1,2 @@
+[97, 19] Error: Incorrect type of array size.
+Expected: "int". Found "boolean".

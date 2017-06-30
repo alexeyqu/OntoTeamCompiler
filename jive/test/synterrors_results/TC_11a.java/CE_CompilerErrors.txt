@@ -1,0 +1,3 @@
+[77, 9] Error: Unknown identifier "bugaga"
+[31, 5] Error: Type of return expression doesn't match method "Sort" return type.
+Expected: "int". Found: "bugaga".

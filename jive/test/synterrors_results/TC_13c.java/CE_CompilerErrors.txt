@@ -1,0 +1,1 @@
+[3, 30] Error: Method "Start" of class "QS" expected to take 1 arguments but takes 2 arguments

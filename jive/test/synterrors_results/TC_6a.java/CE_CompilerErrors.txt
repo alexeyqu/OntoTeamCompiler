@@ -1,0 +1,2 @@
+[3, 2] Error: Incorrect type of expression in Print statement.
+Expected: "int". Found "QS"

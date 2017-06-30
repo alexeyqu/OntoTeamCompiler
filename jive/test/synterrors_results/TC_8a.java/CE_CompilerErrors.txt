@@ -1,0 +1,4 @@
+[43, 10] Error: Incorrect types of binary operation.
+Expected: "int" and "int". Found "boolean" and "int".
+[43, 6] Error: Incorrect types of assign statement expressions.
+Lvalue: "int", RValue: "int".

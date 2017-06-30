@@ -1,0 +1,2 @@
+[24, 22] Error: Unknown type of argument n: Tree.
+[24, 30] Error: Unknown type of argument a: Tree2.

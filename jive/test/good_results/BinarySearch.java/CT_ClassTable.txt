@@ -26,11 +26,11 @@ Method Search with return Type boolean
 		Arg num of Type int
 	Vars:
 		Var nt of Type int
-		Var medium of Type int
 		Var aux01 of Type int
-		Var bs01 of Type boolean
-		Var left of Type int
+		Var medium of Type int
 		Var right of Type int
+		Var left of Type int
+		Var bs01 of Type boolean
 		Var var_cont of Type boolean
 Method Div with return Type int
 	Args:

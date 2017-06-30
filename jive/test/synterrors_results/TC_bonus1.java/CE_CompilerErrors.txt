@@ -1,0 +1,3 @@
+[41, 2] Error: The name of variable "QS" and its type are the same.
+[41, 2] Error: Incorrect types of assign statement expressions.
+Lvalue: "QS", RValue: "QS".

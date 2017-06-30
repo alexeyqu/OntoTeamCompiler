@@ -1,0 +1,3 @@
+[3, 30] Error: Method "Go" in class "QS" doesn't exist.
+[3, 2] Error: Incorrect type of expression in Print statement.
+Expected: "int". Found "Go"
