@@ -28,7 +28,7 @@ void CTableCreatorVisitor::Visit( CVariable *entity ) {
         varTypeSymbol = new CTypeSymbol( entity->getType()->getSymbol() );
     }
 
-    CVariableSymbol* varSymbol = new CVariableSymbol( entity->getSymbol(), varTypeSymbol, entity );
+    CVariableSymbol *varSymbol = new CVariableSymbol( entity->getSymbol(), varTypeSymbol, entity );
     if( curMethodSymbol == nullptr ) {
         if( curClassSymbol->lookupField( varSymbol ) != nullptr ) {
             outputStream << "Error: Redefinition of the field \"" << varSymbol->getString() << "\"\n";
@@ -64,7 +64,7 @@ void CTableCreatorVisitor::Visit( CArgument *entity ) {
         argTypeSymbol = new CTypeSymbol( entity->getType()->getSymbol() );
     }
 
-    CVariableSymbol* argSymbol = new CVariableSymbol( entity->getSymbol(), argTypeSymbol, entity );
+    CVariableSymbol *argSymbol = new CVariableSymbol( entity->getSymbol(), argTypeSymbol, entity );
     if( curMethodSymbol->lookupArgument( argSymbol->getSymbol() ) != nullptr ) {
 		outputStream << "Error: Redeclaration of argument \"" << argSymbol->getString() << "\"\n";
 		delete argSymbol;
@@ -86,7 +86,7 @@ void CTableCreatorVisitor::Visit( CMethod *entity ) {
         methodTypeSymbol = new CTypeSymbol( entity->getReturnType()->getSymbol() );
     }
 
-    CMethodSymbol* methodSymbol = new CMethodSymbol( entity->getSymbol(), methodTypeSymbol, entity );
+    CMethodSymbol *methodSymbol = new CMethodSymbol( entity->getSymbol(), methodTypeSymbol, entity );
     if( curClassSymbol->lookupMethod( methodSymbol ) != nullptr ) {
         outputStream << "Error: Redeclaration of variable \"" << methodSymbol->getString() << "\"\n";
             delete methodSymbol;
@@ -121,7 +121,7 @@ void CTableCreatorVisitor::Visit( CMainClass *entity ) {
     CTypeSymbol *mainClassTypeSymbol = new CTypeSymbol( entity->getSymbol() );
     jiveEnv->typeMap->insert( new CType( jive::CLASS, entity->getSymbol() ), mainClassTypeSymbol );
 
-    CClassSymbol* classSymbol = new CClassSymbol( entity->getSymbol(), mainClassTypeSymbol, nullptr, entity );
+    CClassSymbol *classSymbol = new CClassSymbol( entity->getSymbol(), mainClassTypeSymbol, nullptr, entity );
     jiveEnv->classMap->insert( entity, classSymbol );
 
     curClassSymbol = classSymbol;
@@ -133,7 +133,7 @@ void CTableCreatorVisitor::Visit( CClass *entity ) {
     CTypeSymbol *classTypeSymbol = new CTypeSymbol( entity->getSymbol() );
     jiveEnv->typeMap->insert( new CType( jive::CLASS, entity->getSymbol() ), classTypeSymbol );
 
-    CClassSymbol* classSymbol = new CClassSymbol( entity->getSymbol(), classTypeSymbol, nullptr, entity );
+    CClassSymbol *classSymbol = new CClassSymbol( entity->getSymbol(), classTypeSymbol, nullptr, entity );
     if( jiveEnv->classMap->lookup( entity ) != nullptr ) {
         outputStream << "Error: Redefinition of class \"" << classSymbol->getString() << "\"\n";
             delete classSymbol;

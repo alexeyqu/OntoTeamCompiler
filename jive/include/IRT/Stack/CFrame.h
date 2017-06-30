@@ -33,7 +33,7 @@ public:
 	CLabel *getBodyLabel() const { return bodyLabel; }
 	CLabel *getEpilogueLabel() const { return epilogueLabel; }
 
-	CTempList* getDefaultRegs() const;
+	CTempList *getDefaultRegs() const;
 
 private:
     CSymbol *symbol;

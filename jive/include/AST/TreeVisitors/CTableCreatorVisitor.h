@@ -55,8 +55,8 @@ public:
 	void Visit( CVoidExpression *expression );
 	
 private:
-	CClassSymbol* curClassSymbol;
-	CMethodSymbol* curMethodSymbol;
+	CClassSymbol *curClassSymbol;
+	CMethodSymbol *curMethodSymbol;
 };
 
 }

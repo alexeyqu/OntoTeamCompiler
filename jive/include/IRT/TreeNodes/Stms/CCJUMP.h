@@ -14,8 +14,8 @@ public:
     TCJUMP getRelop() const { return relop; }
     IExp *getLeft() const { return left; }
     IExp *getRight() const { return right; }
-    CLabel* getIfTrue() const { return ifTrue; }
-	CLabel* getIfFalse() const { return ifFalse; }
+    CLabel *getIfTrue() const { return ifTrue; }
+	CLabel *getIfFalse() const { return ifFalse; }
 
 private:
     TCJUMP relop; 
