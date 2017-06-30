@@ -12,10 +12,10 @@ namespace IRT
 
 using ST::CSymbol;
 
-class CFrame
+class CX86JiveFrame
 {
 public:
-    CFrame( CSymbol *_symbol );
+    CX86JiveFrame( CSymbol *_symbol );
 
 	void addParam( CSymbol *_symbol ) { params.insertObject( _symbol, new CInReg( new CTemp() ) ); paramsCount++; }
 	void addLocal( CSymbol *_symbol ) { locals.insertObject( _symbol, new CInFrame( stackOffset, basePointer ) ); stackOffset += wordSize; }

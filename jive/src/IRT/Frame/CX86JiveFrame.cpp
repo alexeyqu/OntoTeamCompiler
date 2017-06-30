@@ -1,9 +1,9 @@
-#include "CFrame.h"
+#include "CX86JiveFrame.h"
 
 namespace IRT
 {
 
-CFrame::CFrame( CSymbol *_symbol ) : symbol( _symbol ), paramsCount( 0 ),
+CX86JiveFrame::CX86JiveFrame( CSymbol *_symbol ) : symbol( _symbol ), paramsCount( 0 ),
 	stackPointer( new CTemp( CSymbol::makeSymbol( "SP" )  ) ),
 	basePointer( new CTemp( CSymbol::makeSymbol( "BP" ) ) ),
 	returnPointer( new CTemp( CSymbol::makeSymbol( "RP" ) ) ),
@@ -22,7 +22,7 @@ CFrame::CFrame( CSymbol *_symbol ) : symbol( _symbol ), paramsCount( 0 ),
 	);
 }
 
-IAccess *CFrame::getAccess( CSymbol *_symbol ) const {
+IAccess *CX86JiveFrame::getAccess( CSymbol *_symbol ) const {
 	auto local = locals.getObject( _symbol );
 	if ( local ) {
 		return local;

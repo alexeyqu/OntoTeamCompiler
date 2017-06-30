@@ -7,6 +7,7 @@
 #include "IVisitor.h"
 #include "CProgram.h"
 #include "Symbols.h"
+#include "CX86JiveFrame.h"
 
 namespace AST 
 {
