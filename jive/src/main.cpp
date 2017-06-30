@@ -49,6 +49,10 @@ int main( int argc, char **argv ) {
 	jiveEnv->symbolTable->dump( *outstream );
 	outfstream.close();
 
+	outfstream.open( outstreamFolder + "Symbols.txt", std::ios::out );
+	CSymbol::dumpStringTable( *outstream );
+	outfstream.close();
+
 	CTableCreatorVisitor tableCreatorVisitor( jiveEnv, *outstream );
     tableCreatorVisitor.Start( jiveEnv->program );
 

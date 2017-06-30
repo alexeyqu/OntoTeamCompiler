@@ -17,6 +17,8 @@ public:
 
 	static CSymbol *makeSymbol( const std::string& token );
 
+	static void dumpStringTable( std::ostream &outputStream );
+
 private:
     CSymbol( std::string _token ) : symbol( _token ) {}
 

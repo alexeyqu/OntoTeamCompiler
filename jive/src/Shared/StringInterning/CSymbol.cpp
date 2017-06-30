@@ -15,6 +15,13 @@ CSymbol *CSymbol::makeSymbol( const std::string& token ) {
 	}
 }
 
+void CSymbol::dumpStringTable( std::ostream &outputStream ) {
+	for( const auto &elem: stringTable ) {		
+		outputStream << elem.first << '\t' << elem.second->getString() << "\n";
+	}
+}
+
+
 std::unordered_map<flyweight<std::string>, CSymbol *> CSymbol::stringTable;
 
 }
