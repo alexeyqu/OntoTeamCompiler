@@ -329,7 +329,7 @@ LeftExpression: LeftExpression LBRACKET Expression RBRACKET {
 Type:	INT { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CType( jive::INTEGER, new CSymbol( "int" ) );
+			$$ = new CType( jive::INTEGER, CSymbol::makeSymbol( "int" ) );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -337,7 +337,7 @@ Type:	INT {
 		INT LBRACKET RBRACKET { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CType( jive::INTEGERARRAY, new CSymbol( "int[]" ) );
+			$$ = new CType( jive::INTEGERARRAY, CSymbol::makeSymbol( "int[]" ) );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -345,7 +345,7 @@ Type:	INT {
 		BOOL { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CType( jive::BOOLEAN, new CSymbol( "boolean" ) );
+			$$ = new CType( jive::BOOLEAN, CSymbol::makeSymbol( "boolean" ) );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -353,7 +353,7 @@ Type:	INT {
 		STRING { 
 			int temp_line = yyloc.first_line;
 			int temp_column = yyloc.first_column;
-			$$ = new CType( jive::STRING, new CSymbol( "String" ) );
+			$$ = new CType( jive::STRING, CSymbol::makeSymbol( "String" ) );
 			$$->coordinates.first_line = temp_line;
 			$$->coordinates.first_column = temp_column; 
 		}
@@ -546,7 +546,7 @@ Identifier: ID {
 				int temp_line = yyloc.first_line;
 				int temp_column = yyloc.first_column;
 
-				CSymbol *newSymbol = new CSymbol( static_cast<std::string>( $1 ) );
+				CSymbol *newSymbol = CSymbol::makeSymbol( static_cast<std::string>( $1 ) );
 				(*jiveEnv)->symbolTable->insert( *newSymbol );
 				$$ = new CIdExpression( newSymbol );
 				

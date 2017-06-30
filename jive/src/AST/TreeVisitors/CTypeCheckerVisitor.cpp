@@ -275,7 +275,7 @@ void CTypeCheckerVisitor::Visit( CBinaryExpression *expression ) {
 }
 
 void CTypeCheckerVisitor::Visit( CNumberExpression *expression ) {
-	expression->setType( new CType( TType::INTEGER, new CSymbol( "int" ) ) );
+	expression->setType( new CType( TType::INTEGER, CSymbol::makeSymbol( "int" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CBinaryBooleanExpression *expression ) {
@@ -307,11 +307,11 @@ void CTypeCheckerVisitor::Visit( CBinaryBooleanExpression *expression ) {
 		}
 	}
 	
-	expression->setType( new CType( TType::BOOLEAN, new CSymbol( "boolean" ) ) );
+	expression->setType( new CType( TType::BOOLEAN, CSymbol::makeSymbol( "boolean" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CBooleanExpression *expression ) {
-	expression->setType( new CType( TType::BOOLEAN, new CSymbol( "boolean" ) ) );
+	expression->setType( new CType( TType::BOOLEAN, CSymbol::makeSymbol( "boolean" ) ) );
  }
 
 void CTypeCheckerVisitor::Visit( CThisExpression *expression ) {
@@ -342,7 +342,7 @@ void CTypeCheckerVisitor::Visit( CNewIntArrayExpression *expression ) {
 			<<"Found \"" << arrSizeType->getString() << "\".\n";
 	}
 
-	expression->setType( new CType( TType::INTEGERARRAY, new CSymbol( "int[]" ) ) );
+	expression->setType( new CType( TType::INTEGERARRAY, CSymbol::makeSymbol( "int[]" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CMethodCallExpression *expression ) {
@@ -421,7 +421,7 @@ void CTypeCheckerVisitor::Visit( CArrayLengthExpression *expression ) {
 			<< "Found \"" << arrLengthType->getString() << "\".\n";
 	}
 
-	expression->setType( new CType( TType::INTEGER, new CSymbol( "int" ) ) );
+	expression->setType( new CType( TType::INTEGER, CSymbol::makeSymbol( "int" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CArrayIndexExpression *expression ) {
@@ -443,7 +443,7 @@ void CTypeCheckerVisitor::Visit( CArrayIndexExpression *expression ) {
 			<< "Found \"" << arrayIndexType->getString() << "\".\n";
 	}
 
-	expression->setType( new CType( TType::INTEGER, new CSymbol( "int" ) ) );
+	expression->setType( new CType( TType::INTEGER, CSymbol::makeSymbol( "int" ) ) );
 }
 
 void CTypeCheckerVisitor::Visit( CCompoundExpression *expression ) {
@@ -459,7 +459,7 @@ void CTypeCheckerVisitor::Visit( CCompoundExpression *expression ) {
 }
 
 void CTypeCheckerVisitor::Visit( CVoidExpression *expression ) {
-	expression->setType( new CType( TType::VOID, new CSymbol( "void" ) ) );
+	expression->setType( new CType( TType::VOID, CSymbol::makeSymbol( "void" ) ) );
 }
 
 }

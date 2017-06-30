@@ -26,9 +26,9 @@ public:
 		nullptr, // BaseClass Id
 		nullptr, // Fields
 		new CCompoundMethod( nullptr, 
-			new CMethod( new CType( jive::TType::VOID, new CSymbol( "void" ) ), // public static void
-				new CIdExpression( new CSymbol( "main" ) ), // main
-				new CCompoundArgument( nullptr, new CArgument( new CType( jive::TType::STRINGARRAY, new CSymbol( "String[]" ) ), _cmdArgs ) ), // String[] argId
+			new CMethod( new CType( jive::TType::VOID, CSymbol::makeSymbol( "void" ) ), // public static void
+				new CIdExpression( CSymbol::makeSymbol( "main" ) ), // main
+				new CCompoundArgument( nullptr, new CArgument( new CType( jive::TType::STRINGARRAY, CSymbol::makeSymbol( "String[]" ) ), _cmdArgs ) ), // String[] argId
 				nullptr, // variables
 				new CCompoundStatement( nullptr, _statement ), // statements
 				new CVoidExpression() // retExpression

@@ -6,6 +6,8 @@
 namespace IRT // TODO for now, later make it global
 {
 
+using ST::CSymbol;
+
 template<class Object>
 class CSymbolStorage 
 {
@@ -18,7 +20,7 @@ public:
 
 	tableIt getBegin() const { return table.begin(); }
 
-	tableIt getEnd() const { return table.end(); }s
+	tableIt getEnd() const { return table.end(); }
 
 	Object GetObject( CSymbol *symbol ) const {
 		auto result = table.find( symbol );
