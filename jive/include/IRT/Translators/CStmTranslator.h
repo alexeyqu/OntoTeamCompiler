@@ -2,6 +2,9 @@
 
 #include "ITranslator.h"
 
+namespace IRTTRANSLATOR
+{
+	
 class CStmTranslator : public ITranslator
 {
 public:
@@ -14,3 +17,5 @@ public:
 private:
 	IStm *stm;
 };
+
+}

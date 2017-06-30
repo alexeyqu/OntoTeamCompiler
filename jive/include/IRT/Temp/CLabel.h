@@ -25,9 +25,6 @@ private:
     static const std::string tempPrefix;
 };
 
-int CLabel::counter = 0;
-const std::string CLabel::tempPrefix = "LABEL#";
-
 }
 
 namespace std 

@@ -9,7 +9,7 @@ namespace IRT
 class CESEQ : public IExp
 {
 public:
-    CESEQ( IExp *_exp, IStm *_stm ) : exp( _exp ), stm( _stm ) {}
+    CESEQ( IStm *_stm, IExp *_exp ) : stm( _stm ), exp( _exp ) {}
 
     void Accept( IIRTVisitor *visitor ) { visitor->Visit( this ); }
 

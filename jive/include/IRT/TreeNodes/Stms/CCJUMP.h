@@ -1,9 +1,11 @@
 #pragma once
 
+#include "IStm.h"
+
 namespace IRT
 {
 
-class CCJUMP
+class CCJUMP : public IStm
 {
 public:
     CCJUMP( TCJUMP _relop, IExp *_left, IExp *_right, CLabel *_ifTrue, CLabel *_ifFalse ) : \

@@ -26,9 +26,6 @@ private:
     static const std::string tempPrefix;
 };
 
-int CTemp::counter = 0;
-const std::string CTemp::tempPrefix = "TEMP#";
-
 }
 
 namespace std 

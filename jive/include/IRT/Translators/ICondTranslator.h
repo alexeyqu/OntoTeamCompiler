@@ -2,7 +2,7 @@
 
 #include "ITranslator.h"
 
-namespace IRT
+namespace IRTTRANSLATOR
 {
 
 class ICondTranslator : public ITranslator

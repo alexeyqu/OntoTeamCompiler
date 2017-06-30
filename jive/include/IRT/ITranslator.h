@@ -1,11 +1,35 @@
 #pragma once
 
-#include "IExp.h"
-#include "IStm.h"
+#include "Exps.h"
+#include "Stms.h"
 #include "CLabel.h"
 
-namespace IRT
+namespace IRTTRANSLATOR
 {
+
+using IRT::TBINOP;
+using IRT::TCJUMP;
+
+using IRT::CLabel;
+using IRT::CTemp;
+
+using IRT::IExp;
+using IRT::IStm;
+
+using IRT::CCONST;
+using IRT::CNAME;
+using IRT::CTEMP;
+using IRT::CBINOP;
+using IRT::CMEM;
+using IRT::CCALL;
+using IRT::CESEQ;
+
+using IRT::CMOVE;
+using IRT::CEXP;
+using IRT::CJUMP;
+using IRT::CCJUMP;
+using IRT::CSEQ;
+using IRT::CLABEL;
 
 class ITranslator
 {

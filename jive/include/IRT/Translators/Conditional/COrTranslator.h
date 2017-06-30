@@ -2,6 +2,9 @@
 
 #include "ICondTranslator.h"
 
+namespace IRTTRANSLATOR
+{
+
 class COrTranslator : public ICondTranslator
 {
 public:
@@ -14,3 +17,5 @@ private:
 	IExp *leftExp;
 	IExp *rightExp;
 };
+
+}

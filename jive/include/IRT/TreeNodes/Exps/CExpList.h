@@ -5,20 +5,20 @@
 namespace IRT
 {
 
-class IExpList : public IExp
+class CExpList : public IExp
 {
 public:
-    IExpList( IExp *_exp, IExpList *_next ) : exp( _exp ), next( _next ) {}
-    IExpList( IExp *_exp ) : exp( _exp ), next( nullptr ) {}
+    CExpList( IExp *_exp, CExpList *_next ) : exp( _exp ), next( _next ) {}
+    CExpList( IExp *_exp ) : exp( _exp ), next( nullptr ) {}
 
     void Accept( IIRTVisitor *visitor ) { visitor->Visit( this ); }
 
     const IExp *getExp() const { return exp; }
-    const IExpList *getNext() const { return next; }
+    const CExpList *getNext() const { return next; }
 
 private:
     IExp *exp;
-    IExpList *next;
+    CExpList *next;
 };
 
 }
