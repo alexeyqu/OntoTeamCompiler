@@ -31,19 +31,19 @@ void CTableCreatorVisitor::Visit( CVariable *entity ) {
     CVariableSymbol* varSymbol = new CVariableSymbol( entity->getSymbol(), varTypeSymbol, entity );
     if( curMethodSymbol == nullptr ) {
         if( curClassSymbol->lookupField( varSymbol ) != nullptr ) {
-            std::cerr << "Error: Redefinition of the field \"" << varSymbol->getString() << "\"\n";
+            outputStream << "Error: Redefinition of the field \"" << varSymbol->getString() << "\"\n";
             delete varSymbol;
             return;
         }
         curClassSymbol->insertField( varSymbol );
     } else {
         if( curMethodSymbol->lookupArgument( varSymbol->getSymbol() ) != nullptr ) {
-            std::cerr << "Error: Redeclaration of argument \"" << varSymbol->getString() << "\"\n";
+            outputStream << "Error: Redeclaration of argument \"" << varSymbol->getString() << "\"\n";
             delete varSymbol;
             return;
         }
         if( curMethodSymbol->lookupVariable( varSymbol ) != nullptr ) {
-            std::cerr << "Error: Redeclaration of variable \"" << varSymbol->getString() << "\"\n";
+            outputStream << "Error: Redeclaration of variable \"" << varSymbol->getString() << "\"\n";
             delete varSymbol;
             return;
         }
@@ -66,7 +66,7 @@ void CTableCreatorVisitor::Visit( CArgument *entity ) {
 
     CVariableSymbol* argSymbol = new CVariableSymbol( entity->getSymbol(), argTypeSymbol, entity );
     if( curMethodSymbol->lookupArgument( argSymbol->getSymbol() ) != nullptr ) {
-		std::cerr << "Error: Redeclaration of argument \"" << argSymbol->getString() << "\"\n";
+		outputStream << "Error: Redeclaration of argument \"" << argSymbol->getString() << "\"\n";
 		delete argSymbol;
 		return;
 	}
@@ -88,7 +88,7 @@ void CTableCreatorVisitor::Visit( CMethod *entity ) {
 
     CMethodSymbol* methodSymbol = new CMethodSymbol( entity->getSymbol(), methodTypeSymbol, entity );
     if( curClassSymbol->lookupMethod( methodSymbol ) != nullptr ) {
-        std::cerr << "Error: Redeclaration of variable \"" << methodSymbol->getString() << "\"\n";
+        outputStream << "Error: Redeclaration of variable \"" << methodSymbol->getString() << "\"\n";
             delete methodSymbol;
             return;
     }
@@ -135,7 +135,7 @@ void CTableCreatorVisitor::Visit( CClass *entity ) {
 
     CClassSymbol* classSymbol = new CClassSymbol( entity->getSymbol(), classTypeSymbol, nullptr, entity );
     if( jiveEnv->classMap->lookup( entity ) != nullptr ) {
-        std::cerr << "Error: Redefinition of class \"" << classSymbol->getString() << "\"\n";
+        outputStream << "Error: Redefinition of class \"" << classSymbol->getString() << "\"\n";
             delete classSymbol;
             return;
     }
