@@ -12,6 +12,7 @@ class CSymbol
 {
 public:
     flyweight<std::string> &getString() const { return const_cast<flyweight<std::string> &>( symbol ); }
+    std::string &getBasicString() const { return const_cast<std::string &>( symbol.get() ); }
 
     friend bool operator==( const CSymbol &lhs, const CSymbol &rhs  ) { return lhs.symbol == rhs.symbol; }
 

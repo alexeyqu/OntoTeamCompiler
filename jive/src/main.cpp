@@ -6,6 +6,7 @@
 #include "AST/TreeVisitors/CPrintVisitor.h"
 #include "AST/TreeVisitors/CTypeCheckerVisitor.h"
 #include "AST/TreeVisitors/CTableCreatorVisitor.h"
+#include "AST/TreeVisitors/CTranslateVisitor.h"
 #include "AST/CProgram.h"
 #include "CJiveEnvironment.h"
 #include "ST/Symbols/CClassSymbol.h"
@@ -33,7 +34,7 @@ int main( int argc, char **argv ) {
 	else
 		outstreamFolder = "./";
 
-	CJiveEnvironment *jiveEnv = new CJiveEnvironment();
+	CJiveEnvironment *jiveEnv = new CJiveEnvironment(); // todo move ostream here
 
 	yyparse( &jiveEnv );
 
@@ -68,6 +69,30 @@ int main( int argc, char **argv ) {
 	outfstream.open( outstreamFolder + "CT_ClassTable.txt", std::ios::out );
 	jiveEnv->classMap->dump( *outstream );
 	outfstream.close();
+
+	if( !typeCheckerVisitor.failed() ) {
+		outfstream.open( outstreamFolder + "TR_Translator.txt", std::ios::out );
+		CTranslateVisitor translateVisitor( jiveEnv, *outstream );
+		translateVisitor.Start(jiveEnv->program);
+		outfstream.close();
+
+		std::vector<CFragment> fragments = translateVisitor.getFragments();
+
+		// outfstream.open( outstreamFolder + "IR_IRTree.txt", std::ios::out );
+		// CIRTreePrinter *irTreePrinter;
+		// irTreePrinter = new CIRTreePrinter( "ir-tree.dot" );
+		// irTreePrinter->OpenFile();
+
+		// size_t methodsCounter = 1;
+		// for( auto& method : fragments ) {
+		// 	irTreePrinter->ResetPrinter( "fragment" + std::to_string( methodsCounter ) + "_", method.name );
+		// 	method.rootStm->Accept( irTreePrinter );
+		// 	methodsCounter += 1;
+		// 	irTreePrinter->WriteGraphToFile();
+		// }
+		// irTreePrinter->CloseFile();
+		// outfstream.close();
+	}
 
 	return 0;
 }

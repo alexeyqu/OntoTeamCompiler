@@ -8,6 +8,9 @@
 #include "CProgram.h"
 #include "Symbols.h"
 #include "CX86JiveFrame.h"
+#include "Translators.h"
+#include "Exps.h"
+#include "Stms.h"
 
 namespace AST 
 {
@@ -16,6 +19,20 @@ using ST::CClassSymbol;
 using ST::CMethodSymbol;
 using ST::CVariableSymbol;
 using ST::CTypeSymbol;
+
+using namespace IRTTRANSLATOR;
+using IRT::CX86JiveFrame;
+using IRT::CExpList;
+using IRT::CStmList;
+
+struct CFragment {
+	CFragment( CX86JiveFrame* _frame, IStm* _rootStm, CSymbol *_name ) :
+		frame( _frame ), rootStm( _rootStm ), name( _name ) {}
+
+	CX86JiveFrame* frame;
+	IStm* rootStm;
+	CSymbol *name;
+};
 
 class CTranslateVisitor : public IVisitor 
 {
@@ -54,10 +71,17 @@ public:
 	void Visit( CArrayIndexExpression *expression );
 	void Visit( CCompoundExpression *expression );
 	void Visit( CVoidExpression *expression );
+
+	std::vector<CFragment> &getFragments() const { return const_cast<std::vector<CFragment> &>( fragments ); }
 	
 private:
 	CClassSymbol *curClassSymbol;
 	CMethodSymbol *curMethodSymbol;
+	CX86JiveFrame *curFrame;
+	ITranslator *translator;
+
+	std::vector<CFragment> fragments;
+	CExpList* expList;
 };
 
 }

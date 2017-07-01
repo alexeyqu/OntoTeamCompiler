@@ -19,6 +19,7 @@ public:
 
 	void addParam( CSymbol *_symbol ) { params.insertObject( _symbol, new CInReg( new CTemp() ) ); paramsCount++; }
 	void addLocal( CSymbol *_symbol ) { locals.insertObject( _symbol, new CInFrame( stackOffset, basePointer ) ); stackOffset += wordSize; }
+	void addField( CSymbol *_symbol ) { fields.insertObject( _symbol, new CInFrame( thisOffset, thisPointer ) ); thisPointer += wordSize; }
 
 	int getParamsCount() const { return paramsCount; }
 	IAccess *getAccess( CSymbol *_symbol ) const;
@@ -26,8 +27,8 @@ public:
 	static int getWordSize() { return wordSize; }
 
 	CTemp *getBasePointer() const { return basePointer; }
-	CTemp *getStackPointer() const { return stackPointer; }
-	CTemp *getReturnPointer() const { return returnPointer; }
+	CTemp *getThisPointer() const { return thisPointer; }
+	CTemp *getReturnAddress() const { return returnAddress; }
 
 	CLabel *getPrologueLabel() const { return prologueLabel; }
 	CLabel *getBodyLabel() const { return bodyLabel; }
@@ -40,13 +41,15 @@ private:
 
 	int paramsCount;
 	int stackOffset;
+	int thisOffset;
 
 	CSymbolStorage<IAccess *> params;
 	CSymbolStorage<IAccess *> locals;
+	CSymbolStorage<IAccess *> fields;
 
 	CTemp *basePointer;
-	CTemp *stackPointer;
-	CTemp *returnPointer;
+	CTemp *thisPointer;
+	CTemp *returnAddress;
 
 	CTempList *defaultRegs;
 

@@ -4,9 +4,9 @@ namespace IRT
 {
 
 CX86JiveFrame::CX86JiveFrame( CSymbol *_symbol ) : symbol( _symbol ), paramsCount( 0 ),
-	stackPointer( new CTemp( CSymbol::makeSymbol( "SP" )  ) ),
+	thisPointer( new CTemp( CSymbol::makeSymbol( "CP" )  ) ),
 	basePointer( new CTemp( CSymbol::makeSymbol( "BP" ) ) ),
-	returnPointer( new CTemp( CSymbol::makeSymbol( "RP" ) ) ),
+	returnAddress( new CTemp( CSymbol::makeSymbol( "RA" ) ) ),
 	prologueLabel( new CLabel() ), 
 	bodyLabel( new CLabel() ), 
 	epilogueLabel( new CLabel() ) 
@@ -31,6 +31,11 @@ IAccess *CX86JiveFrame::getAccess( CSymbol *_symbol ) const {
 	auto formal = params.getObject( _symbol );
 	if ( formal ) {
 		return formal;
+	}
+
+	auto field = fields.getObject( _symbol );
+	if ( field ) {
+		return field;
 	}
 
 	return nullptr;

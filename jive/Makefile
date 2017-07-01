@@ -37,7 +37,7 @@ INCLUDES = -I $(AUTO_PATH) -I include \
 	-I include/ST \
 	-I include/ST/Symbols \
 	-I include/IRT \
-	-I include/IRT/Stack \
+	-I include/IRT/Frame \
 	-I include/IRT/Temp \
 	-I include/IRT/Access \
 	-I include/IRT/TreeNodes \

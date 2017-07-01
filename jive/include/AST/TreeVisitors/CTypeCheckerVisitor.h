@@ -20,8 +20,9 @@ class CTypeCheckerVisitor : public IVisitor
 {
 public:
 	CTypeCheckerVisitor( CJiveEnvironment *_jiveEnv, std::ostream &_outputStream ) : \
-		IVisitor( _jiveEnv, _outputStream ) {}
+		IVisitor( _jiveEnv, _outputStream ), typeError( false ) {}
 	void Start( IVisitorTarget *vertex );
+	bool failed() const { return typeError; }
 	
 	void Visit( CProgram *program );
    	void Visit( CGoal *goal );
@@ -58,6 +59,8 @@ private:
 	CClassSymbol *curClassSymbol;
 	CMethodSymbol *curMethodSymbol;
 	std::vector<CType *> curCallArgTypes;
+
+	bool typeError;
 };
 
 }

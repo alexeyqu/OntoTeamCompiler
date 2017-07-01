@@ -11,6 +11,7 @@ class CJUMP : public IStm
 {
 public:
     CJUMP( IExp *_exp, CLabelList *_targets) : exp( _exp ), targets( _targets ) {}
+    CJUMP( CLabel* label ) : exp( new CNAME( label ) ), targets( new CLabelList( label ) ) {}
 
     void Accept( IIRTVisitor *visitor ) { visitor->Visit( this ); }
 
