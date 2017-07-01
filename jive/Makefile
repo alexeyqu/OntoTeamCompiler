@@ -43,6 +43,7 @@ INCLUDES = -I $(AUTO_PATH) -I include \
 	-I include/IRT/TreeNodes \
 	-I include/IRT/TreeNodes/Exps \
 	-I include/IRT/TreeNodes/Stms \
+	-I include/IRT/TreeVisitors \
 	-I include/IRT/Translators \
 	-I include/IRT/Translators/Conditional \
 	-I /usr/local/include

@@ -13,8 +13,8 @@ public:
 
     void Accept( IIRTVisitor *visitor ) { visitor->Visit( this ); }
 
-    const IStm *getStm() const { return stm; }
-    const CStmList *getNext() const { return next; }
+    IStm *getStm() const { return stm; }
+    CStmList *getNext() const { return next; }
 
 private:
     IStm *stm;

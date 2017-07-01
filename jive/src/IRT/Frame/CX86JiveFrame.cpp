@@ -3,14 +3,14 @@
 namespace IRT
 {
 
-CX86JiveFrame::CX86JiveFrame( CSymbol *_symbol ) : symbol( _symbol ), paramsCount( 0 ),
-	thisPointer( new CTemp( CSymbol::makeSymbol( "CP" )  ) ),
-	basePointer( new CTemp( CSymbol::makeSymbol( "BP" ) ) ),
-	returnAddress( new CTemp( CSymbol::makeSymbol( "RA" ) ) ),
-	prologueLabel( new CLabel() ), 
-	bodyLabel( new CLabel() ), 
-	epilogueLabel( new CLabel() ) 
+CX86JiveFrame::CX86JiveFrame( CSymbol *_symbol ) : symbol( _symbol ), paramsCount( 0 )
 {
+	thisPointer = new CTemp( CSymbol::makeSymbol( "CP" ) ); 
+	basePointer = new CTemp( CSymbol::makeSymbol( "BP" ) );
+	returnAddress = new CTemp( CSymbol::makeSymbol( "RA" ) );
+	prologueLabel = new CLabel(); 
+	bodyLabel = new CLabel(); 
+	epilogueLabel = new CLabel();
 	CTemp *eax = new CTemp( CSymbol::makeSymbol( "EAX" ) );
 	CTemp *ecx = new CTemp( CSymbol::makeSymbol( "ECX" ) );
 	CTemp *edx = new CTemp( CSymbol::makeSymbol( "EDX" ) );

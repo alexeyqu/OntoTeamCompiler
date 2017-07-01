@@ -1,32 +1,62 @@
 #pragma once
 
+#include <string>
+#include <map>
+#include <stack>
+#include <vector>
+#include "IIRTVisitor.h"
+#include "CSymbol.h"
+
 namespace IRT
 {
+
+using ST::CSymbol;
 
 class CIRTPrintVisitor : public IIRTVisitor
 {
 public:
     CIRTPrintVisitor( CJiveEnvironment *_jiveEnv, std::ostream &_outputStream ) : \
-		IIRTVisitor( _jiveEnv, _outputStream ) {}
+        IIRTVisitor( _jiveEnv, _outputStream ), visitedNodesCount( 0 ), curNodeId( 0 ), prevNodeId( 0 )
+    {}
 
-    virtual void Visit( CCONST *exp ) = 0;
-    virtual void Visit( CNAME *exp ) = 0;
-    virtual void Visit( CTEMP *exp ) = 0;
-    virtual void Visit( CBINOP *exp ) = 0;
-    virtual void Visit( CMEM *exp ) = 0;
-    virtual void Visit( CCALL *exp ) = 0;
-    virtual void Visit( CESEQ *exp ) = 0;
+    void Visit( CCONST *exp ) override;
+    void Visit( CNAME *exp ) override;
+    void Visit( CTEMP *exp ) override;
+    void Visit( CBINOP *exp ) override;
+    void Visit( CMEM *exp ) override;
+    void Visit( CCALL *exp ) override;
+    void Visit( CESEQ *exp ) override;
     
-    virtual void Visit( CMOVE *stm ) = 0;
-    virtual void Visit( CEXP *stm ) = 0;
-    virtual void Visit( CJUMP *stm ) = 0;
-    virtual void Visit( CCJUMP *stm ) = 0;
-    virtual void Visit( CSEQ *stm ) = 0;
-    virtual void Visit( CLABEL *stm ) = 0;
+    void Visit( CMOVE *stm ) override;
+    void Visit( CEXP *stm ) override;
+    void Visit( CJUMP *stm ) override;
+    void Visit( CCJUMP *stm ) override;
+    void Visit( CSEQ *stm ) override;
+    void Visit( CLABEL *stm ) override;
 
-    virtual void Visit( CExpList *exp ) = 0;
-    virtual void Visit( CStmList *stm ) = 0;
+    void Visit( CExpList *exp ) override;
+    void Visit( CStmList *stm ) override;
 
+    void startIRForest();
+    void endIRForest();
+
+    void writeIRTree();
+    void newIRTree( const std::string &_treePrefix, CSymbol *fragmentName );
+
+private:
+    std::string treePrefix;
+    int visitedNodesCount;
+    int curNodeId;
+    int prevNodeId;
+
+    std::stack<int> nodeStack;
+    std::map<int, std::string> nodeLabels;
+    std::vector<std::pair<int, int> > treeEdges;
+
+    void visitNewNode();
+    void leaveNode();
+    int createNewNode();
+    void addEdge( int from, int to );
 };
 
 }

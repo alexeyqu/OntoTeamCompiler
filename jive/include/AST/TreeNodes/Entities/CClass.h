@@ -21,10 +21,10 @@ public:
    	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }
 
 	CSymbol *getSymbol() const { return id->getSymbol(); }
-	boost::flyweight<std::string> &getString() const { return id->getString(); }
+	boost::flyweight<std::string>getString() const { return id->getString(); }
 
 	CSymbol *getParentSymbol() const { return parentId->getSymbol(); }
-	boost::flyweight<std::string> &getParentString() const { return parentId->getString(); }
+	boost::flyweight<std::string>getParentString() const { return parentId->getString(); }
 
 	CCompoundVariable *getFields() const { return fields; }
 	CCompoundMethod *getMethods() const { return methods; }

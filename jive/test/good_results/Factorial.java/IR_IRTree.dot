@@ -1,0 +1,190 @@
+digraph IRTree {
+fragment1_0 -> fragment1_1
+fragment1_1 -> fragment1_2
+fragment1_2 -> fragment1_3
+fragment1_3 -> fragment1_4
+fragment1_3 -> fragment1_5
+fragment1_5 -> fragment1_6
+fragment1_6 -> fragment1_7
+fragment1_6 -> fragment1_8
+fragment1_8 -> fragment1_9
+fragment1_8 -> fragment1_10
+fragment1_10 -> fragment1_11
+fragment1_11 -> fragment1_12
+fragment1_11 -> fragment1_13
+fragment1_13 -> fragment1_14
+fragment1_13 -> fragment1_15
+fragment1_15 -> fragment1_16
+fragment1_15 -> fragment1_17
+fragment1_15 -> fragment1_18
+fragment1_10 -> fragment1_19
+fragment1_8 -> fragment1_20
+fragment1_5 -> fragment1_21
+fragment1_1 -> fragment1_22
+fragment1_22 -> fragment1_23
+fragment1_23 -> fragment1_24
+fragment1_23 -> fragment1_25
+fragment1_25 -> fragment1_26
+fragment1_26 -> fragment1_27
+fragment1_26 -> fragment1_28
+fragment1_28 -> fragment1_29
+fragment1_28 -> fragment1_30
+fragment1_30 -> fragment1_31
+fragment1_31 -> fragment1_32
+fragment1_31 -> fragment1_33
+fragment1_33 -> fragment1_34
+fragment1_33 -> fragment1_35
+fragment1_35 -> fragment1_36
+fragment1_35 -> fragment1_37
+fragment1_35 -> fragment1_38
+fragment1_30 -> fragment1_39
+fragment1_28 -> fragment1_40
+fragment1_25 -> fragment1_41
+fragment1_0[ label = "Factorial::main" ]
+fragment1_1[ label = "SEQ" ]
+fragment1_2[ label = "EXP" ]
+fragment1_3[ label = "CALL" ]
+fragment1_4[ label = "NAME System.out.println" ]
+fragment1_5[ label = "ESEQ" ]
+fragment1_6[ label = "MOVE" ]
+fragment1_7[ label = "TEMP TEMP#7" ]
+fragment1_8[ label = "CALL" ]
+fragment1_9[ label = "NAME Factorial::ComputeFac" ]
+fragment1_10[ label = "ESEQ" ]
+fragment1_11[ label = "MOVE" ]
+fragment1_12[ label = "TEMP CP" ]
+fragment1_13[ label = "CALL" ]
+fragment1_14[ label = "NAME new" ]
+fragment1_15[ label = "BINOP" ]
+fragment1_16[ label = "MUL" ]
+fragment1_17[ label = "CONST 0" ]
+fragment1_18[ label = "CONST 4" ]
+fragment1_19[ label = "TEMP CP" ]
+fragment1_20[ label = "CONST 10" ]
+fragment1_21[ label = "TEMP TEMP#7" ]
+fragment1_22[ label = "EXP" ]
+fragment1_23[ label = "CALL" ]
+fragment1_24[ label = "NAME System.out.println" ]
+fragment1_25[ label = "ESEQ" ]
+fragment1_26[ label = "MOVE" ]
+fragment1_27[ label = "TEMP TEMP#7" ]
+fragment1_28[ label = "CALL" ]
+fragment1_29[ label = "NAME Factorial::ComputeFac" ]
+fragment1_30[ label = "ESEQ" ]
+fragment1_31[ label = "MOVE" ]
+fragment1_32[ label = "TEMP CP" ]
+fragment1_33[ label = "CALL" ]
+fragment1_34[ label = "NAME new" ]
+fragment1_35[ label = "BINOP" ]
+fragment1_36[ label = "MUL" ]
+fragment1_37[ label = "CONST 0" ]
+fragment1_38[ label = "CONST 4" ]
+fragment1_39[ label = "TEMP CP" ]
+fragment1_40[ label = "CONST 10" ]
+fragment1_41[ label = "TEMP TEMP#7" ]
+fragment2_0 -> fragment2_1
+fragment2_1 -> fragment2_2
+fragment2_2 -> fragment2_3
+fragment2_3 -> fragment2_4
+fragment2_4 -> fragment2_5
+fragment2_5 -> fragment2_6
+fragment2_6 -> fragment2_7
+fragment2_6 -> fragment2_8
+fragment2_6 -> fragment2_9
+fragment2_6 -> fragment2_10
+fragment2_6 -> fragment2_11
+fragment2_5 -> fragment2_12
+fragment2_12 -> fragment2_13
+fragment2_12 -> fragment2_14
+fragment2_14 -> fragment2_15
+fragment2_15 -> fragment2_16
+fragment2_16 -> fragment2_17
+fragment2_16 -> fragment2_18
+fragment2_16 -> fragment2_19
+fragment2_14 -> fragment2_20
+fragment2_4 -> fragment2_21
+fragment2_21 -> fragment2_22
+fragment2_21 -> fragment2_23
+fragment2_3 -> fragment2_24
+fragment2_24 -> fragment2_25
+fragment2_24 -> fragment2_26
+fragment2_26 -> fragment2_27
+fragment2_27 -> fragment2_28
+fragment2_28 -> fragment2_29
+fragment2_28 -> fragment2_30
+fragment2_28 -> fragment2_31
+fragment2_26 -> fragment2_32
+fragment2_32 -> fragment2_33
+fragment2_32 -> fragment2_34
+fragment2_32 -> fragment2_35
+fragment2_35 -> fragment2_36
+fragment2_36 -> fragment2_37
+fragment2_36 -> fragment2_38
+fragment2_38 -> fragment2_39
+fragment2_38 -> fragment2_40
+fragment2_38 -> fragment2_41
+fragment2_41 -> fragment2_42
+fragment2_41 -> fragment2_43
+fragment2_41 -> fragment2_44
+fragment2_35 -> fragment2_45
+fragment2_2 -> fragment2_46
+fragment2_1 -> fragment2_47
+fragment2_47 -> fragment2_48
+fragment2_48 -> fragment2_49
+fragment2_49 -> fragment2_50
+fragment2_49 -> fragment2_51
+fragment2_49 -> fragment2_52
+fragment2_0[ label = "Fac::ComputeFac" ]
+fragment2_1[ label = "SEQ" ]
+fragment2_2[ label = "SEQ" ]
+fragment2_3[ label = "SEQ" ]
+fragment2_4[ label = "SEQ" ]
+fragment2_5[ label = "SEQ" ]
+fragment2_6[ label = "CJUMP" ]
+fragment2_7[ label = "<" ]
+fragment2_8[ label = "TEMP TEMP#14" ]
+fragment2_9[ label = "CONST 1" ]
+fragment2_10[ label = "LABEL LABEL#10" ]
+fragment2_11[ label = "LABEL LABEL#11" ]
+fragment2_12[ label = "SEQ" ]
+fragment2_13[ label = "LABEL LABEL#10" ]
+fragment2_14[ label = "MOVE" ]
+fragment2_15[ label = "MEM" ]
+fragment2_16[ label = "BINOP" ]
+fragment2_17[ label = "ADD" ]
+fragment2_18[ label = "TEMP BP" ]
+fragment2_19[ label = "CONST -1094795586" ]
+fragment2_20[ label = "CONST 1" ]
+fragment2_21[ label = "JUMP" ]
+fragment2_22[ label = "NAME LABEL#12" ]
+fragment2_23[ label = "LABEL LABEL#12" ]
+fragment2_24[ label = "SEQ" ]
+fragment2_25[ label = "LABEL LABEL#11" ]
+fragment2_26[ label = "MOVE" ]
+fragment2_27[ label = "MEM" ]
+fragment2_28[ label = "BINOP" ]
+fragment2_29[ label = "ADD" ]
+fragment2_30[ label = "TEMP BP" ]
+fragment2_31[ label = "CONST -1094795586" ]
+fragment2_32[ label = "BINOP" ]
+fragment2_33[ label = "MUL" ]
+fragment2_34[ label = "TEMP TEMP#14" ]
+fragment2_35[ label = "ESEQ" ]
+fragment2_36[ label = "MOVE" ]
+fragment2_37[ label = "TEMP TEMP#15" ]
+fragment2_38[ label = "CALL" ]
+fragment2_39[ label = "NAME Fac::ComputeFac" ]
+fragment2_40[ label = "TEMP CP" ]
+fragment2_41[ label = "BINOP" ]
+fragment2_42[ label = "SUB" ]
+fragment2_43[ label = "TEMP TEMP#14" ]
+fragment2_44[ label = "CONST 1" ]
+fragment2_45[ label = "TEMP TEMP#15" ]
+fragment2_46[ label = "LABEL LABEL#12" ]
+fragment2_47[ label = "EXP" ]
+fragment2_48[ label = "MEM" ]
+fragment2_49[ label = "BINOP" ]
+fragment2_50[ label = "ADD" ]
+fragment2_51[ label = "TEMP BP" ]
+fragment2_52[ label = "CONST -1094795586" ]
+}

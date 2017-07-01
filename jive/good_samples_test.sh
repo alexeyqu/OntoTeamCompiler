@@ -16,4 +16,6 @@ do
     ../../jive $f ../good_results/$f/
     # dot -Tps ../good_results/$f/AST_AbstractSyntaxTree.dot -o ../good_results/$f/AST_AbstractSyntaxTree.ps
     # dot -Tpng ../good_results/$f/AST_AbstractSyntaxTree.dot -o ../good_results/$f/AST_AbstractSyntaxTree.png
+    dot -Tps ../good_results/$f/IR_IRTree.dot -o ../good_results/$f/IR_IRTree.ps
+    dot -Tpng ../good_results/$f/IR_IRTree.dot -o ../good_results/$f/IR_IRTree.png
 done

@@ -7,6 +7,7 @@
 #include "AST/TreeVisitors/CTypeCheckerVisitor.h"
 #include "AST/TreeVisitors/CTableCreatorVisitor.h"
 #include "AST/TreeVisitors/CTranslateVisitor.h"
+#include "IRT/TreeVisitors/CIRTPrintVisitor.h"
 #include "AST/CProgram.h"
 #include "CJiveEnvironment.h"
 #include "ST/Symbols/CClassSymbol.h"
@@ -78,20 +79,22 @@ int main( int argc, char **argv ) {
 
 		std::vector<CFragment> fragments = translateVisitor.getFragments();
 
-		// outfstream.open( outstreamFolder + "IR_IRTree.txt", std::ios::out );
-		// CIRTreePrinter *irTreePrinter;
-		// irTreePrinter = new CIRTreePrinter( "ir-tree.dot" );
-		// irTreePrinter->OpenFile();
+		outfstream.open( outstreamFolder + "IR_IRTree.dot", std::ios::out );
+		IRT::CIRTPrintVisitor *irTreePrinter = new IRT::CIRTPrintVisitor( jiveEnv, *outstream );
+		irTreePrinter->startIRForest();
 
-		// size_t methodsCounter = 1;
-		// for( auto& method : fragments ) {
-		// 	irTreePrinter->ResetPrinter( "fragment" + std::to_string( methodsCounter ) + "_", method.name );
-		// 	method.rootStm->Accept( irTreePrinter );
-		// 	methodsCounter += 1;
-		// 	irTreePrinter->WriteGraphToFile();
-		// }
-		// irTreePrinter->CloseFile();
-		// outfstream.close();
+		int methodsCounter = 1;
+		for( auto& method : fragments ) {
+
+			irTreePrinter->newIRTree( "fragment" + std::to_string( methodsCounter ) + "_", method.name );
+			method.rootStm->Accept( irTreePrinter );
+			methodsCounter += 1;
+
+			irTreePrinter->writeIRTree();
+		}
+
+		irTreePrinter->endIRForest();
+		outfstream.close();
 	}
 
 	return 0;

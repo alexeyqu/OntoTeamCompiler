@@ -1,5 +1,6 @@
 #include "CTranslateVisitor.h"
 #include "CJiveEnvironment.h"
+#include "cstdio"
 
 namespace AST
 {
@@ -52,13 +53,15 @@ void CTranslateVisitor::Visit( CCompoundArgument *entity ) {
 
 void CTranslateVisitor::Visit( CMethod *entity ) {    
     CSymbol *fragmentSymbol = CSymbol::makeSymbol( curClassSymbol->getSymbol()->getBasicString() + "::" + entity->getSymbol()->getBasicString() );
+    
     curFrame = new CX86JiveFrame( fragmentSymbol );
+
     curMethodSymbol = curClassSymbol->lookupMethod( entity->getSymbol() );
 
     CClassSymbol *ancestorClass = curClassSymbol;
     while( ancestorClass != nullptr ) {
         for( auto field : ancestorClass->getFields() ) {
-            curFrame->addField( field->getSymbol() );
+            curFrame->addField( field->getSymbol() );            
         }
 
         ancestorClass = ancestorClass->getBaseClass();
@@ -109,22 +112,13 @@ void CTranslateVisitor::Visit( CCompoundMethod *entity ) {
 void CTranslateVisitor::Visit( CMainClass *entity ) {
     curClassSymbol = jiveEnv->classMap->lookup( entity ) ;
     curMethodSymbol = nullptr;
-    CSymbol *fragmentSymbol = CSymbol::makeSymbol( curClassSymbol->getSymbol()->getBasicString() + "::main" );
-    
-    curFrame = new CX86JiveFrame( fragmentSymbol );
 
     if( entity->getMethods() ) {
 		entity->getMethods()->Accept( this );
     }
-
-    if( translator ) {
-        fragments.push_back( CFragment( curFrame, translator->unNx(), fragmentSymbol ) );
-    }
     
     curClassSymbol = nullptr;
     curMethodSymbol = nullptr;
-    curFrame = nullptr;
-    translator = nullptr;
 }
 
 void CTranslateVisitor::Visit( CClass *entity ) {
@@ -169,6 +163,7 @@ void CTranslateVisitor::Visit( CCompoundStatement *statement ) {
 }
 
 void CTranslateVisitor::Visit( CAssignStatement *statement ) {
+    //std::cerr << "Assign\n";
     statement->getLValue()->Accept( this );
 	IExp *leftExp = translator->unEx();
 	translator = nullptr;
@@ -369,6 +364,9 @@ void CTranslateVisitor::Visit( CNewIntArrayExpression *expression ) {
 	IExp* newName = new CNAME( new CLabel( CSymbol::makeSymbol( "new" ) ) );
 	IExp* newCall = new CCALL( newName, new CExpList( memSizeExp, nullptr ) );
 	CTEMP* arrTemp = new CTEMP( new CTemp() );
+//     //BRK();
+// //std::cerr << "A" <<  arrTemp->getTemp()->getString().get() << std::endl;
+//     //BRK();
 
 	CSEQ* memset = new CSEQ( 
         new CMOVE( arrTemp, newCall ), 
@@ -379,8 +377,24 @@ void CTranslateVisitor::Visit( CNewIntArrayExpression *expression ) {
 }
 
 void CTranslateVisitor::Visit( CMethodCallExpression *expression ) {
+    //std::cerr << "CmethodCall\n";
+    //BRK();
+
+    //std::cerr << "B" <<   curFrame->getSymbol()->getString() << std::endl;
+    //std::cerr << "B" <<   curFrame << std::endl;
+    //BRK();
+    //std::cerr << "B" <<   curFrame->getThisPointer() << std::endl;
+
+    //BRK();
+    //std::cerr << "!!!!B" <<   curFrame->getThisPointer() << std::endl;
+    //BRK();    
+    //std::cerr << "!!!!B" <<   curFrame->getThisPointer()->getString().get() << std::endl;
+
+    //BRK();
 
 	expression->getBaseExpression()->Accept( this );
+    //std::cerr << "DDD\n";
+    
 	IExp* objExp = translator->unEx();
 	translator = nullptr;
 
@@ -394,6 +408,9 @@ void CTranslateVisitor::Visit( CMethodCallExpression *expression ) {
 	CExpList* args = new CExpList( objExp, expList );
 
 	CTEMP* returnTemp = new CTEMP( new CTemp() );
+//     //BRK();
+// //std::cerr << "A" <<  returnTemp->getTemp()->getString().get() << std::endl;
+//     //BRK();
 
 	translator = new CExpTranslator(
         new CESEQ( 

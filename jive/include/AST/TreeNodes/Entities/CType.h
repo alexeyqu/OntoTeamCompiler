@@ -18,7 +18,7 @@ public:
 	CType( const CType &other ) : type( other.getPrimitiveType() ), name( other.getSymbol() ) {}
 
 	CSymbol *getSymbol() const { return name; }	
-	boost::flyweight<std::string> &getString() const { return name->getString(); }
+	boost::flyweight<std::string>getString() const { return name->getString(); }
 	TType getPrimitiveType() const { return type; }	
 
 	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }

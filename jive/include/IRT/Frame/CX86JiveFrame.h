@@ -19,7 +19,7 @@ public:
 
 	void addParam( CSymbol *_symbol ) { params.insertObject( _symbol, new CInReg( new CTemp() ) ); paramsCount++; }
 	void addLocal( CSymbol *_symbol ) { locals.insertObject( _symbol, new CInFrame( stackOffset, basePointer ) ); stackOffset += wordSize; }
-	void addField( CSymbol *_symbol ) { fields.insertObject( _symbol, new CInFrame( thisOffset, thisPointer ) ); thisPointer += wordSize; }
+	void addField( CSymbol *_symbol ) { fields.insertObject( _symbol, new CInFrame( thisOffset, thisPointer ) ); thisOffset += wordSize; }
 
 	int getParamsCount() const { return paramsCount; }
 	IAccess *getAccess( CSymbol *_symbol ) const;
@@ -35,6 +35,8 @@ public:
 	CLabel *getEpilogueLabel() const { return epilogueLabel; }
 
 	CTempList *getDefaultRegs() const;
+
+	CSymbol *getSymbol() const { return symbol; }
 
 private:
     CSymbol *symbol;

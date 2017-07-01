@@ -14,7 +14,7 @@ public:
 	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }
 		
 	CSymbol *getMethodSymbol() const { return methodId->getSymbol(); }
-	boost::flyweight<std::string> &getMethodString() const { return methodId->getString(); }
+	boost::flyweight<std::string>getMethodString() const { return methodId->getString(); }
 
 	IExpression *getBaseExpression() const { return base; }
 	CIdExpression *getMethodId() const { return methodId; }

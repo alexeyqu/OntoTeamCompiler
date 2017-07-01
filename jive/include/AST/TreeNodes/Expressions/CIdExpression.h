@@ -16,7 +16,7 @@ public:
    	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }
 
 	CSymbol *getSymbol() const { return symbol; }
-	boost::flyweight<std::string> &getString() const { return symbol->getString(); } 
+	boost::flyweight<std::string>getString() const { return symbol->getString(); } 
 
 private:
    	CSymbol *symbol;

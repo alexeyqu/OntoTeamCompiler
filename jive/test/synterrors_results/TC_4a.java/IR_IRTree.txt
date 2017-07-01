@@ -1,0 +1,91 @@
+digraph IRTree {
+fragment1_0 -> fragment1_1
+fragment1_1 -> fragment1_2
+fragment1_2 -> fragment1_3
+fragment1_3 -> fragment1_4
+fragment1_3 -> fragment1_5
+fragment1_5 -> fragment1_6
+fragment1_6 -> fragment1_7
+fragment1_6 -> fragment1_8
+fragment1_8 -> fragment1_9
+fragment1_8 -> fragment1_10
+fragment1_10 -> fragment1_11
+fragment1_11 -> fragment1_12
+fragment1_11 -> fragment1_13
+fragment1_13 -> fragment1_14
+fragment1_13 -> fragment1_15
+fragment1_15 -> fragment1_16
+fragment1_15 -> fragment1_17
+fragment1_15 -> fragment1_18
+fragment1_10 -> fragment1_19
+fragment1_5 -> fragment1_20
+fragment1_1 -> fragment1_21
+fragment1_21 -> fragment1_22
+fragment1_22 -> fragment1_23
+fragment1_22 -> fragment1_24
+fragment1_24 -> fragment1_25
+fragment1_25 -> fragment1_26
+fragment1_25 -> fragment1_27
+fragment1_27 -> fragment1_28
+fragment1_27 -> fragment1_29
+fragment1_29 -> fragment1_30
+fragment1_30 -> fragment1_31
+fragment1_30 -> fragment1_32
+fragment1_32 -> fragment1_33
+fragment1_32 -> fragment1_34
+fragment1_34 -> fragment1_35
+fragment1_34 -> fragment1_36
+fragment1_34 -> fragment1_37
+fragment1_29 -> fragment1_38
+fragment1_24 -> fragment1_39
+fragment1_0[ label = "TreeVisitor::main" ]
+fragment1_1[ label = "SEQ" ]
+fragment1_2[ label = "EXP" ]
+fragment1_3[ label = "CALL" ]
+fragment1_4[ label = "NAME System.out.println" ]
+fragment1_5[ label = "ESEQ" ]
+fragment1_6[ label = "MOVE" ]
+fragment1_7[ label = "TEMP TEMP#13" ]
+fragment1_8[ label = "CALL" ]
+fragment1_9[ label = "NAME TreeVisitor::Start" ]
+fragment1_10[ label = "ESEQ" ]
+fragment1_11[ label = "MOVE" ]
+fragment1_12[ label = "TEMP CP" ]
+fragment1_13[ label = "CALL" ]
+fragment1_14[ label = "NAME new" ]
+fragment1_15[ label = "BINOP" ]
+fragment1_16[ label = "MUL" ]
+fragment1_17[ label = "CONST 0" ]
+fragment1_18[ label = "CONST 4" ]
+fragment1_19[ label = "TEMP CP" ]
+fragment1_20[ label = "TEMP TEMP#13" ]
+fragment1_21[ label = "EXP" ]
+fragment1_22[ label = "CALL" ]
+fragment1_23[ label = "NAME System.out.println" ]
+fragment1_24[ label = "ESEQ" ]
+fragment1_25[ label = "MOVE" ]
+fragment1_26[ label = "TEMP TEMP#13" ]
+fragment1_27[ label = "CALL" ]
+fragment1_28[ label = "NAME TreeVisitor::Start" ]
+fragment1_29[ label = "ESEQ" ]
+fragment1_30[ label = "MOVE" ]
+fragment1_31[ label = "TEMP CP" ]
+fragment1_32[ label = "CALL" ]
+fragment1_33[ label = "NAME new" ]
+fragment1_34[ label = "BINOP" ]
+fragment1_35[ label = "MUL" ]
+fragment1_36[ label = "CONST 0" ]
+fragment1_37[ label = "CONST 4" ]
+fragment1_38[ label = "TEMP CP" ]
+fragment1_39[ label = "TEMP TEMP#13" ]
+fragment2_0 -> fragment2_1
+fragment2_1 -> fragment2_2
+fragment2_0[ label = "TV::Start" ]
+fragment2_1[ label = "EXP" ]
+fragment2_2[ label = "CONST 0" ]
+fragment3_0 -> fragment3_1
+fragment3_1 -> fragment3_2
+fragment3_0[ label = "Visitor::visit" ]
+fragment3_1[ label = "EXP" ]
+fragment3_2[ label = "CONST 0" ]
+}

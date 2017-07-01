@@ -13,8 +13,8 @@ public:
 
     void Accept( IIRTVisitor *visitor ) { visitor->Visit( this ); }
 
-    const IExp *getExp() const { return exp; }
-    const CExpList *getNext() const { return next; }
+    IExp *getExp() const { return exp; }
+    CExpList *getNext() const { return next; }
 
 private:
     IExp *exp;

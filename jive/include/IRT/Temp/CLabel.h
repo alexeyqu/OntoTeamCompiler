@@ -15,6 +15,7 @@ public:
     CLabel( CSymbol *symbol ) : name( symbol->getString() ) { counter++; }
 
     flyweight<std::string> &getString() const { return const_cast<flyweight<std::string> &>( name ); }
+    std::string &getBasicString() const { return const_cast<std::string &>( name.get() ); }
 
     friend bool operator==( const CLabel &lhs, const CLabel &rhs  ) { return lhs.name == rhs.name; }
 

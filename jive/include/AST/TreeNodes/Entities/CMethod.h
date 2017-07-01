@@ -24,7 +24,7 @@ public:
    	void Accept( IVisitor *visitor ) override { visitor->Visit( this ); }
 
 	CSymbol *getSymbol() const { return id->getSymbol(); }
-	boost::flyweight<std::string> &getString() const { return id->getString(); }
+	boost::flyweight<std::string>getString() const { return id->getString(); }
 
 	CCompoundArgument *getArguments() const { return arguments; }
 	CCompoundVariable *getVariables() const { return variables; }
